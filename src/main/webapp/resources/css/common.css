@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+
+.body{
+	font-family: 'Noto Sans KR', sans-serif;	
+}
+
+/* 홈 화면 이미지 넘어갈 때 이미지 크기*/
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+
+/* 네비게이션바에 있는 로고 위치 */
+#logoWhite{
+	margin-left: 50px;	
+	margin-top: 10px;
+}
+
+
+/* 테스트 */
