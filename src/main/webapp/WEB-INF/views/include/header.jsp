@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-<link href="${pageContext.request.contextPath }/resources/css/common.css?bcd" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/common.css?bc" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -28,7 +27,7 @@
 			
 			<!-- 메뉴 -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav">
+				<ul class="nav navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link" href="#">공연정보</a>
 					</li>
@@ -39,65 +38,34 @@
 					
 					<li class="nav-item">
 						<a class="nav-link" href="#">커뮤니티</a>
+						
+						
+						
+						
 					</li>
 					
 					<li class="nav-item">
-						<a class="nav-link" href="#">(재)대구오페라하우스</a>
-					</li>
-				</ul>
+						<a href="#" class="nav-link">(재)대구오페라하우스</a>
+						
+					          <div class="dropdownContain">
+					<div class="dropOut">
+						<div class="triangle"></div>
+						<ul>
+							<li><a href="#">Plan</a></li>
+							<li><a href="#">Account Settings</a></li>
+							<li><a href="#">Switch Account</a></li>
+							<li><a href="#">Sign Out</a></li>
+						</ul>
+					</div>
+				</div>
+					</li> 
+				</ul>		
 			</div>	<!-- navbarSupportedContent 끝 -->
 		</div>	<!-- container-fluid 끝 -->
 	
 	</nav>
 	
-	
-	<!-- 이미지 슬라이더 -->
-	<div class="intro carousel slide bg-overlay-light h-auto" data-ride="carousel" data-interval="4000" id="carouselExampleCaptions">
-		<div class="carousel-inner" role="listbox">
-			<div class="carousel-item active">
-				<img class="d-block img-fluid" alt="마술피리" src="${pageContext.request.contextPath }/resources/upload/20190108161143.jpg">
-			</div>
-			
-			<div class="carousel-item">
-				<img class="d-block img-fluid" alt="사랑의묘약" src="${pageContext.request.contextPath }/resources/upload/20190108161235.jpg">
-			</div>
-			
-			<div class="carousel-item">
-				<img class="d-block img-fluid" alt="헨젤과그레텔" src="${pageContext.request.contextPath }/resources/upload/20190108161430.jpg">
-			</div>
-			
-			<div class="carousel-item">
-				<img class="d-block img-fluid" alt="팔리아치" src="${pageContext.request.contextPath }/resources/upload/20190108163201.jpg">
-			</div>
-			
-			<div class="carousel-item">
-				<img class="d-block img-fluid" alt="신데렐라" src="${pageContext.request.contextPath }/resources/upload/20190114104538.jpg">
-			</div>
-		</div>
-	
-		<!-- button -->
-		<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_l_big.png" width="50" height="96"></span>
-		</a>
 		
-		<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_r_big.png" width="50" height="96"></span>
-		</a>
-		
-	</div>	<!-- 슬라이더 끝 -->
-	
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	
 	<!-- 스크립트 부분 -->
 	<script>
 		$(function(){
@@ -111,9 +79,7 @@
 			        $(".top-nav").removeClass("light-header");
 			        $(".navbar-brand").html("<span><img src='${pageContext.request.contextPath }/resources/upload/logo_w.png'></span>");
 			    }
-			});
+			});			
 		})
 	</script>
 		
-</body>
-</html>
