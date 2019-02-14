@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<%@ include file="include/header.jsp" %>
+<%@ include file="include/header3.jsp" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%> 
 
 	<!-- 이미지 슬라이더 -->
