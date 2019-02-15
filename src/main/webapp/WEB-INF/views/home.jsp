@@ -49,6 +49,6 @@
 	<h2>테스트</h2>
 	<h2>테스트</h2>
 	<h2>테스트</h2>
-
-	</body>
-</html>
+	
+	
+<%@ include file="include/footer.jsp" %>
