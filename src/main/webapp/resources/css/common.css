@@ -1,5 +1,63 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
 
+/* ========== 스크롤바  ==========*/
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+/* Chrome, Safari용 스크롤 바 */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+}
+/* ========== 스크롤바 끝 ==========*/
+
+* {
+	/* 드래그 방지 시작 */
+	-webkit-touch-callout: none;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	/* 드래그 방지 끝 */
+	
+}
+
+/* 버튼 클릭 시 파란 윤곽선 표시 안되게 함 */ 
+*:focus {
+    outline: none;
+}
+
 body, html{
 	height: 100%;
 	width: 100%;
@@ -71,7 +129,7 @@ span.spanWrap{
 	padding-left: 5px;
 }
 
-/* ====== 이미지 슬라이더 ====== */
+/* ====== 헤더 이미지 슬라이더 ====== */
 .intro{
 	float: left;
 	width:100%;
@@ -278,4 +336,3 @@ div.row.text-center.sns-menu{
 	width: 203px;
 	margin: 0 auto;
 }
-

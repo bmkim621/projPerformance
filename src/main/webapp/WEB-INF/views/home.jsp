@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page session="false" %>
 <%@ include file="include/header.jsp" %>
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%> 
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 	<!-- 이미지 슬라이더 -->
 	<div class="intro carousel slide bg-overlay-light h-auto" data-ride="carousel" data-interval="4000" id="carouselExampleCaptions">
@@ -37,19 +38,7 @@
 		</a>
 		
 	</div>	<!-- 슬라이더 끝 -->
-	
-	<!-- 공연 리스트 이미지 -->
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	<h2>테스트</h2>
-	
-	
+		
+<%@ include file="include/perfList.jsp" %>	<!-- 공연 리스트 슬라이더 -->
+<%@ include file="include/goMenu.jsp" %>	<!-- 메뉴 링크  -->
 <%@ include file="include/footer.jsp" %>

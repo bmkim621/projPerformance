@@ -3,14 +3,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- jQuery 부트스트랩 js보다 먼저 선언되어 있을 것 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- 부트스트랩 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> 
+<!-- Owl carousel -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/owl.theme.default.min.css">
+<!-- Owl Carousel js -->
+<script src="${pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
 <!-- 부트스트랩 그래픽 아이콘 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link href="${pageContext.request.contextPath }/resources/css/common.css" rel="stylesheet" type="text/css">
+<!-- css -->
+<link href="${pageContext.request.contextPath }/resources/css/common.css?ab" rel="stylesheet" type="text/css">
+<title>재단법인 대구오페라하우스</title>
 </head>
 <body>
 
@@ -123,7 +132,12 @@
 			        $(".top-nav").removeClass("light-header");
 			        $(".navbar-brand").html("<span><img src='${pageContext.request.contextPath }/resources/upload/logo_w.png'></span>");
 			    }
-			});			
+			});	
+			
+			//우클릭 못하게 막기
+			$("body").contextmenu(function() {
+				return false;
+			});
 		})
 	</script>
 		
