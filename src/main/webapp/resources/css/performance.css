@@ -1,0 +1,59 @@
+/* 공연정보 타이틀 부분 */
+div.container-fluid.perfContainer{
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+div.container-fluid div#bgWrapper{
+	background: url('../images/sub_visual_1.jpg') no-repeat;
+	height: 520px;
+	background-size: cover;	
+}
+
+div.container-fluid div#bgWrapper div.headline{
+	width: 200px;
+	overflow: hidden;    
+	position: absolute;
+	top: 210px;       
+	left: 640px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	padding-top: 28px;           
+}
+
+
+div.container-fluid div#bgWrapper p.korHeadline{
+	color: white;
+	letter-spacing: -1.2px;
+	font-size: 32px;   
+	line-height: 0.5em;              
+}
+
+div.container-fluid div#bgWrapper p.engHeadline{
+	letter-spacing: -0.8px;
+	font-size: 22px;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.5);         
+}
+
+/* ===== 공연정보 등록 폼 ===== */
+div.container-fluid.contentsWrapper{
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px;       
+	border: 2px solid lightblue;
+	background-color: #efefef;
+}
+
+div.container-fluid.contentsWrapper div.formWrapper{
+	width: 50%;       
+	margin: 0 auto;
+	padding: 20px;
+	border: 2px solid pink;
+	background-color: #fff;
+}
