@@ -3,7 +3,6 @@ div.container.myWrapper{
 	background-repeat: no-repeat;
 	background-size: 100%;
 	margin-top: 40px;
-	position: relative;
 }
 
 div.container.myWrapper div.bannerInner{
@@ -17,6 +16,7 @@ div.container.myWrapper div.bannerWrap{
 	margin-right: 5px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	position: relative;
 }
 
 div.container.myWrapper div.bannerWrap img{
@@ -25,13 +25,13 @@ div.container.myWrapper div.bannerWrap img{
 	border-radius: 5px;
 }
 
-/* ===== 배너 1 ===== */
+/* ===== 배너  ===== */
 div.container.myWrapper div.bannerWrap div.contents{
 	display: inline-block;
 	position: absolute;
-	top: 50px;          
-	left: 225px;                                 
-}
+	top: 20px;                 
+	left: 20px;                                   
+}   
 
 div.container.myWrapper div.bannerWrap div.contents span.engTitle {
 	color: #747D89;
@@ -53,7 +53,7 @@ div.container.myWrapper div.bannerWrap div.contents a.btn{
     font-size: 11px;
     font-weight: bold;
     background: none;
-    border: 1px solid #f04040;
+    border: 1px solid #f04040;    
     padding: 2px 10px; 
     margin-top: 10px;
     margin-left: 80px;   
@@ -66,171 +66,56 @@ div.container.myWrapper div.bannerWrap div.contents a.btn:hover{
 	background: #f04040;          
 }
 
-/* ===== 배너 2 ===== */
-div.container.myWrapper div.bannerWrap div#contents2{
-	display: inline-block;
-	position: absolute;
-	top: 50px;
-	left: 515px;                     
-}
-
-div.container.myWrapper div.bannerWrap div#contents2 span#engTitle2{
-	color: #747D89;
-	display: block;
-	font-size: 14px;
-	letter-spacing: -0.8px; 
-}
-
-div.container.myWrapper div.bannerWrap div#contents2 span#korTitle2{
-	color: #000;
-	display: block;
-	font-size: 26px;
-	letter-spacing: -1.0px;
-	font-weight: 900;
-}
-
-div.container.myWrapper div.bannerWrap div#contents2 a#aView2{
-	color: #f04040;
-    font-size: 11px;
-    font-weight: bold;
-    background: none;
-    border: 1px solid #f04040;
-    padding: 2px 10px; 
-    margin-top: 10px;
-    margin-left: 80px;   
-    line-height: 16px;
-    border-radius: 20px;
-}
-
-div.container.myWrapper div.bannerWrap div#contents2 a#aView2:hover{
-	color: #fff;
-	background: #f04040;          
-}
-
-/* ===== 배너 3 ===== */
-div.container.myWrapper div.bannerWrap div#contents3{
-	display: inline-block;
-	position: absolute;
-	top: 50px;
-	left: 805px;                                             
-}
-
-div.container.myWrapper div.bannerWrap div#contents3 span#engTitle3{
-	color: #747D89;
-	display: block;
-	font-size: 14px;
-	letter-spacing: -0.8px; 
-}
-
-div.container.myWrapper div.bannerWrap div#contents3 span#korTitle3{
-	color: #000;
-	display: block;
-	font-size: 26px;
-	letter-spacing: -1.0px;
-	font-weight: 900;
-}
-
-div.container.myWrapper div.bannerWrap div#contents3 a#aView3{
-	color: #f04040;
-    font-size: 11px;
-    font-weight: bold;
-    background: none;
-    border: 1px solid #f04040;
-    padding: 2px 10px; 
-    margin-top: 10px;
-    margin-left: 80px;   
-    line-height: 16px;
-    border-radius: 20px;
-}
-
-div.container.myWrapper div.bannerWrap div#contents3 a#aView3:hover{
-	color: #fff;
-	background: #f04040;          
-}
-
-/* ===== 배너 4 ===== */
-div.container.myWrapper div.bannerWrap div#contents4{
-	display: inline-block;
-	position: absolute;
-	top: 50px;
-	left: 1090px;                                                              
-}      
-
-div.container.myWrapper div.bannerWrap div#contents4 span#engTitle4{
-	color: #747D89;
-	display: block;
-	font-size: 14px;
-	letter-spacing: -0.8px; 
-}
-
-div.container.myWrapper div.bannerWrap div#contents4 span#korTitle4{
-	color: #000;
-	display: block;
-	font-size: 26px;
-	letter-spacing: -1.0px;
-	font-weight: 900;
-}
-
-div.container.myWrapper div.bannerWrap div#contents4 a#aView4{
-	color: #f04040;
-    font-size: 11px;
-    font-weight: bold;
-    background: none;
-    border: 1px solid #f04040;
-    padding: 2px 10px; 
-    margin-top: 10px;
-    margin-left: 80px;   
-    line-height: 16px;
-    border-radius: 20px;
-}
-
-div.container.myWrapper div.bannerWrap div#contents4 a#aView4:hover{
-	color: #fff;
-	background: #f04040;          
-}
-
 /* ===== 미니배너 ===== */
 div.container.myWrapper div.noticeInner{
 	width: 1400px;           
 	margin: 0 auto;
 	/* border: 2px solid yellow; */
-	overflow: hidden;
 	margin-bottom: 20px;                 
 }
 
-div.container.myWrapper div.noticeInner div.miniBannerContainer{
-	width: 255px;                           
-	height: 315px;                     
+div.container.myWrapper div.noticeInner div.miniBannerContainer{                    
 	float: left;
-	margin-right: 30px;  /* 배너와 동영상 사이 간격 */  
+	margin-right: 30px;  /* 배너와 동영상 사이 간격 */
+	width: 250px;  
 }
 
-div.container.myWrapper div.noticeInner div#miniBannerWrap, div.container.myWrapper div.noticeInner div#miniBannerWrap2, div.container.myWrapper div.noticeInner div#miniBannerWrap3{
+div.container.myWrapper div.noticeInner div.miniBannerWrap{
 	display: inline-block;
-}
-
-div.container.myWrapper div.noticeInner div#miniBannerWrap img, div.container.myWrapper div.noticeInner div#miniBannerWrap2 img, div.container.myWrapper div.noticeInner div#miniBannerWrap3 img{
 	width: 250px;
 	height: 95px;
-	margin-bottom: 13px;        
+	margin-bottom: 10px;
+	position: relative;
+	overflow: hidden;
+}
+
+div.container.myWrapper div.noticeInner div.miniBannerWrap img{
+	width: 250px;
+	height: 95px;
+	margin-bottom: 13px;
+	transition: all 1s;          
+}
+
+div.container.myWrapper div.noticeInner div.miniBannerWrap img:hover{
+	transform: scale(1.1) /* 중심을 기준으로 1.1배 확대된다 */
 }
 
 /* 미니 배너 1 */
-div.container.myWrapper div.noticeInner div#miniBannerWrap div#miniContents{
+div.container.myWrapper div.noticeInner div.miniBannerWrap div.miniContents{
 	display: inline-block;
 	position: absolute;
-	top: 350px;                 
-	left: 85px;          
+	top: 20px;                       
+	left: 20px;                        
 }
 
-div.container.myWrapper div.noticeInner div#miniBannerWrap div#miniContents span#engMiniTitle{
+div.container.myWrapper div.noticeInner div.miniBannerWrap div.miniContents span.engMiniTitle{
 	color: #747D89;
 	display: block;
 	font-size: 14px;
 	letter-spacing: -0.8px; 
 }
 
-div.container.myWrapper div.noticeInner div#miniBannerWrap div#miniContents span#korMiniTitle{
+div.container.myWrapper div.noticeInner div.miniBannerWrap div.miniContents span.korMiniTitle{
 	color: #000;
 	display: block;
 	font-size: 22px;
@@ -238,51 +123,6 @@ div.container.myWrapper div.noticeInner div#miniBannerWrap div#miniContents span
 	font-weight: 900;   
 }
 
-/* 미니 배너 2 */
-div.container.myWrapper div.noticeInner div#miniBannerWrap2 div#miniContents2{
-	display: inline-block;
-	position: absolute;
-	top: 457px;                                                       
-	left: 85px;          
-}
-
-div.container.myWrapper div.noticeInner div#miniBannerWrap2 div#miniContents2 span#engMiniTitle2{
-	color: #747D89;
-	display: block;
-	font-size: 14px;
-	letter-spacing: -0.8px; 
-}
-
-div.container.myWrapper div.noticeInner div#miniBannerWrap2 div#miniContents2 span#korMiniTitle2{
-	color: #000;
-	display: block;
-	font-size: 22px;
-	letter-spacing: -1.0px;
-	font-weight: 900;      
-}
-
-/* 미니 배너3 */
-div.container.myWrapper div.noticeInner div#miniBannerWrap3 div#miniContents3{
-	display: inline-block;
-	position: absolute;
-	top: 566px;                                                                                               
-	left: 85px;                         
-}
-
-div.container.myWrapper div.noticeInner div#miniBannerWrap3 div#miniContents3 span#engMiniTitle3{
-	color: #747D89;
-	display: block;
-	font-size: 14px;
-	letter-spacing: -0.8px; 
-}
-
-div.container.myWrapper div.noticeInner div#miniBannerWrap3 div#miniContents3 span#korMiniTitle3{
-	color: #000;
-	display: block;
-	font-size: 22px;
-	letter-spacing: -1.0px;
-	font-weight: 900;          
-}
 
 /* ===== 동영상 ===== */
 div.container.myWrapper div.noticeInner div.youtubeWrap{
