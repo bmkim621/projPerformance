@@ -68,31 +68,30 @@ div.container.myWrapper div.bannerWrap div.contents a.btn:hover{
 
 /* ===== 미니배너 ===== */
 div.container.myWrapper div.noticeInner{
-	width: 1400px;           
-	margin: 0 auto;
-	/* border: 2px solid yellow; */
-	margin-bottom: 20px;                 
+	width: 1122px;                                            
+	margin: 0 auto;  
+/* 	border: 2px solid yellow;   */      
+	margin-bottom: 15px;                            
 }
 
 div.container.myWrapper div.noticeInner div.miniBannerContainer{                    
 	float: left;
-	margin-right: 30px;  /* 배너와 동영상 사이 간격 */
-	width: 250px;  
+	margin-right: 30px;  /* 배너와 공지사항 사이 간격 */
+	width: 220px;        
 }
 
 div.container.myWrapper div.noticeInner div.miniBannerWrap{
 	display: inline-block;
-	width: 250px;
-	height: 95px;
+	width: 220px;
+	height: 65px;
 	margin-bottom: 10px;
 	position: relative;
 	overflow: hidden;
 }
 
 div.container.myWrapper div.noticeInner div.miniBannerWrap img{
-	width: 250px;
-	height: 95px;
-	margin-bottom: 13px;
+	width: 220px;    
+	height: 65px;       
 	transition: all 1s;          
 }
 
@@ -104,28 +103,73 @@ div.container.myWrapper div.noticeInner div.miniBannerWrap img:hover{
 div.container.myWrapper div.noticeInner div.miniBannerWrap div.miniContents{
 	display: inline-block;
 	position: absolute;
-	top: 20px;                       
-	left: 20px;                        
+	top: 8px;                       
+	left: 12px;                              
 }
 
 div.container.myWrapper div.noticeInner div.miniBannerWrap div.miniContents span.engMiniTitle{
 	color: #747D89;
 	display: block;
-	font-size: 14px;
+	font-size: 13px;
 	letter-spacing: -0.8px; 
 }
 
 div.container.myWrapper div.noticeInner div.miniBannerWrap div.miniContents span.korMiniTitle{
 	color: #000;
 	display: block;
-	font-size: 22px;
-	letter-spacing: -1.0px;
+	font-size: 18px;
+	letter-spacing: -1.0px;   
 	font-weight: 900;   
 }
 
 
 /* ===== 동영상 ===== */
 div.container.myWrapper div.noticeInner div.youtubeWrap{
-	clear: both;
 	display: inline-block;
+	float: right;
+}
+
+/* ===== 공지사항 ===== */
+div.container.myWrapper div.noticeInner div.noticeWrap{
+	width: 380px;   
+	height: 227px;                                      
+	display: inline-block;
+	position: relative;
+	background-image: url("../images/bg_notice.png");   
+	background-repeat: no-repeat;  
+	background-size: 380px 227px;                  
+	margin-right: 30px;  /* 동영상과 공지사항 사이 간격  */ 
+	float: left;       
+}
+    
+div.container.myWrapper div.noticeInner div.noticeWrap div.noticeContents{
+	display: inline-block;
+	position: absolute;
+	top: 20px;                   
+	left: 20px;   
+}
+
+div.container.myWrapper div.noticeInner div.noticeWrap div.noticeContents span.noticeEngTitle{
+	color: #747D89;
+	display: block;
+	font-size: 14px;
+	letter-spacing: -0.8px;  
+}
+
+div.container.myWrapper div.noticeInner div.noticeWrap div.noticeContents span.noticeKorTitle{
+	color: #000;
+	display: block;
+	font-size: 26px;
+	letter-spacing: -1.0px;
+	font-weight: 900;
+}
+
+/* 공지사항 내용 들어갈 부분 */
+div.container.myWrapper div.noticeInner div.noticeWrap div.noticebody{
+	border: 1px solid #ccc;  
+	width: 340px;
+	height: 120px;                        
+	position: absolute;      
+	top: 90px;
+	left: 20px;         
 }

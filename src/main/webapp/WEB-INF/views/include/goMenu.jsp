@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goMenu.css?abs">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goMenu.css?abc">
   
 <div class="container myWrapper col-md-12">
 	<div class="row">
@@ -89,13 +89,26 @@
 						<span class="korMiniTitle">오페라 네이버</span>
 					</div>
 				</div>
+			</div>	<!-- miniBannerContainer end -->
+			
+
+			<!-- 공지사항 -->
+			<div class="noticeWrap">
+				<div class="noticeContents">
+					<span class="noticeEngTitle">Notice</span>
+					<span class="noticeKorTitle">공지사항</span>
+				</div>
+				
+				<div class="noticebody">
+					<p>test</p>
+				</div>
 			</div>
 			
 			<!-- 동영상 -->
-			<div class="youtubeWrap">
-				<iframe width="560" height="302" src="https://www.youtube.com/embed/b_3hb97VXwM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</div>          
-			             
-		</div>
-	</div>
+			<div class="youtubeWrap">   
+				<iframe width="462" height="227" src="https://www.youtube.com/embed/b_3hb97VXwM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>                                                           
+			                                                      
+		</div>	<!-- noticeInner end -->
+	</div>   
 </div>
