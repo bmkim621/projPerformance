@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.PerformanceMapper">
 
+	<!-- 공연 추가, 수정, 삭제 : performance 테이블 -->
 	<insert id="insertPerf" parameterType="PerformanceVO">
 		insert into performance values
 		(nextshowcode(), #{showName}, #{showType}, #{totalTime}, #{startTime}, #{showStartdate}, #{showEnddate}, #{facilitiesNo.facilitiesNo})
@@ -15,5 +16,10 @@
 	<select id="perfListAll" resultMap="resultPerf">
 		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no
 		from performance
+	</select>
+	
+	<!-- 시설정보: facilities 테이블 -->
+	<select id="facilitiesList" resultType="FacilitiesVO">
+		select facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name from facilities
 	</select>
 </mapper>

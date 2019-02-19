@@ -19,8 +19,8 @@ public class PerformanceDaoTest {
 	@Autowired
 	private PerformanceDAO dao;
 	
-	//추가하기
-	@Test
+	//공연정보 추가하기
+	//@Test
 	public void insertPerf() {
 		PerformanceVO vo = new PerformanceVO();
 		vo.setShowName("가족오페라 <헨젤과 그레텔>");
@@ -33,12 +33,20 @@ public class PerformanceDaoTest {
 		dao.insertPerf(vo);
 	}
 	
-	@Test
+	//공연정보 보기
+	//@Test
 	public void selectPerf() {
 		List<PerformanceVO> list = dao.perfListAll();
 		
 		System.out.println( list.get(0).getShowCode() + "========> " + list.get(0).getFacilitiesNo());
 		System.out.println(list);
 		
+	}
+	
+	//시설정보 보기
+	@Test
+	public void selectFacilites() {
+		List<FacilitiesVO> list = dao.facilitiesList();
+		System.out.println(list);
 	}
 }

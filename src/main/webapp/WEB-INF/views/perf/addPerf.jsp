@@ -6,6 +6,8 @@
 <link href="${pageContext.request.contextPath }/resources/css/myDatepicker.css" rel="stylesheet" type="text/css">
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/performance.js"></script>
+<!-- handlebars -> 제이쿼리 먼저 있어야 함. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- timepicker -->
@@ -96,10 +98,10 @@
 				</div>
 
 				<!-- 6. 공연장소 선택하기 -->
-				<div class="form-group">
+<!-- 				<div class="form-group">
 					<label for="facilitiesNo">공연장소</label>  
 						
-					<!-- 체크박스 1 -->
+					체크박스 1
 				    <div class="checkbox">
 					    <label><input type="checkbox" value="1">
 						    <span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>
@@ -107,14 +109,15 @@
 				   		</label>
 				   	</div>
 				   	
-				   	<!-- 체크박스 2 -->
+				   	체크박스 2
 				    <div class="checkbox">
 					    <label><input type="checkbox" value="2" disabled>
 						    <span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>
 						         대구오페라하우스 별관
 				   		</label>
 				   	</div>
-				</div>
+				</div> -->
+				<div class="form-group" id="Chkfacilities"></div>
 
 				<!-- 7. 사진 업로드 이미지 -->
 				<div class="form-group">
@@ -145,5 +148,42 @@
 </div>
 
 
+<!-- test -->
+<script>
+	//시설 가지고 오는 함수
+	function getFacilites(){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/facilities/list",
+			type: "GET",
+			dataType: "json",
+			success: function(json){
+				console.log(json);
+				
+				$("#Chkfacilities").empty();
+				
+				var source = $("#template").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				$("#Chkfacilities").append(result);	
+			}
+		})
+	}
+	
+	$(function(){
+		getFacilites(); //내가 만든 함수 호출하기
+		$("#Chkfacilities").find('input[type="checkbox"]').css("border", "1px solid blue");
+	})
+</script>
+
+<!-- 템플릿 -->
+<script id="template" type="text/x-handlebars-template">
+<label for="facilitiesNo">공연장소</label>  					
+{{#each.}}
+	<div class="checkbox">
+		<label><input type="checkbox" value="{{facilitiesNo}}">
+		<span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>{{facilitiesName}}</label>
+	</div>			   	
+{{/each}}				
+</script>
 
 <%@ include file="../include/footer.jsp"%>

@@ -1,6 +1,7 @@
 -- 시설
 insert into facilities values
-(1, 2, 5, 200, '대구오페라하우스 본관');
+(1, 2, 5, 200, '대구오페라하우스 본관'),
+(2, 1, 5, 100, '대구오페라하우스 별관');
 
 -- 공연
 insert into performance values
