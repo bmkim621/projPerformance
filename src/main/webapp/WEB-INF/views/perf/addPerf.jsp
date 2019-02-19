@@ -1,226 +1,149 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp" %>
-<!-- my css -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp"%>
+<!-- 내가 만든 css 파일 -->
 <link href="${pageContext.request.contextPath }/resources/css/performance.css?abd" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/myDatepicker.css" rel="stylesheet" type="text/css">
 <!-- js -->
+<script src="${pageContext.request.contextPath }/resources/js/performance.js"></script>
+<!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
+<!-- timepicker -->
+<link href="${pageContext.request.contextPath }/resources/css/mdtimepicker.min.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath }/resources/js/mdtimepicker.min.js"></script>
 
-<style>
-.ui-datepicker {
-    background-color: #fff;
-    box-shadow: inset 0 0 0 1px #ccc;
-    width: 100%;
-    max-width: 370px;
-    z-index: 999 !important;
-}
 
-@media all and (max-width: 760px) {
-    .ui-datepicker {
-        max-width: 290px;
-    }
-}
-
-.ui-datepicker-year {
-    color: #000;
-}
-
-.ui-datepicker-month {
-    color: #000;
-}
-
-.ui-datepicker-header {
-    color: #ccc;
-    text-align: center;
-    font-size: 14px;
-    border-bottom: 1px solid #e6ebf0;
-    position: relative;
-    padding: 12px 0;
-}
-
-.ui-datepicker-header .ui-corner-all {
-    position: absolute;
-    top: 0;
-    line-height: 14px;
-    text-decoration: none;
-    color: transparent;
-    font-size: 0;
-    width: 40px;
-    height: 40px;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAAkElEQVQYV22OQQ7BUABEZ2hjb8clHIBKRPwurVyniNvURnQjSDSiPYBLWFs2X/6Ixm8szPIlk/eI7xap2s++PTgipYezslpDTADua2gKOxZ0AfhwQTBgXKrr9LoD6hGcHIfhlaawO0FzSJvTqJN8nv/h712O03MU5rUovtnIUXkj8kmmqFYClyCzptPHo4XtG0n5SYl/lxqyAAAAAElFTkSuQmCC);
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-.ui-datepicker-header .ui-corner-all.ui-datepicker-prev {
-    left: 10px;
-}
-
-.ui-datepicker-header .ui-corner-all.ui-datepicker-next {
-    right: 10px;
-    transform: rotateY(180deg);
-}
-
-.ui-datepicker-calendar {
-    color: #808080;
-    font-size: 14px;
-    margin: 0 24px 24px;
-}
-
-.ui-datepicker-calendar thead tr {
-    border-top: 0;
-}
-
-.ui-datepicker-calendar tr {
-    border-top: 1px solid #e6ebf0;
-}
-
-.ui-datepicker-calendar tr td, .ui-datepicker-calendar tr th {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-@media all and (max-width: 760px) {
-    .ui-datepicker-calendar tr td, .ui-datepicker-calendar tr th {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-.ui-datepicker-calendar tr td {
-    border-right: 1px solid #e6ebf0;
-    position: relative;
-}
-
-.ui-datepicker-calendar tr td:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: 0 0 0 1px #ccc;
-    display: none;
-}
-
-.ui-datepicker-calendar tr td.ui-datepicker-today {
-    background-color: #ccc;
-}
-
-.ui-datepicker-calendar tr td.ui-datepicker-today a {
-    color: #fff;
-}
-
-.ui-datepicker-calendar tr td.ui-datepicker-today:hover:before {
-    display: none;
-}
-
-.ui-datepicker-calendar tr td.ui-datepicker-today:hover a {
-    color: #fff;
-}
-
-.ui-datepicker-calendar tr td:last-child {
-    border-right: 0;
-}
-
-.ui-datepicker-calendar tr td:hover:before {
-    display: block;
-}
-
-.ui-datepicker-calendar tr td:hover a {
-    color: #ccc;
-}
-
-.ui-datepicker-calendar a {
-    text-decoration: none;
-    color: #808080;
-    font-size: 14px;
-}
-
-.ui-datepicker-other-month a {
-    color: #d0d4d9;
-}
-
-</style>
-
-<div class="container-fluid perfContainer">  
+<div class="container-fluid perfContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">
 			<!-- 타이틀 -->
 			<div class="headline">
 				<p class="korHeadline">공연정보</p>
 				<p class="engHeadline">Performance Guide</p>
-			</div>	<!-- headline end -->
-		</div>	<!-- col-sm-6 end -->
-	</div>	<!-- row end -->
-</div>	<!-- container end -->
+			</div>
+			<!-- headline end -->
+		</div>
+		<!-- col-sm-6 end -->
+	</div>
+	<!-- row end -->
+</div>
+<!-- container end -->
 
+<!-- 공연정보 등록하는 폼 -->
 <div class="container-fluid contentsWrapper">
 	<div class="formWrapper">
-	
-	<form action="">
-		<div class="container">
-			<h2>Register</h2>
-		    <p>Please fill in this form to create an account.</p>
-		    <hr>
-		    
-<div class="form-group">
-    <label for="email"><i class="fa fa-envelope"></i>Email address:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
-  <div class="form-group">
-    <label for="name">name:</label>
-    <input type="text" class="form-control" id="name">
-  </div>  
-  
-  <div class="form-group">
-    <label for="address">address:</label>
-    <input type="text" class="form-control" id="address">
-  </div>
-  
-  <div class="form-group" id="dateWrapper">
-    <label for="date">date:</label>
-    
-    <div class="pickDateWrapper">
-    	<input type="text" placeholder="input date" name="datepicker" class="form-control datepicker" id="pickDate">
-    </div>
-  </div>
-  
-  
-		</div>
-		
-	</form>
+
+		<form class="f1" action="">
+			<div class="container">
+				<h4>공연 등록하기</h4>
+				<hr>  
+
+				<!-- 폼에 들어갈 내용들 -->
+				<!-- 1. 공연제목 -->
+				<div class="form-group formLabelWrap">          
+					<label for="showName">공연제목</label>            
+					<input type="text" class="form-control" id="showName" name="showName">
+				</div>
+				
+				<!-- 2. 공연종류 -->
+				<div class="form-group">
+					<label for="category">공연종류</label>
+					<!-- 콤보박스 -->
+					<div class="select select--white form-group">
+						<span class="placeholder">공연종류를 선택하세요.</span>
+						<ul>
+							<li data-value="A">기획공연</li>
+							<li data-value="B">대관공연</li>
+							<li data-value="C">오페라축제</li>
+							<li data-value="D">살롱콘서트</li>
+							<li data-value="E">기타</li>
+						</ul>
+						<!-- 콤보박스 선택 시 화살표 방향 바뀌는 부분 -->
+						<input type="hidden" name="changemetoo">
+					</div>	<!-- select end -->
+				</div>
+				
+				<!-- 3. 공연 총 시간 -->
+				<div class="form-group">
+					<!-- Alert -->
+					<div class="alert alert-warning">
+						공연시간은 <strong>정수</strong>로만 입력해주세요. (단위 : 분)
+					</div>
+					<label for="totalTime">공연시간</label>
+					<input type="text" class="form-control" id="totalTime" name="totalTime">
+				</div>
+				
+				<!-- 4. 공연 시작일 -->
+				<div class="form-group" id="dateStartWrapper">
+					<label for="date">공연시작일</label>
+					<div class="pickDateWrapper">
+						<input type="text" placeholder="공연시작일을 선택해주세요." name="datepicker" class="form-control datepicker" id="pickStartDate">
+					</div>
+				</div>
+				
+				<!-- 4. 공연 종료일 -->
+				<div class="form-group" id="dateEndWrapper">
+					<label for="date">공연종료일</label>
+					<div class="pickDateWrapper">
+						<input type="text" placeholder="공연종료일을 선택해주세요." name="datepicker" class="form-control datepicker" id="pickEndDate">
+					</div>
+				</div>
+				
+				<!-- 5. 공연시작시간 -->
+				<div class="form-group">
+					<label for="time">공연시간<input type="button" value="초기화" style="margin-left: 10px" id="btnReset"></label>   
+					<input type="text" class="form-control" id="timepicker" placeholder="공연시간을 선택해주세요.">
+				</div>
+
+				<!-- 6. 공연장소 선택하기 -->
+				<div class="form-group">
+					<label for="facilitiesNo">공연장소</label>  
+						
+					<!-- 체크박스 1 -->
+				    <div class="checkbox">
+					    <label><input type="checkbox" value="1">
+						    <span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>
+						         대구오페라하우스 본관
+				   		</label>
+				   	</div>
+				   	
+				   	<!-- 체크박스 2 -->
+				    <div class="checkbox">
+					    <label><input type="checkbox" value="2" disabled>
+						    <span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>
+						         대구오페라하우스 별관
+				   		</label>
+				   	</div>
+				</div>
+
+				<!-- 7. 사진 업로드 이미지 -->
+				<div class="form-group">
+					<label for="showImage">공연 이미지 업로드</label>    
+					<!-- image-preview-filename input [CUT FROM HERE]-->
+					<div class="input-group image-preview">
+						<input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+						<span class="input-group-btn">
+							<!-- image-preview-clear button -->
+							<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+								<span class="glyphicon glyphicon-remove"></span>초기화
+							</button>
+							<!-- image-preview-input -->
+							<div class="btn btn-default image-preview-input">
+								<span><i class="fas fa-folder-open"></i></span>
+								<span class="image-preview-input-title">파일선택</span>   
+								<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+							</div>
+						</span>
+					</div>	<!-- image-preview-filename input end -->
+				</div>
+
+
+			</div>	<!-- container end -->
+
+		</form>
 	</div>
 </div>
 
 
-<script>
 
-$(function(){
-	$(".datepicker").datepicker(
-			$.datepicker.regional['ko'] = {
-					closeText: '닫기',
-					prevText: '이전달',
-					nextText: '다음달',
-					currentText: '오늘',
-					monthNames: ['1월','2월','3월','4월','5월','6월',
-					'7월','8월','9월','10월','11월','12월'],
-					monthNamesShort: ['1월','2월','3월','4월','5월','6월',
-	        '7월','8월','9월','10월','11월','12월'],
-					dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
-					dayNamesShort: ['일','월','화','수','목','금','토'],
-					dayNamesMin: ['일','월','화','수','목','금','토'],
-					dateFormat: 'yy-mm-dd',
-					firstDay: 0,
-					isRTL: false,
-					showOtherMonths: true,
-					selectOtherMonths: true,
-				});
-})
-</script>
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../include/footer.jsp"%>

@@ -150,10 +150,11 @@ ALTER TABLE review
 
 -- 시설
 CREATE TABLE facilities (
-	facilities_no INT NOT NULL COMMENT '1관, 2관, ..', -- 공연시설번호
-	total_floor   INT NOT NULL COMMENT '1층, 2층 = 2', -- 층개수
-	zone_cnt      INT NOT NULL COMMENT 'A, B, C, BR, BL의 개수 = 5', -- 구역개수
-	total_seatCnt INT NOT NULL COMMENT '1층(140개), 2층(60개) = 200' -- 총좌석수
+	facilities_no   INT         NOT NULL COMMENT '1관, 2관, ..', -- 공연시설번호
+	total_floor     INT         NOT NULL COMMENT '1층, 2층 = 2', -- 층개수
+	zone_cnt        INT         NOT NULL COMMENT 'A, B, C, BR, BL의 개수 = 5', -- 구역개수
+	total_seatCnt   INT         NOT NULL COMMENT '1층(140개), 2층(60개) = 200', -- 총좌석수
+	facilities_name VARCHAR(50) NOT NULL COMMENT '본관, 별관' -- 공연시설명
 )
 COMMENT '시설';
 
@@ -292,3 +293,22 @@ ALTER TABLE reply
 		REFERENCES review ( -- 공연관람후기
 			review_no -- 번호
 		);
+		
+
+-- 공연코드 다음번호 가지고 오는 함수
+DROP FUNCTION IF EXISTS proj_performance.nextshowcode;
+
+DELIMITER $$
+$$
+CREATE FUNCTION proj_performance.nextshowcode()
+RETURNS CHAR(6)
+begin
+	declare return_nextCode char(6);
+	
+	select concat('P', DATE_FORMAT(now(), "%y"), lpad(right(max(show_code), 3) + 1, 3, '000')) into return_nextCode
+	from performance;
+	
+	return return_nextCode;
+	
+END$$
+DELIMITER ;
