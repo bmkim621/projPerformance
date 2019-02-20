@@ -29,7 +29,7 @@ public class PerformanceDaoTest {
 		vo.setShowEnddate(new Date());
 		FacilitiesVO fvo = new FacilitiesVO();
 		fvo.setFacilitiesNo(1);
-		vo.setFacilitiesNo(fvo);
+		vo.setFno(fvo);
 		dao.insertPerf(vo);
 	}
 	
@@ -38,7 +38,7 @@ public class PerformanceDaoTest {
 	public void selectPerf() {
 		List<PerformanceVO> list = dao.perfListAll();
 		
-		System.out.println( list.get(0).getShowCode() + "========> " + list.get(0).getFacilitiesNo());
+		System.out.println( list.get(0).getShowCode() + "========> " + list.get(0).getFno());
 		System.out.println(list);
 		
 	}

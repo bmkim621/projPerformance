@@ -9,13 +9,13 @@ public class PerformanceVO {
 	private String showName;
 	private String showType;
 	private int totalTime;
-	@DateTimeFormat(pattern="hh:mm:ss")
+	@DateTimeFormat(pattern="HH:mm")
 	private Date startTime;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date showStartdate;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date showEnddate;
-	private FacilitiesVO facilitiesNo;
+	private FacilitiesVO fno;
 	private String showImagePath;
 	
 	public String getShowCode() {
@@ -60,11 +60,11 @@ public class PerformanceVO {
 	public void setShowEnddate(Date showEnddate) {
 		this.showEnddate = showEnddate;
 	}
-	public FacilitiesVO getFacilitiesNo() {
-		return facilitiesNo;
+	public FacilitiesVO getFno() {
+		return fno;
 	}
-	public void setFacilitiesNo(FacilitiesVO facilitiesNo) {
-		this.facilitiesNo = facilitiesNo;
+	public void setFno(FacilitiesVO fno) {
+		this.fno = fno;
 	}
 	public String getShowImagePath() {
 		return showImagePath;
@@ -76,9 +76,8 @@ public class PerformanceVO {
 	@Override
 	public String toString() {
 		return String.format(
-				"PerformanceVO [showCode=%s, showName=%s, showType=%s, totalTime=%s, startTime=%s, showStartdate=%s, showEnddate=%s, facilitiesNo=%s, showImagePath=%s]",
-				showCode, showName, showType, totalTime, startTime, showStartdate, showEnddate, facilitiesNo,
-				showImagePath);
+				"PerformanceVO [showCode=%s, showName=%s, showType=%s, totalTime=%s, startTime=%s, showStartdate=%s, showEnddate=%s, fno=%s, showImagePath=%s]",
+				showCode, showName, showType, totalTime, startTime, showStartdate, showEnddate, fno, showImagePath);
 	}
-
+	
 }

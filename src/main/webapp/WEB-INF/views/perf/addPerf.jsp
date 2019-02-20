@@ -25,7 +25,7 @@
 			</div>
 			<!-- headline end -->
 		</div>
-		<!-- col-sm-6 end -->
+		<!-- col-sm-12 end -->
 	</div>
 	<!-- row end -->
 </div>
@@ -83,7 +83,7 @@
 					</div>
 				</div>
 				
-				<!-- 4. 공연 종료일 -->
+				<!-- 5. 공연 종료일 -->
 				<div class="form-group" id="dateEndWrapper">
 					<label for="date">공연종료일</label>
 					<div class="pickDateWrapper">
@@ -91,16 +91,19 @@
 					</div>
 				</div>
 				
-				<!-- 5. 공연시작시간 -->
+				<!-- 6. 공연시작시간 -->
 				<div class="form-group">
 					<label for="time">공연시간<input type="button" value="초기화" style="margin-left: 10px" id="btnReset"></label>   
 					<input type="text" class="form-control" id="timepicker" placeholder="공연시간을 선택해주세요." name="startTime">  
-				</div>
+				</div>        
+ 
+				<!-- 7. 공연장소 선택하기 -->
+				<div class="form-group" id="Chkfacilities">
+					<input type='hidden' name='facilitiesNo' id="fno">
+				</div>     
 
-				<!-- 6. 공연장소 선택하기 -->
-				<div class="form-group" id="Chkfacilities"></div>
 
-				<!-- 7. 사진 업로드 이미지 -->
+				<!-- 8. 사진 업로드 이미지 --> 
 				<div class="form-group">
 					<label for="showImage">공연 이미지 업로드</label>    
 					<!-- image-preview-filename input [CUT FROM HERE]-->
@@ -120,11 +123,11 @@
 						</span>
 					</div>	<!-- image-preview-filename input end -->
 				</div>
-				
+			
 				<hr>
 				<!-- 등록하기 버튼 -->
 				<div class="form-group" id="btnWrap">
-					<input type="submit" class="btn btn-danger" value="등록하기" id="btnAddPerf">      	
+					<input type="button" class="btn btn-danger" value="등록하기" id="btnAddPerf">      	
 				</div>
 
 			</div>	<!-- container end -->
@@ -159,6 +162,14 @@
 	$(function(){
 		getFacilites(); //내가 만든 함수 호출하기 
 		
+		$("#btnAddPerf").click(function(){
+			var item = $("input[name='place']:checked").val();
+			$("#fno").val(item);
+			
+			$('.f1').submit();
+			
+		})
+		
 	})
 </script>
 
@@ -167,8 +178,9 @@
 <label for="facilitiesNo">공연장소</label>  					
 {{#each.}} 
 	<div class="radio">      
-		<label><input type="radio" value="{{facilitiesNo}}" name="facilitiesNo">
+		<label><input type="radio" value="{{facilitiesNo}}" name="place">
 		<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>{{facilitiesName}}</label>
+		
 	</div>			   	
 {{/each}}				
 </script>   
