@@ -2,17 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/performance.css?abd" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/performance.css?b" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/myDatepicker.css" rel="stylesheet" type="text/css">
 <!-- js -->
-<script src="${pageContext.request.contextPath }/resources/js/performance.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/performance.js"></script>  
 <!-- handlebars -> 제이쿼리 먼저 있어야 함. -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
-<!-- timepicker -->
-<link href="${pageContext.request.contextPath }/resources/css/mdtimepicker.min.css" rel="stylesheet" type="text/css">
-<script src="${pageContext.request.contextPath }/resources/js/mdtimepicker.min.js"></script>
+<!-- MDTimePicker -->
+<link href="${pageContext.request.contextPath }/resources/css/mdtimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mdtimepicker.js"></script>
 
 
 <div class="container-fluid perfContainer">
@@ -35,7 +35,7 @@
 <div class="container-fluid contentsWrapper">
 	<div class="formWrapper">
 
-		<form class="f1" action="">
+		<form class="f1" action="addPerf" method="post" enctype="multipart/form-data">
 			<div class="container">
 				<h4>공연 등록하기</h4>
 				<hr>  
@@ -48,7 +48,7 @@
 				</div>
 				
 				<!-- 2. 공연종류 -->
-				<div class="form-group">
+				<div class="form-group" id="showCategory">
 					<label for="category">공연종류</label>
 					<!-- 콤보박스 -->
 					<div class="select select--white form-group">
@@ -60,8 +60,8 @@
 							<li data-value="D">살롱콘서트</li>
 							<li data-value="E">기타</li>
 						</ul>
-						<!-- 콤보박스 선택 시 화살표 방향 바뀌는 부분 -->
-						<input type="hidden" name="changemetoo">
+						<!-- 선택한 값 들어가는 부분 -->
+						<input type="hidden" name="showType">
 					</div>	<!-- select end -->
 				</div>
 				
@@ -79,7 +79,7 @@
 				<div class="form-group" id="dateStartWrapper">
 					<label for="date">공연시작일</label>
 					<div class="pickDateWrapper">
-						<input type="text" placeholder="공연시작일을 선택해주세요." name="datepicker" class="form-control datepicker" id="pickStartDate">
+						<input type="text" placeholder="공연시작일을 선택해주세요." name="showStartdate" class="form-control datepicker" id="pickStartDate">
 					</div>
 				</div>
 				
@@ -87,36 +87,17 @@
 				<div class="form-group" id="dateEndWrapper">
 					<label for="date">공연종료일</label>
 					<div class="pickDateWrapper">
-						<input type="text" placeholder="공연종료일을 선택해주세요." name="datepicker" class="form-control datepicker" id="pickEndDate">
+						<input type="text" placeholder="공연종료일을 선택해주세요." name="showEnddate" class="form-control datepicker" id="pickEndDate">
 					</div>
 				</div>
 				
 				<!-- 5. 공연시작시간 -->
 				<div class="form-group">
 					<label for="time">공연시간<input type="button" value="초기화" style="margin-left: 10px" id="btnReset"></label>   
-					<input type="text" class="form-control" id="timepicker" placeholder="공연시간을 선택해주세요.">
+					<input type="text" class="form-control" id="timepicker" placeholder="공연시간을 선택해주세요." name="startTime">  
 				</div>
 
 				<!-- 6. 공연장소 선택하기 -->
-<!-- 				<div class="form-group">
-					<label for="facilitiesNo">공연장소</label>  
-						
-					체크박스 1
-				    <div class="checkbox">
-					    <label><input type="checkbox" value="1">
-						    <span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>
-						         대구오페라하우스 본관
-				   		</label>
-				   	</div>
-				   	
-				   	체크박스 2
-				    <div class="checkbox">
-					    <label><input type="checkbox" value="2" disabled>
-						    <span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>
-						         대구오페라하우스 별관
-				   		</label>
-				   	</div>
-				</div> -->
 				<div class="form-group" id="Chkfacilities"></div>
 
 				<!-- 7. 사진 업로드 이미지 -->
@@ -134,15 +115,20 @@
 							<div class="btn btn-default image-preview-input">
 								<span><i class="fas fa-folder-open"></i></span>
 								<span class="image-preview-input-title">파일선택</span>   
-								<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+								<input type="file" accept="image/png, image/jpeg, image/gif" name="uploadFile"/> <!-- rename it -->
 							</div>
 						</span>
 					</div>	<!-- image-preview-filename input end -->
 				</div>
-
+				
+				<hr>
+				<!-- 등록하기 버튼 -->
+				<div class="form-group" id="btnWrap">
+					<input type="submit" class="btn btn-danger" value="등록하기" id="btnAddPerf">      	
+				</div>
 
 			</div>	<!-- container end -->
-
+			
 		</form>
 	</div>
 </div>
@@ -164,26 +150,27 @@
 				var source = $("#template").html();
 				var f = Handlebars.compile(source);
 				var result = f(json);
-				$("#Chkfacilities").append(result);	
+				$("#Chkfacilities").append(result);
+				$("#Chkfacilities input[type='radio'][value='2']").attr("disabled", true);	//별관 선택못하도록 하기
 			}
 		})
 	}
 	
 	$(function(){
-		getFacilites(); //내가 만든 함수 호출하기
-		$("#Chkfacilities").find('input[type="checkbox"]').css("border", "1px solid blue");
+		getFacilites(); //내가 만든 함수 호출하기 
+		
 	})
 </script>
 
-<!-- 템플릿 -->
+<!-- 템플릿 -->  
 <script id="template" type="text/x-handlebars-template">
 <label for="facilitiesNo">공연장소</label>  					
-{{#each.}}
-	<div class="checkbox">
-		<label><input type="checkbox" value="{{facilitiesNo}}">
-		<span class="cr"><i class="cr-icon fa fa-check" style="color:#e53a40"></i></span>{{facilitiesName}}</label>
+{{#each.}} 
+	<div class="radio">      
+		<label><input type="radio" value="{{facilitiesNo}}" name="facilitiesNo">
+		<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>{{facilitiesName}}</label>
 	</div>			   	
 {{/each}}				
-</script>
+</script>   
 
 <%@ include file="../include/footer.jsp"%>

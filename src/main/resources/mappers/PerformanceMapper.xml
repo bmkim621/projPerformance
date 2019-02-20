@@ -5,7 +5,7 @@
 	<!-- 공연 추가, 수정, 삭제 : performance 테이블 -->
 	<insert id="insertPerf" parameterType="PerformanceVO">
 		insert into performance values
-		(nextshowcode(), #{showName}, #{showType}, #{totalTime}, #{startTime}, #{showStartdate}, #{showEnddate}, #{facilitiesNo.facilitiesNo})
+		(nextshowcode(), #{showName}, #{showType}, #{totalTime}, #{startTime}, #{showStartdate}, #{showEnddate}, #{facilitiesNo.facilitiesNo}, #{showImagePath})
 	</insert>
 	
 	<resultMap type="PerformanceVO" id="resultPerf">

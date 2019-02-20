@@ -35,7 +35,8 @@ CREATE TABLE performance (
 	start_time     TIME         NULL     COMMENT '공연시작시간', -- 공연시작시간
 	show_startdate DATE         NOT NULL COMMENT '공연시작일', -- 공연시작일
 	show_enddate   DATE         NOT NULL COMMENT '공연종료일', -- 공연종료일
-	facilities_no  INT          NULL     COMMENT '공연시설번호' -- 공연시설번호
+	facilities_no  INT          NULL     COMMENT '공연시설번호', -- 공연시설번호
+	show_image_path TEXT         NULL     COMMENT '공연이미지경로' -- 공연이미지경로
 )
 COMMENT '공연';
 

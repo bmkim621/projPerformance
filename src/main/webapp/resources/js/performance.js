@@ -47,7 +47,8 @@ $(function(){
 	//공연시간선택
 	$('#timepicker').mdtimepicker({
 		format: 'hh:mm',
-		theme: 'teal'
+		theme: 'teal',           
+		timeFormat: 'hh:mm:ss'
 	});
 	
 	//시간 초기화 버튼
@@ -89,8 +90,8 @@ $(function(){
 	// Create the close button
     var closebtn = $('<button/>', {
         type:"button",
-        text: 'x',
-        id: 'close-preview',
+        text: 'x',   
+        id: 'close-preview',  
         style: 'font-size: initial;',
     });
     closebtn.attr("class","close pull-right");
@@ -108,7 +109,7 @@ $(function(){
         $('.image-preview-filename').val("");
         $('.image-preview-clear').hide();
         $('.image-preview-input input:file').val("");
-        $(".image-preview-input-title").text("Browse"); 
+        $(".image-preview-input-title").text("파일선택"); 
     }); 
     // Create the preview image
     $(".image-preview-input input:file").change(function (){     
