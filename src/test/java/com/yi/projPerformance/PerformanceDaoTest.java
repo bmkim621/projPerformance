@@ -1,7 +1,11 @@
 package com.yi.projPerformance;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +27,7 @@ public class PerformanceDaoTest {
 	//@Test
 	public void insertPerf() {
 		PerformanceVO vo = new PerformanceVO();
-		vo.setShowName("가족오페라 <헨젤과 그레텔>");
+		vo.setShowName("공연정보 추가하기 테스트");
 		vo.setShowType("A");
 		vo.setShowStartdate(new Date());
 		vo.setShowEnddate(new Date());
@@ -44,9 +48,24 @@ public class PerformanceDaoTest {
 	}
 	
 	//시설정보 보기
-	@Test
+	//@Test
 	public void selectFacilites() {
 		List<FacilitiesVO> list = dao.facilitiesList();
+		System.out.println(list);
+	}
+	
+	@Test
+	public void test() {
+		GregorianCalendar s = new GregorianCalendar(2018, 0, 1);
+		System.out.println("s ========> " + s);
+		GregorianCalendar e = new GregorianCalendar(2018, 11, 31);
+		System.out.println("e ========> " + e.get(Calendar.MONTH));
+		Map<String, Object> map = new HashMap<>();
+		map.put("sYear", s.getTime());
+		map.put("eYear", e.getTime());
+		map.put("category", "B");
+		
+		List<PerformanceVO> list = dao.selectPerformanceByCondition(map);
 		System.out.println(list);
 	}
 }

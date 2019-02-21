@@ -27,7 +27,7 @@
 	<nav class="navbar navbar-expand-md fixed-top top-nav">
 		<div class="container-fluid">
 			<!-- 로고 -->
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="${pageContext.request.contextPath}">
 				<span><img src="${pageContext.request.contextPath }/resources/upload/logo_w.png"></span>
 			</a>
 			
@@ -40,14 +40,14 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="nav navbar-nav m-auto text-sm-center text-md-center">
 					<li class="drop">
-						<a class="nav-link" href="#">공연정보</a>
+						<a class="nav-link">공연정보</a>
 						
 						<!-- 서브메뉴 -->
 						<div id="dropdownContainFirst">
 							<div id="dropOutFirst">
 							<div id="triangleFirst"></div>
 								<ul>
-									<li><a href="#">공연안내</a></li>
+									<li><a href="${pageContext.request.contextPath}/perf/perfList">공연안내</a></li>
 									<li><a href="#">예매안내</a></li>
 									<li><a href="#">예매확인/취소</a></li>
 								</ul>

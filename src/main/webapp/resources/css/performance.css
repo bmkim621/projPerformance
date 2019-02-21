@@ -255,3 +255,23 @@ div#btnWrap{
 div#btnWrap input#btnAddPerf{
 	letter-spacing: -0.8px;   
 }
+
+
+
+/* ============= 공연안내 페이지 ================== */
+div.container-fluid.perfInfoWrapper{
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px;       
+	border: 2px solid lightblue;
+	background-color: #8e9eab;  
+
+}
+
+div.container-fluid.perfInfoWrapper div.listWrapper{
+	width: 80%;       
+	margin: 0 auto;
+	padding: 20px;
+	border: 2px solid pink;
+	background-color: #fff;
+}

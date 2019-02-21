@@ -14,12 +14,42 @@
 	</resultMap>
 	
 	<select id="perfListAll" resultMap="resultPerf">
-		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no
+		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no, show_image_path
 		from performance
+	</select>
+	
+	<sql id="perfSql">
+		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no, show_image_path
+		from performance
+	</sql>
+	
+	<sql id="whereSql">
+		<where>
+			<if test="sYear != null">
+				AND show_startdate between #{sYear} and #{eYear}
+			</if>
+			<if test="category != null">
+				and show_type= #{category}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="perfListAllByShowName" resultMap="resultPerf">
+		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, start_time, show_image_path
+		from performance
+		where show_name = #{showName}
 	</select>
 	
 	<!-- 시설정보: facilities 테이블 -->
 	<select id="facilitiesList" resultType="FacilitiesVO">
 		select facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name from facilities
 	</select>
+	
+	<!-- if 조건 -->
+	<select id="selectPerformanceByCondition" parameterType="hashmap" resultMap="resultPerf">
+		<include refid="perfSql" />
+		<include refid="whereSql" />
+	
+	</select>
+	
 </mapper>
