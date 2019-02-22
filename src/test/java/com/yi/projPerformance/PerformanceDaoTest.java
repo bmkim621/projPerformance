@@ -58,12 +58,12 @@ public class PerformanceDaoTest {
 	public void test() {
 		GregorianCalendar s = new GregorianCalendar(2018, 0, 1);
 		System.out.println("s ========> " + s);
-		GregorianCalendar e = new GregorianCalendar(2018, 11, 31);
+		GregorianCalendar e = new GregorianCalendar(2018, 0, 31);
 		System.out.println("e ========> " + e.get(Calendar.MONTH));
 		Map<String, Object> map = new HashMap<>();
 		map.put("sYear", s.getTime());
 		map.put("eYear", e.getTime());
-		map.put("category", "B");
+		map.put("category", "A");
 		
 		List<PerformanceVO> list = dao.selectPerformanceByCondition(map);
 		System.out.println(list);

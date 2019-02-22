@@ -16,6 +16,10 @@
 <link href="${pageContext.request.contextPath }/resources/css/mdtimepicker.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mdtimepicker.js"></script>
 
+<style>
+	
+</style>
+
 <div class="container-fluid perfContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -32,6 +36,24 @@
 </div>
 <!-- container end -->
 
+<h1>테스트</h1>
+
+<div id="temp">
+<script>
+	var today = '<fmt:formatDate value="${map.sYear }" pattern="yyyy-MM-dd"/>';	//2019-02-01
+	var year = today.substring(0, 4);    //2019 
+	var month = today.substring(5, 7);   //02
+
+	$(function(){
+		$("#selectYear option[value="+ year + "]").attr("selected", true);	//year와 값 비교해서 option의 value가 2019가 selected 되게 함.
+		var t = document.getElementsByClassName("spanMonth");
+		var x = month - 1;
+		t[month-1].style.color = 'red';      
+	})
+
+</script>
+</div>
+
 <!-- 공연안내  -->
 <div class="container-fluid perfInfoWrapper">
 	<div class="listWrapper">
@@ -41,29 +63,23 @@
 			<div class='searchWrap'>
 				<!-- 연도 선택 -->
 				<select id="selectYear" name="selectYear">
-					<option value="2018">2018</option>
-					<option value="2019" selected="selected">2019</option>
+					<option value="2018" ${date.sYear == 2018 ? 'selected' : '' }>2018</option>
+					<option value="2019" ${date.sYear == 2019 ? 'selected' : '' }>2019</option>
 				</select>
 		
 				<!-- 월 선택 -->
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-					<a class="btn btn-outline-info" role="button" href="#">1월</a>
-					<a class="btn btn-outline-info" role="button" href="#">2월</a>
-					<a class="btn btn-outline-info" role="button" href="#">3월</a>
-					<a class="btn btn-outline-info" role="button" href="#">4월</a>
-					<a class="btn btn-outline-info" role="button" href="#">5월</a>
-					<a class="btn btn-outline-info" role="button" href="#">6월</a>
-					<a class="btn btn-outline-info" role="button" href="#">7월</a>
-					<a class="btn btn-outline-info" role="button" href="#">8월</a>
-					<a class="btn btn-outline-info" role="button" href="#">9월</a>
-					<a class="btn btn-outline-info" role="button" href="#">10월</a>
-					<a class="btn btn-outline-info" role="button" href="#">11월</a>
-					<a class="btn btn-outline-info" role="button" href="#">12월</a>
+				<div class="selectMonthWrapper">
+					<ul class='monthList'>
+					<c:forEach var="i" begin="1" end="12" step="1">
+						<li><a href="#"><span class='spanMonth'>${i }</span>월</a></li>
+					</c:forEach>
+					</ul>	
 				</div>
+		
 			
 			</div>	<!-- searchWrap end -->
 
-			<p>
+			<div class='perfListWrapper'>
 			<c:forEach items="${result }" var="vo">
 				<p>공연코드 : ${vo.showCode }</p>
 				<p>공연제목 : ${vo.showName }</p>
@@ -78,36 +94,60 @@
 				<c:if test="${vo.fno.facilitiesNo == 2}">
 					<p>공연장소 : 대구오페라하우스 별관</p>
 				</c:if>
-				<%-- <p>이미지 : <img src="displayFile?filename=${vo.showImagePath }" class="perfImg"></p> --%>
-				<p>이미지경로 원본 : <span class="origin"></span></p>
-				<p>이미지경로2 : <span class='myPath'>${vo.showImagePath }</span></p>
+				<!-- 공연 이미지 -->
+				<c:if test="${vo.showImagePath == null}">  
+					<p>보여지는 이미지 : <img src="${pageContext.request.contextPath }/resources/images/no-image.jpg" alt="no-image"></p>
+				</c:if>
+				<c:if test="${vo.showImagePath != null}">
+					<p>보여지는 이미지 : <img src='displayFile?filename=${vo.showImagePath }'></p>
+				</c:if>
 				<hr>
 			</c:forEach>
-		</p>
+		</div>	<!-- perfListWrapper end -->
+		
 			
  		 </div>
 	
 			</div>  
 		
-		
-		
-		
 		</div>
 		
+		<form action="" method="get" id="f1">
+			<input type="hidden" name="sYear">
+			<input type="hidden" name="sMonth">
+			<input type="hidden" name="category">
+		</form>
 
 <script>
-	$(function(){
-		var path = $(".myPath").text();
-		console.log(path);
-		var front = path.substring(0, 12);
-		var end = path.substring(14);
-		var origin = front + end;
-		console.log(front);
-		console.log(end);
-		console.log(origin);
+	//검색
+	function searchPerformance(){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/search?sYear=" + sYear + "&sMonth=" + sMonth + "&category=" + category,
+			type: "GET",
+			dataType: "json",
+			success: function(json){
+				console.log(json);
+				$(".perfListWrapper").empty();
+				
+			}
+		})
+	}
 	
+	$(function(){
+		searchPerformance();
+		
 		
 	})
 </script>
+
+<!-- 템플릿 -->  
+<script id="template2" type="text/x-handlebars-template">
+<label>결과</label>  					
+{{#each.}} 
+	<div>
+		<p>결과 : ${result }</p>
+	</div>		   	
+{{/each}}				
+</script>  
 
 <%@ include file="../include/footer.jsp"%>

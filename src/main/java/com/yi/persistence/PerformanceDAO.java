@@ -25,7 +25,7 @@ public interface PerformanceDAO {
 	public List<FacilitiesVO> facilitiesList();
 	
 	//
-	List<PerformanceVO> selectPerformanceByCondition(Map<String, Object> map);
+	public List<PerformanceVO> selectPerformanceByCondition(Map<String, Object> map);
 	
 	
 	

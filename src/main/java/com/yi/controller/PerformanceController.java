@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +34,7 @@ import com.yi.domain.FacilitiesVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.SearchCriteria;
+import com.yi.domain.SearchDate;
 import com.yi.service.PerformanceService;
 import com.yi.util.MediaUtils;
 import com.yi.util.UploadFileUtils;
@@ -79,8 +82,13 @@ public class PerformanceController {
 			//썸네일
 			String thumPath = UploadFileUtils.uploadFile(uploadPath, uploadFile.getOriginalFilename(), uploadFile.getBytes());
 			
+			//원본파일
+			String front = thumPath.substring(0, 12);
+			String end = thumPath.substring(14);
+			String origin = front + end;
+			System.out.println("origin ======> " + origin);
 			//VO에 원본파일 경로 넣기
-			vo.setShowImagePath(thumPath);
+			vo.setShowImagePath(origin);
 		}
 		
 		//performance 테이블에 데이터 추가하기
@@ -95,11 +103,25 @@ public class PerformanceController {
 	
 	//공연정보 리스트 보기
 	@RequestMapping(value = "perfList", method = RequestMethod.GET)
-	public void perfList(Model model) {
+	public void perfList(Model model, SearchDate date) {
 		logger.info("=====> perfList ----- GET");
 		
 		List<PerformanceVO> result = new ArrayList<>();
-		List<PerformanceVO> list = service.perfListAll();
+//		List<PerformanceVO> list = service.perfListAll();
+		
+		//날짜
+		int nYear = Calendar.getInstance().get(Calendar.YEAR);
+		int nMonth = Calendar.getInstance().get(Calendar.MONTH);
+				
+		GregorianCalendar s = new GregorianCalendar(nYear, nMonth, 1);
+		GregorianCalendar e = new GregorianCalendar(nYear, nMonth, 31);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("sYear", s.getTime());			
+		map.put("eYear", e.getTime());	
+		
+		List<PerformanceVO> list = service.selectPerformanceByCondition(map);
+		
 		//공연이름, 이름에 해당하는 PerformanceVO를 담는 map
 		Set<String> showNames = new HashSet<>();
 		
@@ -110,9 +132,19 @@ public class PerformanceController {
 		for(String sName : showNames) {
 			PerformanceVO pvo = service.perfListAllByShowName(sName);
 			result.add(pvo);
+			
 		}
 		model.addAttribute("result", result);
+		model.addAttribute("map", map);
 		
+
+		
+/*		SearchDate sd = new SearchDate();
+		sd.setsYear(nYear);
+		sd.setsMonth(nMonth);
+		System.out.println("sd =========> " + sd); 
+		
+		model.addAttribute("date", sd);*/
 		
 	}
 	

@@ -21,5 +21,5 @@ public interface PerformanceService {
 	public PerformanceVO perfListAllByShowName(String showName);
 	
 	//
-	List<PerformanceVO> selectPerformanceByCondition(Map<String, Object> map);
+	public List<PerformanceVO> selectPerformanceByCondition(Map<String, Object> map);
 }
