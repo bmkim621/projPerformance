@@ -46,9 +46,12 @@
 
 	$(function(){
 		$("#selectYear option[value="+ year + "]").attr("selected", true);	//year와 값 비교해서 option의 value가 2019가 selected 되게 함.
-		var t = document.getElementsByClassName("spanMonth");
+	/* 	var t = document.getElementsByClassName("spanMonth");
 		var x = month - 1;
-		t[month-1].style.color = 'red';      
+		t[x].style.color = 'red'; */
+		var m = parseInt(month);
+		$(".chkMonth").val(m);
+
 	})
 
 </script>
@@ -71,15 +74,19 @@
 				<div class="selectMonthWrapper">
 					<ul class='monthList'>
 					<c:forEach var="i" begin="1" end="12" step="1">
-						<li><a href="#"><span class='spanMonth'>${i }</span>월</a></li>
+						<li><a href="#" data-month='${i }' class='btnMonth'><span class='spanMonth'>${i }</span>월</a></li>
 					</c:forEach>
-					</ul>	
+					</ul>
+					<!-- 월  -->
+					<input type="hidden" class="selectMonth">	<!-- 현재 월 -->
+					<input type='hidden' class='chkMonth'>
 				</div>
+				
 		
 			
 			</div>	<!-- searchWrap end -->
 
-			<div class='perfListWrapper'>
+<%--  			<div class='perfListWrapper'>
 			<c:forEach items="${result }" var="vo">
 				<p>공연코드 : ${vo.showCode }</p>
 				<p>공연제목 : ${vo.showName }</p>
@@ -103,38 +110,62 @@
 				</c:if>
 				<hr>
 			</c:forEach>
-		</div>	<!-- perfListWrapper end -->
+		</div>	<!-- perfListWrapper end -->  --%>
 		
-			
+		<div class='resultSearchWrapper'></div>
+					
  		 </div>
 	
 			</div>  
 		
 		</div>
 		
-		<form action="" method="get" id="f1">
-			<input type="hidden" name="sYear">
-			<input type="hidden" name="sMonth">
-			<input type="hidden" name="category">
-		</form>
-
 <script>
 	//검색
 	function searchPerformance(){
+		var sYear = $("select[name='selectYear']").val();
+		var sMonth = $(".chkMonth").val();
+		console.log(sYear);
+		console.log(sMonth);
+
 		$.ajax({
-			url: "${pageContext.request.contextPath}/search?sYear=" + sYear + "&sMonth=" + sMonth + "&category=" + category,
+			
+			url: "${pageContext.request.contextPath}/search?sYear=" + sYear + "&sMonth=" + sMonth,
 			type: "GET",
 			dataType: "json",
 			success: function(json){
+				
 				console.log(json);
-				$(".perfListWrapper").empty();
+		
+				$(".resultSearchWrapper").empty();
+				
+				var source = $("#template2").html();
+				var f = Handlebars.compile(source);
+				var result = f(json);
+				$(".resultSearchWrapper").append(result);
 				
 			}
 		})
 	}
 	
 	$(function(){
-		searchPerformance();
+		searchPerformance();  
+		
+		//월 선택할 때
+		$(".btnMonth").click(function(){
+			var mo = $(this).attr("data-month");
+//			console.log(mo);
+			$(".chkMonth").val(mo);
+			searchPerformance();
+			
+			return false;   
+		})
+		
+		//연도 선택할 때
+		$("#selectYear").change(function(){
+			searchPerformance(); 
+		})
+		
 		
 		
 	})
@@ -142,12 +173,9 @@
 
 <!-- 템플릿 -->  
 <script id="template2" type="text/x-handlebars-template">
-<label>결과</label>  					
-{{#each.}} 
-	<div>
-		<p>결과 : ${result }</p>
-	</div>		   	
-{{/each}}				
+{{#each.}}
+<p>{{showName}}</p>
+{{/each}}
 </script>  
 
 <%@ include file="../include/footer.jsp"%>

@@ -165,11 +165,6 @@
 			var item = $("input[name='place']:checked").val();
 			$("#fno").val(item);
 			
-<<<<<<< HEAD
-			
-			//공연 총 시간 
-			
-=======
 			//공연시간
 			 var totaltime = $("#totalTime").val();
 			 
@@ -177,8 +172,6 @@
 				 alert("공연시간을 입력해주세요.");
 				 return;
 			 }
-			 
->>>>>>> branch 'master' of https://github.com/bmkim621/projPerformance.git
 			$('.f1').submit();
 		})
 		
