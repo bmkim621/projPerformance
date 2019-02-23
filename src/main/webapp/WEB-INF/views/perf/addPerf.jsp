@@ -95,12 +95,11 @@
 				<div class="form-group">
 					<label for="time">공연시간<input type="button" value="초기화" style="margin-left: 10px" id="btnReset"></label>   
 					<input type="text" class="form-control" id="timepicker" placeholder="공연시간을 선택해주세요." name="startTime">  
-				</div>        
- 
+				</div>   
+				     
 				<!-- 7. 공연장소 선택하기 -->
-				<div class="form-group" id="Chkfacilities">
-					<input type='hidden' name='facilitiesNo' id="fno">
-				</div>     
+ 				<input type='hidden' name='facilitiesNo' id="fno">
+				<div class="form-group" id="Chkfacilities"></div>     
 
 
 				<!-- 8. 사진 업로드 이미지 --> 
@@ -166,11 +165,21 @@
 			var item = $("input[name='place']:checked").val();
 			$("#fno").val(item);
 			
+<<<<<<< HEAD
 			
 			//공연 총 시간 
 			
+=======
+			//공연시간
+			 var totaltime = $("#totalTime").val();
+			 
+			 if(totaltime == ""){
+				 alert("공연시간을 입력해주세요.");
+				 return;
+			 }
+			 
+>>>>>>> branch 'master' of https://github.com/bmkim621/projPerformance.git
 			$('.f1').submit();
-			
 		})
 		
 	})

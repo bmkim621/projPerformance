@@ -33,8 +33,9 @@
 	</logger>
 
 	<!-- Root Logger -->
+	<!-- info로 바꿔줘야 쿼리문 확인할 수 있음 -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

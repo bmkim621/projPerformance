@@ -4,6 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -22,7 +30,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yi.domain.FacilitiesVO;
+import com.yi.domain.PageMaker;
 import com.yi.domain.PerformanceVO;
+import com.yi.domain.SearchCriteria;
+import com.yi.domain.SearchDate;
 import com.yi.service.PerformanceService;
 import com.yi.util.MediaUtils;
 import com.yi.util.UploadFileUtils;
@@ -49,11 +61,15 @@ public class PerformanceController {
 	}
 	
 	@RequestMapping(value = "addPerf", method = RequestMethod.POST)
-	public String addPerfPost(PerformanceVO vo, Model model, MultipartFile uploadFile) throws IOException {
+	public String addPerfPost(PerformanceVO vo, FacilitiesVO fno, Model model, MultipartFile uploadFile) throws IOException {
 		logger.info("=====> addPerf ----- POST");
 		logger.info("=====> VO : " + vo);
+		logger.info("=====> fno : " + fno);
 		logger.info("파일 이름 = " + uploadFile.getOriginalFilename());
 		logger.info("파일 크기 = " + uploadFile.getSize());
+		
+		//FacilitiesVO의 fno를 VO에 있는 fno에 넣기
+		vo.setFno(fno);
 		
 		//외부에서 저장한다. (servelt-context.xml 파일에 있는 uploadPath에 저장된다.)
 		File dirPath = new File(uploadPath);
@@ -66,17 +82,20 @@ public class PerformanceController {
 			//썸네일
 			String thumPath = UploadFileUtils.uploadFile(uploadPath, uploadFile.getOriginalFilename(), uploadFile.getBytes());
 			
-			//VO에 썸네일 경로 넣기
-			vo.setShowImagePath(thumPath);
+			//원본파일
+			String front = thumPath.substring(0, 12);
+			String end = thumPath.substring(14);
+			String origin = front + end;
+			System.out.println("origin ======> " + origin);
+			//VO에 원본파일 경로 넣기
+			vo.setShowImagePath(origin);
 		}
 		
 		//performance 테이블에 데이터 추가하기
 		service.insertPerf(vo);
 		
-/*		
-		model.addAttribute("result", "success");
-		logger.info("=====> VO : " + vo);*/
-		
+		logger.info("추가한 후 =====> VO : " + vo);
+				
 		//새로고침하면 계속 같은 데이터 추가되기 때문에 redirect 시킨다.
 		return "redirect:/perf/perfList";                                                     
 		
@@ -84,8 +103,49 @@ public class PerformanceController {
 	
 	//공연정보 리스트 보기
 	@RequestMapping(value = "perfList", method = RequestMethod.GET)
-	public void perfList() {
+	public void perfList(Model model, SearchDate date) {
 		logger.info("=====> perfList ----- GET");
+		
+		List<PerformanceVO> result = new ArrayList<>();
+//		List<PerformanceVO> list = service.perfListAll();
+		
+		//날짜
+		int nYear = Calendar.getInstance().get(Calendar.YEAR);
+		int nMonth = Calendar.getInstance().get(Calendar.MONTH);
+				
+		GregorianCalendar s = new GregorianCalendar(nYear, nMonth, 1);
+		GregorianCalendar e = new GregorianCalendar(nYear, nMonth, 31);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("sYear", s.getTime());			
+		map.put("eYear", e.getTime());	
+		
+		List<PerformanceVO> list = service.selectPerformanceByCondition(map);
+		
+		//공연이름, 이름에 해당하는 PerformanceVO를 담는 map
+		Set<String> showNames = new HashSet<>();
+		
+		for(PerformanceVO vo : list) {
+			showNames.add(vo.getShowName());
+		}
+		
+		for(String sName : showNames) {
+			PerformanceVO pvo = service.perfListAllByShowName(sName);
+			result.add(pvo);
+			
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("map", map);
+		
+
+		
+/*		SearchDate sd = new SearchDate();
+		sd.setsYear(nYear);
+		sd.setsMonth(nMonth);
+		System.out.println("sd =========> " + sd); 
+		
+		model.addAttribute("date", sd);*/
+		
 	}
 	
 	// 서버 <-> 브라우저(데이터 요청하면 보내줄거니까 안보여도 됨) 파일명에 해당하는 이미지의 데이터만 줌.
