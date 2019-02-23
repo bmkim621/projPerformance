@@ -166,6 +166,9 @@
 			var item = $("input[name='place']:checked").val();
 			$("#fno").val(item);
 			
+			
+			//공연 총 시간 
+			
 			$('.f1').submit();
 			
 		})
