@@ -1,5 +1,5 @@
 /* 공연정보 타이틀 부분 */
-div.container-fluid.perfContainer{
+div.container-fluid.perfContainer {
 	width: 100%;
 	height: auto;
 	margin: 0;
@@ -9,69 +9,67 @@ div.container-fluid.perfContainer{
 	text-align: center;
 }
 
-div.container-fluid div#bgWrapper{
+div.container-fluid div#bgWrapper {
 	background: url('../images/sub_visual_1.jpg') no-repeat;
 	height: 500px;
-	background-position: center center; 
+	background-position: center center;
 }
 
-div.container-fluid div#bgWrapper div.headline{
+div.container-fluid div#bgWrapper div.headline {
 	width: 200px;
-	overflow: hidden;    
+	overflow: hidden;
 	position: absolute;
-	top: 40%;       
-	left: 45%;         
+	top: 40%;
+	left: 45%;
 	border-top: 1px solid white;
 	border-bottom: 1px solid white;
-	padding-top: 28px;           
+	padding-top: 28px;
 }
 
-
-div.container-fluid div#bgWrapper p.korHeadline{
+div.container-fluid div#bgWrapper p.korHeadline {
 	color: white;
 	letter-spacing: -1.2px;
 	font-size: 32px;
-	font-weight: bold;    
-	line-height: 0.5em;              
+	font-weight: bold;
+	line-height: 0.5em;
 }
 
-div.container-fluid div#bgWrapper p.engHeadline{
+div.container-fluid div#bgWrapper p.engHeadline {
 	letter-spacing: -0.8px;
 	font-size: 22px;
 	font-style: italic;
-	color: rgba(255, 255, 255, 0.6);            
+	color: rgba(255, 255, 255, 0.6);
 }
 
 /* ===== 공연정보 등록 폼 ===== */
-div.container-fluid.contentsWrapper{
+div.container-fluid.contentsWrapper {
 	width: 100%;
 	margin: 0 auto;
-	padding: 20px;       
+	padding: 20px;
 	border: 2px solid lightblue;
-	background-color: #8e9eab;  
-
+	background-color: #8e9eab;
 }
 
-div.container-fluid.contentsWrapper div.formWrapper{
-	width: 50%;       
+div.container-fluid.contentsWrapper div.formWrapper {
+	width: 50%;
 	margin: 0 auto;
 	padding: 20px;
 	border: 2px solid pink;
 	background-color: #fff;
 }
 
-.f1{
-	letter-spacing: -0.8px;  
+.f1 {
+	letter-spacing: -0.8px;
 }
 
 /* ===== 파일 업로드 ===== */
 .image-preview-input {
-    position: relative;
-    overflow: hidden;
-	margin: 0px;    
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;    
+	position: relative;
+	overflow: hidden;
+	margin: 0px;
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
 }
 
 .image-preview-input input[type=file] {
@@ -83,15 +81,15 @@ div.container-fluid.contentsWrapper div.formWrapper{
 	font-size: 20px;
 	cursor: pointer;
 	opacity: 0;
-	filter: alpha(opacity=0);
+	filter: alpha(opacity = 0);
 }
 
 .image-preview-input-title {
-    margin-left:2px;
+	margin-left: 2px;
 }
 
 /* 공연시작일, 종료일 */
-div.pickDateWrapper > input {
+div.pickDateWrapper>input {
 	border: 1px solid #ced4da;
 	border-radius: .254em;
 }
@@ -183,95 +181,201 @@ div.pickDateWrapper > input {
 	color: #fff;
 }
 
-.select.select--white{
+.select.select--white {
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
 	margin: 0;
 	padding: .375rem .75rem;
-	width: 80%;   
+	width: 80%;
 }
 
 /* ========= 라디오버튼 ======== */
-.radio label:after{
-    content: '';
-    display: table;
-    clear: both;
+.radio label:after {
+	content: '';
+	display: table;
+	clear: both;
 }
 
 .radio .cr {
-    position: relative;
-    display: inline-block;
-    border: 1px solid #a9a9a9;
-    border-radius: .25em;
-    width: 1.3em;
-    height: 1.3em;
-    float: left;
-    margin-right: .5em;
-    margin-top: .2em;      
+	position: relative;
+	display: inline-block;
+	border: 1px solid #a9a9a9;
+	border-radius: .25em;
+	width: 1.3em;
+	height: 1.3em;
+	float: left;
+	margin-right: .5em;
+	margin-top: .2em;
 }
 
 .radio .cr {
-    border-radius: 50%;
+	border-radius: 50%;
 }
 
 .radio .cr .cr-icon {
-    position: absolute;
-    font-size: .8em;
-    line-height: 0;
-    top: 50%;
-    left: 20%;
+	position: absolute;
+	font-size: .8em;
+	line-height: 0;
+	top: 50%;
+	left: 20%;
 }
 
 .radio .cr .cr-icon {
-	/* margin-left: 0.04em; */                   
+	/* margin-left: 0.04em; */
+	
 }
 
-.radio label input[type="radio"]{
-    display: none;
+.radio label input[type="radio"] {
+	display: none;
 }
 
-.radio label input[type="radio"] + .cr > .cr-icon{
-    transform: scale(3) rotateZ(-20deg);
-    opacity: 0;
-    transition: all .3s ease-in;
+.radio label input[type="radio"]+.cr>.cr-icon {
+	transform: scale(3) rotateZ(-20deg);
+	opacity: 0;
+	transition: all .3s ease-in;
 }
 
-.radio label input[type="radio"]:checked + .cr > .cr-icon{
-    transform: scale(1) rotateZ(0deg);
-    opacity: 1;
+.radio label input[type="radio"]:checked+.cr>.cr-icon {
+	transform: scale(1) rotateZ(0deg);
+	opacity: 1;
 }
 
-.radio label input[type="radio"]:disabled + .cr {
-    opacity: .5;
+.radio label input[type="radio"]:disabled+.cr {
+	opacity: .5;
 }
 
 /* ===== 추가버튼 ===== */
-div#btnWrap{
-	margin-top: 10px;   
+div#btnWrap {
+	margin-top: 10px;
 	margin-bottom: 5px;
 	text-align: center;
 }
 
-div#btnWrap input#btnAddPerf{
-	letter-spacing: -0.8px;   
+div#btnWrap input#btnAddPerf {
+	letter-spacing: -0.8px;
 }
-
-
 
 /* ============= 공연안내 페이지 ================== */
-div.container-fluid.perfInfoWrapper{
+div.container-fluid.perfInfoWrapper {
 	width: 100%;
 	margin: 0 auto;
-	padding: 20px;       
+	padding: 20px;
 	border: 2px solid lightblue;
-	background-color: #8e9eab;  
-
+	background-color: #8e9eab;
 }
 
-div.container-fluid.perfInfoWrapper div.listWrapper{
-	width: 80%;       
+div.container-fluid.perfInfoWrapper div.listWrapper {
+	width: 80%;
 	margin: 0 auto;
 	padding: 20px;
 	border: 2px solid pink;
 	background-color: #fff;
+}
+
+/* ===== 공연 안내 연도 선택 ===== */
+.btn.dropdown-toggle.btn-light{
+	border: 1px solid #ccc;
+	margin-left: 10px;
+}
+
+.text{
+	padding-left: 5px;
+}
+
+.dropdown-item.active{
+	color: #3d49a2;
+	background-color: white;   
+}
+
+/* ===== 공연 안내 월 선택 ===== */
+div.searchWrap{
+	position: relative;
+	border: 2px solid blue;
+	padding: 10px;
+}
+
+div.selectMonthWrapper{
+	display: inline-block;
+	margin-left: 40px;  
+	position: absolute;
+	overflow: hidden;
+	top: 10px;                    
+}
+
+div.selectMonthWrapper ul.monthList{
+	list-style: none;
+	width: 938px;                   
+	height: 38px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+}
+
+div.selectMonthWrapper ul.monthList li{
+	float: left;
+	display: inline-block;
+	border-left: 1px solid #ccc;
+	width: 78px;            
+	height: 37px;       
+}
+
+div.selectMonthWrapper ul.monthList li:first-child{
+	border: none;
+}
+
+div.selectMonthWrapper ul.monthList li a{
+	width: 78px;
+	height: 37px;
+	line-height: 37px;
+	text-decoration: none;
+	color: #4d4d4d;
+	font-size: 16px;  
+	letter-spacing: -0.5px;   
+} 
+
+
+/* ===== 공연 안내 카테고리 선택 ===== */
+div.perfCategoryWrapper{
+	clear: both;
+	width: 1067px;                          
+	margin-left: 10px;
+	margin-top: 25px;   
+}
+
+ul.perfCategory{
+	list-style: none;
+	width: 1067px;
+	height: 50px;
+	border: 1px solid #ddd;
+	margin: 0;
+	padding: 0;
+}
+
+ul.perfCategory li{
+	float: left;
+	width: 213px;   
+	height: 49px;
+	line-height: 49px;
+	border-left: 1px solid #ddd;
+}
+
+ul.perfCategory li:first-child {
+	border: none;
+}
+
+ul.perfCategory li a{
+	display: inline-block;
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
+	text-decoration: none;
+	color: #626262;
+	font-size: 17px;
+	letter-spacing: -0.8px;
+}
+
+/* ===== 검색된 공연목록 나오는 곳 ===== */
+div.resultSearchWrapper{
+	border: 2px solid salmon;
+	margin: 30px 0;  
 }

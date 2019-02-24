@@ -15,14 +15,26 @@
 <!-- MDTimePicker -->
 <link href="${pageContext.request.contextPath }/resources/css/mdtimepicker.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mdtimepicker.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
 <style>
-.test{
-	color: red;
+.selectCategoryStyle .btnCategory{
+	color: #3d49a2!important;
+	text-decoration: underline;
+	font-weight: bold;
 }
 
-.test2{
-	color: salmon;        
+.selectMonthStyle{
+	background-color: #3d49a2;
+	width: 78px;   
+}
+
+.selectMonthStyle .btnMonth{
+	color: white!important;
+	font-weight: bold;  
 }
 </style>
 
@@ -42,8 +54,6 @@
 </div>
 <!-- container end -->
 
-<h1>테스트</h1>
-
 <div id="temp">
 <script>
 	var today = '<fmt:formatDate value="${map.sYear }" pattern="yyyy-MM-dd"/>';	//2019-02-01
@@ -59,7 +69,7 @@
 
 		//현재 달(ex.2월)의 부모인 li 태그에 test2라는 클래스 이름 추가.
 		var y = t[x].parentNode;
-		y.classList.add('test2');
+		y.classList.add('selectMonthStyle');
 		
 		var m = parseInt(month);
 		$(".chkMonth").val(m);
@@ -76,9 +86,9 @@
 			<h3 class="text-center">일력별 공연안내</h3>  
 			
 			<div class='searchWrap'>
-				<select id="selectYear" name="selectYear">
-					<option value="2018" ${date.sYear == 2018 ? 'selected' : '' }>2018</option>
-					<option value="2019" ${date.sYear == 2019 ? 'selected' : '' }>2019</option>
+				<select id="selectYear" name="selectYear" class="selectpicker" data-width="100px">
+					<option value="2018" ${date.sYear == 2018 ? 'selected' : '' } >2018</option>
+					<option value="2019" ${date.sYear == 2019 ? 'selected' : '' } >2019</option>
 				</select>
 				
 						
@@ -94,9 +104,10 @@
 					
 				</div>
 				
+				<!-- 카테고리 선택 -->
 				<div class='perfCategoryWrapper'>
 					<ul class='perfCategory'>  
-						<li class='test'><a href="#" data-category='' class='btnCategory'>전체보기</a></li>
+						<li class='selectCategoryStyle'><a href="#" data-category='' class='btnCategory'>전체보기</a></li>
 						<li><a href="#" data-category='A' class='btnCategory'>기획공연</a></li>
 						<li><a href="#" data-category='B' class='btnCategory'>대관공연</a></li>
 						<li><a href="#" data-category='C' class='btnCategory'>오페라축제</a></li>
@@ -203,19 +214,19 @@
 		
 			return false;
 		})
-		
+		    
 		//카테고리 a의 부모인 li를 클릭할 경우
 		var categoryLi = $(".perfCategory > li");
 		categoryLi.find('a').click(function(){
-			categoryLi.removeClass('test');
-			$(this).parent().addClass('test');   
+			categoryLi.removeClass('selectCategoryStyle');
+			$(this).parent().addClass('selectCategoryStyle');            
 		})
 		
 		//월 a의 부모인 li를 클릭할 경우
 		var monthLi = $(".monthList > li");
 		monthLi.find('a').click(function(){
-			monthLi.removeClass('test2');
-			$(this).parent().addClass('test2');
+			monthLi.removeClass('selectMonthStyle');
+			$(this).parent().addClass('selectMonthStyle');
 		})
 		
 	})
@@ -224,7 +235,16 @@
 <!-- 템플릿 -->  
 <script id="template2" type="text/x-handlebars-template">
 {{#each.}}
-<p>{{showName}}</p>
+<p>공연이름 : {{showName}}</p>
+<p>공연날짜 : {{showStartdate}}</p>
+<p>공연끝나는날: {{showEnddate}}</p>
+<p>이미지: {{showImagePath}}</p>
+<c:if test="{{showImagePath}} == null">  
+<p>보여지는 이미지 : <img src="${pageContext.request.contextPath }/resources/images/no-image.jpg" alt="no-image"></p>
+</c:if>
+<c:if test="{{showImagePath}} != null">
+<p>보여지는 이미지 : <img src='displayFile?filename=${vo.showImagePath }'></p>
+</c:if>
 {{/each}}
 </script>  
 
