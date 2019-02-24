@@ -63,7 +63,7 @@ public class PerformanceDaoTest {
 		Map<String, Object> map = new HashMap<>();
 		map.put("sYear", s.getTime());
 		map.put("eYear", e.getTime());
-		map.put("category", "A");
+//		map.put("category", "A");
 		
 		List<PerformanceVO> list = dao.selectPerformanceByCondition(map);
 		System.out.println(list);

@@ -47,8 +47,11 @@ public class SearchPerformanceController {
 			
 			Map<String, Object> map = new HashMap<>();
 			map.put("sYear", s.getTime());			
-			map.put("eYear", e.getTime());			
-			map.put("category", category);
+			map.put("eYear", e.getTime());
+			
+			if(category != "") {
+				map.put("category", category);
+			}
 			
 			List<PerformanceVO> list = service.selectPerformanceByCondition(map); 
 			

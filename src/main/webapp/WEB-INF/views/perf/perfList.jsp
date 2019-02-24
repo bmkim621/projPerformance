@@ -17,7 +17,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/mdtimepicker.js"></script>
 
 <style>
-	
+.test{
+	color: red;
+}
+
+.test2{
+	color: salmon;        
+}
 </style>
 
 <div class="container-fluid perfContainer">
@@ -46,9 +52,15 @@
 
 	$(function(){
 		$("#selectYear option[value="+ year + "]").attr("selected", true);	//year와 값 비교해서 option의 value가 2019가 selected 되게 함.
-	/* 	var t = document.getElementsByClassName("spanMonth");
+	 	
+		var t = document.getElementsByClassName("btnMonth");
 		var x = month - 1;
-		t[x].style.color = 'red'; */
+//		t[x].style.color = 'red';
+
+		//현재 달(ex.2월)의 부모인 li 태그에 test2라는 클래스 이름 추가.
+		var y = t[x].parentNode;
+		y.classList.add('test2');
+		
 		var m = parseInt(month);
 		$(".chkMonth").val(m);
 
@@ -64,12 +76,12 @@
 			<h3 class="text-center">일력별 공연안내</h3>  
 			
 			<div class='searchWrap'>
-				<!-- 연도 선택 -->
 				<select id="selectYear" name="selectYear">
 					<option value="2018" ${date.sYear == 2018 ? 'selected' : '' }>2018</option>
 					<option value="2019" ${date.sYear == 2019 ? 'selected' : '' }>2019</option>
 				</select>
-		
+				
+						
 				<!-- 월 선택 -->
 				<div class="selectMonthWrapper">
 					<ul class='monthList'>
@@ -78,8 +90,20 @@
 					</c:forEach>
 					</ul>
 					<!-- 월  -->
-					<input type="hidden" class="selectMonth">	<!-- 현재 월 -->
 					<input type='hidden' class='chkMonth'>
+					
+				</div>
+				
+				<div class='perfCategoryWrapper'>
+					<ul class='perfCategory'>  
+						<li class='test'><a href="#" data-category='' class='btnCategory'>전체보기</a></li>
+						<li><a href="#" data-category='A' class='btnCategory'>기획공연</a></li>
+						<li><a href="#" data-category='B' class='btnCategory'>대관공연</a></li>
+						<li><a href="#" data-category='C' class='btnCategory'>오페라축제</a></li>
+						<li><a href="#" data-category='D' class='btnCategory'>살롱콘서트</a></li>
+					</ul>
+					<!-- 카테고리 -->
+					<input type='hidden' class='chkCategory'>
 				</div>
 				
 		
@@ -125,12 +149,15 @@
 	function searchPerformance(){
 		var sYear = $("select[name='selectYear']").val();
 		var sMonth = $(".chkMonth").val();
+		var category = $(".chkCategory").val();
+		
 		console.log(sYear);
 		console.log(sMonth);
-
+		console.log(category);
+				
 		$.ajax({
 			
-			url: "${pageContext.request.contextPath}/search?sYear=" + sYear + "&sMonth=" + sMonth,
+			url: "${pageContext.request.contextPath}/search?sYear=" + sYear + "&sMonth=" + sMonth + "&category=" + category,
 			type: "GET",
 			dataType: "json",
 			success: function(json){
@@ -153,9 +180,9 @@
 		
 		//월 선택할 때
 		$(".btnMonth").click(function(){
-			var mo = $(this).attr("data-month");
-//			console.log(mo);
-			$(".chkMonth").val(mo);
+			var month = $(this).attr("data-month");
+//			console.log(month);
+			$(".chkMonth").val(month);
 			searchPerformance();
 			
 			return false;   
@@ -166,7 +193,30 @@
 			searchPerformance(); 
 		})
 		
+		//카테고리 선택할 때
+		$(".btnCategory").click(function(){
+			var category = $(this).attr("data-category");
+//			console.log(category);
+			$(".chkCategory").val(category);
+			
+			searchPerformance();
 		
+			return false;
+		})
+		
+		//카테고리 a의 부모인 li를 클릭할 경우
+		var categoryLi = $(".perfCategory > li");
+		categoryLi.find('a').click(function(){
+			categoryLi.removeClass('test');
+			$(this).parent().addClass('test');   
+		})
+		
+		//월 a의 부모인 li를 클릭할 경우
+		var monthLi = $(".monthList > li");
+		monthLi.find('a').click(function(){
+			monthLi.removeClass('test2');
+			$(this).parent().addClass('test2');
+		})
 		
 	})
 </script>
