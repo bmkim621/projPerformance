@@ -48,8 +48,7 @@
 	<!-- if 조건 -->
 	<select id="selectPerformanceByCondition" parameterType="hashmap" resultMap="resultPerf">
 		<include refid="perfSql" />
-		<include refid="whereSql" />
-	
+		<include refid="whereSql" />      
 	</select>
 	
 </mapper>

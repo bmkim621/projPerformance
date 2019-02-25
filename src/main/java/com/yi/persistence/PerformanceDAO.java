@@ -23,7 +23,7 @@ public interface PerformanceDAO {
 	
 	// ===== 시설 정보 보기 : facilities 테이블 =====
 	public List<FacilitiesVO> facilitiesList();
-	
+		
 	//
 	public List<PerformanceVO> selectPerformanceByCondition(Map<String, Object> map);
 	

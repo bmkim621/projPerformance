@@ -46,10 +46,6 @@ public class PerformanceServiceImpl implements PerformanceService {
 	public List<PerformanceVO> selectPerformanceByCondition(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return perfDao.selectPerformanceByCondition(map);
-	}
-
-	
-	
-	
+	}	
 	
 }

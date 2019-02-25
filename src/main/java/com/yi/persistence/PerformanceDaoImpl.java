@@ -54,6 +54,4 @@ public class PerformanceDaoImpl implements PerformanceDAO {
 		return sqlSession.selectList(namespace + ".selectPerformanceByCondition", map);
 	}
 
-
-
 }

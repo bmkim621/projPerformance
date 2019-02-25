@@ -46,8 +46,9 @@ public class SearchPerformanceController {
 			GregorianCalendar e = new GregorianCalendar(sYear, sMonth - 1, 31);
 			
 			Map<String, Object> map = new HashMap<>();
-			map.put("sYear", s.getTime());			
+			map.put("sYear", s.getTime());			  
 			map.put("eYear", e.getTime());
+  
 			
 			if(category != "") {
 				map.put("category", category);

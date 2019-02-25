@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/performance.css?b" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/performance.css?acc" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/myDatepicker.css" rel="stylesheet" type="text/css">
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/performance.js"></script>  
@@ -81,9 +81,8 @@
 
 <!-- 공연안내  -->
 <div class="container-fluid perfInfoWrapper">
-	<div class="listWrapper">
-		<div class="container">
-			<h3 class="text-center">일력별 공연안내</h3>  
+	<div class="listWrapper">       
+			<h2 class="text-center">월별 공연안내</h2><hr>            
 			
 			<div class='searchWrap'>
 				<select id="selectYear" name="selectYear" class="selectpicker" data-width="100px">
@@ -121,51 +120,86 @@
 			
 			</div>	<!-- searchWrap end -->
 
-<%--  			<div class='perfListWrapper'>
-			<c:forEach items="${result }" var="vo">
-				<p>공연코드 : ${vo.showCode }</p>
-				<p>공연제목 : ${vo.showName }</p>
-				<p>공연종류 : ${vo.showType }</p>
-				<p>공연시간 : ${vo.totalTime }분</p>
-				<p>공연시작시간 : <fmt:formatDate value="${vo.startTime }" pattern="HH:mm"/></p>
-				<p>공연시작일 : <fmt:formatDate value="${vo.showStartdate }" pattern="MM. dd"/>(<fmt:formatDate value="${vo.showStartdate }" pattern="E"/>)</p>
-				<p>공연종료일 : <fmt:formatDate value="${vo.showEnddate }" pattern="MM. dd"/>(<fmt:formatDate value="${vo.showEnddate }" pattern="E"/>)</p>
-				<c:if test="${vo.fno.facilitiesNo == 1}">
-					<p>공연장소 : 대구오페라하우스 본관</p>
-				</c:if>   
-				<c:if test="${vo.fno.facilitiesNo == 2}">
-					<p>공연장소 : 대구오페라하우스 별관</p>
-				</c:if>
-				<!-- 공연 이미지 -->
-				<c:if test="${vo.showImagePath == null}">  
-					<p>보여지는 이미지 : <img src="${pageContext.request.contextPath }/resources/images/no-image.jpg" alt="no-image"></p>
-				</c:if>
-				<c:if test="${vo.showImagePath != null}">
-					<p>보여지는 이미지 : <img src='displayFile?filename=${vo.showImagePath }'></p>
-				</c:if>
-				<hr>
-			</c:forEach>
-		</div>	<!-- perfListWrapper end -->  --%>
-		
-		<div class='resultSearchWrapper'></div>
-					
- 		 </div>
-	
-			</div>  
+		<div class='resultSearchWrapper'>
 		
 		</div>
+
+	
+			</div>  <!-- listWrapper end -->
+		
+		</div>	<!-- perfInfoWrapper end -->
+		
+		<!-- 날짜  -->
+		<input type='hidden' id="startDate">
+
+<!-- 템플릿 -->  
+<script id="template2" type="text/x-handlebars-template">
+{{#each.}}
+<div class='showListWrapper'>
+
+<div class='show-img-box'>
+{{#ifCond showImagePath}}
+<img src="${pageContext.request.contextPath }/resources/images/no-image.jpg" alt="no-image">
+</div>
+
+<div class='show-item-details'>
+	<span class='show-name'>{{showName}}</span>  
+	<span class='show-date'>{{tempDate showStartdate}}({{tempweek showStartdate}}) ~ {{tempDate showEnddate}} ({{tempweek showEnddate}})</span>	
+</div>
+
+{{else}}
+<img src="displayFile?filename={{showImagePath}}">
+</div>
+
+<div class='show-item-details'>
+	<a href="${pageContext.request.contextPath}/perf/readPerf?showName={{showName}}" class='goReadPage'><span class='show-name'>{{showName}}</span></a>  
+	<span class='show-date'>{{tempDate showStartdate}}({{tempweek showStartdate}}) ~ {{tempDate showEnddate}} ({{tempweek showEnddate}})</span>	
+</div>
+
+{{/ifCond}}
+   
+</div> 
+{{/each}} 
+</script>
 		
 <script>
+//날짜
+Handlebars.registerHelper("tempDate", function(value){
+	var date = new Date(value);
+//	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var day = date.getDate();
+	
+	return month + ". " + day; 
+})
+
+Handlebars.registerHelper("tempweek", function(value){
+	//일: 0 ~ 토: 6
+	var sWeek = ["일", "월", "화", "수", "목", "금", "토"];
+	var date = new Date(value);
+	var week = date.getDay();
+	
+	return sWeek[week];
+})
+
+//Handlebar if문
+Handlebars.registerHelper('ifCond', function(v1, options) {
+	if(v1 === null || v1 === "") {
+		return options.fn(this);
+	}
+	return options.inverse(this);
+});
+
 	//검색
 	function searchPerformance(){
 		var sYear = $("select[name='selectYear']").val();
 		var sMonth = $(".chkMonth").val();
 		var category = $(".chkCategory").val();
 		
-		console.log(sYear);
-		console.log(sMonth);
-		console.log(category);
-				
+//		console.log(sYear);
+//		console.log(sMonth);
+//		console.log(category);  
+			    	
 		$.ajax({
 			
 			url: "${pageContext.request.contextPath}/search?sYear=" + sYear + "&sMonth=" + sMonth + "&category=" + category,
@@ -181,7 +215,7 @@
 				var f = Handlebars.compile(source);
 				var result = f(json);
 				$(".resultSearchWrapper").append(result);
-				
+					
 			}
 		})
 	}
@@ -229,23 +263,14 @@
 			$(this).parent().addClass('selectMonthStyle');
 		})
 		
+	/* 	//리스트
+		$(".show-img-hover").hover(function(){
+			$(this).find(".show-img-hover").fadeIn(300)
+		}, function(){
+			$(this).find(".show-img-hover").fadeOut(300)                                      
+		}); */
+		
 	})
 </script>
-
-<!-- 템플릿 -->  
-<script id="template2" type="text/x-handlebars-template">
-{{#each.}}
-<p>공연이름 : {{showName}}</p>
-<p>공연날짜 : {{showStartdate}}</p>
-<p>공연끝나는날: {{showEnddate}}</p>
-<p>이미지: {{showImagePath}}</p>
-<c:if test="{{showImagePath}} == null">  
-<p>보여지는 이미지 : <img src="${pageContext.request.contextPath }/resources/images/no-image.jpg" alt="no-image"></p>
-</c:if>
-<c:if test="{{showImagePath}} != null">
-<p>보여지는 이미지 : <img src='displayFile?filename=${vo.showImagePath }'></p>
-</c:if>
-{{/each}}
-</script>  
 
 <%@ include file="../include/footer.jsp"%>

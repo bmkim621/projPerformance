@@ -27,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -177,6 +178,19 @@ public class PerformanceController {
 		}
 		
 		return entity;
+	}
+	
+	
+	//공연정보 읽기
+	@RequestMapping(value = "readPerf", method = RequestMethod.GET)
+	public void readPerf(@RequestParam("showName") String showName, Model model) {
+		logger.info("=====> readPerf ----- GET");
+		
+		PerformanceVO vo = service.perfListAllByShowName(showName);
+		
+		logger.info("vo ===============> " + vo);
+		         
+		model.addAttribute("PerformanceVO", vo);
 	}
 	
 }

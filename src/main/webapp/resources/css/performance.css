@@ -260,16 +260,17 @@ div.container-fluid.perfInfoWrapper {
 	width: 100%;
 	margin: 0 auto;
 	padding: 20px;
-	border: 2px solid lightblue;
-	background-color: #8e9eab;
+	/* border: 2px solid lightblue;
+	background-color: #8e9eab; */
 }
 
 div.container-fluid.perfInfoWrapper div.listWrapper {
-	width: 80%;
+	width: 80%;           
 	margin: 0 auto;
 	padding: 20px;
-	border: 2px solid pink;
-	background-color: #fff;
+	/* border: 2px solid pink;
+	background-color: #fff; */
+	position: relative;
 }
 
 /* ===== 공연 안내 연도 선택 ===== */
@@ -290,11 +291,14 @@ div.container-fluid.perfInfoWrapper div.listWrapper {
 /* ===== 공연 안내 월 선택 ===== */
 div.searchWrap{
 	position: relative;
-	border: 2px solid blue;
-	padding: 10px;
+	/* border: 2px solid violet; */
+	padding: 10px;   
+	width: 90%;
+	margin: 0 auto;          
 }
 
 div.selectMonthWrapper{
+	width: 85%;               
 	display: inline-block;
 	margin-left: 40px;  
 	position: absolute;
@@ -304,7 +308,7 @@ div.selectMonthWrapper{
 
 div.selectMonthWrapper ul.monthList{
 	list-style: none;
-	width: 938px;                   
+	width: 100%;                   
 	height: 38px;
 	margin: 0;
 	padding: 0;
@@ -315,7 +319,7 @@ div.selectMonthWrapper ul.monthList li{
 	float: left;
 	display: inline-block;
 	border-left: 1px solid #ccc;
-	width: 78px;            
+	width: 8.3%;                                 
 	height: 37px;       
 }
 
@@ -337,14 +341,14 @@ div.selectMonthWrapper ul.monthList li a{
 /* ===== 공연 안내 카테고리 선택 ===== */
 div.perfCategoryWrapper{
 	clear: both;
-	width: 1067px;                          
+	width: 96.5%;                                                     
 	margin-left: 10px;
 	margin-top: 25px;   
 }
 
 ul.perfCategory{
 	list-style: none;
-	width: 1067px;
+	width: 100%;
 	height: 50px;
 	border: 1px solid #ddd;
 	margin: 0;
@@ -353,7 +357,7 @@ ul.perfCategory{
 
 ul.perfCategory li{
 	float: left;
-	width: 213px;   
+	width: 20%;               
 	height: 49px;
 	line-height: 49px;
 	border-left: 1px solid #ddd;
@@ -376,6 +380,186 @@ ul.perfCategory li a{
 
 /* ===== 검색된 공연목록 나오는 곳 ===== */
 div.resultSearchWrapper{
-	border: 2px solid salmon;
-	margin: 30px 0;  
+	/* border: 2px solid salmon; */
+	width: 90%;        
+	padding: 20px;
+	margin: 10px auto;  
+}
+
+div.showListWrapper{
+	display: inline-block;
+	width: 280px;
+	height: 360px;
+	position: relative;
+	padding: 5px 5px 0 5px;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin-right: 32.59px;
+	margin-bottom: 25px;                                                                
+}
+
+div.show-img-box{
+	width: 268px;  
+}
+
+div.show-img-box img{
+	width: 268px;         
+	position: absolute;
+	top: 5px;
+	left: 5px;          
+}
+
+div.show-item-details{     
+	background-color: white;
+	width: 268px;
+	height: 70px;        
+	padding: 10px;   
+	position: absolute;
+	bottom: 0;          
+	
+}
+
+div.show-item-details span.show-name{
+	display: block;
+	font-size: 18px;
+	letter-spacing: -0.8px;
+	font-weight: bold;
+	height: 25px;  
+	line-height: 25px;      
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;     
+	white-space: nowrap;
+}
+
+div.show-item-details span.show-date{
+	display: block;
+	font-size: 15px;
+	letter-spacing: -0.8px;
+	color: #5D5D5D;
+}
+
+a.goReadPage{
+	color: #000!important;
+}
+
+a.goReadPage:hover{
+	text-decoration: underline;
+	color: #3d49a2!important; 
+}
+
+/* ================ 공연 상세보기 페이지 ================== */
+h2{
+	margin-top: 20px;      
+	margin-bottom: 30px;
+	letter-spacing: -0.8px;
+}
+
+div.container-fluid.readShowWrapper{
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	/* border: 2px solid lightblue; */
+	/* background-color: #8e9eab;	 */
+}
+
+div.container-fluid.readShowWrapper div.readWrapper {
+	width: 80%;           
+	margin: 0 auto;
+	padding: 20px;
+/* 	border: 2px solid pink; */
+	background-color: #fff;
+	position: relative;
+}
+
+div.container-fluid.readShowWrapper div.readWrapper div.showDetails{
+/* 	border: 2px solid green; */
+	padding: 30px;     
+	width: 80%;
+	margin: 0 auto;      
+	overflow: hidden;
+}
+
+/* 이미지 */
+div.showDetails div.read-img-box{
+/* 	border: 2px solid blue; */
+	display: inline-block;
+	width: 300px;
+	float: left;
+	text-align: center;
+	margin-left: 40px;     
+}
+
+div.showDetails div.read-img-box img{
+	width: 280px;
+}
+
+/* 버튼 */
+div.showDetails div.btnWrapper{
+/* 	border: 2px solid salmon; */
+	display: inline-block;
+	width: 60%;
+	margin-left: 50px;
+	margin-top: 10px;
+	padding-left: 15px;           
+}
+
+div.showDetails div.btnWrapper a{
+	margin-right: 10px;
+}
+
+/* 내용 */
+div.showDetails div.read-contents{
+/* 	border: 2px solid red;  */ 
+	display: inline-block;
+	width: 60%;
+	margin-left: 50px;
+	padding: 10px 20px 0 20px;        
+}
+
+div.read-contents p.read-category{
+	color: #ff9900;
+	font-weight: bold;
+	letter-spacing: -0.8px;
+	margin-bottom: 5px;
+}
+
+div.read-contents p.read-name{
+	color: #2a3072;
+	font-weight: bold;
+	font-size: 22px;
+	letter-spacing: -0.8px;
+}
+
+div.read-contents ul{
+	list-style: none;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 0;
+	margin-bottom: 5px;
+}
+
+div.read-contents ul li{
+	float: left;
+	width: 100%;   
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+div.read-contents ul li p{
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+div.read-contents p.spanTitle{
+	color: #868691;
+	letter-spacing: -0.8px;
+	width: 70px;                 
+}
+
+div.read-contents p.spanContents{
+	color: #62626f;
+	letter-spacing: -0.8px;
+	margin-left: 10px;
 }
