@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/performance.css?acc" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/performance.css?bsc" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/myDatepicker.css" rel="stylesheet" type="text/css">
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/performance.js"></script>  

@@ -10,22 +10,6 @@ public class CustomerVO {
 	private String dob;
 	private String address;
 	
-	public CustomerVO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public CustomerVO(String customerCode, String customerName, String id, String password, String email, String phone,
-			String dob, String address) {
-		this.customerCode = customerCode;
-		this.customerName = customerName;
-		this.id = id;
-		this.password = password;
-		this.email = email;
-		this.phone = phone;
-		this.dob = dob;
-		this.address = address;
-	}
-
 	public String getCustomerCode() {
 		return customerCode;
 	}

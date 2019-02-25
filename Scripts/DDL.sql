@@ -168,24 +168,27 @@ ALTER TABLE facilities
 
 -- 공지사항
 CREATE TABLE notice (
-	notice_no       INT     NOT NULL COMMENT '공지사항번호', -- 공지사항번호
-	notice_img_path text    NULL     COMMENT '이미지경로', -- 이미지경로
-	notice_content  text    NOT NULL COMMENT '내용', -- 내용
-	post_startdate  DATE    NOT NULL COMMENT '게시시작일', -- 게시시작일
-	post_enddate    DATE    NOT NULL COMMENT '게시종료일', -- 게시종료일
-	is_post         BOOLEAN NOT NULL COMMENT '게시여부', -- 게시여부
-	is_notice       BOOLEAN NOT NULL COMMENT '알림이벤트구분', -- 알림이벤트구분
-	manager_code    CHAR(5) NULL     COMMENT '관리자코드', -- 관리자코드
-	notice_view_cnt INT     NULL     DEFAULT 0 COMMENT '조회수' -- 조회수
+	notice_no       INT          NOT NULL COMMENT '공지사항번호', -- 공지사항번호
+	content         TEXT         NULL     COMMENT '내용', -- 내용
+	title           VARCHAR(200) NOT NULL COMMENT '제목', -- 제목
+	regdate         TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+	writer			VARCHAR(5)	 NOT null COMMENT '작성자', -- 작성자
+	is_notice       TINYINT(1)   NOT NULL COMMENT '알림이벤트구분', -- 알림이벤트구분
+	manager_code    CHAR(5)      NULL     COMMENT '관리자코드', -- 관리자코드
+	view_cnt        INT          NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
+	notice_category CHAR(1)      NULL     COMMENT 'A: 전체보기, B: 공지안내' -- 공지분류
 )
 COMMENT '공지사항';
 
 -- 공지사항
 ALTER TABLE notice
-	ADD CONSTRAINT PK_notice -- 공지사항 기본키
+	ADD CONSTRAINT
 		PRIMARY KEY (
 			notice_no -- 공지사항번호
 		);
+
+ALTER TABLE notice
+	MODIFY COLUMN notice_no INT NOT NULL AUTO_INCREMENT COMMENT '공지사항번호';
 
 -- 댓글
 CREATE TABLE reply (

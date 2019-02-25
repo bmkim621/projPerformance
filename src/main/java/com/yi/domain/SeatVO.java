@@ -7,18 +7,6 @@ public class SeatVO {
 	private int startLoc;
 	private int endLoc;
 	
-	public SeatVO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public SeatVO(String locCode, String zone, FacilitiesVO facilitiesNo, int startLoc, int endLoc) {
-		this.locCode = locCode;
-		this.zone = zone;
-		this.facilitiesNo = facilitiesNo;
-		this.startLoc = startLoc;
-		this.endLoc = endLoc;
-	}
-
 	public String getLocCode() {
 		return locCode;
 	}

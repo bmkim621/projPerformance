@@ -5,16 +5,6 @@ public class DiscountVO {
 	private int discountRate;
 	private String discountName;
 	
-	public DiscountVO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public DiscountVO(String discountCode, int discountRate, String discountName) {
-		this.discountCode = discountCode;
-		this.discountRate = discountRate;
-		this.discountName = discountName;
-	}
-
 	public String getDiscountCode() {
 		return discountCode;
 	}

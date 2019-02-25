@@ -117,7 +117,11 @@ insert into payment values
 
 -- 관리자
 insert into manager values
-('M1901', '홍길동');
+('M1901', '관리자');
+
+-- 공지
+insert into notice(content, title, is_notice, manager_code, notice_category, writer) values
+('안녕하세요? 대구오페라하우스입니다. 이번 3월 3일자로 저희 대구오페라하우스가 임시 개통을 하였습니다. 부족한 부분들에 대해서는 꾸준히 Update 하겠습니다. 여러분들의 따뜻한 말씀을 기다리겠습니다. 감사합니다.', '대구오페라하우스 홈페이지 임시개통', 0, 'M1901', 'A', '관리자');
 
 -- 고객
 insert into customer values
