@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/notice.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/notice.css?aa" rel="stylesheet" type="text/css">
 <!-- 구글 아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -23,104 +25,98 @@
 <!-- container end -->
 
 <!-- 공지사항 리스트 -->
-<div class="container">
+<div class="container-fluid tableContainer">
+	
+	<div class='titleWrapper'>
+		<h2 class='text-center'>공지사항</h2><hr>
+	</div>
+		  
+
 	<div class="table-wrapper">
 		<div class="table-filter">
 			<div class="row">
-				<div class="col-sm-12">
-					<button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-					
+			
+				<div class="col-sm-12">       
 					<div class="filter-group">
-						<label>제목</label>
-						<input type="text" class="form-control">
+						<select name="searchType">
+							<option value="t" ${cri.searchType == 't' ? 'selected' : '' }>제목</option>
+							<option value="c" ${cri.searchType == 'c' ? 'selected' : '' }>내용</option>
+							<option value="tc" ${cri.searchType == 'tc' ? 'selected' : '' }>제목+내용</option>
+						</select>
+						
+						<input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword }">
+						<button type="button" class="btn btn-write" id="btnNewNotice"><i class="fas fa-pen"></i></button> 
+						<button type="button" class="btn btn-primary" id="btnSearch"><i class="fa fa-search"></i></button>
 					</div>	<!-- filter-group end -->
 				</div>
 			</div>
 		</div>	<!-- table-filter end -->
 		
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-hover">     
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>Customer</th>
-				<th>Location</th>
-				<th>Order Date</th>						
-				<th>Status</th>						
-				<th>Net Amount</th>
-				<th>Action</th>
+				<th class='text-center'>번호</th>        
+				<th class='text-center'>제목</th>        
+				<th class='text-center'>작성자</th>
+				<th class='text-center'>작성일</th>						
+				<th class='text-center'>조회</th>						
 			</tr>
 		</thead>
-		
+		          
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td><a href="#">Michael Holz</a></td>
-				<td>London</td>
-				<td>Jun 15, 2017</td>                        
-				<td><span class="status text-success">&bull;</span> Delivered</td>
-				<td>$254</td>
-				<td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-			</tr>
-		
-			<tr>
-				<td>2</td>
-				<td><a href="#">Paula Wilson</a></td>
-				<td>Madrid</td>                       
-				<td>Jun 21, 2017</td>
-				<td><span class="status text-info">&bull;</span> Shipped</td>
-				<td>$1,260</td>
-				<td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-			</tr>
-		
-			<tr>
-				<td>3</td>
-				<td><a href="#">Antonio Moreno</a></td>
-				<td>Berlin</td>
-				<td>Jul 04, 2017</td>
-				<td><span class="status text-danger">&bull;</span> Cancelled</td>
-				<td>$350</td>
-				<td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>                        
-			</tr>
-		
-			<tr>
-				<td>4</td>
-				<td><a href="#">Mary Saveley</a></td>
-				<td>New York</td>
-				<td>Jul 16, 2017</td>						
-				<td><span class="status text-warning">&bull;</span> Pending</td>
-				<td>$1,572</td>
-				<td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-			</tr>
-		
-			<tr>
-				<td>5</td>
-				<td><a href="#">Martin Sommer</a></td>
-				<td>Paris</td>
-				<td>Aug 04, 2017</td>
-				<td><span class="status text-success">&bull;</span> Delivered</td>
-				<td>$580</td>
-				<td><a href="#" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a></td>
-			</tr>
+			<c:forEach items="${list }" var="noticeVO" varStatus="status">
+				<tr>
+				<%-- 	<!-- 번호 -->
+					<td>${(pageMaker.totalCount - status.index) - ((pageMaker.cri.page - 1) * pageMaker.displayPageNum)}</td>
+					<!-- 번호 끝 -->  --%> 
+					<c:if test="${noticeVO.isNotice == '1' }">
+						<td class='spanNotice'>알림</td>    
+					</c:if>
+					<c:if test="${noticeVO.isNotice == '0' }">
+						<td>${noticeVO.noticeNo }</td>
+					</c:if>
+					<td><a href='#'>${noticeVO.title }</a></td>  
+					<td class='text-center'>${noticeVO.writer }</td>
+					<td class='text-center'><fmt:formatDate value="${noticeVO.regdate }" pattern="yyyy-MM-dd"/></td>  
+					<td class='text-center'>${noticeVO.viewCnt }</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
+	    
+	        <div class="text-center">
+                <ul class="pagination justify-content-center">
+                	<!-- prev 버튼 달릴 지 판단 -->
+                	<c:if test="${pageMaker.prev }">
+                		<li class="page-item"><a href="${pageContext.request.contextPath }/notice/list?page=${pageMaker.startPage - 1 }&searchType=${cri.searchType }&keyword=${cri.keyword }" class="page-link"><i class="fas fa-angle-double-left"></i> Previous</a></li>
+                	</c:if>
+                    <!-- 현재 선택한 페이지 -->
+                    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+                    	<li ${pageMaker.cri.page == idx ? 'class="page-item active"' : ''}>
+                    	<a href="${pageContext.request.contextPath }/notice/list?page=${idx }&searchType=${cri.searchType }&keyword=${cri.keyword }" class="page-link">${idx }</a>
+                    		</li>
+                    </c:forEach>
+                    <!-- next 버튼 -->
+                    <c:if test="${pageMaker.next }">
+                    	 <li class="page-item"><a href="${pageContext.request.contextPath }/notice/list?page=${pageMaker.endPage + 1 }&searchType=${cri.searchType }&keyword=${cri.keyword }" class="page-link">Next <i class="fas fa-angle-double-right"></i></a></li>
+                    </c:if>        
+                </ul>
+            </div>         
 	
-	<div class="clearfix">
-		<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-		
-		<ul class="pagination">
-			<li class="page-item disabled"><a href="#">Previous</a></li>
-			<li class="page-item active"><a href="#" class="page-link">1</a></li>
-			<li class="page-item"><a href="#" class="page-link">2</a></li>
-			<li class="page-item"><a href="#" class="page-link">3</a></li>
-			<li class="page-item"><a href="#" class="page-link">4</a></li>
-			<li class="page-item"><a href="#" class="page-link">5</a></li>
-			<li class="page-item"><a href="#" class="page-link">6</a></li>
-			<li class="page-item"><a href="#" class="page-link">7</a></li>
-			<li class="page-item"><a href="#" class="page-link">Next</a></li>
-		</ul>
-	</div>	<!-- clearfix end -->
 	</div>	<!-- table-wrapper end -->
 </div>	<!-- container end -->
-<h1>${list }</h1>
+
+<script>
+	$(function(){
+		//검색버튼
+		$("#btnSearch").click(function(){
+			//검색 시, 검색종류와 검색어의 값 가져오기
+			var searchType = $("select[name='searchType']").val();
+			var keyword = $("#keywordInput").val();
+			
+			location.href = "${pageContext.request.contextPath}/notice/list?searchType=" + searchType + "&keyword=" + keyword;
+		})
+	})
+</script>
 
 <%@ include file="../include/footer.jsp"%>

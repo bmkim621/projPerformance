@@ -79,12 +79,13 @@
 </script>
 </div>
 
+  
 <!-- 공연안내  -->
 <div class="container-fluid perfInfoWrapper">
 	<div class="listWrapper">       
 			<h2 class="text-center">월별 공연안내</h2><hr>            
 			
-			<div class='searchWrap'>
+			<div class='searchWrap'>  
 				<select id="selectYear" name="selectYear" class="selectpicker" data-width="100px">
 					<option value="2018" ${date.sYear == 2018 ? 'selected' : '' } >2018</option>
 					<option value="2019" ${date.sYear == 2019 ? 'selected' : '' } >2019</option>
@@ -262,13 +263,7 @@ Handlebars.registerHelper('ifCond', function(v1, options) {
 			monthLi.removeClass('selectMonthStyle');
 			$(this).parent().addClass('selectMonthStyle');
 		})
-		
-	/* 	//리스트
-		$(".show-img-hover").hover(function(){
-			$(this).find(".show-img-hover").fadeIn(300)
-		}, function(){
-			$(this).find(".show-img-hover").fadeOut(300)                                      
-		}); */
+		          
 		
 	})
 </script>

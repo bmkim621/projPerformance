@@ -102,9 +102,10 @@ public class PerformanceController {
 		
 	}
 	
+	//perf/perfList/month=2&year=2019&category=A
 	//공연정보 리스트 보기
 	@RequestMapping(value = "perfList", method = RequestMethod.GET)
-	public void perfList(Model model, SearchDate date) {
+	public void perfList(Model model, SearchDate search) {
 		logger.info("=====> perfList ----- GET");
 		
 		List<PerformanceVO> result = new ArrayList<>();
@@ -135,7 +136,13 @@ public class PerformanceController {
 			result.add(pvo);
 			
 		}
+		
+		logger.info("result = " + result);
+//		logger.info("search = " + search);
+		logger.info("map = " + map);
+		
 		model.addAttribute("result", result);
+//		model.addAttribute("search", search);
 		model.addAttribute("map", map);
 		
 

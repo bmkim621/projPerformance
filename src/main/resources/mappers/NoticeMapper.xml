@@ -13,4 +13,61 @@
 		select manager_code, manager_name from manager
 		where manager_code = #{managerCode};
 	</select>
+	
+	
+	
+	<!-- #{pageStart}는 Criteria에서 함수인 getPageStart가 호출돼야하는데 el처럼 get은 떼고 첫번째 대문자는 소문자로 바꾼다. -->
+	<select id="listCriteria" resultType="NoticeVO">
+		select * from notice
+		order by notice_no desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	
+	<!-- 게시물 전체 갯수 -->
+	<select id="totalCount" resultType="int">
+		select count(notice_no) from notice
+	</select>
+	
+	
+	<!-- 검색기능 구현 -->
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			where  is_notice = 0   and  title like CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="searchType == 'c'.toString()">
+			where is_notice = 0   and content like CONCAT('%', #{keyword}, '%')  
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			where is_notice = 0   and title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%')   
+		</if>
+		<if test="searchType == ''">
+		    where is_notice = 0  
+		</if>
+		<if test="searchType == null">
+		    where is_notice = 0  
+		</if>
+	</sql>
+	  
+	
+	<!-- 검색 -->
+	<select id="listSearch" resultType="NoticeVO">
+		select * from notice
+		<include refid="search"/>	
+		 
+		order by notice_no desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- is_notice가 1인 것만 -->
+	<select id="listWithIsNotice" resultType="NoticeVO">
+		select * from notice where is_notice = 1 order by notice_no desc
+	</select>
+	
+	
+	<!-- 검색한 게시물의  전체 갯수 -->
+	<select id="searchTotalCount" resultType="int">
+		select count(notice_no) from notice
+		<include refid="search"></include>
+	</select>     
 </mapper>

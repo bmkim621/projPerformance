@@ -149,6 +149,31 @@ ALTER TABLE review
 			review_no -- 번호
 		);
 
+-- 공연관람후기파일
+CREATE TABLE review_attach (
+	review_filename     VARCHAR(150) NOT NULL COMMENT '파일이름', -- 파일이름
+	review_file_regdate TIMESTAMP    NULL     DEFAULT now() COMMENT '작성일', -- 작성일
+	review_no           INT(11)      NOT NULL COMMENT '번호' -- 번호
+)
+COMMENT '공연관람후기파일';
+
+-- 공연관람후기파일
+ALTER TABLE review_attach
+	ADD CONSTRAINT PK_review_attach -- 공연관람후기파일 기본키
+		PRIMARY KEY (
+			review_filename -- 파일이름
+		);
+	
+-- 공연관람후기파일
+ALTER TABLE review_attach
+	ADD CONSTRAINT FK_review_TO_review_attach -- 공연관람후기 -> 공연관람후기파일
+		FOREIGN KEY (
+			review_no -- 번호
+		)
+		REFERENCES review ( -- 공연관람후기
+			review_no -- 번호
+		);
+	
 -- 시설
 CREATE TABLE facilities (
 	facilities_no   INT         NOT NULL COMMENT '1관, 2관, ..', -- 공연시설번호
@@ -175,8 +200,7 @@ CREATE TABLE notice (
 	writer			VARCHAR(5)	 NOT null COMMENT '작성자', -- 작성자
 	is_notice       TINYINT(1)   NOT NULL COMMENT '알림이벤트구분', -- 알림이벤트구분
 	manager_code    CHAR(5)      NULL     COMMENT '관리자코드', -- 관리자코드
-	view_cnt        INT          NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
-	notice_category CHAR(1)      NULL     COMMENT 'A: 전체보기, B: 공지안내' -- 공지분류
+	view_cnt        INT          NULL     DEFAULT 0 COMMENT '조회수' -- 조회수
 )
 COMMENT '공지사항';
 
@@ -190,6 +214,34 @@ ALTER TABLE notice
 ALTER TABLE notice
 	MODIFY COLUMN notice_no INT NOT NULL AUTO_INCREMENT COMMENT '공지사항번호';
 
+
+-- 공지사항파일
+CREATE TABLE notice_attach (
+	notice_filename     VARCHAR(150) NOT NULL COMMENT '파일이름', -- 파일이름
+	notice_file_regdate TIMESTAMP    NULL     DEFAULT now() COMMENT '작성일', -- 작성일
+	notice_no           INT(11)      NOT NULL COMMENT '공지사항번호' -- 공지사항번호
+)
+COMMENT '공지사항파일';
+
+
+-- 공지사항파일
+ALTER TABLE notice_attach
+	ADD CONSTRAINT PK_notice_attach -- 공지사항파일 기본키
+		PRIMARY KEY (
+			notice_filename -- 파일이름
+		);
+	
+-- 공지사항파일
+ALTER TABLE notice_attach
+	ADD CONSTRAINT FK_notice_TO_notice_attach -- 공지사항 -> 공지사항파일
+		FOREIGN KEY (
+			notice_no -- 공지사항번호
+		)
+		REFERENCES notice ( -- 공지사항
+			notice_no -- 공지사항번호
+		);
+	
+	
 -- 댓글
 CREATE TABLE reply (
 	reply_no      INT           NOT NULL COMMENT '댓글번호', -- 댓글번호

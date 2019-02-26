@@ -74,7 +74,7 @@
 			
 			<div class='btnWrapper'>
 				<a href="#"><img src="${pageContext.request.contextPath }/resources/upload/btn_reservation1.gif"></a>
-				<a href="#"><img src="${pageContext.request.contextPath }/resources/upload/btn_list.gif"></a>
+				<a href="#" class='btnGoList'><img src="${pageContext.request.contextPath }/resources/upload/btn_list.gif"></a>
 			</div>
 			
 		</div>
@@ -84,6 +84,7 @@
 	<input type='hidden' id='inputYear' >
 	<input type='hidden' id='inputMonth'>
 	<input type='hidden' id='inputCategory' value='${PerformanceVO.showType }'>
+	<input type='hidden' id='mydate' value='<fmt:formatDate value="${PerformanceVO.showStartdate }" pattern="yyyy-MM-dd"/>'> 
 	</div>	<!-- readWrapper end -->
 
 	
@@ -100,23 +101,24 @@
 			console.log(sYear);
 			console.log(sMonth);
 			console.log(category);
-			
-//			location.href = "${pageContext.request.contextPath}/perf/perfList";
+			  
+		 	location.href = "${pageContext.request.contextPath}/perf/perfList";  
+//			location.href = "${pageContext.request.contextPath}/perf/perfList?sYear=" + sYear + "&sMonth=" + sMonth + "&category=" + category;	
 			
 		}
 	
 		$(function(){
-			var y = $("#showType").text();
-			$("#inputCategory").val(y);
+			var y = $("#inputCategory").val();
+	//		console.log(y);	//카테고리
 			
-			var t = $(".sd").text();
-	//		console.log(t);       
+			var t = $("#mydate").val();   
+	//		console.log(t);         
 			var year = t.substring(0, 4);
-	//		console.log(year);
+	//		console.log(year);    
 			$("#inputYear").val(year);
 			var month = t.substring(5, 7);
 			var numMonth = parseInt(month);
-	//		console.log(numMonth);  
+	//		console.log(numMonth);      
 			$("#inputMonth").val(numMonth); 
 			
 			
