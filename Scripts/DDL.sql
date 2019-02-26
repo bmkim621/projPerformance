@@ -352,11 +352,11 @@ ALTER TABLE reply
 		
 
 -- 공연코드 다음번호 가지고 오는 함수
-DROP FUNCTION IF EXISTS proj_performance.nextshowcode;
+DROP FUNCTION IF EXISTS nextshowcode;
 
 DELIMITER $$
 $$
-CREATE FUNCTION proj_performance.nextshowcode()
+CREATE FUNCTION nextshowcode()
 RETURNS CHAR(6)
 begin
 	declare return_nextCode char(6);

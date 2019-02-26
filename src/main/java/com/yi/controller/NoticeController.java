@@ -76,5 +76,16 @@ public class NoticeController {
 	@RequestMapping(value = "read", method = RequestMethod.GET)
 	public void read(@RequestParam("no") int no, SearchCriteria cri, Model model) {
 		logger.info("=====> Read ----- GET");
+		
+		NoticeVO vo = service.read(no);
+		//조회수 1 증가 시키기
+		service.increaseViewCnt(no);
+		
+		logger.info("noticeVO = " + vo);
+		logger.info("cri = " + cri);
+		logger.info("page = " + cri.getPage());
+		 
+		model.addAttribute("noticeVO", vo);
+		model.addAttribute("cri", cri);
 	}
 }

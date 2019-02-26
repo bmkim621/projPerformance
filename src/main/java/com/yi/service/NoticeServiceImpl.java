@@ -59,4 +59,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.listWithIsNotice();
 	}
 
+	@Override
+	public NoticeVO read(int no) {
+		// TODO Auto-generated method stub
+		return noticeDao.read(no);
+	}
+
+	@Override
+	public void increaseViewCnt(int no) {
+		// TODO Auto-generated method stub
+		noticeDao.increaseViewCnt(no);
+	}
+
 }

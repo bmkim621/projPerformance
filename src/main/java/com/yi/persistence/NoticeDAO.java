@@ -29,4 +29,10 @@ public interface NoticeDAO {
 	
 	//is_notice = 1
 	public List<NoticeVO> listWithIsNotice();
+	
+	//공지사항 읽기
+	public NoticeVO read(int no);
+	
+	//조회수
+	public void increaseViewCnt(int no);
 }

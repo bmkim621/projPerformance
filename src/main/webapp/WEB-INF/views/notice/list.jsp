@@ -75,7 +75,7 @@
 					<c:if test="${noticeVO.isNotice == '0' }">
 						<td>${noticeVO.noticeNo }</td>
 					</c:if>
-					<td><a href='#'>${noticeVO.title }</a></td>  
+					<td><a href='${pageContext.request.contextPath}/notice/read?no=${noticeVO.noticeNo }&page=${pageMaker.cri.page }&searchType=${cri.searchType }&keyword=${cri.keyword }'>${noticeVO.title }</a></td>  
 					<td class='text-center'>${noticeVO.writer }</td>
 					<td class='text-center'><fmt:formatDate value="${noticeVO.regdate }" pattern="yyyy-MM-dd"/></td>  
 					<td class='text-center'>${noticeVO.viewCnt }</td>

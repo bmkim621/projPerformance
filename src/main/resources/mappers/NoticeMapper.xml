@@ -70,4 +70,18 @@
 		select count(notice_no) from notice
 		<include refid="search"></include>
 	</select>     
+	
+	
+	<!-- 공지사항 읽기 -->
+	<select id="read" resultType="NoticeVO">
+		select * from notice
+		where notice_no = #{noticeNo}
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="increaseViewCnt">
+		update notice
+		set view_cnt = view_cnt + 1
+		where notice_no = #{noticeNo}
+	</update>
 </mapper>

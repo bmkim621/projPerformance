@@ -11,7 +11,6 @@ public class NoticeVO {
 	private int isNotice;	//0: 알림 표시X, 1: 알림 표시O
 	private String managerCode;
 	private int viewCnt;
-	private String noticeCategory;
 	private String writer;
 	private List<String> files;		//첨부파일
 	
@@ -57,12 +56,6 @@ public class NoticeVO {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
-	public String getNoticeCategory() {
-		return noticeCategory;
-	}
-	public void setNoticeCategory(String noticeCategory) {
-		this.noticeCategory = noticeCategory;
-	}
 	public String getWriter() {
 		return writer;
 	}
@@ -79,9 +72,10 @@ public class NoticeVO {
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNo=" + noticeNo + ", content=" + content + ", title=" + title + ", regdate=" + regdate
-				+ ", isNotice=" + isNotice + ", managerCode=" + managerCode + ", viewCnt=" + viewCnt
-				+ ", noticeCategory=" + noticeCategory + ", writer=" + writer + ", files=" + files + "]";
+				+ ", isNotice=" + isNotice + ", managerCode=" + managerCode + ", viewCnt=" + viewCnt + ", writer="
+				+ writer + ", files=" + files + "]";
 	}
+	
 	
 	
 	

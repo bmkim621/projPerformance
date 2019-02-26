@@ -60,4 +60,16 @@ public class NoticeDaoImpl implements NoticeDAO {
 		return sqlSession.selectList(namespace + ".listWithIsNotice");
 	}
 
+	@Override
+	public NoticeVO read(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".read", no);
+	}
+
+	@Override
+	public void increaseViewCnt(int no) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + ".increaseViewCnt", no);
+	}
+
 }

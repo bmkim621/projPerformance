@@ -277,3 +277,68 @@ tbody td.spanNotice{
 	font-weight: bold;
 	color: #2a3072;        
 }
+
+
+/* ============ 공지사항 읽기 ============== */
+td span.spanTitle{
+	color: #4c4c63;
+	font-weight: bold;
+	font-size: 17px;   
+}
+
+span.spanDate{
+	float: right;
+	color: #888891;
+}
+
+span.spanWriter, span.spanFile{
+	color: #888891;
+}
+
+span.spanFile{
+	margin-right: 50px;  
+}
+
+td.notice-content{
+	padding: 40px 15px!important;  
+}
+
+span.fileList{
+	color: #666;
+	font-weight: bold;
+}
+
+div.btnWrapper{
+	margin: 30px auto;
+	width: 25%;  
+	overflow: hidden;
+	text-align: center;
+}
+
+a.btnGoList{
+	padding: 8px 15px;              
+	background-color: #2a3072;
+	border: 1px solid #2a3072;
+	color: white;
+	display: inline-block;  
+}
+
+a.btnPrint{
+	padding: 8px 15px;  
+	border: 1px solid #2a3072;
+	color: #2a3072;
+	display: inline-block;
+	margin-left: 5px;    
+}
+
+a.btnPrint:hover{
+	color: #2a3072;
+}
+
+#printarea{
+	background: #fff;
+	padding: 20px 25px;
+	margin: 30px auto;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
