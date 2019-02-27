@@ -129,6 +129,22 @@ span.spanWrap{
 	padding-left: 5px;
 }
 
+/* 로그인, 로그아웃 시 메뉴 */
+span.welcomWrap{
+	margin-right: 10px;
+	color: white;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.top-nav.light-header .navbar-right li.memWelcome span{
+	font-weight: 600;
+	font-size: 16px;
+    color: #212121;
+    transition: 0.5s ease-in;
+	-webkit-transition: 0.5s ease-in;
+	-moz-transition: 0.5s ease-in;  
+}
 /* ====== 헤더 이미지 슬라이더 ====== */
 .intro{
 	float: left;

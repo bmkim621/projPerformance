@@ -19,7 +19,7 @@
 <!-- 부트스트랩 그래픽 아이콘 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <!-- css -->
-<link href="${pageContext.request.contextPath }/resources/css/common.css?ab" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/common.css?b" rel="stylesheet" type="text/css">
 <title>재단법인 대구오페라하우스</title>
 </head>
 <body>
@@ -101,25 +101,53 @@
 								</ul>
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->
-					</li> 
+					</li>
+					
+					<!-- 관리자로 로그인했을 경우 서브 메뉴 추가 -->
+					<c:if test="${login != null && login.isMember == 1 }">
+					<li class="drop">
+						<a href="#" class="nav-link">관리자메뉴</a>
+						
+						<!-- 서브메뉴 -->
+						<div class="dropdownContain">
+							<div class="dropOut">
+							<div class="triangle"></div>
+								<ul>
+									<li><a href="#">공지사항 작성</a></li>
+									<li><a href="${pageContext.request.contextPath}/perf/addPerf">공연 추가</a></li>
+									<li><a href="#">회원관리</a></li>
+								</ul>
+							</div>
+						</div>	<!-- 서브메뉴 끝 -->
+					</li>	
+					</c:if>
 				</ul>	
 				
 				<!-- 오른쪽 메뉴 -->               
 				<ul class="nav navbar-nav navbar-right">
-					<li class="nav-item">
-						<!-- 로그인 시에는 Sign out, 로그인 안됐을 경우 Sign in으로 바꾸기, session에 저장된 key이름이 login -->
-	                      <c:if test="${login != null }">
-	                      	<a href="${pageContext.request.contextPath }/member/logout" class="rightMenu"><i class="fas fa-sign-out-alt"></i></i><span class="spanWrap">로그아웃</span></a>
-	                      </c:if>
-	                      <c:if test="${login == null }">
-	                      	<a href="${pageContext.request.contextPath }/member/login" class="rightMenu"><i class="fas fa-sign-in-alt"></i><span class="spanWrap">로그인</span></a>
-	                      </c:if>
-						
-					</li>
-					
-					<li class="nav-item">
-						<a href="#" class="rightMenu"><i class="fas fa-heart"></i><span class="spanWrap">회원가입</span></a>
-					</li>
+					<!-- 로그인 X -->
+					<c:if test="${login == null }">
+						<li class='nav-item'>
+							<a href="${pageContext.request.contextPath }/member/login" class="rightMenu"><i class="fas fa-sign-in-alt"></i><span class="spanWrap">로그인</span></a>
+						</li>
+						<li class='nav-item'>
+							<a href="#" class="rightMenu"><i class="fas fa-heart"></i><span class="spanWrap">회원가입</span></a>
+						</li>
+					</c:if>
+							         
+					<!-- 로그인 O -->
+					<c:if test="${login != null }">
+						<li class='nav-item memWelcome'>   
+							<span class='welcomWrap'>${login.username }&#40;${login.userid }&#41;님, 환영합니다!</span>
+						</li>
+						<li class='nav-item'>
+							<a href="${pageContext.request.contextPath }/member/logout" class="rightMenu"><i class="fas fa-sign-out-alt"></i><span class="spanWrap">로그아웃</span></a>	
+						</li>
+						<li class='nav-item'>   
+							<a href="#" class="rightMenu"><i class="fas fa-user"></i><span class='spanWrap'>마이페이지</span></a>
+						</li>
+					</c:if>
+					           
 				</ul>
 							
 			</div>	<!-- navbarSupportedContent 끝 -->

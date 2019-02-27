@@ -33,7 +33,7 @@
 	
 	<select id="read" resultType="MemberVO">
 		select * from tbl_member
-		where id = #{id} and password = #{password}
+		where id = #{userid} and password = password(#{userpw})
 	</select>
 
 </mapper>

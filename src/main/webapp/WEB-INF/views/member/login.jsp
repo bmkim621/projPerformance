@@ -31,11 +31,11 @@
 				<p class='spanWelcom'>재단법인 대구오페라하우스에 오신 것을 환영합니다.</p>   
 				<div class="form-group has-error myId">
 					<i class="fas fa-user"></i>
-					<input type="text" class="form-control" name="username" placeholder="아이디" required="required">
+					<input type="text" class="form-control" name="userid" placeholder="아이디" required="required">
 				</div>
 				<div class="form-group myPw">
 					<i class="fas fa-lock"></i>     
-					<input type="password" class="form-control" name="password" placeholder="비밀번호" required="required">
+					<input type="password" class="form-control" name="userpw" placeholder="비밀번호" required="required">
 				</div>        
 				<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
