@@ -65,4 +65,10 @@ public class NoticeDaoImpl implements NoticeDAO {
 		sqlSession.update(namespace + ".increaseViewCnt", no);
 	}
 
+	@Override
+	public void register(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + ".register", vo);
+	}
+
 }

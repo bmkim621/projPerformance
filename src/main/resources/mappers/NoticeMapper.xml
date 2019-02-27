@@ -75,4 +75,9 @@
 		set view_cnt = view_cnt + 1
 		where notice_no = #{noticeNo}
 	</update>
+	
+	<insert id="register" parameterType="NoticeVO">
+		insert into notice(content, title, is_notice, member_code, writer) values
+		(#{content}, #{title}, #{isNotice}, #{memberCode}, #{writer})
+	</insert>
 </mapper>

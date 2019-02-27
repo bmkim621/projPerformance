@@ -101,7 +101,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public void registerPost(HttpServletRequest request) {
-		logger.info("에디터 컨텐츠 값 = " + request.getParameter("editor"));
+		logger.info("에디터 컨텐츠 값 = " + request.getParameter("ir1"));
 		
 	}
 }

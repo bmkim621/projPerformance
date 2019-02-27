@@ -64,4 +64,10 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDao.increaseViewCnt(no);
 	}
 
+	@Override
+	public void register(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		noticeDao.register(vo);
+	}
+
 }

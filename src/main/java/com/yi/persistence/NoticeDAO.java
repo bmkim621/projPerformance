@@ -31,4 +31,7 @@ public interface NoticeDAO {
 	
 	//조회수
 	public void increaseViewCnt(int no);
+	
+	//쓰기
+	public void register(NoticeVO vo);
 }

@@ -342,3 +342,20 @@ a.btnPrint:hover{
 	border-radius: 3px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
+
+/* ====== 공지사항 등록하기 ======== */
+div.noticeRegisterWrapper{                      
+	width: 75%;                                                                   
+	padding-top: 60px;
+	margin: 0 auto;                   
+}
+
+div.noticeRegisterWrapper h2{
+	margin-bottom: 40px;
+	letter-spacing: -0.8px;
+}
+
+.register-contents-wrapper{
+	border-top: 2px solid #2a3072;   
+	overflow: hidden;       
+}

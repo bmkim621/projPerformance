@@ -71,7 +71,7 @@ div.login-wrapper{
 }
 
 .login-form {
-	width: 40%;              
+	width: 45%;                          
 	margin: 30px auto;
 	text-align: center;                  
 }
@@ -121,7 +121,8 @@ div.login-wrapper{
 .login-form .spanWelcom{
 	color: #686868;
 	letter-spacing: -0.5px;
-	margin: 20px 0;        
+	margin: 20px 0;
+	font-size: 15px;      
 }
 
 .myId, .myPw{
