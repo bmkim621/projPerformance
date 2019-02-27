@@ -5,13 +5,20 @@ insert into tbl_board (title, content, writer)
 (select title, content, writer from tbl_board);
 
 select * from notice;
+select * from tbl_member;
 
 select count(notice_no) from notice;
 
-insert into notice(content, title, is_notice, manager_code, writer)
-(select content, title, is_notice, manager_code, writer from notice);
+insert into notice(content, title, is_notice, member_code, writer)
+(select content, title, is_notice, member_code, writer from notice);
 
-insert into notice(content, title, is_notice, manager_code, writer) values
-(null, '유스오페라콰이어 추가모집 안내(재공지)', 1, 'M1901', '관리자'),
-(null, '2019 오페라클래스 수강생 모집', 1, 'M1901', '관리자'),
-(null, '공연시 대구삼성창조캠퍼스 유료주차장 이용 안내', 1, 'M1901', '관리자');
+insert into notice(content, title, is_notice, member_code, writer) values
+(null, '유스오페라콰이어 추가모집 안내(재공지)', 1, 'M19002', '관리자'),
+(null, '2019 오페라클래스 수강생 모집', 1, 'M19002', '관리자'),
+(null, '공연시 대구삼성창조캠퍼스 유료주차장 이용 안내', 1, 'M19002', '관리자');
+
+select concat('P', DATE_FORMAT(now(), "%y"), lpad(right(max(show_code), 3) + 1, 3, '000'))
+from performance;
+
+select concat('M', DATE_FORMAT(now(), "%y"), lpad(right(max(member_code), 3) + 1, 3, '000'))
+from tbl_member;

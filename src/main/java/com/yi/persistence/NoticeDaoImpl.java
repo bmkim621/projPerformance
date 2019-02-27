@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.Criteria;
-import com.yi.domain.ManagerVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 
@@ -22,12 +21,6 @@ public class NoticeDaoImpl implements NoticeDAO {
 	public List<NoticeVO> noticeListAll() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".noticeListAll"); 
-	}
-
-	@Override
-	public ManagerVO selectManagerByCode(String managerCode) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".selectManagerByCode", managerCode);
 	}
 
 	@Override

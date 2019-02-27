@@ -8,13 +8,14 @@ use proj_performance;
 
 -- 고객
 CREATE TABLE customer (
-	customer_code CHAR(5)     NOT NULL COMMENT '고객코드', -- 고객코드
+	customer_code CHAR(6)     NOT NULL COMMENT '고객코드', -- 고객코드
 	customer_name VARCHAR(20) NOT NULL COMMENT '이름', -- 이름
 	id            VARCHAR(30) NOT NULL COMMENT '아이디', -- 아이디
 	password      CHAR(41)    NULL     COMMENT '비밀번호', -- 비밀번호
 	email         VARCHAR(30) NOT NULL COMMENT '이메일', -- 이메일
 	phone         VARCHAR(30) NOT NULL COMMENT '연락처', -- 연락처
 	dob           DATE        NOT NULL COMMENT '생년월일', -- 생년월일
+	regdate 	  TIMESTAMP   NULL     DEFAULT now() COMMENT '가입일', -- 가입일
 	address       TEXT        NOT NULL COMMENT '주소' -- 주소
 )
 COMMENT '고객';
@@ -365,6 +366,25 @@ begin
 	from performance;
 	
 	return return_nextCode;
+	
+END$$
+DELIMITER ;
+
+
+-- 고객코드 다음번호 가지고 오는 함수
+DROP FUNCTION IF EXISTS nextmemcode;
+
+DELIMITER $$
+$$
+CREATE FUNCTION nextmemcode()
+RETURNS CHAR(6)
+begin
+	declare return_memCode char(6);
+	
+	select concat('C', DATE_FORMAT(now(), "%y"), lpad(right(max(customer_code), 3) + 1, 3, '000')) into return_memCode
+	from customer;
+	
+	return return_memCode;
 	
 END$$
 DELIMITER ;

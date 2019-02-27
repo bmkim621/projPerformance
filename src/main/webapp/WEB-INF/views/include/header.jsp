@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,10 +104,17 @@
 					</li> 
 				</ul>	
 				
-				<!-- 오른쪽 메뉴 -->
+				<!-- 오른쪽 메뉴 -->               
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item">
-						<a href="#" class="rightMenu"><i class="fas fa-sign-in-alt"></i><span class="spanWrap">로그인</span></a>
+						<!-- 로그인 시에는 Sign out, 로그인 안됐을 경우 Sign in으로 바꾸기, session에 저장된 key이름이 login -->
+	                      <c:if test="${login != null }">
+	                      	<a href="${pageContext.request.contextPath }/member/logout" class="rightMenu"><i class="fas fa-sign-out-alt"></i></i><span class="spanWrap">로그아웃</span></a>
+	                      </c:if>
+	                      <c:if test="${login == null }">
+	                      	<a href="${pageContext.request.contextPath }/member/login" class="rightMenu"><i class="fas fa-sign-in-alt"></i><span class="spanWrap">로그인</span></a>
+	                      </c:if>
+						
 					</li>
 					
 					<li class="nav-item">

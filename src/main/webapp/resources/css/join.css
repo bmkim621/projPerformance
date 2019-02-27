@@ -1,0 +1,166 @@
+/* ========== 로그인 화면 ========== */
+div.container-fluid.loginContainer {
+	width: 100%;
+	height: auto;
+	margin: 0;
+ 	padding: 0;  
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+div.container-fluid div#bgWrapper {
+	background: url('../images/sub_visual_6.jpg') no-repeat;
+	height: 500px;
+	background-position: center center;
+}
+
+div.container-fluid div#bgWrapper div.headline {
+	width: 200px;
+	overflow: hidden;
+	position: absolute;
+	top: 40%;
+	left: 45%;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	padding-top: 28px;
+}
+
+div.container-fluid div#bgWrapper p.korHeadline {
+	color: white;
+	letter-spacing: -1.2px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 0.5em;
+}
+
+div.container-fluid div#bgWrapper p.engHeadline {
+	letter-spacing: -0.8px;
+	font-size: 22px;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===== 로그인 화면 ===== */
+div.container-fluid.loginFormContainer{
+	width: 75%;                                                                   
+	padding-top: 30px;
+	padding-bottom: 20px;              
+}
+
+div.login-wrapper{
+	overflow: hidden;
+	width: 80%;       
+	margin: 30px auto;
+	background-color: #f0f0f0;                    
+}
+
+.form-control {
+	min-height: 41px;
+/* 	background: #f2f2f2; */
+	border: 1px solid #ccc;           
+}
+
+.form-control:focus {
+	/* background: #e2e2e2; */
+	border: 1px solid #2a3072;
+}
+
+.form-control, .btn {
+	border-radius: 2px;
+}
+
+.login-form {
+	width: 40%;              
+	margin: 30px auto;
+	text-align: center;                  
+}
+
+.login-form form {
+	color: #7a7a7a;
+	border-radius: 3px;
+	padding: 30px;     
+}
+
+.login-form .btn {
+	font-size: 16px;
+	font-weight: bold;
+	background: #2a3072;
+	border: none;
+	outline: none !important;
+}
+
+.login-form .btn:hover, .login-form .btn:focus {
+	background: #383e7d;      
+}
+
+.login-form a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.login-form a:hover {
+	text-decoration: none;
+}
+
+.login-form form a {
+	color: #7a7a7a;
+	text-decoration: none;
+}
+
+.login-form form a:hover {
+	text-decoration: underline;
+}
+
+.login-form h3{
+	color: #2a3072;
+	letter-spacing: -0.7px;
+	font-weight: bold;         
+}
+
+.login-form .spanWelcom{
+	color: #686868;
+	letter-spacing: -0.5px;
+	margin: 20px 0;        
+}
+
+.myId, .myPw{
+	position: relative;
+}
+
+.login-form i {
+	position: absolute;
+	left: 13px;
+	top: 12px;                  
+	font-size: 18px;          
+}
+
+.form-control{
+	padding-left: 40px;        
+}
+
+.pLost{
+	color: #2a3072!important;
+	letter-spacing: -0.5px;
+	font-weight: bold;
+}
+
+p.text-center.notMember{
+	color: #535353;
+	font-weight: bold;
+	letter-spacing: -0.5px;
+}
+
+p.text-center.notMember a.btnGoJoinForm{
+	text-decoration: none;
+	padding: 2px 5px;               
+	color: #2a3072;
+	background-color: #fff;
+	border: 1px solid #2a3072;
+	border-radius: 8px;             
+}
+
+p.text-center.notMember a.btnGoJoinForm:hover{
+	color: #656da8;
+	border: 1px solid #656da8;         
+}

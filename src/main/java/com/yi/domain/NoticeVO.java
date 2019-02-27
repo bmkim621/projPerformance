@@ -8,10 +8,10 @@ public class NoticeVO {
 	private String content;
 	private String title;
 	private Date regdate;
-	private int isNotice;	//0: 알림 표시X, 1: 알림 표시O
-	private String managerCode;
-	private int viewCnt;
 	private String writer;
+	private int isNotice;	//0: 알림 표시X, 1: 알림 표시O
+	private int viewCnt;
+	private String memberCode;
 	private List<String> files;		//첨부파일
 	
 	public int getNoticeNo() {
@@ -38,17 +38,17 @@ public class NoticeVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	public int getIsNotice() {
 		return isNotice;
 	}
 	public void setIsNotice(int isNotice) {
 		this.isNotice = isNotice;
-	}
-	public String getManagerCode() {
-		return managerCode;
-	}
-	public void setManagerCode(String managerCode) {
-		this.managerCode = managerCode;
 	}
 	public int getViewCnt() {
 		return viewCnt;
@@ -56,11 +56,11 @@ public class NoticeVO {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
-	public String getWriter() {
-		return writer;
+	public String getMemberCode() {
+		return memberCode;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
 	}
 	public List<String> getFiles() {
 		return files;
@@ -71,12 +71,9 @@ public class NoticeVO {
 	
 	@Override
 	public String toString() {
-		return "NoticeVO [noticeNo=" + noticeNo + ", content=" + content + ", title=" + title + ", regdate=" + regdate
-				+ ", isNotice=" + isNotice + ", managerCode=" + managerCode + ", viewCnt=" + viewCnt + ", writer="
-				+ writer + ", files=" + files + "]";
+		return String.format(
+				"NoticeVO [noticeNo=%s, content=%s, title=%s, regdate=%s, writer=%s, isNotice=%s, viewCnt=%s, memberCode=%s, files=%s]",
+				noticeNo, content, title, regdate, writer, isNotice, viewCnt, memberCode, files);
 	}
-	
-	
-	
 	
 }

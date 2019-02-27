@@ -3,7 +3,6 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.Criteria;
-import com.yi.domain.ManagerVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 
@@ -11,10 +10,7 @@ public interface NoticeDAO {
 
 	//리스트 보기
 	public List<NoticeVO> noticeListAll();
-	
-	//직원 코드로 검색
-	public ManagerVO selectManagerByCode(String managerCode);
-	
+		
 	//페이지
 	public List<NoticeVO> listCriteria(Criteria cri);
 	

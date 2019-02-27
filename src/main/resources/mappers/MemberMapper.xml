@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.MemberMapper">
+	
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	
+	<insert id="insertMember">
+		insert into tbl_member (member_code, member_name, id, password, email, phone, dob, address, isMember, grade_code) values
+		(nextmemcode(), #{memberName}, #{id}, password(#{password}), #{email}, #{phone}, #{dob}, #{address}, #{isMember}, #{gCode.gradeCode});
+	</insert>
+	
+	<select id="readMember" resultType="MemberVO">
+		select * from tbl_member
+		where id = #{id}
+	</select>
+	
+	<select id="selectMemberAll" resultType="MemberVO">
+		select * from tbl_member
+	</select>
+	
+	<update id="updateMember">
+		update tbl_member
+		set password = password(#{password}), email = #{email}, phone = #{phone}, address = #{address}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteMember">
+		delete from tbl_member
+		where id = #{id}
+	</delete>
+	
+	<select id="read" resultType="MemberVO">
+		select * from tbl_member
+		where id = #{id} and password = #{password}
+	</select>
+
+</mapper>
