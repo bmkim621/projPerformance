@@ -1,6 +1,10 @@
 package com.yi.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,5 +91,17 @@ public class NoticeController {
 		 
 		model.addAttribute("noticeVO", vo);
 		model.addAttribute("cri", cri);
+	}
+	
+	//글 쓰기
+	@RequestMapping(value = "register", method = RequestMethod.GET)
+	public void registerGet() {
+		logger.info("=====> Register ----- GET");
+	}
+	
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public void registerPost(HttpServletRequest request) {
+		logger.info("에디터 컨텐츠 값 = " + request.getParameter("editor"));
+		
 	}
 }

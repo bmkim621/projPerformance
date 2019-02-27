@@ -113,7 +113,7 @@
 							<div class="dropOut">
 							<div class="triangle"></div>
 								<ul>
-									<li><a href="#">공지사항 작성</a></li>
+									<li><a href="${pageContext.request.contextPath}/notice/register">공지사항 작성</a></li>
 									<li><a href="${pageContext.request.contextPath}/perf/addPerf">공연 추가</a></li>
 									<li><a href="#">회원관리</a></li>
 								</ul>
