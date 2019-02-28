@@ -38,4 +38,13 @@ public interface NoticeService {
 	
 	//공지사항 작성 때 필요한 값들 가져오기
 	public List<MemberVO> getWriter(String id);
+	
+	//공지사항 수정하기
+	public void modify(NoticeVO vo);
+	
+	//공지사항 수정할 때 이미지도 같이 수정할 필요가 있음.
+	public void modifyFiles(NoticeVO vo, String[] delFiles, List<String> addImages);
+	
+	//공지사항 삭제하기
+	public void remove(int no);
 }
