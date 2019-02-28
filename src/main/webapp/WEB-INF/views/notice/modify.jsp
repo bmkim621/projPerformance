@@ -6,7 +6,6 @@
 <!-- 스마트에디터 경로 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
-                 
 <div class="container-fluid noticeContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -22,11 +21,11 @@
 	<!-- row end -->
 </div>
 <!-- container end -->
-   
+<h1>${noticeVO }</h1>
 <!-- 공지사항 -->
 <div class="container-fluid noticeRegisterWrapper">
 	<div class='titleWrapper'>
-		<h2 class='text-center'>공지사항</h2>
+		<h2 class='text-center'>공지사항 수정하기</h2>
 	</div>
 		  
 	<div class="register-contents-wrapper">
@@ -37,25 +36,20 @@
 				<tr>
 					<th style='width: 20%;'>작성자</th>
 					<td>
-						<c:forEach	items="${list }" var="memberVO">
-							<input type='text' value="${memberVO.gCode.gradeName }" readonly="readonly" name="writer" id="writer">
-							<!-- 회원코드 같이 실어서 보내기-->
-							<input type="hidden" value="${memberVO.memberCode }" name="memberCode" id="memberCode">
-						</c:forEach>   
-						      
+						<input type='text' name='writer' id='writer' value='${noticeVO.writer }' readonly="readonly">	      
 					</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td>
-						<input type='text' name="title" id="title" placeholder="제목을 입력하세요.">
+						<input type='text' name="title" id="title" placeholder="제목을 입력하세요." value="${noticeVO.title }">
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>     
 						<!-- 네이버 스마트 에디터 -->                      
-						<textarea name="content" id="content" rows="10" cols="120"></textarea>
+						<textarea name="content" id="content" rows="10" cols="120">${noticeVO.content }</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -81,8 +75,8 @@
 		
 		<!-- 버튼 -->           
 		<div class="btnWrapper">
-			<input type="button" value='확인' id='btnConfirm'>
-			<input type="reset" value='취소' id='btnCancel'>
+			<input type="button" value='수정' id='btnModifyConfirm'>
+			<input type="reset" value='취소' id='btnModifyCancel'>
 	    </div>
 		
 	</form>
@@ -90,8 +84,6 @@
 	</div>	<!-- register-contents-wrapper end -->
 	
 </div>	<!-- container end -->
-
-	
 
 <script>
 	$(function(){
