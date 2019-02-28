@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yi.domain.Criteria;
+import com.yi.domain.MemberVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 import com.yi.persistence.NoticeDAO;
@@ -68,6 +69,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public void register(NoticeVO vo) {
 		// TODO Auto-generated method stub
 		noticeDao.register(vo);
+	}
+
+	@Override
+	public List<MemberVO> getWriter(String id) {
+		// TODO Auto-generated method stub
+		return noticeDao.getWriter(id);
 	}
 
 }

@@ -61,7 +61,7 @@ div.container-fluid.tableContainer{
 	margin: 30px auto;
 	margin-bottom: 80px;
 	border-radius: 3px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	padding-bottom: 0!important;  
 }
 
 .table-wrapper .btn {
@@ -142,17 +142,31 @@ div.container-fluid.tableContainer{
 
 table.table tr th, table.table tr td {
 	border-color: #e9e9e9;
-	padding: 12px 15px;
 	vertical-align: middle;
 }
 
 table.table tr th:first-child {
-	width: 60px;
+	width: 120px!important;        
+	background-color: #f0f0f0;
+	text-align: center;
+	padding: 12px 15px;   
+}
+
+table.table tr th.firstWrapper{
+	background-color: white!important;       
+	text-align: left;
+	padding-left: 30px;                   
+}
+
+table.table tr td{
+	padding-left: 20px;
+	padding: 15px 30px;                               
 }
 
 table.table tr th:last-child {
-	width: 80px;
+	width: 120px;     
 }
+
 
 table.table-striped tbody tr:nth-of-type(odd) {
 	background-color: #fcfcfc;
@@ -219,7 +233,7 @@ table.table td a.view i {
 
 /* 페이지 */
 .pagination {
-	margin: 40px 0 5px;                             
+	margin: 40px 0 30px;                                      
 }
 
 .pagination li a {
@@ -300,7 +314,7 @@ span.spanFile{
 }
 
 td.notice-content{
-	padding: 40px 15px!important;  
+	padding: 40px 30px!important;      
 }
 
 span.fileList{
@@ -310,6 +324,7 @@ span.fileList{
 
 div.btnWrapper{
 	margin: 30px auto;
+	margin-bottom: 80px!important;     
 	width: 25%;  
 	overflow: hidden;
 	text-align: center;
@@ -345,7 +360,7 @@ a.btnPrint:hover{
 
 /* ====== 공지사항 등록하기 ======== */
 div.noticeRegisterWrapper{                      
-	width: 75%;                                                                   
+	width: 65%;                                                                     
 	padding-top: 60px;
 	margin: 0 auto;                   
 }
@@ -358,4 +373,91 @@ div.noticeRegisterWrapper h2{
 .register-contents-wrapper{
 	border-top: 2px solid #2a3072;   
 	overflow: hidden;       
+}
+
+/* 공지사항 등록 체크박스 */
+.checkbox label:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr{
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+    margin-top: 2px;        
+}      
+
+.checkbox .cr .cr-icon{
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 52%;              
+    left: 20%;
+    color: #f04040;  
+}
+
+.checkbox label{
+	margin-bottom: 0;
+}
+
+.checkbox label input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr{
+    opacity: .5;
+}
+
+/* 공지사항 글쓰기 버튼 */
+#btnConfirm{
+	background-color: #2a3072;
+	border: 1px solid #2a3072;
+	color: white;
+	width: 88px;   
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;  
+}
+
+#btnCancel{
+	background-color: #fff;
+	color: #2a3072;
+	border: 1px solid #2a3072;
+	width: 88px;   
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+	margin-left: 5px;       
+}
+
+input{
+	border: none;
+	color: #666;
+	letter-spacing: -0.5px;  
+}
+
+input#writer{
+	font-weight: bold;
+}
+
+input#title{
+	width: 35%;                             
 }

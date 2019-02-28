@@ -3,6 +3,7 @@ package com.yi.service;
 import java.util.List;
 
 import com.yi.domain.Criteria;
+import com.yi.domain.MemberVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 
@@ -34,4 +35,7 @@ public interface NoticeService {
 	
 	//쓰기
 	public void register(NoticeVO vo);
+	
+	//공지사항 작성 때 필요한 값들 가져오기
+	public List<MemberVO> getWriter(String id);
 }

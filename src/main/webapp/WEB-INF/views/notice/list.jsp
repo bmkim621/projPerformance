@@ -45,7 +45,6 @@
 						</select>
 						
 						<input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword }">
-						<button type="button" class="btn btn-write" id="btnNewNotice"><i class="fas fa-pen"></i></button> 
 						<button type="button" class="btn btn-primary" id="btnSearch"><i class="fa fa-search"></i></button>
 					</div>	<!-- filter-group end -->
 				</div>
@@ -54,8 +53,8 @@
 		
 	<table class="table table-striped table-hover">     
 		<thead>
-			<tr>
-				<th class='text-center'>번호</th>        
+			<tr>       
+				<th class='firstWrapper'>번호</th>                        
 				<th class='text-center'>제목</th>        
 				<th class='text-center'>작성자</th>
 				<th class='text-center'>작성일</th>						

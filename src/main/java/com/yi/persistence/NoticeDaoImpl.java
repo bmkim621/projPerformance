@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.Criteria;
+import com.yi.domain.MemberVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 
@@ -69,6 +70,12 @@ public class NoticeDaoImpl implements NoticeDAO {
 	public void register(NoticeVO vo) {
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace + ".register", vo);
+	}
+
+	@Override
+	public List<MemberVO> getWriter(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".getWriter", id);
 	}
 
 }

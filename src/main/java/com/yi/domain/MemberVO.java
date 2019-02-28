@@ -19,6 +19,7 @@ public class MemberVO {
 	private int isMember;	//0: 회원, 1: 관리자
 	private GradeVO gCode;	//등급코드
 	
+	
 	public String getMemberCode() {
 		return memberCode;
 	}

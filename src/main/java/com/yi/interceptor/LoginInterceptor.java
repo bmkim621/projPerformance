@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	//로그로 확인하기
 	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
-	private static final String LOGIN = "login";	//Session에 저장할 때 사용하는 key를 login으로 사용할 예정!
+	public static final String LOGIN = "login";	//Session에 저장할 때 사용하는 key를 login으로 사용할 예정!
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
