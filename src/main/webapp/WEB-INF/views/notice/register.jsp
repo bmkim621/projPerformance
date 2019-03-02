@@ -6,6 +6,78 @@
 <!-- 스마트에디터 경로 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
+<style>
+.uploadResult{
+	width: 100%;               
+	border-top: 1px solid #f0f0f0;
+	margin: 20px auto;
+	padding: 10px;
+}
+
+.uploadResult ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+.uploadResult ul li{
+	float: left;
+	width: 150px;
+/* 	border: 1px solid #ccc; */
+	padding: 8px;         
+	margin-right: 15px;
+	list-style: none;
+}
+
+.uploadResult ul li img{
+	width: 125px;                     
+	margin-top: 5px;
+}
+
+.uploadResult ul li span{
+	color: white;
+}
+
+.uploadResult ul li div.mywrap{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.uploadResult ul li div.mywrap .imgFileName{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #535353!important;
+	width: 100px;   
+	display: inline-block;
+	font-weight: bold;
+	float: left;      
+}
+
+.uploadResult ul li div.mywrap .imgFileName:hover{
+	text-decoration: underline;
+}
+
+#mybtn{
+	float: right;
+	width: 22px;
+	height: 22px;
+}
+
+.btn{
+	padding: 0;
+}
+
+#mybtn i{
+	position: absolute;
+	top: 3px;      
+	right: 5.5px;           
+}
+</style>
+
                  
 <div class="container-fluid noticeContainer">
 	<div class="row">
@@ -71,13 +143,19 @@
         			</td>
 				</tr>
 				<tr>
+					<!-- ex05 파일 업로드 하는 부분 -->
 					<th>파일첨부</th>
 					<td>
-						<input type="file" id="uploadFiles" name="uploadFiles" multiple="multiple">
+						<input type="file" name="uploadFile" multiple="multiple">
 					</td>
 				</tr>
 			</tbody>
-		</table>            
+		</table>
+		
+		<!-- 추가한 부분 나타나는 곳 -->
+		<div class='uploadResult'>
+		<ul></ul>
+		</div>             
 		
 		<!-- 버튼 -->           
 		<div class="btnWrapper">
@@ -96,6 +174,10 @@
 <script>
 	$(function(){
 		
+		//확인버튼 클릭했을 때 기본 동작 막기
+		var formObj = $("form[role='form']");
+		////////////////////////
+		
 		//전역변수
 		var obj = [];
 		//스마트에디터 프레임 생성
@@ -113,8 +195,143 @@
 			}
 		});
 		
+		//파일 확장자와 크기를 검사하는 정규표현식(무분별한 업로드 제한)
+		//ex. 확장자가 .exe, .zip, .sh, .alz 파일 제한
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		//파일 업로드 크기 제한
+		var maxSize = 5242880;	//5MB
+		
+		function checkExtension(fileName, fileSize){
+			if(fileSize >= maxSize){
+				alert("파일 크기가 초과되었습니다.");
+				return false;
+			}
+			
+			if(regex.test(fileName)){
+				alert("해당 종류의 파일은 업로드할 수 없습니다.");
+				return false;
+			}
+			
+			return true;
+		}
+		
+		
+		//업로드 결과 처리하는 함수
+		function showUploadResult(uploadResultArr){
+			if(!uploadResultArr || uploadResultArr.length == 0){
+				return;
+			}
+			
+			var uploadUL = $(".uploadResult ul");
+			var str = "";
+			
+			$(uploadResultArr).each(function(i, obj){
+				//첨부파일의 종류가 이미지라면
+				if(obj.image){
+					
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+					
+					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "' data-type='" + obj.image + "'></div>";
+					str += "<div class='mywrap'><span class='imgFileName'>" + obj.fileName + "</span>";
+					str += "<button type='button' id='mybtn' data-file=\'" + fileCallPath + "\' data-type='image' class='btn btn-info'><i class='fa fa-times'></i></button></div>";
+					str += "<img src='${pageContext.request.contextPath }/upload/display?fileName=" + fileCallPath + "'>";
+					str += "</div>";
+					str += "</li>";
+					  
+				} else{	//이미지 파일이 아니라면
+					
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+					var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+					
+					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "' data-type='" + obj.image + "'><div>";
+					str += "<div class='mywrap'><span class='imgFileName'>" + obj.fileName + "</span>";
+					str += "<button type='button' id='mybtn' data-file=\'" + fileCallPath + "\' data-type='file' class='btn btn-info'><i class='fa fa-times'></i></button></div>";
+					str += "<img src='${pageContext.request.contextPath }/resources/images/documents.png'></a>";
+					str += "</div>";
+					str += "</li>";
+				}
+			}); //each end
+			
+			uploadUL.append(str);
+		}
+		
+		//업로드 된 파일 X버튼 클릭할 때 이벤트 처리 => 파일이 삭제돼야 하므로 uuid가 포함된 파일 이름과 파일 경로 필요 => 경로와 이름을 담는 사용자 태그 추가
+		$(".uploadResult").on("click", "button", function(){
+//			console.log("delete file");     
+			
+			var targetFile = $(this).data("file");
+			var type = $(this).data("type");
+			
+			var targetLi = $(this).closest("li");
+			
+			//첨부파일의 경로와 이름, 파일의 종류(이미지 또는 일반 파일)를 전송한다.
+			$.ajax({
+				url: '${pageContext.request.contextPath}/upload/deleteFile',
+				data: {fileName: targetFile, type: type},
+				dataType: 'text',
+				type: 'post',
+				success: function(result){
+					alert(result);
+					
+					//삭제
+					targetLi.remove();
+				}
+			})	//$.ajax end
+		})
+		
+
+		//파일 내용이 변경되는 것을 감지해서 처리하도록 하기
+		$("input[type='file']").change(function(e){
+			var formData = new FormData();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;  
+			
+			for(var i = 0 ; i < files.length ; i++){
+				if(!checkExtension(files[i].name, files[i].size)){
+					return false;
+				}
+				formData.append("uploadFile", files[i]);
+			}
+			
+			//첨부파일의 경로와 이름, 파일의 종류(이미지 또는 일반 파일)를 전송한다.
+			$.ajax({
+				url: '${pageContext.request.contextPath}/upload/uploadAjax',
+				//첨부파일 전송하기 위해서 반드시 필요
+				processData: false,
+				contentType: false,
+				//끝
+				data: formData,
+				type: 'post',
+				dataType: 'json',
+				success: function(result){
+					console.log(result);
+					
+					//업로드 결과 처리 함수
+					showUploadResult(result);				
+				}
+			})	//$.ajax end
+		})
+		
 		//전송버튼
-		$("#btnConfirm").click(function() {
+		$("#btnConfirm").click(function(e) {
+			
+			e.preventDefault();
+			
+			console.log("submit clicked");
+			
+			var str = "";
+			
+			//첨부파일 정보 hidden으로 보내기
+			$(".uploadResult ul li").each(function(i, obj){
+				var jobj = $(obj);
+				
+				console.dir(jobj);
+				
+				str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + jobj.data("filename") + "'>";
+				str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + jobj.data("uuid") + "'>";
+				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + jobj.data("path") + "'>";
+				str += "<input type='hidden' name='attachList[" + i + "].fileType' value='" + jobj.data("type") + "'>";
+			});
 			
 			//체크박스 선택 여부에 따라
 			if ($('input[name=chkNotice]').is(":checked")) {
@@ -133,7 +350,7 @@
 			var chk = $("#isNotice").val();
 
 			//폼 전송하기
-			$("#frm").submit();
+			formObj.append(str).submit(); 
 
 		})
 	})

@@ -22,3 +22,15 @@ from performance;
 
 select concat('M', DATE_FORMAT(now(), "%y"), lpad(right(max(member_code), 3) + 1, 3, '000'))
 from tbl_member;
+
+select * from notice;
+select * from notice_attach;
+select * from notice_attach where notice_no = 532;
+
+select notice.nextval from dual;
+
+select * from notice_attach
+where upload_path = DATE_FORMAT(date_add(now(), interval -1 day), '%Y\%m\%d'); -- 어제날짜
+
+
+select last_insert_id();

@@ -6,7 +6,8 @@ import java.util.Map;
 import org.springframework.http.MediaType;
 
 public class MediaUtils {
-	private static Map<String, MediaType> mediaMap;
+	
+private static Map<String, MediaType> mediaMap;
 	
 	static {
 		mediaMap = new HashMap<>();

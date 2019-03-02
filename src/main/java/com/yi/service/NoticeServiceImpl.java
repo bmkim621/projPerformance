@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
+import com.yi.domain.NoticeAttachVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
+import com.yi.persistence.NoticeAttachDAO;
 import com.yi.persistence.NoticeDAO;
 
 @Service
@@ -18,6 +20,8 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired
 	private NoticeDAO noticeDao;
+	@Autowired
+	private NoticeAttachDAO attachDao;
 
 	@Override
 	public List<NoticeVO> noticeListAll() {
@@ -60,7 +64,6 @@ public class NoticeServiceImpl implements NoticeService {
 	public NoticeVO read(int no) {
 		// TODO Auto-generated method stub
 		NoticeVO vo = noticeDao.read(no);
-		vo.setFiles(noticeDao.getAttach(no));
 		
 		return noticeDao.read(no);
 	}
@@ -78,14 +81,17 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		noticeDao.register(vo);
 		
-		//첨부파일
-		List<String> files = vo.getFiles();	//String배열
-		if(files == null || files.size() == 0) {	//파일을 올리지 않는 경우
+		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
 			return;
 		}
-		//첨부파일이 존재하는 경우
-		for(String fullname : files) {
-			noticeDao.addAttach(fullname);
+		
+		List<NoticeAttachVO> list = vo.getAttachList();
+		for(NoticeAttachVO attachVO : list) {
+			//위에 notice 테이블 추가하니까 자꾸 notice_no가 0이 나왔다. 그래서 notice 테이블의 마지막 번호를 받는 selectLastNo 함수를 이용해서 
+			//추가된 번호를 받아오는 변수 lastno를 선언하고, notice_attach 테이블에 set하니 성공적으로 번호가 추가됨!
+			int lastno = noticeDao.selectLastNo();
+			attachVO.setNoticeNo(lastno);
+			attachDao.insert(attachVO);
 		}
 	}
 
@@ -96,40 +102,46 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void modify(NoticeVO vo) {
+	@Transactional
+	public boolean modify(NoticeVO vo) {
 		// TODO Auto-generated method stub
-		noticeDao.update(vo);
-	}
-
-	//삭제하고 싶은 파일이 담겨져 있다.
-	@Override
-	public void modifyFiles(NoticeVO vo, String[] delFiles, List<String> addImages) {
-		// TODO Auto-generated method stub
+		System.out.println("=============== modify NoticeVO = " + vo);
 		
-		//삭제하고 싶은 파일이 있을 경우
-		if(delFiles != null) {
-			for(String file : delFiles) {
-				noticeDao.deleteAttachByFullName(vo.getNoticeNo(), file);
+		//기존 첨부파일 삭제
+		attachDao.deleteAll(vo.getNoticeNo());
+			//수정 결과 판단 => 업데이트 되면 true 반환
+			boolean modifyResult = noticeDao.update(vo);
+				
+			if(modifyResult && vo.getAttachList().size() > 0) {
+				vo.getAttachList().forEach(attach -> {
+					attach.setNoticeNo(vo.getNoticeNo());
+					attachDao.insert(attach);
+				});
 			}
-		}
-		
-		//수정할 때 새로운 파일 등록하고 싶을 때
-		for(String file : addImages) {
-			noticeDao.addAttachByNo(file, vo.getNoticeNo());
-		}
-		
-		//수정한다
-		noticeDao.update(vo);
+			return modifyResult;
 	}
 
 	@Override
-	public void remove(int no) {
+	@Transactional
+	public boolean remove(int no) {
 		// TODO Auto-generated method stub
-		//getAttach 이용해서 notice_no에 해당하는 파일명 받아오기
-		List<String> list = noticeDao.getAttach(no);
-		//attach 테이블에 있는 거 삭제한 다음에 게시물 삭제하기
-		noticeDao.delAttach(no);
+		attachDao.deleteAll(no);
 		noticeDao.delete(no);
+		
+		return true;
+	}
+	
+	@Override
+	public int selectLastNo() {
+		// TODO Auto-generated method stub
+		return noticeDao.selectLastNo();
+	}
+
+	@Override
+	public List<NoticeAttachVO> getAttachList(int noticeNo) {
+		// TODO Auto-generated method stub
+		System.out.println("=============== get attach list by noticeNo = " + noticeNo);
+		return attachDao.findByNoticeNo(noticeNo);
 	}
 
 }

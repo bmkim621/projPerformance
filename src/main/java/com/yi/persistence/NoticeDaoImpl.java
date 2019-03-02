@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
+import com.yi.domain.NoticeAttachVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 
@@ -80,56 +81,29 @@ public class NoticeDaoImpl implements NoticeDAO {
 		return sqlSession.selectList(namespace + ".getWriter", id);
 	}
 
-	
-	// ================ 첨부파일 ====================
 	@Override
-	public void addAttach(String fullname) {
-		// TODO Auto-generated method stub
-		sqlSession.insert(namespace + ".addAttach", fullname);
-	}
-
-	@Override
-	public List<String> getAttach(int no) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace + ".getAttach", no);
-	}
-
-	@Override
-	public void delAttach(int no) {
-		// TODO Auto-generated method stub
-		sqlSession.delete(namespace + ".delAttach", no);
-	}
-
-	@Override
-	public void deleteAttachByFullName(int no, String fullname) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
-		map.put("no", no);
-		map.put("fullname", fullname);
-		
-		sqlSession.delete(namespace + ".deleteAttachByFullName", map);
-	}
-
-	@Override
-	public void addAttachByNo(String fullname, int no) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<>();
-		map.put("fullname", fullname);
-		map.put("no", no);
-		
-		sqlSession.insert(namespace + ".addAttachByNo", map);
-	}
-
-	@Override
-	public void update(NoticeVO vo) {
+	public boolean update(NoticeVO vo) {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace + ".update", vo);
+		return true;
 	}
 
 	@Override
 	public void delete(int no) {
 		// TODO Auto-generated method stub
 		sqlSession.delete(namespace + ".delete", no);
+	}
+
+	@Override
+	public int selectLastNo() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".selectLastNo");
+	}
+
+	@Override
+	public List<NoticeAttachVO> getAttachList(int noticeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".getAttachList", noticeNo);
 	}
 
 }

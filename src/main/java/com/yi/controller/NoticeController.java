@@ -1,12 +1,12 @@
 package com.yi.controller;
 
-<<<<<<< HEAD
-=======
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
->>>>>>> branch 'master' of https://github.com/bmkim621/projPerformance.git
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.NoticeAttachVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.SearchCriteria;
@@ -48,12 +50,7 @@ public class NoticeController {
 	//서비스
 	@Autowired
 	private NoticeService service;
-	
-	//업로드 할 주소
-	@Resource(name = "uploadPath")	//servlet-context에 있는 id와 일치해야 함.
-	private String uploadPath;
 
-	
 	//공지사항 리스트
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void list(SearchCriteria cri, Model model) {
@@ -117,6 +114,15 @@ public class NoticeController {
 		model.addAttribute("cri", cri);
 	}
 	
+	//첨부파일 보기
+	@ResponseBody
+	@RequestMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<NoticeAttachVO>> getAttachList(int noticeNo){
+		logger.info("=====> getAttachList : " + noticeNo);
+			
+		return new ResponseEntity<>(service.getAttachList(noticeNo), HttpStatus.OK);
+	}
+		
 	//글 쓰기
 	@RequestMapping(value = "register", method = RequestMethod.GET)
 	public void registerGet(HttpSession session, Model model) {
@@ -133,26 +139,22 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public String registerPost(HttpServletRequest request, NoticeVO vo, Model model, List<MultipartFile> uploadFiles) throws IOException {
+	public String registerPost(HttpServletRequest request, NoticeVO vo, Model model, RedirectAttributes rttr) throws IOException {
 		logger.info("에디터 컨텐츠 값 = " + request.getParameter("content"));
 		logger.info("=====> Register ----- POST");
 
 		
-		List<String> files = new ArrayList<>();
-		for(MultipartFile file : uploadFiles) {
-			logger.info("=====> File name : " + file.getOriginalFilename());
-			logger.info("=====> File size : " + file.getSize());
-			
-			//이미지 파일 썸네일
-			String thumbPath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-			logger.info("=====> thumbPath" + thumbPath);
-			files.add(thumbPath);	
+		//파일 넘어왔는지 확인
+		logger.info("=========================");
+		logger.info("공지사항 글 등록하기 NoticeVO : " + vo);
+				
+		if(vo.getAttachList() != null) {
+			vo.getAttachList().forEach(attach -> logger.info("attach = " + attach));
 		}
-		vo.setFiles(files);
-		  
-		//공지사항 등록하기
+		logger.info("=========================");
+				  
 		service.register(vo);
-	
+
 		return "redirect:/notice/list";
 		
 	}
@@ -171,35 +173,69 @@ public class NoticeController {
 		model.addAttribute("cri", cri);
 	}
 	
-	
-	// 서버 <-> 브라우저(데이터 요청하면 보내줄거니까 안보여도 됨) 파일명에 해당하는 이미지의 데이터만 줌.
-	@ResponseBody
-	@RequestMapping("/displayFile")
-	public ResponseEntity<byte[]> displayFile(String filename) {
-		ResponseEntity<byte[]> entity = null;
-		logger.info("DisplayFile = " + filename);
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modify(NoticeVO vo, @RequestParam("noticeNo") int noticeNo, SearchCriteria cri, Model model) {
+		logger.info("======> modify ----- POST");
+		logger.info("noticeNo = " + noticeNo);
+		logger.info("페이지번호 = " + cri.getPage());
+		logger.info("검색종류 = " + cri.getSearchType());
+		logger.info("검색어 = " + cri.getKeyword());
+		
+		service.modify(vo);
+		
+		// redirect 때는 cri 객체 전체를 전달할 수 없음. 하나씩 심어서 보내야함. ex) "page", cri.getPage()
+		model.addAttribute("keyword", cri.getKeyword());
 
-		try {
-			// 확장자에 따라서 미디어타입 결정(확장자만 가지고 온다.)
-			String format = filename.substring(filename.lastIndexOf(".") + 1); // 확장자만 가지고 옴.
-			MediaType mType = MediaUtils.getMediaType(format); // 맞는 미디어 타입 찾아냄.
-
-			HttpHeaders headers = new HttpHeaders();
-			InputStream in = null;
-			in = new FileInputStream(uploadPath + "/" + filename); // 서버 파일 경로 C:/zzz/upload/~~~~.filename.jpg
-			headers.setContentType(mType); // 고객 브라우저로 돌려주는 헤더에 미디어 타입 알려줌.
-
-			// 이미지 파일의 데이터
-			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-
-			in.close();
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		}
-
-		return entity;
+		return "redirect:/notice/read?page=" + cri.getPage() + "&no=" + vo.getNoticeNo() + "&page=" + cri.getPage() + "&searchType=" + cri.getSearchType();
 	}
+	
+	//파일 삭제 처리
+	private void deleteFiles(List<NoticeAttachVO> attachList) {
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+			
+		logger.info("delete attach files...............");
+		logger.info("attachList = " + attachList);
+			
+		attachList.forEach(attach -> {
+				
+			try {
+				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+					
+				Files.deleteIfExists(file);
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+						
+					Files.delete(thumbNail);
+				}
+					
+			} catch (Exception e) {
+				// TODO: handle exception
+				logger.info("delete file error" + e.getMessage());
+			}	//end catch
+				
+		});	//end foreach	
+	}
+		
+		
+	//공지사항 삭제하기
+	@RequestMapping(value = "remove", method = RequestMethod.POST)
+	public String remove(@RequestParam("no") int no, SearchCriteria cri, Model model, RedirectAttributes rttr) {
+		logger.info("=====> remove ----- POST");
+			
+		List<NoticeAttachVO> attachList = service.getAttachList(no);
+			
+		if(service.remove(no)) {
+			//첨부파일 삭제
+			deleteFiles(attachList);
+			rttr.addFlashAttribute("result", "success");
+		}
+			
+		// redirect 때는 cri 객체 전체를 전달할 수 없음. 하나씩 심어서 보내야함. ex) "page", cri.getPage()
+		model.addAttribute("keyword", cri.getKeyword());
+			
+		return "redirect:/notice/list?page=" + cri.getPage() + "&searchType=" + cri.getSearchType();
+	}
+
 }

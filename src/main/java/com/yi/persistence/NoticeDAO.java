@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
+import com.yi.domain.NoticeAttachVO;
 import com.yi.domain.NoticeVO;
 import com.yi.domain.SearchCriteria;
 
@@ -38,24 +39,16 @@ public interface NoticeDAO {
 	
 	//공지사항 작성 때 필요한 값들 가져오기
 	public List<MemberVO> getWriter(String id);
-	
-	//첨부파일
-	public void addAttach(String fullname);
-	
-	//공지사항 번호에 해당하는 첨부파일 가지고오기
-	public List<String> getAttach(int no);
-	
-	//첨부파일 삭제하기
-	public void delAttach(int no);
-	
-	//이름에 해당하는 파일 삭제하기
-	public void deleteAttachByFullName(int no, String fullname);
-	
-	public void addAttachByNo(String fullname, int no);
-	
+		
 	//공지사항 수정하기 => 수정 필요한 부분, 제목 내용
-	public void update(NoticeVO vo);
+	public boolean update(NoticeVO vo);
 	
 	//공지사항 삭제하기
 	public void delete(int no);
+	
+	//마지막 번호
+	public int selectLastNo();
+		
+	//첨부파일 불러오기
+	public List<NoticeAttachVO> getAttachList(int noticeNo);
 }

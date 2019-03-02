@@ -50,10 +50,6 @@ public class PerformanceController {
 	@Autowired
 	private PerformanceService service;
 	
-	//업로드 할 주소
-	@Resource(name = "uploadPath")	//servlet-context에 있는 id와 일치해야 함.
-	private String uploadPath;
-	
 	
 	//공연정보 등록
 	@RequestMapping(value = "addPerf", method = RequestMethod.GET)
@@ -73,7 +69,7 @@ public class PerformanceController {
 		vo.setFno(fno);
 		
 		//외부에서 저장한다. (servelt-context.xml 파일에 있는 uploadPath에 저장된다.)
-		File dirPath = new File(uploadPath);
+		File dirPath = new File("C:\\proj_performance");
 		if(dirPath.exists() == false) {	//폴더 존재하지 않으면 폴더를 만든다.
 			dirPath.mkdir();
 		}
@@ -81,7 +77,7 @@ public class PerformanceController {
 		//파일크기 0이 아닌 경우
 		if(uploadFile.getSize() > 0) {
 			//썸네일
-			String thumPath = UploadFileUtils.uploadFile(uploadPath, uploadFile.getOriginalFilename(), uploadFile.getBytes());
+			String thumPath = UploadFileUtils.uploadFile("C:\\proj_performance", uploadFile.getOriginalFilename(), uploadFile.getBytes());
 			
 			//원본파일
 			String front = thumPath.substring(0, 12);
@@ -170,7 +166,7 @@ public class PerformanceController {
 			
 			HttpHeaders headers = new HttpHeaders();
 			InputStream in = null;
-			in = new FileInputStream(uploadPath + "/" + filename);	//서버 파일 경로 C:/zzz/upload/~~~~.filename.jpg
+			in = new FileInputStream("C:\\proj_performance" + "/" + filename);	//서버 파일 경로 C:/zzz/upload/~~~~.filename.jpg
 			headers.setContentType(mType);	//고객 브라우저로 돌려주는 헤더에 미디어 타입 알려줌.
 			
 												//이미지 파일의 데이터

@@ -6,27 +6,27 @@ CREATE SCHEMA proj_performance;
 
 use proj_performance;
 
--- 회원
-CREATE TABLE tbl_member (
-	member_code CHAR(6)     NOT NULL COMMENT '고객코드', -- 회원코드
-	member_name VARCHAR(20) NOT NULL COMMENT '이름', -- 이름
-	id          VARCHAR(30) NOT NULL COMMENT '아이디', -- 아이디
-	password    CHAR(41)    NULL     COMMENT '비밀번호', -- 비밀번호
-	email       VARCHAR(30) NOT NULL COMMENT '이메일', -- 이메일
-	phone       VARCHAR(30) NOT NULL COMMENT '연락처', -- 연락처
-	dob         DATE        NOT NULL COMMENT '생년월일', -- 생년월일
-	regdate     TIMESTAMP   NULL     DEFAULT now() COMMENT '가입일', -- 가입일
-	address     TEXT        NOT NULL COMMENT '주소', -- 주소
-	isMember    TINYINT(1)  NULL     COMMENT '회원구분', -- 회원구분
-	grade_code  VARCHAR(5)  NULL     COMMENT '등급코드' -- 등급코드
+-- 예매
+CREATE TABLE book (
+	book_number   VARCHAR(10) NOT NULL COMMENT '예매번호', -- 예매번호
+	member_code   CHAR(5)     NOT NULL COMMENT '고객코드', -- 회원코드
+	show_code     CHAR(6)     NOT NULL COMMENT '공연코드', -- 공연코드
+	payment_code  CHAR(5)     NOT NULL COMMENT '결제방식코드', -- 결제방식코드
+	discount_code CHAR(2)     NOT NULL COMMENT '할인분류코드', -- 할인분류코드
+	book_date     DATE        NOT NULL COMMENT '예매일', -- 예매일
+	book_time     TIME        NOT NULL COMMENT '예매시간', -- 예매시간
+	book_state    TINYINT(4)  NOT NULL COMMENT '0: 예매완료, 1: 예매중, ..', -- 예매상태
+	book_floor    INT(11)     NOT NULL COMMENT '층', -- 예매층
+	book_col      INT(11)     NOT NULL COMMENT '행', -- 예매행
+	book_row      CHAR(2)     NOT NULL COMMENT '열' -- 예매열
 )
-COMMENT '고객';
+COMMENT '예매';
 
--- 회원
-ALTER TABLE tbl_member
+-- 예매
+ALTER TABLE book
 	ADD CONSTRAINT
 		PRIMARY KEY (
-			member_code -- 회원코드
+			book_number -- 예매번호
 		);
 
 -- 할인
@@ -46,7 +46,7 @@ ALTER TABLE discount
 
 -- 시설
 CREATE TABLE facilities (
-	facilities_no   INT(11)     NOT NULL COMMENT '1관, 2관, ..', -- 공연시설번호
+	facilities_no   INT(11)     NOT NULL COMMENT '1: 본관, 2: 별관', -- 공연시설번호
 	total_floor     INT(11)     NOT NULL COMMENT '1층, 2층 = 2', -- 층개수
 	zone_cnt        INT(11)     NOT NULL COMMENT 'A, B, C, BR, BL의 개수 = 5', -- 구역개수
 	total_seatCnt   INT(11)     NOT NULL COMMENT '1층(140개), 2층(60개) = 200', -- 총좌석수
@@ -61,6 +61,20 @@ ALTER TABLE facilities
 			facilities_no -- 공연시설번호
 		);
 
+-- 등급
+CREATE TABLE grade (
+	grade_code VARCHAR(5)  NOT NULL COMMENT '등급코드', -- 등급코드
+	grade_name VARCHAR(20) NOT NULL COMMENT '등급이름' -- 등급이름
+)
+COMMENT '등급';
+
+-- 등급
+ALTER TABLE grade
+	ADD CONSTRAINT
+		PRIMARY KEY (
+			grade_code -- 등급코드
+		);
+
 -- 공지사항
 CREATE TABLE notice (
 	notice_no   INT(11)      NOT NULL COMMENT '공지사항번호', -- 공지사항번호
@@ -68,7 +82,7 @@ CREATE TABLE notice (
 	title       VARCHAR(200) NOT NULL COMMENT '제목', -- 제목
 	regdate     TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
 	writer      VARCHAR(20)  NOT NULL COMMENT '작성자', -- 작성자
-	is_notice   TINYINT(1)   NOT NULL COMMENT '알림이벤트구분', -- 알림구분
+	is_notice   TINYINT(1)   NOT NULL COMMENT '0: 일반, 1: 알림', -- 알림구분
 	view_cnt    INT(11)      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
 	member_code CHAR(6)      NULL     COMMENT '회원코드' -- 회원코드
 )
@@ -85,21 +99,23 @@ ALTER TABLE notice
 	MODIFY COLUMN notice_no INT(11) NOT NULL AUTO_INCREMENT COMMENT '공지사항번호';
 
 ALTER TABLE notice
-	AUTO_INCREMENT = 12;
+	AUTO_INCREMENT = 263;
 
--- notice_attach
+-- 공지사항첨부파일
 CREATE TABLE notice_attach (
-	notice_filename     VARCHAR(150) NOT NULL COMMENT '파일이름', -- 파일이름
-	notice_file_regdate TIMESTAMP    NULL     DEFAULT now() COMMENT '작성일', -- 작성일
-	notice_no           INT(11)      NOT NULL COMMENT '공지사항번호' -- 공지사항번호
+	uuid        VARCHAR(100) NOT NULL COMMENT 'uuid', -- uuid
+	upload_path VARCHAR(200) NOT NULL COMMENT '업로드경로', -- 업로드경로
+	file_name   VARCHAR(100) NOT NULL COMMENT '파일이름', -- 파일이름
+	notice_no   INT(11)      NOT NULL COMMENT '공지사항번호', -- 공지사항번호
+	file_type   CHAR(1)      NULL     DEFAULT 'I' COMMENT '이미지 파일인지 구분' -- 파일종류
 )
 COMMENT '공지사항파일';
 
--- notice_attach
+-- 공지사항첨부파일
 ALTER TABLE notice_attach
 	ADD CONSTRAINT
 		PRIMARY KEY (
-			notice_filename -- 파일이름
+			uuid -- uuid
 		);
 
 -- 결제
@@ -120,13 +136,13 @@ ALTER TABLE payment
 CREATE TABLE performance (
 	show_code       CHAR(6)      NOT NULL COMMENT 'P19(연도)001', -- 공연코드
 	show_name       VARCHAR(200) NOT NULL COMMENT '공연제목', -- 공연제목
-	show_type       CHAR(1)      NULL     COMMENT '기획공연(A), 대관공연(B), ..', -- 공연종류
-	total_time      INT(11)      NULL     COMMENT '공연시간', -- 공연시간
-	start_time      TIME         NULL     COMMENT '공연시작시간', -- 시작시간
+	show_type       CHAR(1)      NULL     COMMENT '기획공연(A), 대관공연(B), ..', -- 공연분류
+	total_time      INT(11)      NULL     COMMENT '공연시간', -- 공연총시간
+	start_time      TIME         NULL     COMMENT '공연시작시간', -- 공연시작시간
 	show_startdate  DATE         NOT NULL COMMENT '공연시작일', -- 공연시작일
 	show_enddate    DATE         NOT NULL COMMENT '공연종료일', -- 공연종료일
 	facilities_no   INT(11)      NULL     COMMENT '공연시설번호', -- 공연시설번호
-	show_image_path TEXT         NULL     COMMENT '공연이미지경로' -- 공연이미지겨올
+	show_image_path TEXT         NULL     COMMENT '공연이미지경로' -- 공연이미지경로
 )
 COMMENT '공연';
 
@@ -143,8 +159,8 @@ CREATE TABLE reply (
 	review_no     INT(11)       NOT NULL COMMENT '번호', -- 후기번호
 	replyer       VARCHAR(50)   NOT NULL COMMENT '작성자', -- 작성자
 	reply_content VARCHAR(1000) NOT NULL COMMENT '내용', -- 댓글내용
-	regdate       TIMESTAMP     NOT NULL DEFAULT now() COMMENT '입력날짜', -- 댓글작성일
-	updatedate    TIMESTAMP     NOT NULL DEFAULT now() COMMENT '수정날짜' -- 댓글수정일
+	regdate       TIMESTAMP     NOT NULL DEFAULT now() COMMENT '입력날짜', -- 댓글입력날짜
+	updatedate    TIMESTAMP     NOT NULL DEFAULT now() COMMENT '수정날짜' -- 댓글수정날짜
 )
 COMMENT '댓글';
 
@@ -155,33 +171,9 @@ ALTER TABLE reply
 			reply_no -- 댓글번호
 		);
 
--- 예매
-CREATE TABLE book (
-	book_number   VARCHAR(10) NOT NULL COMMENT '예매번호', -- 예매번호
-	member_code   CHAR(5)     NOT NULL COMMENT '고객코드', -- 회원코드
-	show_code     CHAR(6)     NOT NULL COMMENT '공연코드', -- 공연코드
-	payment_code  CHAR(5)     NOT NULL COMMENT '결제방식코드', -- 결제방식코드
-	discount_code CHAR(2)     NOT NULL COMMENT '할인분류코드', -- 할인분류코드
-	book_date     DATE        NOT NULL COMMENT '예매일', -- 예매일
-	book_time     TIME        NOT NULL COMMENT '예매시간', -- 예매시간
-	book_state    TINYINT(4)  NOT NULL COMMENT '0: 예매완료, 1: 예매중, ..', -- 예매상태
-	book_floor    INT(11)     NOT NULL COMMENT '층', -- 층
-	book_col      INT(11)     NOT NULL COMMENT '행', -- 행
-	book_row      CHAR(2)     NOT NULL COMMENT '열' -- 열
-)
-COMMENT '예매';
-
--- 예매
-ALTER TABLE book
-	ADD CONSTRAINT
-		PRIMARY KEY (
-			book_number -- 예매번호
-		);
-
 -- 공연관람후기
 CREATE TABLE review (
 	review_no        INT(11)      NOT NULL COMMENT '번호', -- 후기번호
-	review_img_path  TEXT         NULL     COMMENT '이미지경로', -- 이미지경로
 	review_content   TEXT         NOT NULL COMMENT '내용', -- 내용
 	review_post_date TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
 	review_view_cnt  INT(11)      NULL     COMMENT '조회수', -- 조회수
@@ -199,9 +191,11 @@ ALTER TABLE review
 
 -- 후기첨부파일
 CREATE TABLE review_attach (
-	review_filename     VARCHAR(150) NOT NULL COMMENT '파일이름', -- 파일이름
-	review_file_regdate TIMESTAMP    NULL     DEFAULT now() COMMENT '작성일', -- 파일업로드날
-	review_no           INT(11)      NOT NULL COMMENT '번호' -- 후기번호
+	review_uuid        VARCHAR(100) NOT NULL COMMENT 'uuid', -- uuid
+	review_no          INT(11)      NOT NULL COMMENT '번호', -- 후기번호
+	review_upload_path VARCHAR(200) NOT NULL COMMENT '업로드경로', -- 업로드경로
+	review_file_name   VARCHAR(100) NOT NULL COMMENT '파일이름', -- 파일이름
+	review_file_type   CHAR(1)      NOT NULL DEFAULT 'I' COMMENT '파일종류' -- 파일종류
 )
 COMMENT '공연관람후기파일';
 
@@ -209,13 +203,13 @@ COMMENT '공연관람후기파일';
 ALTER TABLE review_attach
 	ADD CONSTRAINT
 		PRIMARY KEY (
-			review_filename -- 파일이름
+			review_uuid -- uuid
 		);
 
 -- 좌석
 CREATE TABLE seat (
-	loc_code      CHAR(5) NOT NULL COMMENT 'SEAT1: 비지정석, SEAT2: 지정석, SEAT3: 전석', -- 좌석분류코드
-	zone          CHAR(3) NOT NULL COMMENT '1A, 2A', -- 구역
+	loc_code      CHAR(5) NOT NULL COMMENT 'SEAT1: 비지정석, SEAT2: 지정석, SEAT3: 전석', -- loc_code
+	zone          CHAR(3) NOT NULL COMMENT '1A, 2A', -- zone
 	facilities_no INT(11) NOT NULL COMMENT '공연시설번호', -- 공연시설번호
 	start_loc     INT(11) NULL     COMMENT '1', -- 시작위치
 	end_loc       INT(11) NULL     COMMENT '20' -- 끝위치
@@ -226,68 +220,32 @@ COMMENT '좌석';
 ALTER TABLE seat
 	ADD CONSTRAINT
 		PRIMARY KEY (
-			loc_code, -- 좌석분류코드
-			zone      -- 구역
+			loc_code, -- loc_code
+			zone      -- zone
 		);
 
--- 등급
-CREATE TABLE grade (
-	grade_code VARCHAR(5)  NOT NULL COMMENT '등급코드', -- 등급코드
-	grade_name VARCHAR(20) NOT NULL COMMENT '등급이름' -- 등급이름
+-- 회원
+CREATE TABLE tbl_member (
+	member_code CHAR(6)     NOT NULL COMMENT '회원코드', -- 회원코드
+	member_name VARCHAR(20) NOT NULL COMMENT '이름', -- 이름
+	id          VARCHAR(30) NOT NULL COMMENT '아이디', -- 아이디
+	password    CHAR(41)    NULL     COMMENT '비밀번호', -- 비밀번호
+	email       VARCHAR(30) NOT NULL COMMENT '이메일', -- 이메일
+	phone       VARCHAR(30) NOT NULL COMMENT '연락처', -- 연락처
+	dob         DATE        NOT NULL COMMENT '생년월일', -- 생년월일
+	regdate     TIMESTAMP   NULL     DEFAULT now() COMMENT '가입일', -- 가입일
+	address     TEXT        NOT NULL COMMENT '주소', -- 주소
+	isMember    TINYINT(1)  NULL     COMMENT '회원구분 0: 회원, 1: 관리자', -- 회원구분
+	grade_code  VARCHAR(5)  NULL     COMMENT '등급코드' -- 등급코드
 )
-COMMENT '등급';
+COMMENT '고객';
 
--- 등급
-ALTER TABLE grade
-	ADD CONSTRAINT PK_grade -- 등급 기본키
+-- 회원
+ALTER TABLE tbl_member
+	ADD CONSTRAINT
 		PRIMARY KEY (
-			grade_code -- 등급코드
+			member_code -- 회원코드
 		);
-
--- notice_attach
-ALTER TABLE notice_attach
-	ADD CONSTRAINT FK_notice_TO_notice_attach -- FK_notice_TO_notice_attach
-		FOREIGN KEY (
-			notice_no -- 공지사항번호
-		)
-		REFERENCES notice ( -- 공지사항
-			notice_no -- 공지사항번호
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
-	ADD INDEX FK_notice_TO_notice_attach (
-		notice_no -- 공지사항번호
-	);
-
--- 공연
-ALTER TABLE performance
-	ADD CONSTRAINT FK_facilities_TO_performance -- FK_facilities_TO_performance
-		FOREIGN KEY (
-			facilities_no -- 공연시설번호
-		)
-		REFERENCES facilities ( -- 시설
-			facilities_no -- 공연시설번호
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
-	ADD INDEX FK_facilities_TO_performance (
-		facilities_no -- 공연시설번호
-	);
-
--- 댓글
-ALTER TABLE reply
-	ADD CONSTRAINT FK_review_TO_reply -- FK_review_TO_reply
-		FOREIGN KEY (
-			review_no -- 후기번호
-		)
-		REFERENCES review ( -- 공연관람후기
-			review_no -- 후기번호
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
-	ADD INDEX FK_review_TO_reply (
-		review_no -- 후기번호
-	);
 
 -- 예매
 ALTER TABLE book
@@ -297,9 +255,7 @@ ALTER TABLE book
 		)
 		REFERENCES tbl_member ( -- 회원
 			member_code -- 회원코드
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
+		),
 	ADD INDEX FK_customer_TO_reservation (
 		member_code -- 회원코드
 	);
@@ -312,9 +268,7 @@ ALTER TABLE book
 		)
 		REFERENCES discount ( -- 할인
 			discount_code -- 할인분류코드
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
+		),
 	ADD INDEX FK_discount_TO_reservation (
 		discount_code -- 할인분류코드
 	);
@@ -327,9 +281,7 @@ ALTER TABLE book
 		)
 		REFERENCES payment ( -- 결제
 			payment_code -- 결제방식코드
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
+		),
 	ADD INDEX FK_payment_TO_reservation (
 		payment_code -- 결제방식코드
 	);
@@ -342,11 +294,61 @@ ALTER TABLE book
 		)
 		REFERENCES performance ( -- 공연
 			show_code -- 공연코드
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
+		),
 	ADD INDEX FK_performance_TO_reservation (
 		show_code -- 공연코드
+	);
+
+-- 공지사항
+ALTER TABLE notice
+	ADD CONSTRAINT FK_tbl_member_TO_notice -- FK_tbl_member_TO_notice
+		FOREIGN KEY (
+			member_code -- 회원코드
+		)
+		REFERENCES tbl_member ( -- 회원
+			member_code -- 회원코드
+		),
+	ADD INDEX FK_tbl_member_TO_notice (
+		member_code -- 회원코드
+	);
+
+-- 공지사항첨부파일
+ALTER TABLE notice_attach
+	ADD CONSTRAINT FK_notice_TO_notice_attach -- FK_notice_TO_notice_attach
+		FOREIGN KEY (
+			notice_no -- 공지사항번호
+		)
+		REFERENCES notice ( -- 공지사항
+			notice_no -- 공지사항번호
+		),
+	ADD INDEX FK_notice_TO_notice_attach (
+		notice_no -- 공지사항번호
+	);
+
+-- 공연
+ALTER TABLE performance
+	ADD CONSTRAINT FK_facilities_TO_performance -- FK_facilities_TO_performance
+		FOREIGN KEY (
+			facilities_no -- 공연시설번호
+		)
+		REFERENCES facilities ( -- 시설
+			facilities_no -- 공연시설번호
+		),
+	ADD INDEX FK_facilities_TO_performance (
+		facilities_no -- 공연시설번호
+	);
+
+-- 댓글
+ALTER TABLE reply
+	ADD CONSTRAINT FK_review_TO_reply -- FK_review_TO_reply
+		FOREIGN KEY (
+			review_no -- 후기번호
+		)
+		REFERENCES review ( -- 공연관람후기
+			review_no -- 후기번호
+		),
+	ADD INDEX FK_review_TO_reply (
+		review_no -- 후기번호
 	);
 
 -- 후기첨부파일
@@ -357,9 +359,7 @@ ALTER TABLE review_attach
 		)
 		REFERENCES review ( -- 공연관람후기
 			review_no -- 후기번호
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
+		),
 	ADD INDEX FK_review_TO_review_attach (
 		review_no -- 후기번호
 	);
@@ -372,33 +372,23 @@ ALTER TABLE seat
 		)
 		REFERENCES facilities ( -- 시설
 			facilities_no -- 공연시설번호
-		)
-		ON DELETE RESTRICT
-		ON UPDATE RESTRICT,
+		),
 	ADD INDEX FK_facilities_TO_seat (
 		facilities_no -- 공연시설번호
 	);
 
 -- 회원
 ALTER TABLE tbl_member
-	ADD CONSTRAINT FK_grade_TO_tbl_member -- 등급 -> 회원
+	ADD CONSTRAINT FK_grade_TO_tbl_member -- FK_grade_TO_tbl_member
 		FOREIGN KEY (
 			grade_code -- 등급코드
 		)
 		REFERENCES grade ( -- 등급
 			grade_code -- 등급코드
-		);
-
--- 공지사항
-ALTER TABLE notice
-	ADD CONSTRAINT FK_tbl_member_TO_notice -- 회원 -> 공지사항
-		FOREIGN KEY (
-			member_code -- 회원코드
-		)
-		REFERENCES tbl_member ( -- 회원
-			member_code -- 회원코드
-		);
-		
+		),
+	ADD INDEX FK_grade_TO_tbl_member (
+		grade_code -- 등급코드
+	);
 	
 -- 공연코드 다음번호 가지고 오는 함수
 DROP FUNCTION IF EXISTS nextshowcode;

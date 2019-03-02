@@ -479,3 +479,25 @@ input#writer{
 input#title{
 	width: 35%;                             
 }
+
+/* ==== 공지사항 수정, 취소 버튼 ==== */
+#btnModifyConfirm{
+	background-color: #2a3072;
+	border: 1px solid #2a3072;
+	color: white;
+	width: 88px;   
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+}
+
+#btnModifyCancel{
+	background-color: #fff;
+	color: #2a3072;
+	border: 1px solid #2a3072;
+	width: 88px;   
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+	margin-left: 5px; 
+}

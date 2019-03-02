@@ -12,7 +12,7 @@ public class NoticeVO {
 	private int isNotice;	//0: 알림 표시X, 1: 알림 표시O
 	private int viewCnt;
 	private String memberCode;
-	private List<String> files;		//첨부파일
+	private List<NoticeAttachVO> attachList;	//첨부파일
 	
 	public int getNoticeNo() {
 		return noticeNo;
@@ -62,18 +62,20 @@ public class NoticeVO {
 	public void setMemberCode(String memberCode) {
 		this.memberCode = memberCode;
 	}
-	public List<String> getFiles() {
-		return files;
+	public List<NoticeAttachVO> getAttachList() {
+		return attachList;
 	}
-	public void setFiles(List<String> files) {
-		this.files = files;
+	public void setAttachList(List<NoticeAttachVO> attachList) {
+		this.attachList = attachList;
 	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"NoticeVO [noticeNo=%s, content=%s, title=%s, regdate=%s, writer=%s, isNotice=%s, viewCnt=%s, memberCode=%s, files=%s]",
-				noticeNo, content, title, regdate, writer, isNotice, viewCnt, memberCode, files);
+				"NoticeVO [noticeNo=%s, content=%s, title=%s, regdate=%s, writer=%s, isNotice=%s, viewCnt=%s, memberCode=%s, attachList=%s]",
+				noticeNo, content, title, regdate, writer, isNotice, viewCnt, memberCode, attachList);
 	}
+	
+	
 	
 }
