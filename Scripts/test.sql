@@ -6,6 +6,8 @@ insert into tbl_board (title, content, writer)
 
 select * from notice;
 select * from tbl_member;
+select * from review;
+select * from review_attach;
 
 select count(notice_no) from notice;
 

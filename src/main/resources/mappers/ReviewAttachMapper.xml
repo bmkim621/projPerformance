@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.ReviewAttachMapper">
+
+	<insert id="insert" parameterType="ReviewAttachVO">
+		insert into review_attach (review_uuid, review_upload_path, review_file_name, review_no, review_file_type) values
+		(#{reviewUuid}, #{reviewUploadPath}, #{reviewFileName}, #{reviewNo}, #{reviewFileType})
+	</insert>
+
+	<delete id="delete">
+		delete from review_attach where review_uuid = #{reviewUuid}
+	</delete>
+	
+	<select id="findByReviewNo" resultType="ReviewAttachVO">
+		select * from review_attach
+		where review_no = #{reviewNo}
+	</select>
+	
+	<delete id="deleteAll">
+		delete from review_attach
+		where review_no = #{reviewNo}
+	</delete>
+
+	<select id="getOldFiles" resultType="ReviewAttachVO">
+		select * from review_attach
+		where review_upload_path = DATE_FORMAT(date_add(now(), interval -1 day), '%Y\%m\%d')
+	</select>
+
+</mapper>

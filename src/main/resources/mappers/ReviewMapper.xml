@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.ReviewMapper">
+
+	<!-- 리뷰 리스트 보기 -->
+	<select id="reviewListAll" resultType="ReviewVO">
+		select * from review;
+	</select>
+	
+	<!-- 쓰기 -->
+	<insert id="register" parameterType="ReviewVO">
+		insert into review(review_content, review_title, review_writer) values
+		(#{reviewContent}, #{reviewTitle}, #{reviewWriter})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="update" parameterType="ReviewVO">
+		update review
+		set review_content = #{reviewContent}, review_title = #{reviewTitle}
+		where review_no = #{reviewNo}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from review where review_no = #{reviewNo}
+	</delete>
+	
+	<!-- 읽기 -->
+	<select id="read" resultType="ReviewVO">
+		select * from review where review_no = #{reviewNo}
+	</select>
+	
+	<!-- 후기 첨부파일 등록할 때 필요 -->
+	<select id="selectLastNo" resultType="int">
+		select last_insert_id()
+	</select>
+	
+	<!-- 첨부파일 가지고 오기 -->
+	<select id="getAttachList" resultType="ReviewAttachVO">
+		select * from review_attach
+		where review_no = #{reviewNo}
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="increaseReviewViewCnt">
+		update review
+		set review_view_cnt = review_view_cnt + 1
+		where review_no = #{reviewNo}
+	</update>
+	
+	<!-- 페이지 -->
+	<select id="listCriteria" resultType="ReviewVO">
+		select * from review
+		order by review_no desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="totalCount" resultType="int">
+		select count(review_no) from review
+	</select>
+	
+	<!-- 검색기능 구현 -->
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			where title like CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="searchType == 'c'.toString()">
+			where content like CONCAT('%', #{keyword}, '%')  
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			where title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%')   
+		</if>
+	</sql>
+	
+	<!-- 검색 -->
+	<select id="listSearch" resultType="ReviewVO">
+		select * from review
+		<include refid="search" />
+		order by review_no desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 검색한 게시물의  전체 갯수 -->
+	<select id="searchTotalCount" resultType="int">
+		select count(review_no) from review
+		<include refid="search" />
+	</select>
+	
+	<!-- 댓글수 -->
+	<update id="updateReplyCnt">
+		update review
+		set replycnt = replycnt + #{amount}
+		where review_no = #{reviewNo}
+	</update>
+	
+	
+</mapper>

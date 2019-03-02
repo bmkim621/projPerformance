@@ -156,7 +156,7 @@ ALTER TABLE performance
 -- 댓글
 CREATE TABLE reply (
 	reply_no      INT(11)       NOT NULL COMMENT '댓글번호', -- 댓글번호
-	review_no     INT(11)       NOT NULL COMMENT '번호', -- 후기번호
+	review_no     INT(11)       NOT NULL default 0 COMMENT '번호', -- 후기번호
 	replyer       VARCHAR(50)   NOT NULL COMMENT '작성자', -- 작성자
 	reply_content VARCHAR(1000) NOT NULL COMMENT '내용', -- 댓글내용
 	regdate       TIMESTAMP     NOT NULL DEFAULT now() COMMENT '입력날짜', -- 댓글입력날짜
@@ -170,13 +170,16 @@ ALTER TABLE reply
 		PRIMARY KEY (
 			reply_no -- 댓글번호
 		);
+	
+alter table reply
+	modify column reply_no int(11) not null auto_increment comment '댓글번호';
 
 -- 공연관람후기
 CREATE TABLE review (
 	review_no        INT(11)      NOT NULL COMMENT '번호', -- 후기번호
 	review_content   TEXT         NOT NULL COMMENT '내용', -- 내용
 	review_post_date TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-	review_view_cnt  INT(11)      NULL     COMMENT '조회수', -- 조회수
+	review_view_cnt  INT(11)      NULL     DEFAULT 0     COMMENT '조회수', -- 조회수
 	review_title     VARCHAR(200) NOT NULL COMMENT '제목', -- 제목
 	review_writer    VARCHAR(20)  NOT NULL COMMENT '작성자' -- 작성자
 )
@@ -188,6 +191,9 @@ ALTER TABLE review
 		PRIMARY KEY (
 			review_no -- 후기번호
 		);
+	
+alter table review
+	modify column review_no int(11) not null auto_increment comment '번호';
 
 -- 후기첨부파일
 CREATE TABLE review_attach (
@@ -389,6 +395,11 @@ ALTER TABLE tbl_member
 	ADD INDEX FK_grade_TO_tbl_member (
 		grade_code -- 등급코드
 	);
+
+-- 댓글 관련
+alter table review add column replycnt int default 0;
+
+update review set replycnt = (select count(reply_no) from reply where review_no = review.review_no);
 	
 -- 공연코드 다음번호 가지고 오는 함수
 DROP FUNCTION IF EXISTS nextshowcode;
