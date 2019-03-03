@@ -427,3 +427,79 @@ span.spanFile{
 	font-size: 15px;
 	margin-left: 5px; 
 }
+
+/* 댓글 */
+div.container.replyContainer{
+	padding: 30px;                                   
+	margin: 30px auto;
+	overflow: hidden;
+	border: 1px solid #e8e8e8;               
+}
+
+.input-group-btn{
+	height: 60px;
+	overflow: hidden;
+}
+
+#replyAdd{
+	height: 62px;
+	margin-left: 10px;
+	border-radius: 0em;
+	font-size: 15px;
+	letter-spacing: -0.5px;        
+}
+
+textarea{
+	font-size: 15px;
+	letter-spacing: -0.5px;
+}
+
+input#replyWriter{
+	border: none;
+	font-weight: bold;
+	font-size: 15px;
+	letter-spacing: -0.5px;
+	color: #2a3072;
+	padding: 10px 0;
+}
+
+ul#sortable{
+	padding: 20px 10px;
+	margin-top: 20px;
+	margin-bottom: 0;
+}
+
+ul#sortable li:first-child{
+	border: none;
+}
+
+ul#sortable li{
+	list-style: none;
+	margin: 20px 0;
+	border-top: 1px solid #f0f0f0;
+	padding-top: 15px;             
+}
+
+div.temp{
+	overflow: hidden;
+}
+      
+div.temp .spanReplyWriter{
+	float: left;
+	color: #2a3072;
+	font-size: 15px;
+	letter-spacing: -0.5px;
+	font-weight: bold;
+}
+
+div.temp .spanReplyDate{
+	float: right;
+	color: #777;
+	font-size: 15px;
+	letter-spacing: -0.5px;
+}
+         
+div.temp .spanReplyDate i{
+	margin-top: 8px;       
+	margin-right: 5px;
+}

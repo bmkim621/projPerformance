@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/review.css?a" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/review.css?abcb" rel="stylesheet" type="text/css">
 
 <!-- 첨부파일 스타일 -->
 <style>
@@ -149,6 +149,48 @@
     
 </div>	<!-- container end -->
 
+
+<!-- 댓글 -->
+<div class='container replyContainer'>
+	<div class="text-center">
+		<div class="input-group">       
+		<input type="text" class="form-control" placeholder="Username" aria-label="Username" id="replyWriter">
+		</div>
+		
+		<div class="input-group">
+			<textarea class="form-control" placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-danger" id="replyAdd"><i class="fas fa-comment"></i>&nbsp;등록</button>                          
+            </span>
+		</div>
+		
+        <div class="well">
+            
+        <ul id="sortable">
+            <li>
+            	<div class='temp'>
+            		<span class='spanReplyWriter'>댓글 작성자 테스트1</span>
+	            	<span class="spanReplyDate"><i class="far fa-clock"></i>2019-03-04 오전 1:41</span>
+            	</div>
+            	<div class='replyContentsWrap'>
+            		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            	</div>         	
+            </li>
+            
+            <li>
+	            <div class='temp'>
+            		<span class='spanReplyWriter'>댓글 작성자 테스트1</span>
+	            	<span class="spanReplyDate"><i class="far fa-clock"></i>2019-03-04 오전 1:41</span>
+            	</div>           
+            	<div class='replyContentsWrap'>
+            		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            	</div>
+            </li>
+        </ul>             
+        </div>
+    </div>        
+</div>	<!-- replyContainer end -->
+				        
 
 <script>
 	//첨부파일 가지고 오기
