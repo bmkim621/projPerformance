@@ -5,7 +5,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/review.css?a" rel="stylesheet" type="text/css">
 <!-- 스마트에디터 경로 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-
+      
 <style>
 .uploadResult{
 	width: 100%;               
@@ -94,6 +94,7 @@
 </div>
 <!-- container end -->
 
+
 <!-- 공지사항 -->
 <div class="container-fluid reviewRegisterWrapper">
 	<div class='titleWrapper'>
@@ -108,26 +109,26 @@
 			<p class='review-notice'>(개인정보란: 주민등록번호, 전화번호, 휴대폰번호, 이메일주소 등)</p>
 		</div>
 	
-		<form role="form" action="register" method="post" id="frm" enctype="multipart/form-data">
+		<form role="form" action="modify" method="post" id="frm" enctype="multipart/form-data">
 		<table class="table">                 
 			<tbody>      
 				<tr>
 					<th style='width: 20%;'>이름</th>
 					<td>
-	      				<input type='text' value='${info.username }' readonly="readonly" name="reviewWriter" id="reviewWriter">
+						<input type='text' name='reviewWriter' id='reviewWriter' value='${reviewVO.reviewWriter }' readonly="readonly">
 					</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td>
-						<input type='text' name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요.">
+						<input type='text' name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요." value="${reviewVO.reviewTitle }">
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>     
-						<!-- 네이버 스마트 에디터 -->                      
-						<textarea name="reviewContent" id="reviewContent" rows="10" cols="120"></textarea>
+						<!-- 네이버 스마트 에디터 -->
+						<textarea name="reviewContent" id="reviewContent" rows="10" cols="120">${reviewVO.reviewContent }</textarea>                      	
 					</td>
 				</tr>
 				<tr>
@@ -137,7 +138,7 @@
 						<input type="file" name="uploadFile" multiple="multiple">
 					</td>
 				</tr>
-			</tbody>
+			</tbody>              
 		</table>
 		
 		<!-- 추가한 부분 나타나는 곳 -->
@@ -147,9 +148,15 @@
 		
 		<!-- 버튼 -->           
 		<div class="btnWrapper">
-			<input type="button" value='확인' id='btnConfirm'>
-			<input type="reset" value='취소' id='btnCancel'>
+			<input type="button" value='수정' id='btnReviewModify'>
+			<input type="reset" value='취소' id='btnReviewCancel'>
 	    </div>
+	    
+	    <!-- 수정할 때 post 방식으로 보내기 위해서 번호랑 페이지번호 같이 보내기(페이지 있는 목록으로 이동해야되니까 페이지 번호도 같이 실어서 보내야 함)-->
+		<input type="hidden" name="reviewNo" value="${reviewVO.reviewNo }" >
+		<input type="hidden" name="page" value="${cri.page }">
+		<input type="hidden" name="searchType" value="${cri.searchType }">
+		<input type="hidden" name="keyword" value="${cri.keyword }">
 		
 	</form>
 	
@@ -157,12 +164,46 @@
 	
 </div>	<!-- container end -->
 
+
 <script>
+	//첨부파일 가지고 오기
+	function getAttach(){
+		var reviewNo = '<c:out value="${reviewVO.reviewNo }"/>';
+		$.getJSON("${pageContext.request.contextPath}/review/getReviewAttachList", {reviewNo: reviewNo}, function(arr){
+			console.log(arr);
+			      
+			//첨부파일 보여주기
+			var str = "";
+			
+			$(arr).each(function(i, attach){
+				
+				//이미지 파일인 경우
+				if(attach.reviewFileType){
+					var fileCallPath = encodeURIComponent(attach.reviewUploadPath + "/s_" + attach.reviewUuid + "_" + attach.reviewFileName);
+					str += "<li data-path='" + attach.reviewUploadPath + "' data-uuid='" + attach.reviewUuid + "' data-filename='" + attach.reviewFileName + "' data-type='" + attach.reviewFileType + "'><div>";
+					str += "<div class='mywrap'><span class='imgFileName'>" + attach.reviewFileName + "</span>";
+					str += "<button type='button' id='mybtn' data-file=\'" + fileCallPath + "\' data-type='image' class='btn btn-info'><i class='fa fa-times'></i></button></div>";
+					str += "<img src='${pageContext.request.contextPath }/upload/display?fileName=" + fileCallPath + "'>";
+					str += "</div>";
+					str += "</li>";
+				} else{	//이미지 파일 아닌 경우
+					
+					str += "<li data-path='" + attach.reviewUploadPath + "' data-uuid='" + attach.reviewUuid + "' data-filename='" + attach.reviewFileName + "' data-type='" + attach.reviewFileType + "'><div>";
+					str += "<div class='mywrap'><span class='imgFileName'>" + attach.reviewFileName + "</span>";
+					str += "<button type='button' id='mybtn' data-file=\'" + fileCallPath + "\' data-type='file' class='btn btn-info'><i class='fa fa-times'></i></button></div>";
+					str += "<img src='${pageContext.request.contextPath }/resources/images/documents.png'>";
+					str += "</div>";
+					str += "</li>";
+				}
+			});      
+			$(".uploadResult ul").html(str);
+		});	
+	}
+	
 	$(function(){
+		getAttach();
 		
-		//확인버튼 클릭했을 때 기본 동작 막기
-		var formObj = $("form[role='form']");
-		////////////////////////
+		var formObj = $("form");
 		
 		//전역변수
 		var obj = [];
@@ -200,7 +241,6 @@
 			
 			return true;
 		}
-		
 		
 		//업로드 결과 처리하는 함수
 		function showUploadResult(uploadResultArr){
@@ -242,31 +282,6 @@
 			uploadUL.append(str);
 		}
 		
-		//업로드 된 파일 X버튼 클릭할 때 이벤트 처리 => 파일이 삭제돼야 하므로 uuid가 포함된 파일 이름과 파일 경로 필요 => 경로와 이름을 담는 사용자 태그 추가
-		$(".uploadResult").on("click", "button", function(){
-//			console.log("delete file");     
-			
-			var targetFile = $(this).data("file");
-			var type = $(this).data("type");
-			
-			var targetLi = $(this).closest("li");
-			
-			//첨부파일의 경로와 이름, 파일의 종류(이미지 또는 일반 파일)를 전송한다.
-			$.ajax({
-				url: '${pageContext.request.contextPath}/upload/deleteFile',
-				data: {fileName: targetFile, type: type},
-				dataType: 'text',
-				type: 'post',
-				success: function(result){
-					alert(result);
-					
-					//삭제
-					targetLi.remove();
-				}
-			})	//$.ajax end
-		})
-		
-
 		//파일 내용이 변경되는 것을 감지해서 처리하도록 하기
 		$("input[type='file']").change(function(e){
 			var formData = new FormData();
@@ -299,39 +314,39 @@
 			})	//$.ajax end
 		})
 		
-		//전송버튼
-		$("#btnConfirm").click(function(e) {
-			
+		//=======================================================
+		
+		//첨부파일의 X 버튼 클릭하면 화면상에 사라지도록 처리하기
+		$(".uploadResult").on("click", "button", function(){
+			console.log("delete file");
+			if(confirm("파일을 삭제하시겠습니까?")){
+				var targetLi = $(this).closest("li");
+				targetLi.remove();
+			}
+		});
+		
+		//수정버튼
+		$("#btnReviewModify").click(function(e){
 			e.preventDefault();
 			
-			console.log("submit clicked");
+			//id가 reviewContent인 textarea에 에디터를 대입한다.
+			obj.getById["reviewContent"].exec("UPDATE_CONTENTS_FIELD", []);
 			
 			var str = "";
 			
-			//첨부파일 정보 hidden으로 보내기
 			$(".uploadResult ul li").each(function(i, obj){
 				var jobj = $(obj);
-				
-				console.dir(jobj);
-				
+				console.dir(jobj);        
+					
 				str += "<input type='hidden' name='attachList[" + i + "].reviewFileName' value='" + jobj.data("filename") + "'>";
 				str += "<input type='hidden' name='attachList[" + i + "].reviewUuid' value='" + jobj.data("uuid") + "'>";
 				str += "<input type='hidden' name='attachList[" + i + "].reviewUploadPath' value='" + jobj.data("path") + "'>";
 				str += "<input type='hidden' name='attachList[" + i + "].reviewFileType' value='" + jobj.data("type") + "'>";
+				});
+				formObj.append(str).submit();         
 			});
-			
-
-			//id가 content인 textarea에 에디터를 대입한다.
-			obj.getById["reviewContent"].exec("UPDATE_CONTENTS_FIELD", []);
-
-			//값 받아졌는지 확인하기
-			var writer = $("#reviewWriter").val();
-			var title = $("#reviewTitle").val();
-
-			//폼 전송하기
-			formObj.append(str).submit(); 
-
-		})
+				
 	})
 </script>
+
 <%@ include file="../include/footer.jsp"%>

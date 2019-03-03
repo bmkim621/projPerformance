@@ -80,7 +80,7 @@
 							<div id="triangleThird"></div>
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>  
-									<li><a href="#">공연관람후기</a></li>
+									<li><a href="${pageContext.request.contextPath}/review/list">공연관람후기</a></li>
 									<li><a href="#">갤러리</a></li>
 								</ul>
 							</div>

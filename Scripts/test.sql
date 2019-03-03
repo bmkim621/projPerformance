@@ -14,6 +14,8 @@ select count(notice_no) from notice;
 insert into notice(content, title, is_notice, member_code, writer)
 (select content, title, is_notice, member_code, writer from notice);
 
+insert into review(review_title, review_writer, review_content) (select review_title, review_writer, review_content from review);
+
 insert into notice(content, title, is_notice, member_code, writer) values
 (null, '유스오페라콰이어 추가모집 안내(재공지)', 1, 'M19002', '관리자'),
 (null, '2019 오페라클래스 수강생 모집', 1, 'M19002', '관리자'),
@@ -36,3 +38,5 @@ where upload_path = DATE_FORMAT(date_add(now(), interval -1 day), '%Y\%m\%d'); -
 
 
 select last_insert_id();
+
+select count(review_no) from review where review_writer like CONCAT('%', '김보민', '%');

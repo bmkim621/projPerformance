@@ -59,7 +59,7 @@ div.reviewRegisterWrapper h2{
 }
 
 .register-contents-wrapper{
-	border-top: 2px solid #2a3072;   
+/* 	border-top: 2px solid #2a3072;  */             
 	overflow: hidden;       
 }
 
@@ -71,6 +71,43 @@ div.btnWrapper{
 	overflow: hidden;
 	text-align: center;
 }
+           
+/* 리뷰 글읽기 버튼 */
+div.btnReviewWrapper{
+	position: relative;
+    width: 95%;
+  	margin: 20px auto; 
+  	margin-bottom: 50px;                  
+    overflow: hidden;
+    padding-top: 30px;
+    border-top: 1px solid #e8e8e8;
+}
+
+div.btnWrapperLeft{
+	float: left;
+}                 
+
+div.btnWrapperRight{
+	float: right;
+}
+
+div.btnWrapperLeft .btnReviewGoList, div.btnWrapperRight .btnRegister{
+	padding: 8px 15px;              
+	background-color: #2a3072;
+	border: 1px solid #2a3072;
+	color: white;
+	display: inline-block;       
+}
+
+div.btnWrapperLeft .btnReviewPrint, div.btnWrapperRight .btnModify, div.btnWrapperRight .btnRemove{
+	padding: 8px 15px;  
+	border: 1px solid #2a3072;
+	color: #2a3072;
+	display: inline-block;
+	margin-left: 5px; 
+}
+
+/* 리뷰 글읽기 버튼 끝 */
 
 #btnConfirm{
 	background-color: #2a3072;
@@ -182,4 +219,211 @@ table.table td a.view {
 table.table td a.view i {
 	font-size: 22px;
 	margin: 2px 0 0 1px;
+}
+
+/* 후기 리스트 */
+div.container-fluid.reviewTableContainer{
+	width: 70%;                                                                           
+	padding-top: 60px;               
+}
+
+.table-wrapper {
+	background: #fff;
+	padding: 20px 25px;
+	margin: 30px auto;
+	/* margin-bottom: 80px; */  
+	margin-bottom: 0;
+	border-radius: 3px;
+	padding-bottom: 0!important;
+	overflow: hidden;      
+}
+
+.table-wrapper .btn {
+	float: right;
+	color: #333;
+	background-color: #fff;
+	border-radius: 3px;
+	border: none;
+	outline: none !important;
+	margin-left: 10px;
+}
+
+.table-wrapper .btn:hover {
+	color: #333;
+	background: #f2f2f2;
+}
+
+.table-wrapper .btn.btn-primary {
+	color: #fff;
+	background: #2a2f70;
+}
+
+#btnWrite{
+	color: #fff;
+	background: #f04040;
+}
+
+.table-wrapper .btn.btn-write{
+	color: #fff;
+	background: #f04040;               
+}
+.table-wrapper .btn.btn-write:hover{
+	background: #ff6363;        
+}
+
+.table-wrapper .btn.btn-primary:hover {
+	background: #575e96;    
+}
+
+.table-filter .filter-group {
+	float: right;
+	margin-left: 15px;
+}
+
+.table-filter input, .table-filter select {
+	height: 34px;
+	border-radius: 3px;
+	border-color: #ddd;
+	box-shadow: none;
+}
+        
+.table-filter {
+	padding: 5px 0 15px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	position: relative;
+}
+
+.table-filter .btn {
+	height: 34px;
+}
+
+.table-filter label {
+	font-weight: normal;
+	margin-left: 10px;
+}
+
+.table-filter select, .table-filter input {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.table-filter input {
+	width: 200px;
+	display: inline-block;
+}
+
+.filter-group select.form-control {
+	width: 110px;
+}
+
+
+/* 페이지 */
+.pagination {
+	margin: 40px 0 30px;                                      
+}
+
+.pagination li a {
+	border: none;
+	min-width: 30px;
+	min-height: 30px;
+	color: #999;
+	margin: 0 2px;
+	line-height: 30px;
+	border-radius: 4px !important;
+	text-align: center;
+	padding: 0;
+	font-size: 13px;          
+}
+
+.pagination li a:hover {
+	color: #666;
+}
+
+.pagination li.active a, .pagination li.active a.page-link {
+	background: #2a2f70;      
+}
+
+.pagination li.active a:hover {
+	background: #575e96;
+}
+
+.pagination li:first-child a, .pagination li:last-child a {
+	padding: 0 10px;
+}
+
+.pagination li.disabled a {
+	color: #ccc;
+}
+
+.pagination li i {
+	font-size: 17px;
+	position: relative;
+	top: 1px;
+	margin: 1px 2px;
+}
+
+/* 검색 셀렉트 */
+div.filter-group select{
+	font-size: 14px;
+	letter-spacing: -0.5px;
+	color: #575e96;
+	font-weight: bold;
+	padding-left: 5px;      
+}
+
+/* 후기 주의사항 */
+div.review-notice-wrapper{  
+	border: 1px solid #ddd;
+	margin: 15px auto;
+	padding: 25px;       
+	margin-bottom: 50px;              
+}
+
+p.review-notice{
+	margin-bottom: 5px;     
+	color: #686868;
+	letter-spacing: -0.5px;             
+}
+
+/* 읽기 */
+td span.spanTitle{
+	color: #4c4c63;
+	font-weight: bold;
+	font-size: 17px;   
+}
+
+span.spanDate{
+	float: right;
+	color: #888891;
+}
+
+span.spanWriter, span.spanFile{
+	color: #888891;
+}
+
+span.spanFile{
+	margin-right: 50px;  
+}
+
+/* ==== 후기 수정, 취소 버튼 ==== */
+#btnReviewModify{
+	background-color: #2a3072;
+	border: 1px solid #2a3072;
+	color: white;
+	width: 88px;   
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+}             
+        
+#btnReviewCancel{
+	background-color: #fff;
+	color: #2a3072;
+	border: 1px solid #2a3072;
+	width: 88px;   
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+	margin-left: 5px; 
 }
