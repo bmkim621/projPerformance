@@ -602,3 +602,80 @@ div.replyPageWrapper{
 #replyPageUl li.active a:hover {
 	background: #484f8a!important;
 }
+
+/* 댓글 수정 모달 */
+.modal .modal-header {
+	padding: 10px 15px;
+	background: #f2f2f2;
+	height: 45px;
+	line-height: 45px;
+}
+
+.modal .modal-body{
+	padding: 20px 20px 5px 20px;         
+}
+
+.modal .modal-footer{
+	padding: 10px 20px;
+}
+           
+.modal .modal-content {
+	border-radius: 3px;
+}
+
+.modal .modal-footer {
+	background: #ecf0f1;
+	border-radius: 0 0 3px 3px;
+}
+
+.modal .modal-title {
+	display: inline-block;
+}
+
+.modal .form-control {
+	border-radius: 2px;
+	box-shadow: none;
+	border-color: #dddddd;
+}
+
+.modal textarea.form-control {
+	resize: vertical;
+}
+
+.modal .btn.btn-info {
+	border-radius: 2px;
+	border: 1px solid #5bc0de;
+	height: 30px;
+	line-height: 30px; 
+	font-size: 14px;
+	color: white;
+	background: #5bc0de;
+	padding: 0 10px;
+}
+
+.modal .btn.btn-default{
+	border-radius: 2px;
+	border: 1px solid #ccc;
+	background: white;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	padding: 0 10px;
+	color: #333;
+}
+
+.modal form h5 {
+	font-weight: normal;
+	color: #566787;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: -0.5px;
+	margin: 0;           
+	padding-top: 3px;
+}
+
+#replytext{
+	color: #566787;
+	font-size: 14px;
+	letter-spacing: -0.6px;   
+}

@@ -15,7 +15,7 @@
 	<update id="update" parameterType="ReplyVO">
 		update reply
 		set reply_content = #{replyContent}, updatedate = now()
-		where reply_no = #{replyNo}
+		where reply_no = #{replyNo}   
 	</update>
 	
 	<delete id="delete">

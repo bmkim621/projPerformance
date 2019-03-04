@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/review.css?bbb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/review.css?a" rel="stylesheet" type="text/css">
 <!-- handlebars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
@@ -168,7 +168,7 @@
 		</div>
 		
 		<div class="input-group">
-			<textarea class="form-control" placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요." id="replyContent"></textarea>
+			<textarea class="form-control" placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요." id="newReplyText"></textarea>
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-danger" id="replyAdd"><i class="fas fa-comment"></i>&nbsp;등록</button>                          
             </span>
@@ -176,35 +176,46 @@
 		          
         <div class="well">                
 	        <ul id="sortable">
-	        	<li><span class='spanReplyList'><i class="fas fa-heart"></i>댓글 목록<span class='replyCnt'></span></span></li>
-	            <%-- <li class='replyLi'>
-	            	<div class='temp'>	
-	            		<span class='spanReplyWriter'><span class='spanReplyNo'>10</span>${login.username }</span>
-		            	<span class="spanReplyDate"><i class="far fa-clock"></i>2019-03-04 오전 1:41</span>
-	            	</div>
-	            	<div class='replyContentsWrap'>
-	            		<span class='spanReplyContents'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
-	            		<div class='replyBtnWrap'>
-	            			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">수정</button>
-	            			<button type="button" class="btn btn-danger btn-sm">삭제</button>
-	            		</div>
-	            	</div>         	
-	            </li> --%>  
+	        	<li><span class='spanReplyList'><i class="fas fa-heart"></i>댓글 목록<span class='replyCnt'></span></span></li> 
 	        </ul>             
         </div>
         
         <div class="replyPageWrapper">
-			<ul class="pagination" id="replyPageUl">
-				<li class="page-item"><a href="#">1</a></li>
-				<li class="page-item"><a href="#">2</a></li>
-				<li class="page-item"><a href="#">3</a></li>
-				<li class="page-item"><a href="#">4</a></li>
-				<li class="page-item"><a href="#">5</a></li>
-			</ul>
+			<ul class="pagination" id="replyPageUl"></ul>
 		</div>
 		
     </div>        
 </div>	<!-- replyContainer end -->
+
+
+
+<!-- 댓글 수정 모달창 -->
+<div id="editReplyModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>			
+				<div class="modal-header">
+					<h5 class="modal-title">댓글 수정</h5>				   	
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				
+				<div class="modal-body">					
+					<div class="form-group">
+						<textarea class="form-control" id="replytext" required></textarea>
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="닫기">
+					<input type="button" class="btn btn-info" id="btnReplyMod" value="수정" data-rno="">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>	<!-- modal end -->
+
+
+
 			
 			
 <!-- 템플릿 -->
@@ -220,8 +231,8 @@
     	<div class='replyContentsWrap'>
 			<span class='spanReplyContents'>{{replyContent}}</span>
 			<div class='replyBtnWrap'>
-				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">수정</button>
-				<button type="button" class="btn btn-danger btn-sm">삭제</button>
+				<button type="button" class="btn btn-primary btn-sm btnModify" data-toggle="modal" data-target="#editReplyModal" data-rno="{{replyNo}}">수정</button>
+				<button type="button" class="btn btn-danger btn-sm btnDelete">삭제</button>
 			</div>
 		</div>  
 	{{else}}
@@ -297,6 +308,7 @@
 		
 	
 	var reviewNo = ${reviewVO.reviewNo };
+	var no = ${reviewVO.reviewNo };
 //	console.log(reviewNo);
 	var replyer = $("#replyWriter").val();
                                                                        
@@ -409,7 +421,7 @@
 		// ==================== 댓글 ============================
 		$("#replyAdd").click(function(){
 			//댓글 등록할 때 : 댓글 작성자, 댓글 내용, 후기 번호(변수로 선언)
-			var replyContent = $("#replyContent").val();
+			var replyContent = $("#newReplyText").val();
 //			console.log(replyer);
 //			console.log(replyContent);
 			
@@ -443,6 +455,87 @@
 			
 			return false;
 		})
+		
+		
+		//댓글 페이지 이동
+		// ====== 페이지 이동 : 동적으로 버튼 생기니까 on 사용해야 함. ======
+		$(document).on("click", ".pagination a", function(e){
+			 e.preventDefault();	//클릭 차단
+			 
+			 //내가 몇 번째 클릭하는지 어떻게 알지? => 일단 페이지 번호를 가지고 온다. <a>안에 페이지 번호 있으니까 this
+			 var num = $(this).text();
+			 getPageList(num);	
+		})
+		
+		
+		// ====== 댓글에 있는 수정버튼 : 동적으로 버튼 만들어지까 on 사용해야 함. ======
+		$(document).on("click", ".btnModify", function(){
+			//rno 가져오기
+			var rno = $(this).attr("data-rno");
+			$("#btnReplyMod").attr("data-rno", rno);
+			
+			//댓글 내용 가지고오기
+			var replytext = $(this).parent().prev().html();
+//			console.log(text);
+			$("#replytext").val(replytext);
+		})
+		
+		
+		// 댓글 내용 수정하기
+		$(document).on("click", "#btnReplyMod", function(){
+			var replyNo = $("#btnReplyMod").attr("data-rno");
+			var replyContent = $("#replytext").val();
+			var jsonBody = {replyContent: replyContent};
+			
+			//ajax로 보냄.
+			$.ajax({
+				url: "${pageContext.request.contextPath}/replies/" + replyNo,
+				type: "put",
+				//보낼 데이터 => int rno와 vo(RequestBody있으니까 headers, stringify 필요)
+				headers:{
+					"Content-Type": "application/json",
+					"X-HTTP-Method-Override": "PUT"
+				},
+				data: JSON.stringify(jsonBody),	
+				dataType: "text",
+				success: function(json){
+					console.log(json);
+					
+					if(json == "success"){
+						alert(replyNo + " 수정되었습니다.");   
+					}
+					
+					//수정되고 나서 창 안보이게 처리한다.
+					$("#editReplyModal").modal("hide");  
+					
+					//리스트 갱신시킨다.
+					getPageList(1);
+				}			
+			})
+		})
+		
+		
+		// 댓글 삭제(동적으로 버튼 생기니까 on 사용해야 함)
+		$(document).on("click", ".btnDelete", function(){
+			//삭제할 때 rno 필요하니까 가져온다.
+			var replyNo = $(this).parents(".replyLi").attr("data-rno");
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/replies/" + replyNo,
+				type: "delete",
+				dataType: "text",
+				success: function(json){
+					console.log(json);
+					
+					if(json == "Success"){
+						alert("삭제되었습니다.");
+					}
+					//리스트 갱신시킨다.
+					getPageList(1);
+				}
+			})
+		})
+		
 	})
 </script>
 

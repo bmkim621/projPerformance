@@ -121,4 +121,48 @@ public class ReplyController {
 		return entity;
 	}
 
+	
+	//댓글 수정
+	//put => post와 마찬가지로 body로 보내짐. 수정되는 내용이 ReplyVO에 있으니까 @RequestBody 앞에 붙여야 함.
+	@RequestMapping(value = "{replyNo}", method = RequestMethod.PUT)
+	public ResponseEntity<String> update(@PathVariable("replyNo") int replyNo, @RequestBody ReplyVO vo){
+		
+		System.out.println("======> modify Reply : PUT");
+		
+		ResponseEntity<String> entity = null;
+			
+		try {
+			logger.info("replyNo = " + replyNo);
+			vo.setReplyNo(replyNo);
+			service.update(vo);
+				
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+				// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+			
+		return entity;
+	}
+	
+	
+	// 댓글 삭제
+	// get, delete => 주소줄에 실어서 보냄.
+	@RequestMapping(value = "{replyNo}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> remove(@PathVariable("replyNo") int replyNo) {
+
+		ResponseEntity<String> entity = null;
+
+		try {
+			service.delete(replyNo);
+			entity = new ResponseEntity<String>("Success", HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}
 }
