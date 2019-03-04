@@ -95,10 +95,10 @@ public class ReviewDaoImpl implements ReviewDAO {
 	}
 
 	@Override
-	public void updateReplyCnt(int no, int amount) {
+	public void updateReplyCnt(int reviewNo, int amount) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
-		map.put("no", no);
+		map.put("reviewNo", reviewNo);
 		map.put("amount", amount);
 		
 		sqlSession.update(namespace + ".updateReplyCnt", map);

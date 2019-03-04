@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="create" parameterType="ReplyVO">
-		insert into reply (review_no, replyer, reply_content)
-		values (#{reviewNo}, #{replyer}, #{replyContent})
+		insert into reply (review_no, replyer, reply_content, replyer_id)
+		values (#{reviewNo}, #{replyer}, #{replyContent}, #{replyerId})
 	</insert>
 	
 	<update id="update" parameterType="ReplyVO">

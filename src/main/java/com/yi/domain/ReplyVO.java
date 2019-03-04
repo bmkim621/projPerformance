@@ -9,6 +9,7 @@ public class ReplyVO {
 	public String replyContent;
 	public Date regdate;
 	public Date updatedate;
+	public String replyerId;
 	
 	public int getReplyNo() {
 		return replyNo;
@@ -46,13 +47,20 @@ public class ReplyVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
+	public String getReplyerId() {
+		return replyerId;
+	}
+	public void setReplyerId(String replyerId) {
+		this.replyerId = replyerId;
+	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"ReplyVO [replyNo=%s, reviewNo=%s, replyer=%s, replyContent=%s, regdate=%s, updatedate=%s]", replyNo,
-				reviewNo, replyer, replyContent, regdate, updatedate);
+				"ReplyVO [replyNo=%s, reviewNo=%s, replyer=%s, replyContent=%s, regdate=%s, updatedate=%s, replyerId=%s]",
+				replyNo, reviewNo, replyer, replyContent, regdate, updatedate, replyerId);
 	}
+	
 	
 	
 

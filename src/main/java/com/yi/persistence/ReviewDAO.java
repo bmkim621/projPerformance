@@ -46,7 +46,7 @@ public interface ReviewDAO {
 	public int searchTotalCount(SearchCriteria cri);
 	
 	//댓글 작성 시 글제목 옆에 댓글 수도 같이 증가되도록
-	public void updateReplyCnt(int no, int amount);
+	public void updateReplyCnt(int reviewNo, int amount);
 	
 	//후기 작성 때 필요한 값들 가져오기
 	public List<MemberVO> getWriter(String id);

@@ -160,7 +160,8 @@ CREATE TABLE reply (
 	replyer       VARCHAR(50)   NOT NULL COMMENT '작성자', -- 작성자
 	reply_content VARCHAR(1000) NOT NULL COMMENT '내용', -- 댓글내용
 	regdate       TIMESTAMP     NOT NULL DEFAULT now() COMMENT '입력날짜', -- 댓글입력날짜
-	updatedate    TIMESTAMP     NOT NULL DEFAULT now() COMMENT '수정날짜' -- 댓글수정날짜
+	updatedate    TIMESTAMP     NOT NULL DEFAULT now() COMMENT '수정날짜', -- 댓글수정날짜
+	replyer_id    VARCHAR(30)   NOT NULL COMMENT '작성자아이디' -- 작성자아이디
 )
 COMMENT '댓글';
 

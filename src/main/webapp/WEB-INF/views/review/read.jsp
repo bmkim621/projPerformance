@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/review.css?abcb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/review.css?bbb" rel="stylesheet" type="text/css">
+<!-- handlebars -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <!-- 첨부파일 스타일 -->
 <style>
@@ -86,6 +88,10 @@
 </div>
 <!-- container end -->
 
+<c:forEach items="${list }" var='replyVO'>
+	<p>${replyVO }</p>
+</c:forEach>
+
 
 <!-- 후기 읽기 -->
 <div class="container-fluid reviewTableContainer">
@@ -158,43 +164,74 @@
 <div class='container replyContainer'>
 	<div class="text-center">
 		<div class="input-group">       
-		<input type="text" class="form-control" placeholder="Username" aria-label="Username" id="replyWriter">
+		<input type="text" class="form-control" id="replyWriter" value="${login.username }" readonly="readonly">
 		</div>
 		
 		<div class="input-group">
-			<textarea class="form-control" placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
+			<textarea class="form-control" placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요." id="replyContent"></textarea>
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-danger" id="replyAdd"><i class="fas fa-comment"></i>&nbsp;등록</button>                          
             </span>
 		</div>
-		
-        <div class="well">
-            
-        <ul id="sortable">
-            <li>
-            	<div class='temp'>
-            		<span class='spanReplyWriter'>댓글 작성자 테스트1</span>
-	            	<span class="spanReplyDate"><i class="far fa-clock"></i>2019-03-04 오전 1:41</span>
-            	</div>
-            	<div class='replyContentsWrap'>
-            		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            	</div>         	
-            </li>
-            
-            <li>
-	            <div class='temp'>
-            		<span class='spanReplyWriter'>댓글 작성자 테스트1</span>
-	            	<span class="spanReplyDate"><i class="far fa-clock"></i>2019-03-04 오전 1:41</span>
-            	</div>           
-            	<div class='replyContentsWrap'>
-            		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            	</div>
-            </li>
-        </ul>             
+		          
+        <div class="well">                
+	        <ul id="sortable">
+	        	<li><span class='spanReplyList'><i class="fas fa-heart"></i>댓글 목록<span class='replyCnt'></span></span></li>
+	            <%-- <li class='replyLi'>
+	            	<div class='temp'>	
+	            		<span class='spanReplyWriter'><span class='spanReplyNo'>10</span>${login.username }</span>
+		            	<span class="spanReplyDate"><i class="far fa-clock"></i>2019-03-04 오전 1:41</span>
+	            	</div>
+	            	<div class='replyContentsWrap'>
+	            		<span class='spanReplyContents'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+	            		<div class='replyBtnWrap'>
+	            			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">수정</button>
+	            			<button type="button" class="btn btn-danger btn-sm">삭제</button>
+	            		</div>
+	            	</div>         	
+	            </li> --%>  
+	        </ul>             
         </div>
+        
+        <div class="replyPageWrapper">
+			<ul class="pagination" id="replyPageUl">
+				<li class="page-item"><a href="#">1</a></li>
+				<li class="page-item"><a href="#">2</a></li>
+				<li class="page-item"><a href="#">3</a></li>
+				<li class="page-item"><a href="#">4</a></li>
+				<li class="page-item"><a href="#">5</a></li>
+			</ul>
+		</div>
+		
     </div>        
 </div>	<!-- replyContainer end -->
-				        
+			
+			
+<!-- 템플릿 -->
+<script id="template" type="text/x-handlebars-template">
+	{{#each.}}
+	<li class='replyLi' data-rno="{{replyNo}}" data-id="{{replyerId}}">
+		<div class='temp'>
+			<span class='spanReplyWriter'><span class='spanReplyNo'>{{replyNo}}</span>{{replyer}}</span>
+	    	<span class="spanReplyDate"><i class="far fa-clock"></i>{{tempDate regdate}} {{temptime regdate}}</span>
+		</div>
+
+	{{#ifCond replyerId }}
+    	<div class='replyContentsWrap'>
+			<span class='spanReplyContents'>{{replyContent}}</span>
+			<div class='replyBtnWrap'>
+				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">수정</button>
+				<button type="button" class="btn btn-danger btn-sm">삭제</button>
+			</div>
+		</div>  
+	{{else}}
+		<div class='replyContentsWrap'>
+			<span class='spanReplyContents'>{{replyContent}}</span>
+		</div>
+	{{/ifCond}}         	
+	</li>
+	{{/each}}
+</script>				        
 
 <script>
 	//첨부파일 가지고 오기
@@ -227,10 +264,98 @@
 			$(".uploadResult ul").html(str);
 		});
 	}
+	
+	
+	// ==================== 댓글 ============================
+	//댓글 날짜 헬퍼
+	Handlebars.registerHelper("tempDate", function(value){
+		var date = new Date(value);
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		
+		return year + "-" + month + "-" + day; 
+	})
+	
+	//댓글 시간 헬퍼
+	Handlebars.registerHelper("temptime", function(value){
+		var date = new Date(value);
+		var hour = date.getHours();
+		var minutes = date.getMinutes();
+		
+		return hour + ":" + minutes; 
+	})
+	
+	//조건 헬퍼
+	//Handlebar if문
+	Handlebars.registerHelper('ifCond', function(v1, options) {
+		if(v1 == '${login.userid }') {
+			return options.fn(this);  
+		}
+		return options.inverse(this);
+	});
+		
+	
+	var reviewNo = ${reviewVO.reviewNo };
+//	console.log(reviewNo);
+	var replyer = $("#replyWriter").val();
+                                                                       
+                                   
+	//댓글 페이지
+	function getPageList(page){
+		$.ajax({
+			url: "${pageContext.request.contextPath}/replies/" + reviewNo + "/" + page,
+			type: "get",
+			dataType: "json",
+			success: function(json){
+				console.log(json);
+//				console.log(json.list ); 
+				
+				//아이디
+/* 				$(json.list).each(function(i, obj){
+					var userid = obj.replyerId;
+					
+					console.log(userid);
+					
+					if(userid == '${login.userid }'){
+						alert("테스트");
+					}
+				}) */
+				
+				$(".replyLi").remove();
+				
+				var source = $("#template").html();
+				var f = Handlebars.compile(source);
+				var result = f(json.list);
+				
+				$("#sortable").append(result);
+				
+				//댓글 추가 시 댓글목록 옆에 댓글 수 증가
+				$(".replyCnt").text("["+json.replycnt+"]");
+				
+				//댓글 페이지
+				$(".pagination").empty();
+				
+				for(var i = json.pageMaker.startPage ; i <= json.pageMaker.endPage ; i++){
+					var liTag = $("<li>").addClass("page-item");
+					var aTag = $("<a>").attr("href", "#").append(i);
+					liTag.append(aTag);
+					
+					//시작하는 페이지가 선택한 페이지와 같으면
+					if(i == json.pageMaker.cri.page){
+						liTag.addClass("active");
+					}
+					$(".pagination").append(liTag);
+				}
+				
+			}
+		})
+	}
 
 	$(function(){
 		
-		getAttach();
+		getAttach();	//첨부파일
+		getPageList(1);	//댓글불러오기
 		
 		//목록
 		$(".btnReviewGoList").click(function(){
@@ -277,6 +402,45 @@
 				$("#f1").attr("action", "remove");
 				$("#f1").submit();
 			}
+			return false;
+		})
+		
+		
+		// ==================== 댓글 ============================
+		$("#replyAdd").click(function(){
+			//댓글 등록할 때 : 댓글 작성자, 댓글 내용, 후기 번호(변수로 선언)
+			var replyContent = $("#replyContent").val();
+//			console.log(replyer);
+//			console.log(replyContent);
+			
+			var jsonBody = {reviewNo: reviewNo, replyer: replyer, replyContent: replyContent};
+			
+				$.ajax({
+					url: "${pageContext.request.contextPath}/replies/",
+					type: "post",
+					//stringify 사용할 때 headers도 같이 사용해야 함.
+					headers:{
+						"Content-Type": "application/json",
+						"X-HTTP-Method-Override": "POST"
+					},
+					
+					data: JSON.stringify(jsonBody),	
+					dataType: "text",
+					success: function(json){
+//						console.log(json);
+												
+						if(json == "success"){
+							alert("등록하였습니다.");
+							
+							getPageList(1);    
+							
+							//댓글 작성 후 내용 비우기
+							$("#replyContent").val("");         
+
+						}           
+					}
+				})
+			
 			return false;
 		})
 	})

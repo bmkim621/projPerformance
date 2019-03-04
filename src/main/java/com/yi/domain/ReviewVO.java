@@ -12,6 +12,8 @@ public class ReviewVO {
 	private String reviewWriter;
 	private List<ReviewAttachVO> attachList;
 	private String memberCode;
+	//댓글수
+	private int replycnt;
 	
 	public int getReviewNo() {
 		return reviewNo;
@@ -61,13 +63,20 @@ public class ReviewVO {
 	public void setMemberCode(String memberCode) {
 		this.memberCode = memberCode;
 	}
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"ReviewVO [reviewNo=%s, reviewContent=%s, reviewPostDate=%s, reviewViewCnt=%s, reviewTitle=%s, reviewWriter=%s, attachList=%s, memberCode=%s]",
+				"ReviewVO [reviewNo=%s, reviewContent=%s, reviewPostDate=%s, reviewViewCnt=%s, reviewTitle=%s, reviewWriter=%s, attachList=%s, memberCode=%s, replycnt=%s]",
 				reviewNo, reviewContent, reviewPostDate, reviewViewCnt, reviewTitle, reviewWriter, attachList,
-				memberCode);
+				memberCode, replycnt);
 	}
+	
 	
 }	

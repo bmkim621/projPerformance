@@ -471,7 +471,10 @@ ul#sortable{
 
 ul#sortable li:first-child{
 	border: none;
-}
+	margin-bottom: 0;
+	padding-top: 0;
+	text-align: left;
+}            
 
 ul#sortable li{
 	list-style: none;
@@ -502,4 +505,100 @@ div.temp .spanReplyDate{
 div.temp .spanReplyDate i{
 	margin-top: 8px;       
 	margin-right: 5px;
+}
+
+/* ========= 댓글 ============= */
+/* 수정, 삭제 버튼 */
+div.replyBtnWrap{
+	text-align: right;
+}
+.btn-sm{
+	border-radius: 3px;
+	border: 1px solid #2a3072;
+	padding: 1px 5px;              
+	font-size: 13px;         
+	line-height: 1.5;
+	letter-spacing: -0.5px;
+	font-weight: bold;
+	color: #2a3072;
+	background-color: white;
+	margin-left: 3px;         
+}
+
+.btn-primary:hover{
+	background-color: #2a3072;
+}
+
+.btn-danger:hover{
+	background-color: #dc3545;
+}
+
+.spanReplyList{
+	color: #dc3545;
+	font-size: 15px;
+	letter-spacing: -0.5px;
+	font-weight: bold;
+}
+
+.spanReplyList i{
+	margin-right: 5px;      
+}
+
+/* 댓글 번호 */
+.spanReplyNo{
+	margin-right: 5px;
+	color: #353535!important; 
+}
+
+/* 댓글 작성할 때 이름 input */
+.form-control:disabled, .form-control[readonly]{
+	background: white!important;       
+}
+
+/* 댓글 내용 */
+div.replyContentsWrap{
+	overflow: hidden;
+	text-align: left!important;                 
+}
+.spanReplyContents{
+	color: #353535;   
+	letter-spacing: -0.6px;
+	font-size: 15px;             
+}
+
+/* 댓글 페이지 */
+div.replyPageWrapper{
+	text-align: center;
+	overflow: hidden;
+	display: inline-block;
+}
+
+#replyPageUl {
+	margin: 0 auto;        
+}
+
+#replyPageUl li a {
+	border: none!important;
+	font-size: 13px!important;        
+	min-width: 30px!important;
+	min-height: 30px!important;
+	padding: 0 10px!important;
+	color: #999!important;
+	margin: 0 2px!important;
+	line-height: 30px!important;                  
+	border-radius: 30px!important;
+	text-align: center!important;
+	display: inline-block;
+}
+
+#replyPageUl li.active a{
+	color: white!important;
+}
+  
+#replyPageUl li a:hover {             
+	color: #666!important;
+}
+
+#replyPageUl li.active a:hover {
+	background: #484f8a!important;
 }
