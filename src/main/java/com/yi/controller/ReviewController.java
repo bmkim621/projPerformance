@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yi.domain.LoginDTO;
+import com.yi.domain.MemberVO;
 import com.yi.domain.NoticeAttachVO;
 import com.yi.domain.PageMaker;
 import com.yi.domain.ReviewAttachVO;
@@ -49,6 +50,10 @@ public class ReviewController {
 		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
 		logger.info("info = " + info);
 		
+		List<MemberVO> list = service.getWriter(info.getUserid());
+		logger.info("list = " + list);
+		
+		model.addAttribute("list", list);
 		model.addAttribute("info", info);
 	}
 	
@@ -104,6 +109,8 @@ public class ReviewController {
 		ReviewVO vo = service.read(no);
 		//조회수
 		service.increaseReviewViewCnt(no);
+		//회원코드에 해당하는 회원정보 가지고 오기
+		MemberVO user = service.getMemberId(vo.getMemberCode());
 		
 		logger.info("reviewVO = " + vo);
 		logger.info("cri = " + cri);
@@ -111,6 +118,7 @@ public class ReviewController {
 		
 		model.addAttribute("reviewVO", vo);
 		model.addAttribute("cri", cri);
+		model.addAttribute("user", user);
 	}
 	
 	//첨부파일 보기

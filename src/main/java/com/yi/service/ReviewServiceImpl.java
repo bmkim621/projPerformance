@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.Criteria;
+import com.yi.domain.MemberVO;
 import com.yi.domain.ReviewAttachVO;
 import com.yi.domain.ReviewVO;
 import com.yi.domain.SearchCriteria;
@@ -56,7 +57,7 @@ public class ReviewServiceImpl implements ReviewService {
 		attachDao.deleteAll(vo.getReviewNo());
 		//수정 결과를 판단하는 변수
 		boolean modifyResult = reviewDao.update(vo);	//DAO에서 수정되면 true 반환
-		if(modifyResult && vo.getAttachList().size() > 0) {
+		if(modifyResult && vo.getAttachList() != null && vo.getAttachList().size() > 0) {
 			vo.getAttachList().forEach(attach -> {
 				attach.setReviewNo(vo.getReviewNo());
 				attachDao.insert(attach);
@@ -122,6 +123,18 @@ public class ReviewServiceImpl implements ReviewService {
 	public int searchTotalCount(SearchCriteria cri) {
 		// TODO Auto-generated method stub
 		return reviewDao.searchTotalCount(cri);
+	}
+
+	@Override
+	public List<MemberVO> getWriter(String id) {
+		// TODO Auto-generated method stub
+		return reviewDao.getWriter(id);
+	}
+
+	@Override
+	public MemberVO getMemberId(String memberCode) {
+		// TODO Auto-generated method stub
+		return reviewDao.getMemberId(memberCode);
 	}
 
 }

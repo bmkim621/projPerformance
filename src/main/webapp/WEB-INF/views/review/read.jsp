@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
 <link href="${pageContext.request.contextPath }/resources/css/review.css?abcb" rel="stylesheet" type="text/css">
@@ -85,6 +86,7 @@
 </div>
 <!-- container end -->
 
+
 <!-- 후기 읽기 -->
 <div class="container-fluid reviewTableContainer">
 
@@ -134,8 +136,10 @@
     	</div>
     	<div class='btnWrapperRight'>
     		<a href="#" class='btnRegister'>글쓰기</a>
-    		<a href="#" class='btnModify'>수정</a>
-    		<a href="#" class='btnRemove'>삭제</a>
+    		<c:if test="${user.id == login.userid }">	
+    			<a href="#" class='btnModify'>수정</a>
+    			<a href="#" class='btnRemove'>삭제</a>
+    		</c:if>  
     	</div>  
     </div>
     

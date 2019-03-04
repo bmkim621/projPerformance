@@ -11,6 +11,7 @@ public class ReviewVO {
 	private String reviewTitle;
 	private String reviewWriter;
 	private List<ReviewAttachVO> attachList;
+	private String memberCode;
 	
 	public int getReviewNo() {
 		return reviewNo;
@@ -54,14 +55,19 @@ public class ReviewVO {
 	public void setAttachList(List<ReviewAttachVO> attachList) {
 		this.attachList = attachList;
 	}
+	public String getMemberCode() {
+		return memberCode;
+	}
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"ReviewVO [reviewNo=%s, reviewContent=%s, reviewPostDate=%s, reviewViewCnt=%s, reviewTitle=%s, reviewWriter=%s, attachList=%s]",
-				reviewNo, reviewContent, reviewPostDate, reviewViewCnt, reviewTitle, reviewWriter, attachList);
+				"ReviewVO [reviewNo=%s, reviewContent=%s, reviewPostDate=%s, reviewViewCnt=%s, reviewTitle=%s, reviewWriter=%s, attachList=%s, memberCode=%s]",
+				reviewNo, reviewContent, reviewPostDate, reviewViewCnt, reviewTitle, reviewWriter, attachList,
+				memberCode);
 	}
-	
-	
 	
 }	

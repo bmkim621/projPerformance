@@ -43,6 +43,9 @@
 		<interceptor>
 			<mapping path="/notice/read"/>
 			<mapping path="/review/register"/>
+			<mapping path="/review/read"/>
+			<mapping path="/review/modify"/>
+			<mapping path="/review/remove"/>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.Criteria;
+import com.yi.domain.MemberVO;
 import com.yi.domain.ReviewAttachVO;
 import com.yi.domain.ReviewVO;
 import com.yi.domain.SearchCriteria;
@@ -102,5 +103,19 @@ public class ReviewDaoImpl implements ReviewDAO {
 		
 		sqlSession.update(namespace + ".updateReplyCnt", map);
 	}
+
+	@Override
+	public List<MemberVO> getWriter(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".getWriter", id);
+	}
+
+	@Override
+	public MemberVO getMemberId(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getMemberId", memberCode);
+	}
+
+
 
 }

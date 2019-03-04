@@ -78,6 +78,7 @@
 }
 </style>
 
+
 <div class="container-fluid reviewContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -115,6 +116,9 @@
 					<th style='width: 20%;'>이름</th>
 					<td>
 	      				<input type='text' value='${info.username }' readonly="readonly" name="reviewWriter" id="reviewWriter">
+	      				<c:forEach items="${list }" var="reviewVO">
+							<input type="hidden" value="${reviewVO.memberCode }" name="memberCode" id="memberCode">
+						</c:forEach>
 					</td>
 				</tr>
 				<tr>

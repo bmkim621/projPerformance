@@ -174,26 +174,6 @@ ALTER TABLE reply
 alter table reply
 	modify column reply_no int(11) not null auto_increment comment '댓글번호';
 
--- 공연관람후기
-CREATE TABLE review (
-	review_no        INT(11)      NOT NULL COMMENT '번호', -- 후기번호
-	review_content   TEXT         NOT NULL COMMENT '내용', -- 내용
-	review_post_date TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-	review_view_cnt  INT(11)      NULL     DEFAULT 0     COMMENT '조회수', -- 조회수
-	review_title     VARCHAR(200) NOT NULL COMMENT '제목', -- 제목
-	review_writer    VARCHAR(20)  NOT NULL COMMENT '작성자' -- 작성자
-)
-COMMENT '공연관람후기';
-
--- 공연관람후기
-ALTER TABLE review
-	ADD CONSTRAINT
-		PRIMARY KEY (
-			review_no -- 후기번호
-		);
-	
-alter table review
-	modify column review_no int(11) not null auto_increment comment '번호';
 
 -- 후기첨부파일
 CREATE TABLE review_attach (
@@ -344,32 +324,6 @@ ALTER TABLE performance
 		facilities_no -- 공연시설번호
 	);
 
--- 댓글
-ALTER TABLE reply
-	ADD CONSTRAINT FK_review_TO_reply -- FK_review_TO_reply
-		FOREIGN KEY (
-			review_no -- 후기번호
-		)
-		REFERENCES review ( -- 공연관람후기
-			review_no -- 후기번호
-		),
-	ADD INDEX FK_review_TO_reply (
-		review_no -- 후기번호
-	);
-
--- 후기첨부파일
-ALTER TABLE review_attach
-	ADD CONSTRAINT FK_review_TO_review_attach -- FK_review_TO_review_attach
-		FOREIGN KEY (
-			review_no -- 후기번호
-		)
-		REFERENCES review ( -- 공연관람후기
-			review_no -- 후기번호
-		),
-	ADD INDEX FK_review_TO_review_attach (
-		review_no -- 후기번호
-	);
-
 -- 좌석
 ALTER TABLE seat
 	ADD CONSTRAINT FK_facilities_TO_seat -- FK_facilities_TO_seat
@@ -394,6 +348,64 @@ ALTER TABLE tbl_member
 		),
 	ADD INDEX FK_grade_TO_tbl_member (
 		grade_code -- 등급코드
+	);
+
+-- 공연관람후기
+CREATE TABLE review (
+	review_no        INT(11)      NOT NULL COMMENT '번호', -- 후기번호
+	review_content   TEXT         NOT NULL COMMENT '내용', -- 내용
+	review_post_date TIMESTAMP    NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
+	review_view_cnt  INT(11)      NULL     DEFAULT 0     COMMENT '조회수', -- 조회수
+	review_title     VARCHAR(200) NOT NULL COMMENT '제목', -- 제목
+	review_writer    VARCHAR(20)  NOT NULL COMMENT '작성자', -- 작성자
+	member_code      CHAR(6)      NULL     COMMENT '회원코드' -- 회원코드
+)
+COMMENT '공연관람후기';
+
+-- 공연관람후기
+ALTER TABLE review
+	ADD CONSTRAINT
+		PRIMARY KEY (
+			review_no -- 후기번호
+		);
+	
+alter table review
+	modify column review_no int(11) not null auto_increment comment '번호';
+
+-- review
+ALTER TABLE review
+	ADD CONSTRAINT FK_tbl_member_TO_review -- tbl_member -> review
+		FOREIGN KEY (
+			member_code -- 회원코드
+		)
+		REFERENCES tbl_member ( -- tbl_member
+			member_code -- 회원코드
+		);
+	
+-- 댓글
+ALTER TABLE reply
+	ADD CONSTRAINT FK_review_TO_reply -- FK_review_TO_reply
+		FOREIGN KEY (
+			review_no -- 후기번호
+		)
+		REFERENCES review ( -- 공연관람후기
+			review_no -- 후기번호
+		),
+	ADD INDEX FK_review_TO_reply (
+		review_no -- 후기번호
+	);
+
+-- 후기첨부파일
+ALTER TABLE review_attach
+	ADD CONSTRAINT FK_review_TO_review_attach -- FK_review_TO_review_attach
+		FOREIGN KEY (
+			review_no -- 후기번호
+		)
+		REFERENCES review ( -- 공연관람후기
+			review_no -- 후기번호
+		),
+	ADD INDEX FK_review_TO_review_attach (
+		review_no -- 후기번호
 	);
 
 -- 댓글 관련

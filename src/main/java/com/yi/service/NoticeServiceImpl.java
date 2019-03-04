@@ -111,8 +111,11 @@ public class NoticeServiceImpl implements NoticeService {
 		attachDao.deleteAll(vo.getNoticeNo());
 			//수정 결과 판단 => 업데이트 되면 true 반환
 			boolean modifyResult = noticeDao.update(vo);
-				
-			if(modifyResult && vo.getAttachList().size() > 0) {
+			
+//			System.out.println("===========> modifyResult " + modifyResult);
+//			System.out.println("===========> size " + vo.getAttachList());        
+			  
+			if(modifyResult && vo.getAttachList() != null && vo.getAttachList().size() > 0) {
 				vo.getAttachList().forEach(attach -> {
 					attach.setNoticeNo(vo.getNoticeNo());
 					attachDao.insert(attach);

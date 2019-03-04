@@ -3,6 +3,7 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.Criteria;
+import com.yi.domain.MemberVO;
 import com.yi.domain.ReviewAttachVO;
 import com.yi.domain.ReviewVO;
 import com.yi.domain.SearchCriteria;
@@ -46,4 +47,10 @@ public interface ReviewDAO {
 	
 	//댓글 작성 시 글제목 옆에 댓글 수도 같이 증가되도록
 	public void updateReplyCnt(int no, int amount);
+	
+	//후기 작성 때 필요한 값들 가져오기
+	public List<MemberVO> getWriter(String id);
+	
+	//회원코드로 아이디 가지고 오기
+	public MemberVO getMemberId(String memberCode);
 }

@@ -9,8 +9,8 @@
 	
 	<!-- 쓰기 -->
 	<insert id="register" parameterType="ReviewVO">
-		insert into review(review_content, review_title, review_writer) values
-		(#{reviewContent}, #{reviewTitle}, #{reviewWriter})
+		insert into review(review_content, review_title, review_writer, member_code) values
+		(#{reviewContent}, #{reviewTitle}, #{reviewWriter}, #{memberCode})  
 	</insert>
 	
 	<!-- 수정 -->
@@ -105,5 +105,23 @@
 		where review_no = #{reviewNo}
 	</update>
 	
+	<!-- 공지사항 작성 때 필요한 값들 가져오기 -->
+	<resultMap type="MemberVO" id="resultMem">
+		<!-- <id column="show_code" property="showCode"/> -->
+		<result column="grade_code" property="gCode.gradeCode"/>
+		<result column="grade_name" property="gCode.gradeName"/>
+	</resultMap>       
+	
+	<select id="getWriter" resultMap="resultMem">                       
+		select member_code, member_name, id, isMember, g.grade_code, g.grade_name
+		from tbl_member left join grade g on tbl_member.grade_code = g.grade_code
+		where id = #{id}    
+	</select>
+	
+	
+	<!-- 아이디 -->
+	<select id="getMemberId" resultType="MemberVO">
+		select * from tbl_member where member_code = #{memberCode}
+	</select>
 	
 </mapper>

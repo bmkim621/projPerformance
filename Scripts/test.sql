@@ -10,11 +10,12 @@ select * from review;
 select * from review_attach;
 
 select count(notice_no) from notice;
+select count(review_no) from review;
 
 insert into notice(content, title, is_notice, member_code, writer)
 (select content, title, is_notice, member_code, writer from notice);
 
-insert into review(review_title, review_writer, review_content) (select review_title, review_writer, review_content from review);
+insert into review(review_title, review_writer, review_content, member_code) (select review_title, review_writer, review_content, member_code from review);
 
 insert into notice(content, title, is_notice, member_code, writer) values
 (null, '유스오페라콰이어 추가모집 안내(재공지)', 1, 'M19002', '관리자'),
