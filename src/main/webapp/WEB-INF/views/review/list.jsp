@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/review.css?a" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/review.css?bb" rel="stylesheet" type="text/css">
 <!-- 구글 아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -77,7 +77,12 @@
 				<tr>
 					<!-- 번호 -->
 					<td>${reviewVO.reviewNo }</td> 
-					<td><a href='${pageContext.request.contextPath}/review/read?no=${reviewVO.reviewNo }&page=${pageMaker.cri.page }&searchType=${cri.searchType }&keyword=${cri.keyword }'>${reviewVO.reviewTitle }</a></td>  
+					<td>    
+						<a href='${pageContext.request.contextPath}/review/read?no=${reviewVO.reviewNo }&page=${pageMaker.cri.page }&searchType=${cri.searchType }&keyword=${cri.keyword }'>${reviewVO.reviewTitle }</a>
+						<c:if test="${reviewVO.replycnt > 0 }">
+							<span class='spanReviewReplyCnt'>[${reviewVO.replycnt }]</span>
+						</c:if>   
+					</td>                                        
 					<td class='text-center'>${reviewVO.reviewWriter }</td>
 					<td class='text-center'><fmt:formatDate value="${reviewVO.reviewPostDate }" pattern="yyyy-MM-dd"/></td>  
 					<td class='text-center'>${reviewVO.reviewViewCnt }</td>

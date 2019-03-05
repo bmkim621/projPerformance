@@ -317,6 +317,13 @@ div.container-fluid.reviewTableContainer{
 	width: 110px;
 }
 
+/* 리스트 옆에 보이는 댓글 수 */
+.spanReviewReplyCnt{
+	font-size: 14.5px;
+	font-weight: bold;
+	color: #2a2f70;    
+}
+
 
 /* 페이지 */
 .pagination {

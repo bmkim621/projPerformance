@@ -17,6 +17,8 @@ public class PerformanceVO {
 	private Date showEnddate;
 	private FacilitiesVO fno;
 	private String showImagePath;
+	//좌석분류
+	private String seatCategory;
 	
 	public String getShowCode() {
 		return showCode;
@@ -72,12 +74,21 @@ public class PerformanceVO {
 	public void setShowImagePath(String showImagePath) {
 		this.showImagePath = showImagePath;
 	}
+	public String getSeatCategory() {
+		return seatCategory;
+	}
+	public void setSeatCategory(String seatCategory) {
+		this.seatCategory = seatCategory;
+	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"PerformanceVO [showCode=%s, showName=%s, showType=%s, totalTime=%s, startTime=%s, showStartdate=%s, showEnddate=%s, fno=%s, showImagePath=%s]",
-				showCode, showName, showType, totalTime, startTime, showStartdate, showEnddate, fno, showImagePath);
+				"PerformanceVO [showCode=%s, showName=%s, showType=%s, totalTime=%s, startTime=%s, showStartdate=%s, showEnddate=%s, fno=%s, showImagePath=%s, seatCategory=%s]",
+				showCode, showName, showType, totalTime, startTime, showStartdate, showEnddate, fno, showImagePath,
+				seatCategory);
 	}
+	
+	
 	
 }

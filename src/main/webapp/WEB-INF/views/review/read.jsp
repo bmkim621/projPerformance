@@ -481,7 +481,7 @@
 		})
 		
 		
-		// 댓글 내용 수정하기
+		// 댓글 내용 수정하기  
 		$(document).on("click", "#btnReplyMod", function(){
 			var replyNo = $("#btnReplyMod").attr("data-rno");
 			var replyContent = $("#replytext").val();
@@ -502,7 +502,7 @@
 					console.log(json);
 					
 					if(json == "success"){
-						alert(replyNo + " 수정되었습니다.");   
+						alert("수정되었습니다.");   
 					}
 					
 					//수정되고 나서 창 안보이게 처리한다.

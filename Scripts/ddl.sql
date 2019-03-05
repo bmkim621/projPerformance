@@ -142,6 +142,7 @@ CREATE TABLE performance (
 	show_startdate  DATE         NOT NULL COMMENT '공연시작일', -- 공연시작일
 	show_enddate    DATE         NOT NULL COMMENT '공연종료일', -- 공연종료일
 	facilities_no   INT(11)      NULL     COMMENT '공연시설번호', -- 공연시설번호
+	seat_category   CHAR(5)      NULL     COMMENT '좌석분류', -- 좌석분류 SEAT0:좌석정해지지않음, SEAT1: 전석, SEAT2: 지정석(등급O)
 	show_image_path TEXT         NULL     COMMENT '공연이미지경로' -- 공연이미지경로
 )
 COMMENT '공연';
@@ -195,8 +196,8 @@ ALTER TABLE review_attach
 
 -- 좌석
 CREATE TABLE seat (
-	loc_code      CHAR(5) NOT NULL COMMENT 'SEAT1: 비지정석, SEAT2: 지정석, SEAT3: 전석', -- loc_code
-	zone          CHAR(3) NOT NULL COMMENT '1A, 2A', -- zone
+	loc_code      CHAR(5) NOT NULL COMMENT 'SEAT1: 전석(등급X), SEAT2: 지정석(등급O)', -- loc_code
+	zone          CHAR(4) NOT NULL COMMENT '1A, 2A', -- zone
 	facilities_no INT(11) NOT NULL COMMENT '공연시설번호', -- 공연시설번호
 	start_loc     INT(11) NULL     COMMENT '1', -- 시작위치
 	end_loc       INT(11) NULL     COMMENT '20' -- 끝위치

@@ -97,6 +97,10 @@
 	vertical-align: middle;
 }
 
+.ui-datepicker .ui-state-active {
+    background-color: #cff3f8 !important;
+}
+
 @media all and (max-width: 760px) {
 	.ui-datepicker-calendar tr td, .ui-datepicker-calendar tr th {
 		width: 35px;

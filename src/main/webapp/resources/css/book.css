@@ -1,0 +1,116 @@
+/* 예매 공통 */
+div.container-fluid.bookContainer {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+div.container-fluid div#bgWrapper {
+	background: url('../images/sub_visual_1.jpg') no-repeat;
+	height: 500px;
+	background-position: center center;
+}
+
+div.container-fluid div#bgWrapper div.headline {
+	width: 200px;
+	overflow: hidden;
+	position: absolute;
+	top: 40%;
+	left: 45%;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	padding-top: 28px;
+}
+
+div.container-fluid div#bgWrapper p.korHeadline {
+	color: white;
+	letter-spacing: -1.2px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 0.5em;
+}
+
+div.container-fluid div#bgWrapper p.engHeadline {
+	letter-spacing: -0.8px;
+	font-size: 22px;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+/* --------- */
+div.container-fluid.bookWrapper div.book-step-wrapper {
+	width: 70%;         
+	margin: 0 auto;
+	padding: 20px;
+	/* border: 2px solid pink;
+	background-color: #fff; */
+	border: 1px solid gray;
+	position: relative;
+}              
+
+/* 진행단계 */
+div.container-fluid.bookWrapper div.book-progress-wrapper{
+	width: 70%;                                
+	margin: 40px auto;
+	margin-top: 80px;               
+	padding: 0;
+	height: 50px;
+	border: 1px solid #ddd;  
+}                    
+
+div.container-fluid.bookWrapper div.book-progress-wrapper ul{
+	list-style: none;
+	width: 100%;
+	height: 49px;   
+	margin: 0;      
+	padding: 0;    
+}
+
+div.container-fluid.bookWrapper div.book-progress-wrapper ul li{
+	float: left;
+	height: 48px;
+	line-height: 48px;
+	width: 20%;
+	border-left: 1px solid #ddd;  
+}
+
+/* 현재 진행 중인 메뉴 */
+div.container-fluid.bookWrapper div.book-progress-wrapper ul li.selectStyle{
+	background: #3d49a2;          
+}
+
+div.container-fluid.bookWrapper div.book-progress-wrapper ul li.selectStyle a{
+	color: white;
+	font-weight: bold;
+	font-size: 17px;
+	letter-spacing: -0.6px;       
+}
+/* 현재 진행 중인 메뉴 끝 */
+
+/* 단계 표시 */
+span.spanStep{
+	font-size: 22px;                   
+}           
+
+div.container-fluid.bookWrapper div.book-progress-wrapper ul li:first-child{
+	border: none;
+}         
+            
+div.container-fluid.bookWrapper div.book-progress-wrapper ul li a{
+	height: 48px;                
+	display: inline-block;
+	width: 100%;
+	color: #626262;     
+	text-decoration: none;
+	font-size: 17px;       
+	letter-spacing: -0.6px;    
+}
+
+/* 달력 */
+#datepicker{
+	
+}

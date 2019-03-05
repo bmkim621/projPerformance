@@ -43,9 +43,9 @@
 				<!-- 폼에 들어갈 내용들 -->
 				<!-- 1. 공연제목 -->
 				<div class="form-group formLabelWrap">          
-					<label for="showName">공연제목</label>            
-					<input type="text" class="form-control" id="showName" name="showName">
-				</div>
+					<label for="showName">공연제목</label>         
+					<input type="text" class="form-control" id="showName" name="showName">       
+				</div>         
 				
 				<!-- 2. 공연종류 -->
 				<div class="form-group" id="showCategory">
@@ -89,20 +89,38 @@
 					<div class="pickDateWrapper">
 						<input type="text" placeholder="공연종료일을 선택해주세요." name="showEnddate" class="form-control datepicker" id="pickEndDate">
 					</div>
-				</div>
+				</div>  
 				
 				<!-- 6. 공연시작시간 -->
 				<div class="form-group">
 					<label for="time">공연시간<input type="button" value="초기화" style="margin-left: 10px" id="btnReset"></label>   
 					<input type="text" class="form-control" id="timepicker" placeholder="공연시간을 선택해주세요." name="startTime">  
-				</div>   
+				</div><hr>    
 				     
 				<!-- 7. 공연장소 선택하기 -->
  				<input type='hidden' name='facilitiesNo' id="fno">
-				<div class="form-group" id="Chkfacilities"></div>     
+				<div class="form-group" id="Chkfacilities"></div><hr> 
+				
+				
+				<!-- 8. 좌석분류 지정하기 -->
+				<input type='hidden' name='seatCategory' id='ChkSeat'>
+				<div class="form-group" id="ChkSeatCategory">
+					<label for="seatCategory">공연 좌석분류 선택</label>  	              
+					<div class="radio">      
+						<label><input type="radio" value="SEAT0" name="selectSeat">
+						<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>미정</label>
+					</div>
+					<div class="radio">      
+						<label><input type="radio" value="SEAT1" name="selectSeat">
+						<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>전석</label>
+					</div>
+					<div class="radio">      
+						<label><input type="radio" value="SEAT2" name="selectSeat">
+						<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>지정석</label>
+					</div>
+				</div><hr>                
 
-
-				<!-- 8. 사진 업로드 이미지 --> 
+				<!-- 9. 사진 업로드 이미지 --> 
 				<div class="form-group">
 					<label for="showImage">공연 이미지 업로드</label>    
 					<!-- image-preview-filename input [CUT FROM HERE]-->
@@ -164,6 +182,12 @@
 		$("#btnAddPerf").click(function(){
 			var item = $("input[name='place']:checked").val();
 			$("#fno").val(item);
+			
+			
+			//좌석분류
+			var selectSeat = $("input[name='selectSeat']:checked").val();
+			$("#ChkSeat").val(selectSeat);
+			
 			
 			//공연시간
 			 var totaltime = $("#totalTime").val();
