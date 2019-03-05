@@ -2,13 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/book.css?abbb" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/resources/css/myDatepicker.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?abccc" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/book.js"></script>
-
+                   
 <div class="container-fluid bookContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -45,9 +44,10 @@
 	                           
 	<div class='book-step-wrapper'>
 	
-	<!-- 달력 --><div id="datepicker"></div>
+	<!-- 달력 -->
+	<div id="datepicker" class="calendar"></div>
 	<!-- 정보 -->
-	<div class='temp'></div>
+	<div class='temp'></div>          
 	
 	<h4>${list }</h4>          
 	
