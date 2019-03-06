@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ include file="../include/header.jsp"%>
-<!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/book.css?ccc" rel="stylesheet" type="text/css">
+<!-- 내가 만든 css 파일 -->  
+<link href="${pageContext.request.contextPath }/resources/css/book.css?ca" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- js -->
@@ -48,7 +48,7 @@
 		</ul>
 	</div>                                             
 	          
-                      
+                          
 	<div class='book-step-wrapper'>
 		<div class="row">          
 			<div class="col-md-9">

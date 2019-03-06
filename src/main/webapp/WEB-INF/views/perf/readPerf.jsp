@@ -71,9 +71,9 @@
 					</li>
 				</ul>
 			</div>
-			
+			  
 			<div class='btnWrapper'>
-				<a href="${pageContext.request.contextPath }/book/StepOne?showName=${PerformanceVO.showName }"><img src="${pageContext.request.contextPath }/resources/upload/btn_reservation1.gif"></a>
+				<a href="${pageContext.request.contextPath }/book/stepOne?showName=${PerformanceVO.showName }"><img src="${pageContext.request.contextPath }/resources/upload/btn_reservation1.gif"></a>
 				<a href="#" class='btnGoList'><img src="${pageContext.request.contextPath }/resources/upload/btn_list.gif"></a>
 			</div>
 			

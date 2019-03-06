@@ -2,13 +2,17 @@ package com.yi.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class BookVO {
 	private String bookNumber;
 	private MemberVO mCode;	//회원코드
 	private PerformanceVO sCode;	//공연코드
 	private PaymentVO pCode;		//결제방식코드
-	private DiscountVO dCode;		//할인분류코드
+	private DiscountVO dCode;
+	@DateTimeFormat(pattern="yyyy-MM-dd")//할인분류코드
 	private Date bookDate;	//예매일
+	@DateTimeFormat(pattern="HH:mm")
 	private Date bookTime;	//예매시간
 	private int bookState;	//예매상태 0: 예매완료, 1: 예매중
 	private int bookFloor;	//예매하려고하는 층

@@ -1,6 +1,7 @@
 package com.yi.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class BookDaoImpl implements BookDAO {
 	public List<PerformanceVO> selectListByShowName(String showName) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".selectListByShowName", showName);
+	}
+
+	@Override
+	public List<PerformanceVO> searchPerformance(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
   
 	

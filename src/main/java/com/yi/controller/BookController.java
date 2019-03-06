@@ -2,8 +2,12 @@ package com.yi.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -34,43 +38,67 @@ public class BookController {
 	private BookService service;
 	
 	//이름으로 공연정보 가지고 오기
-	@RequestMapping(value = "StepOne", method = RequestMethod.GET)
+	@RequestMapping(value = "stepOne", method = RequestMethod.GET)
 	public void stepOneGet(String showName, Model model) {
 		logger.info("=====> Book StepOne : GET");
-		                             
-		PerformanceVO vo = service.perfListAllByShowName(showName);
-		List<PerformanceVO> list = service.selectListByShowName(showName);  
+		logger.info("showname = " + showName);
 		
+		PerformanceVO vo = service.perfListAllByShowName(showName);
+		List<PerformanceVO> list = service.selectListByShowName(showName);
+			
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 	}
 	
 	//날짜로 공연정보 가지고 오기  
-	/*@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.GET)*/
-/*	public ResponseEntity<PerformanceVO> search(String bookDate, String bookTime){
-		ResponseEntity<PerformanceVO> entity = null;
+	@ResponseBody   
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<List<PerformanceVO>> search(String showName, String bookDate, String bookTime) {
+		ResponseEntity<List<PerformanceVO>> entity = null;
 		
 		logger.info("====== Search ======");
 		logger.info("bookDate = " + bookDate);
 		logger.info("bookTime = " + bookTime);
+		logger.info("showname = " + showName);
 		
-		//날짜 Date로 바꾸기
-		SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat sdft = new SimpleDateFormat("HH:mm:ss");
-		//바꾸기
-		
-		 
+		Map<String, Object> map = new HashMap<>();
 		
 		try {
+			//공연이름
+			if(!showName.equals("")) {          
+				map.put("showName", showName);   
+			}     
+			                            
+			//예매날짜       
+			if(bookDate != null) {                  
+				//날짜 Date로 바꾸기
+				SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd");
+				Date selectBookDate = sdfd.parse(bookDate);
+				
+				logger.info("선택한 날짜 = " + selectBookDate);
+				map.put("bookDate", selectBookDate);
+			}
+			
+			//회차선택                         
+			if(bookTime != null) {      
+				SimpleDateFormat sdft = new SimpleDateFormat("HH:mm");
+				Date selectBookTime = sdft.parse(bookTime);
+				
+				logger.info("선택한 회차 = " + selectBookTime);
+				map.put("bookTime", selectBookTime);
+			}
+			
+			logger.info("map =====> " + map);   
+			List<PerformanceVO> list = service.searchPerformance(map);
+			entity = new ResponseEntity<List<PerformanceVO>>(list, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);  
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}*/
+	}  
 	  
 	
 	

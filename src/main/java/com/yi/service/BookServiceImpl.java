@@ -1,6 +1,7 @@
 package com.yi.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class BookServiceImpl implements BookService {
 	public List<PerformanceVO> selectListByShowName(String showName) {
 		// TODO Auto-generated method stub
 		return dao.selectListByShowName(showName);
+	}
+
+	@Override
+	public List<PerformanceVO> searchPerformance(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.searchPerformance(map);
 	}
 
 
