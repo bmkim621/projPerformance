@@ -18,6 +18,12 @@
 		where show_name = #{showName}                         
 	</select>
 	
+	<select id="perfListAllByShowName" resultMap="resultPerf">  
+		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, start_time, show_image_path, facilities_no, seat_category
+		from performance
+		where show_name = #{showName}         
+	</select>
+	
 	
     
 

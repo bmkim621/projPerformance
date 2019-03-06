@@ -1,37 +1,26 @@
 $(function(){
-	var availableDates = ["2019-03-10", "2019-03-11"];
-
+		
 	function available(date) {
-
-		var thismonth = date.getMonth() + 1;
-
-		var thisday = date.getDate();
-
+		var thismonth = date.getMonth() + 1;	//월
+		var thisday = date.getDate();			//일
+		
 		if (thismonth < 10) {
-
-			thismonth = "0" + thismonth;
-
+			thismonth = "0" + thismonth;	//1~9월은 앞에 0이 붙도록 함. 01, 02, .. 09월
 		}
-
-		if (thisday < 10) {
-
+		if (thisday < 10) {					//1~9일은 앞에 9이 붙도록 함. 01, 02, .. 09일
 			thisday = "0" + thisday;
-
 		}
 
-		ymd = date.getFullYear() + "-" + thismonth + "-" + thisday;
+		ymd = date.getFullYear() + "-" + thismonth + "-" + thisday;	// 년-월-일
 
 		if ($.inArray(ymd, availableDates) >= 0) {
-
-			return [ true, "ui-state-active", "" ];
-
+			return [ true, "ui-state-active", "" ];	//availableDates에 해당하는 날만 활성화(true)하고, 클래스 이름(ui-state-active)을 추가한다.
 		} else {
-
-			return [ false, "my-ui-state-inactive", "" ];
-
+			return [ false, "my-ui-state-inactive", "" ];	//availableDates에 해당하는 날에 비활성화(false)하고, 클래스 이름을 추가한다.
 		}
-
+		console.log(availableDates);
 	}
+	
 
 	// 공연시작일
 	$("#datepicker").datepicker(
@@ -48,14 +37,15 @@ $(function(){
 			dateFormat : 'yy-mm-dd',
 			beforeShowDay: available,	//함수이름  
 			firstDay : 0,
-			isRTL : false,
-			showOtherMonths : true,
-			selectOtherMonths : true,
+			isRTL : false,         
+			showOtherMonths : false,  
+			selectOtherMonths : true,	
 			showMonthAfterYear : true,
 			yearSuffix : '년',
-			onSelect: function(dateText, inst) {
+			onSelect: function(dateText, inst) {	//날짜 선택했을 때
 				var date = $(this).val();
-				console.log(date);
+//				console.log(date);         
+				$("#chkBookDate").val(date);	//input 태그에 값 넣음.        
 				                   
 //		        alert('선택하신 날짜는 '+date);
 		    }                           

@@ -13,11 +13,19 @@ public class BookDaoImpl implements BookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String namespace = "com.yi.mapper.BookMapper";
+	
+	@Override
+	public PerformanceVO perfListAllByShowName(String showName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".perfListAllByShowName", showName);      
+	}
 
 	@Override
 	public List<PerformanceVO> selectListByShowName(String showName) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".selectListByShowName", showName);
 	}
+  
+	
 
 }

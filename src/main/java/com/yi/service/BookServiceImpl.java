@@ -15,9 +15,16 @@ public class BookServiceImpl implements BookService {
 	private BookDAO dao;
 
 	@Override
+	public PerformanceVO perfListAllByShowName(String showName) {
+		// TODO Auto-generated method stub    
+		return dao.perfListAllByShowName(showName);
+	}
+
+	@Override
 	public List<PerformanceVO> selectListByShowName(String showName) {
 		// TODO Auto-generated method stub
 		return dao.selectListByShowName(showName);
 	}
+
 
 }
