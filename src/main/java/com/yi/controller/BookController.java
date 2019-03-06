@@ -2,6 +2,7 @@ package com.yi.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -43,6 +44,37 @@ public class BookController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 	}
+	
+	//날짜로 공연정보 가지고 오기  
+	/*@ResponseBody
+	@RequestMapping(value = "", method = RequestMethod.GET)*/
+/*	public ResponseEntity<PerformanceVO> search(String bookDate, String bookTime){
+		ResponseEntity<PerformanceVO> entity = null;
+		
+		logger.info("====== Search ======");
+		logger.info("bookDate = " + bookDate);
+		logger.info("bookTime = " + bookTime);
+		
+		//날짜 Date로 바꾸기
+		SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdft = new SimpleDateFormat("HH:mm:ss");
+		//바꾸기
+		
+		 
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);  
+		}
+		return entity;
+	}*/
+	  
+	
+	
+	     
 	   
 	// 서버 <-> 브라우저(데이터 요청하면 보내줄거니까 안보여도 됨) 파일명에 해당하는 이미지의 데이터만 줌.
 	@ResponseBody

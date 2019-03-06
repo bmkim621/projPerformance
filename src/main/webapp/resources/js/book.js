@@ -44,10 +44,9 @@ $(function(){
 			yearSuffix : '년',
 			onSelect: function(dateText, inst) {	//날짜 선택했을 때
 				var date = $(this).val();
-//				console.log(date);         
-				$("#chkBookDate").val(date);	//input 태그에 값 넣음.        
-				                   
+//				console.log(date);         	                                     
 //		        alert('선택하신 날짜는 '+date);
+		        $("#book-date-span").text(date);	//값 넣음.
 		    }                           
 		});
 	

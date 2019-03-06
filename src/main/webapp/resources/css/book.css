@@ -376,5 +376,205 @@ div.selectPerfWrapper{
 	width: 300px;                                                                                  
 	height: 578px;                                           
 	background-color: #353535;
-	display: inline-block;          
+	display: inline-block;
+	overflow: hidden;
+	padding: 10px;        
 }           
+
+/* 공연이미지 */
+div.chkImgContainer{
+	width: 280px;
+	height: 145px;           
+}      
+
+div.chkImgContainer img{        
+	height: 145px;
+	width: 110px;   
+	float: left;     
+}
+
+div.perf-contents-wrapper{
+	width: 150px;  
+	height: 145px;         
+	display: inline-block;
+	margin-left: 11px;
+	padding: 5px;    
+}       
+
+span.perfDateSpan{
+	font-size: 13px;
+	color: white;             
+	letter-spacing: -0.5px;
+	margin-top: 8px;          
+	display: inline-block;
+	width: 148px; 
+}
+
+span.perfTitleSpan{
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	letter-spacing: -0.5px;
+	width: 120px;  
+	display: inline-block;
+	width: 148px;            	
+}
+
+span.perfPlaceSpan{
+	font-size: 13px;
+	color: white;
+	letter-spacing: -0.5px;
+	width: 120px;
+	display: inline-block; 
+	margin-top: 5px;
+	width: 148px;        
+}
+
+span.perfTimeSpan{
+	display: inline-block;
+	font-size: 13px;
+	color: white;
+	letter-spacing: -0.5px;
+	width: 120px;
+	width: 148px;   
+}
+
+/* 선택내역 */
+div.chkMyContainer{
+	width: 280px;
+	height: 145px;
+	/* background-color: yellow; */
+	border-top: 1px solid #626262;    
+	overflow: hidden;
+	margin-top: 15px;                  
+}
+
+div.chkMyContainer h4{
+	font-size: 16px;
+	letter-spacing: -0.5px;
+	color: #f04040;   
+	font-weight: bold;
+	padding-top: 8px;
+	padding-bottom: 8px;         
+}
+
+div.chkMyContainer i{
+	margin-right: 5px;
+}
+
+div.choice-info-wrapper{
+	overflow: hidden;
+	width: 280px;
+	height: 100px;            
+}
+
+span.info-total-span{
+	display: inline-block;         
+	width: 280px;
+	height: 30px;    
+	margin-bottom: 5px;
+}    
+       
+span.info-title-span{
+	width: 80px;
+	display: inline-block;
+	height: 29px;
+	line-height: 29px;
+	color: #8C8C8C;                          
+	font-size: 15px;
+	letter-spacing: -0.5px;        
+}
+
+span.info-contents-span{
+	display: inline-block;
+	height: 29px;
+	line-height: 29px;
+	color: white;
+	font-size: 15px;    
+	width: 160px;
+	padding-left: 30px;            
+	letter-spacing: -0.5px;   
+}
+        
+/* 결제내역 */
+div.chkPaymentContainer{
+	width: 280px;
+	height: 150px;                 
+	overflow: hidden;
+	margin-top: 15px;           
+}
+                    
+div.chkPaymentContainer h4{
+	font-size: 16px;      
+	letter-spacing: -0.5px;
+	font-weight: bold;
+	/* color: #ccc;  */   
+	color: #f04040;                       
+}
+
+div.chkPaymentContainer i{
+	margin-right: 5px;
+}
+
+span.info-credit-span{
+	display: inline-block;         
+	width: 280px;
+	height: 29px;                         
+	margin-bottom: 2px;         
+}        
+                
+/* 단계 이동하는 버튼 */
+div.chkMyStepContainer{    
+	width: 280px;
+	height: 70px;                               
+	overflow: hidden;        
+	margin-top: 15px;    
+}  
+
+button#btnNextStep{
+	border: 1px solid #4C4C4C;            
+	width: 280px;
+	height: 35px;
+	color: white;
+	background: #3b417d;                      
+	font-size: 16px;      
+	letter-spacing: -0.5px;
+	font-weight: bold;  
+}
+
+span.spanTotalPrice{ 
+	display: inline-block;
+	height: 30px;
+	width: 280px;
+	margin-bottom: 5px;
+}  
+
+span.spanTotalPriceTitle{
+	font-size: 16px;               
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	color: white;
+	padding-left: 5px;           
+}
+
+/* 가격 */
+span.spanPerfTotalPrice{
+	font-size: 16px;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	color: #F2CB61;
+	display: inline-block;
+	width: 140px;         
+	margin-left: 20px;           
+	text-align: right;      
+}
+
+span.spanWon{
+	color: white;
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
+	float: right;
+}

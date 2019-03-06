@@ -15,8 +15,8 @@
 	<select id="selectListByShowName" resultMap="resultPerf">
 		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, show_image_path, performance.facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name, seat_category
 		from performance left join facilities on performance.facilities_no = facilities.facilities_no
-		where show_name = #{showName}                         
-	</select>
+	    where show_name = #{showName}                 
+	</select>  
 	
 	<select id="perfListAllByShowName" resultMap="resultPerf">  
 		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, start_time, show_image_path, facilities_no, seat_category
@@ -24,6 +24,16 @@
 		where show_name = #{showName}         
 	</select>
 	
+	<sql id="whereSql">
+		<where>
+			<if test="bookDate != null">
+				AND show_startdate = #{bookDate} and show_name = #{showName}
+			</if>
+			<if test="bookTime != null">
+				AND start_time = #{bookTime} and show_name = #{showName}
+			</if>  
+		</where>
+	</sql>
 	
     
 

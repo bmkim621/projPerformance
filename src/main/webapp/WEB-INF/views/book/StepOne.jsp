@@ -3,11 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/book.css?abc" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?ccc" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- js -->
-<script src="${pageContext.request.contextPath }/resources/js/book.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/book.js?a"></script>
 
 <script>
  var availableDates = [
@@ -33,7 +33,7 @@
 </div>
 <!-- container end -->
   
-<p><img src="displayFile?filename=${vo.showImagePath }"></p>  
+<p></p>  
 <h4>${vo }</h4>         
 <!-- 공연안내  -->
 <div class="container-fluid bookWrapper">
@@ -87,18 +87,79 @@
 			<div class="col-md-3">     
 				<!-- 선택한 정보 나오는 곳 -->
 				<div class='selectPerfWrapper'>
-					내용.....어쩌고.....저쩌고........
-				</div>
-			</div> 
-			                      
+					<div class='chkImgContainer'>
+						<!-- 공연사진 -->
+						<img src="displayFile?filename=${vo.showImagePath }">
+						<div class='perf-contents-wrapper'>
+							<span class='perfTitleSpan'>${vo.showName }</span>
+							<span class='perfDateSpan'><fmt:formatDate value="${vo.showStartdate }" pattern="yyyy. MM. dd"/>&nbsp;~&nbsp;<fmt:formatDate value="${vo.showEnddate }" pattern="yyyy. MM. dd"/></span>
+							<!-- 공연장소 -->
+							<c:if test="${vo.fno.facilitiesNo == 1 }"><span class='perfPlaceSpan'>대구오페라하우스 본관</span></c:if>
+							<c:if test="${vo.fno.facilitiesNo == 2 }"><span class='perfPlaceSpan'>별관 카메라타</span></c:if>
+							<!-- 공연총시간 -->
+							<c:if test="${vo.totalTime == 0 }"><span class='perfTimeSpan'>공연시간 : 미정</span></c:if>
+							<span class='perfTimeSpan'>공연시간 : <c:if test="${vo.totalTime != 0 }">${vo.totalTime }</c:if>분</span>
+						</div>		  
+					</div>  <!-- chkImgContainer end -->
+					
+					<div class='chkMyContainer'>
+						<h4><i class="fas fa-calendar-check"></i>선택내역</h4>
+						<div class='choice-info-wrapper'>
+							<span class='info-total-span'>     
+								<span class='info-title-span'>예매일시</span>
+								<span class='info-contents-span' id="book-date-span">&nbsp;</span>
+							</span>        
+							<span class='info-total-span'>
+								<span class='info-title-span'>예매시간</span>
+								<span class='info-contents-span' id="book-time-span">&nbsp;</span>
+							</span>
+							<span class='info-total-span'>
+								<span class='info-title-span'>좌석</span>
+								<span class='info-contents-span' id="book-seat-span">&nbsp;</span>  
+							</span>			
+						</div>
+					</div>
+					
+					<div class='chkPaymentContainer'>
+						<h4><i class="far fa-credit-card"></i>결제내역</h4>
+						<div class='payment-info-wrapper'>
+							<span class='info-credit-span'>     
+								<span class='info-title-span'>티켓금액</span>   
+								<span class='info-contents-span' id="book-price-span">&nbsp;</span>
+							</span>
+							<span class='info-credit-span'>     
+								<span class='info-title-span'>예매수수료</span>
+								<span class='info-contents-span' id="book-fee-span">&nbsp;</span>
+							</span>
+							<span class='info-credit-span'>     
+								<span class='info-title-span'>배송료</span>
+								<span class='info-contents-span' id="book-delivery-span">&nbsp;</span>
+							</span>
+							<span class='info-credit-span'>     
+								<span class='info-title-span'>할인금액</span>
+								<span class='info-contents-span' id="book-discount-span">&nbsp;</span>
+							</span>
+						</div>  
+					</div>
+					
+					<div class='chkMyStepContainer'>
+						<span class='spanTotalPrice'>
+							<span class='spanTotalPriceTitle'>최종 결제금액</span>
+							<span class='spanPerfTotalPrice'>&nbsp;</span><span class='spanWon'>원</span>
+						</span>
+						<button id="btnNextStep">다음단계</button>           
+					</div>            
+				</div>           
+			</div>                 
+	  		                              
 		</div>             
 	</div>
-</div>
+</div>        
+
+                   
 
 
-
-
-
+  
 
 
 
