@@ -1,5 +1,6 @@
 $(function(){
-		
+	
+	//특정일 활성화
 	function available(date) {
 		var thismonth = date.getMonth() + 1;	//월
 		var thisday = date.getDate();			//일
@@ -19,7 +20,48 @@ $(function(){
 			return [ false, "my-ui-state-inactive", "" ];	//availableDates에 해당하는 날에 비활성화(false)하고, 클래스 이름을 추가한다.
 		}
 		console.log(availableDates);
-	}
+	}    
+	
+	//날짜선택
+	function selectBookDate(date){
+//		alert("test");     
+//		console.log(date);
+		var showName = $(".perfTitleSpan").text();   
+		console.log(showName);
+		
+		var bookDate = $("#book-date-span").text();
+		console.log(bookDate);
+		
+		var bookTime = $("#book-time-span").text();
+		console.log(bookTime);
+		
+		$.ajax({
+			
+			url: contextPath + "/book/search",  
+			type: "GET",
+			data:{showName:showName, bookDate: bookDate, bookTime: bookTime },
+			dataType: "json",              
+			success: function(json){
+				             
+				console.log(json);
+				
+				$(".PerfInfoWrapper").empty();
+				
+				var source = $("#template").html();
+				var f = Handlebars.compile(source);   
+				var result = f(json);
+				$(".PerfInfoWrapper").append(result);
+				
+			}
+		})	//ajax end
+		
+		
+		
+		
+//		location.href = contextPath+"/book/search?showName=" + showName + "&bookDate=" + bookDate + "&bookTime=" + bookTime;	
+		
+		
+	}   
 	
 
 	// 공연시작일
@@ -47,8 +89,38 @@ $(function(){
 //				console.log(date);         	                                     
 //		        alert('선택하신 날짜는 '+date);
 		        $("#book-date-span").text(date);	//값 넣음.
-		    }                           
+		        selectBookDate(date);          
+		    }                                          
 		});
+	
+	
+	//시간 선택했을 때 => 동적으로 추가했기 때문에 document.on(~~) 사용해야 함.
+	$(document).on("click", ".btntest", function(){
+		var res = $(this).val();
+//		console.log(res);
+		$("#book-time-span").html(res);
+		
+		var showName = $(".perfTitleSpan").text();   
+		var bookDate = $("#book-date-span").text();
+		var bookTime = $("#book-time-span").text();  
+
+		$.ajax({
+			url : contextPath + "/book/search",
+			type : "GET",
+			data : {showName : showName, bookDate : bookDate, bookTime : bookTime},
+			dataType : "json",
+			success : function(json) {
+
+				console.log(json);
+
+				var source = $("#template2").html();
+				var f = Handlebars.compile(source);  
+				var result = f(json);
+				$(".PerfInfoWrapper").append(result);            
+			}
+		}) // ajax end
+		
+	})            
 	
 	
      

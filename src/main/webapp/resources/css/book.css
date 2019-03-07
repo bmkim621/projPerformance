@@ -42,8 +42,8 @@ div.container-fluid div#bgWrapper p.engHeadline {
 }
 
 /* --------- */
-div.container-fluid.bookWrapper div.book-step-wrapper {
-	width: 70%;         
+div.container.bookWrapper div.book-step-wrapper {
+	width: 100%;         
 	margin: 0 auto;      
 	/* border: 2px solid pink;
 	background-color: #fff; */
@@ -53,16 +53,16 @@ div.container-fluid.bookWrapper div.book-step-wrapper {
 }                        
 
 /* 진행단계 */        
-div.container-fluid.bookWrapper div.book-progress-wrapper{
-	width: 70%;                                
+div.container.bookWrapper div.book-progress-wrapper{
+	width: 100%;                                
 	margin: 40px auto;
-	margin-top: 80px;               
+	margin-top: 80px;                      
 	padding: 0;
 	height: 50px;
-	border: 1px solid #ddd;  
+	border: 1px solid #ddd;    
 }                    
 
-div.container-fluid.bookWrapper div.book-progress-wrapper ul{
+div.container.bookWrapper div.book-progress-wrapper ul{
 	list-style: none;
 	width: 100%;
 	height: 49px;   
@@ -70,7 +70,7 @@ div.container-fluid.bookWrapper div.book-progress-wrapper ul{
 	padding: 0;    
 }
 
-div.container-fluid.bookWrapper div.book-progress-wrapper ul li{
+div.container.bookWrapper div.book-progress-wrapper ul li{
 	float: left;
 	height: 48px;
 	line-height: 48px;
@@ -79,11 +79,11 @@ div.container-fluid.bookWrapper div.book-progress-wrapper ul li{
 }
 
 /* 현재 진행 중인 메뉴 */
-div.container-fluid.bookWrapper div.book-progress-wrapper ul li.selectStyle{
+div.container.bookWrapper div.book-progress-wrapper ul li.selectStyle{
 	background: #3d49a2;          
 }
 
-div.container-fluid.bookWrapper div.book-progress-wrapper ul li.selectStyle a{
+div.container.bookWrapper div.book-progress-wrapper ul li.selectStyle a{
 	color: white;
 	font-weight: bold;
 	font-size: 17px;
@@ -96,11 +96,11 @@ span.spanStep{
 	font-size: 22px;                   
 }           
 
-div.container-fluid.bookWrapper div.book-progress-wrapper ul li:first-child{
+div.container.bookWrapper div.book-progress-wrapper ul li:first-child{
 	border: none;
 }         
             
-div.container-fluid.bookWrapper div.book-progress-wrapper ul li a{
+div.container.bookWrapper div.book-progress-wrapper ul li a{
 	height: 48px;                
 	display: inline-block;
 	width: 100%;
@@ -110,7 +110,7 @@ div.container-fluid.bookWrapper div.book-progress-wrapper ul li a{
 	letter-spacing: -0.6px;    
 }
 
-/* 달력 감싸는 div */
+/* 달력 감싸는 div */  
 div.datepickerWrapper{
 	border: 1px solid #bebebe;
 	display: inline-block;
@@ -325,14 +325,15 @@ span.spanTitle{
 	border-top: 1px solid #bebebe;
 	border-right: 1px solid #bebebe;
 	border-bottom: 1px solid #bebebe;
-	width: 600px;                               
+	width: 420px;                                         
 	height: 373px;             
-	display: inline-block;       
+	display: inline-block;
+	padding: 10px;     
 }      
 
 /* 유의사항 */
 div.bookNoticeWrapper{  
-	width: 882px;                                        
+	width: 702px;                                                              
 	overflow: hidden;
 	margin-top: 10px;        
 	display: inline-block;
@@ -367,14 +368,14 @@ span.spanUnderline{
 	text-decoration: underline;
 }
 
-.col-md-9{
+/* .col-md-9{
 	padding-left: 50px;            
 }
-
+ */
 /* 선택한 정보 나오는 곳 */  
 div.selectPerfWrapper{
-	width: 300px;                                                                                  
-	height: 578px;                                           
+	width: 320px;                                                                                       
+	height: 581px;                                                     
 	background-color: #353535;
 	display: inline-block;
 	overflow: hidden;
@@ -465,36 +466,15 @@ div.chkMyContainer i{
 div.choice-info-wrapper{
 	overflow: hidden;
 	width: 280px;
-	height: 100px;            
-}
-
-span.info-total-span{
-	display: inline-block;         
-	width: 280px;
-	height: 30px;    
-	margin-bottom: 5px;
-}    
-       
-span.info-title-span{
-	width: 80px;
-	display: inline-block;
-	height: 29px;
-	line-height: 29px;
-	color: #8C8C8C;                          
-	font-size: 15px;
-	letter-spacing: -0.5px;        
+	height: 100px;                   
 }
 
 span.info-contents-span{
-	display: inline-block;
-	height: 29px;
-	line-height: 29px;
 	color: white;
-	font-size: 15px;    
-	width: 160px;
-	padding-left: 30px;            
-	letter-spacing: -0.5px;   
-}
+	font-size: 15px;              
+	letter-spacing: -0.5px;
+	padding-left: 50px;        
+}      
         
 /* 결제내역 */
 div.chkPaymentContainer{
@@ -515,13 +495,6 @@ div.chkPaymentContainer h4{
 div.chkPaymentContainer i{
 	margin-right: 5px;
 }
-
-span.info-credit-span{
-	display: inline-block;         
-	width: 280px;
-	height: 29px;                         
-	margin-bottom: 2px;         
-}        
                 
 /* 단계 이동하는 버튼 */
 div.chkMyStepContainer{    
@@ -577,4 +550,68 @@ span.spanWon{
 	height: 30px;
 	line-height: 30px;
 	float: right;
+}
+
+p.myTitle{
+	margin-bottom: 10px;
+	color: #8C8C8C;
+	font-size: 15px;
+	letter-spacing: -0.5px;
+}
+
+/* 회차 */
+div.timeTitleWrapper{
+	border: 1px solid red;
+	width: 35%;
+	height: 350px;
+	display: inline-block;
+	margin-right: 20px;     
+	float: left;
+	padding: 10px;   
+}
+
+div.timeTitleWrapper h4{
+	font-size: 17px;
+	font-weight: bold;
+	color: #535353;
+	margin-bottom: 15px;
+}
+
+div.chkTimeWrapper{
+	border-top: 1px solid #dcdcdc;
+	padding-top: 20px;
+}
+
+input.btnSelectTime{
+	width: 117px;      
+	height: 35px;
+	line-height: 32px;    
+	margin-bottom: 10px;
+	background-color: #ffe8e9;
+	color: #666;            
+	font-size: 15px;      
+	font-weight: bold;
+	border: 1px solid #dcdcdc;     
+}
+
+/* 회차 클릭했을 경우 */
+input.btnSelectTime.btnActive{
+	width: 117px;           
+	height: 35px;
+	line-height: 32px;    
+	margin-bottom: 10px;
+	background-color: #ff868b;
+	color: #fff;              
+	font-size: 15px;      
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+}
+
+/* 장소 */
+div.seatTitleWrapper{
+	border: 1px solid blue;
+	width: 58%;                                     
+	height: 350px;
+	display: inline-block;
+	float: right;                 
 }

@@ -1,6 +1,9 @@
 package com.yi.projPerformance;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,10 +20,11 @@ public class BookDaoTest {
 	@Autowired
 	private BookDAO dao;
 	
-	@Test
+	//@Test
 	public void test01selectListByShowName() {
 		List<PerformanceVO> list = dao.selectListByShowName("뮤지컬 시카고");
 		System.out.println(list);
 	}
+	
 }
    

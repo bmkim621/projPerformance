@@ -30,7 +30,7 @@ public class BookDaoImpl implements BookDAO {
 	@Override
 	public List<PerformanceVO> searchPerformance(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".searchPerformance", map);
 	}
   
 	

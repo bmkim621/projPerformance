@@ -21,6 +21,9 @@
 <!-- css -->
 <link href="${pageContext.request.contextPath }/resources/css/common.css?b" rel="stylesheet" type="text/css">
 <title>재단법인 대구오페라하우스</title>
+<script>
+	var contextPath = "${pageContext.request.contextPath}";          
+</script>
 </head>
 <body>
 

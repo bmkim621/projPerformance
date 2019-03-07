@@ -3,20 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?ca" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?s" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- js -->
-<script src="${pageContext.request.contextPath }/resources/js/book.js?a"></script>
+<script src="${pageContext.request.contextPath }/resources/js/book.js?bbb"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
-<script>
+<script>  
  var availableDates = [
-	<c:forEach items="${list }" var="performanceVO">
-		'<fmt:formatDate value="${performanceVO.showStartdate }" pattern="yyyy-MM-dd"/>',   
+	<c:forEach items="${list }" var="vo">        
+		'<fmt:formatDate value="${vo.showStartdate }" pattern="yyyy-MM-dd"/>',   
 	</c:forEach>
 ];   
 </script>
-
+  
 <div class="container-fluid bookContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -32,11 +33,11 @@
 	<!-- row end -->           
 </div>
 <!-- container end -->
-  
-<p></p>  
-<h4>${vo }</h4>         
+
+
+
 <!-- 공연안내  -->
-<div class="container-fluid bookWrapper">
+<div class="container bookWrapper">
 	<!-- 진행 단계 선택 -->
 	<div class="book-progress-wrapper">
 		<ul>
@@ -47,11 +48,10 @@
 			<li><a href="#"><span class='spanStep'>05</span>&nbsp;&nbsp;결제하기</a></li>
 		</ul>
 	</div>                                             
-	          
-                          
+	
 	<div class='book-step-wrapper'>
 		<div class="row">          
-			<div class="col-md-9">
+			<div class="col-md-8">
 				<div class='datepickerWrapper'>
 					<h4>관람일 선택</h4>                     
 					<!-- 달력 데이트 피커-->                     
@@ -66,8 +66,23 @@
 				</div>        
 				
 				<!-- 정보 -->   
-				<div class='PerfInfoWrapper'>testtest</div> 
-				       
+				<div class='PerfInfoWrapper'>
+					<div class='timeTitleWrapper'>
+						<h4>회차(관람시간)</h4>
+						<div class='chkTimeWrapper'>
+							<input type='button' value='15:00' class='btnSelectTime btnActive'>  
+							<input type='button' value='20:00' class='btnSelectTime'>
+						</div>
+					</div>
+					<div class='seatTitleWrapper'>
+						<h4>좌석등급/잔여석</h4>
+						<div class='chkSeatWrapper'>
+							
+						
+						</div>
+					</div>
+				</div> 
+				                                
 				<!-- 유의사항 -->
 				<div class='bookNoticeWrapper'>
 					<span id='spanNoticeTitle'>유의사항</span>                   
@@ -83,8 +98,8 @@
 				</div> 
 				            
 			</div>               
-	
-			<div class="col-md-3">     
+	  
+			<div class="col-md-4">     
 				<!-- 선택한 정보 나오는 곳 -->
 				<div class='selectPerfWrapper'>
 					<div class='chkImgContainer'>
@@ -102,44 +117,23 @@
 						</div>		  
 					</div>  <!-- chkImgContainer end -->
 					
-					<div class='chkMyContainer'>
+					<div class='chkMyContainer'>  
 						<h4><i class="fas fa-calendar-check"></i>선택내역</h4>
-						<div class='choice-info-wrapper'>
-							<span class='info-total-span'>     
-								<span class='info-title-span'>예매일시</span>
-								<span class='info-contents-span' id="book-date-span">&nbsp;</span>
-							</span>        
-							<span class='info-total-span'>
-								<span class='info-title-span'>예매시간</span>
-								<span class='info-contents-span' id="book-time-span">&nbsp;</span>
-							</span>
-							<span class='info-total-span'>
-								<span class='info-title-span'>좌석</span>
-								<span class='info-contents-span' id="book-seat-span">&nbsp;</span>  
-							</span>			
-						</div>
+						<div class='choice-info-wrapper'>         
+							<p class='myTitle'>예매일시<span class='info-contents-span' id="book-date-span"></span></p>         
+							<p class='myTitle'>예매시간<span class='info-contents-span' id="book-time-span"></span></p>
+							<p class='myTitle'>좌석<span class='info-contents-span' id="book-seat-span"></span></p>           		
+						</div>       
 					</div>
 					
-					<div class='chkPaymentContainer'>
+					<div class='chkPaymentContainer'>            
 						<h4><i class="far fa-credit-card"></i>결제내역</h4>
 						<div class='payment-info-wrapper'>
-							<span class='info-credit-span'>     
-								<span class='info-title-span'>티켓금액</span>   
-								<span class='info-contents-span' id="book-price-span">&nbsp;</span>
-							</span>
-							<span class='info-credit-span'>     
-								<span class='info-title-span'>예매수수료</span>
-								<span class='info-contents-span' id="book-fee-span">&nbsp;</span>
-							</span>
-							<span class='info-credit-span'>     
-								<span class='info-title-span'>배송료</span>
-								<span class='info-contents-span' id="book-delivery-span">&nbsp;</span>
-							</span>
-							<span class='info-credit-span'>     
-								<span class='info-title-span'>할인금액</span>
-								<span class='info-contents-span' id="book-discount-span">&nbsp;</span>
-							</span>
-						</div>  
+							<p class='myTitle'>티켓금액<span class='info-contents-span' id="book-price-span"></span></p>
+							<p class='myTitle'>예매수수료<span class='info-contents-span' id="book-fee-span"></span></p>
+							<p class='myTitle'>배송료<span class='info-contents-span' id="book-delivery-span"></span></p>
+						    <p class='myTitle'>할인금액<span class='info-contents-span' id="book-discount-span"></span></p>
+						</div>    
 					</div>
 					
 					<div class='chkMyStepContainer'>
@@ -156,13 +150,39 @@
 	</div>
 </div>        
 
-                   
+<!-- 템플릿 -->  
+<script id="template" type="text/x-handlebars-template">
+<div class='temptemp'>
+{{#each.}}
+<input type='button' value='{{temptime startTime}}' class='btntest'>   
+{{/each}}
+</div>
+<div class='temp1'>
+회차를 선택해주세요.
+</div>                                  
+</script>
 
+<!-- 템플릿2 -->
+<script id="template2" type="text/x-handlebars-template">
+{{#each.}}
+<input type='button' value='{{seatCategory}}'>           
+{{/each}}                               
+</script>            
 
-  
-
-
-
+<!-- 시간 헬퍼 -->
+<script>
+Handlebars.registerHelper("temptime", function(value){
+	var date = new Date(value);
+	var hour = date.getHours();
+	var minutes = date.getMinutes();
+	
+	if(minutes < 10){
+		minutes = "0" + minutes;
+	}
+	
+	return hour + ":" + minutes;      
+})
+</script>
 
 
 <%@ include file="../include/footer.jsp"%>

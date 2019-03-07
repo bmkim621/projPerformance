@@ -49,6 +49,7 @@ public class BookController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 	}
+	           
 	
 	//날짜로 공연정보 가지고 오기  
 	@ResponseBody   
@@ -69,18 +70,21 @@ public class BookController {
 				map.put("showName", showName);   
 			}     
 			                            
-			//예매날짜       
-			if(bookDate != null) {                  
+			//예매날짜                     
+			if(bookDate != null && !bookDate.equals("")) {                  
 				//날짜 Date로 바꾸기
-				SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat sdfd = new SimpleDateFormat("yyyy-MM-dd");  	
 				Date selectBookDate = sdfd.parse(bookDate);
-				
 				logger.info("선택한 날짜 = " + selectBookDate);
+				
 				map.put("bookDate", selectBookDate);
+			/*	
+				logger.info("선택한 날짜 = " + bookDate);
+				map.put("bookDate", bookDate);   */
 			}
 			
-			//회차선택                         
-			if(bookTime != null) {      
+			//회차선택                             
+			if(bookTime != null && !bookTime.equals("")) {      
 				SimpleDateFormat sdft = new SimpleDateFormat("HH:mm");
 				Date selectBookTime = sdft.parse(bookTime);
 				
@@ -90,6 +94,7 @@ public class BookController {
 			
 			logger.info("map =====> " + map);   
 			List<PerformanceVO> list = service.searchPerformance(map);
+			logger.info("list = " + list);  
 			entity = new ResponseEntity<List<PerformanceVO>>(list, HttpStatus.OK);
 			
 		} catch (Exception e) {
