@@ -16,8 +16,10 @@ public class BookVO {
 	private Date bookTime;	//예매시간
 	private int bookState;	//예매상태 0: 예매완료, 1: 예매중
 	private int bookFloor;	//예매하려고하는 층
-	private int bookCol;	//예매하려고하는 행
-	private int bookRow;	//예매하려고하는 열
+	private String bookZone;
+	private int bookNum;
+	private String seatGrade;
+	private String seatCategory;
 	
 	public String getBookNumber() {
 		return bookNumber;
@@ -73,25 +75,40 @@ public class BookVO {
 	public void setBookFloor(int bookFloor) {
 		this.bookFloor = bookFloor;
 	}
-	public int getBookCol() {
-		return bookCol;
+	public String getBookZone() {
+		return bookZone;
 	}
-	public void setBookCol(int bookCol) {
-		this.bookCol = bookCol;
+	public void setBookZone(String bookZone) {
+		this.bookZone = bookZone;
 	}
-	public int getBookRow() {
-		return bookRow;
+	public int getBookNum() {
+		return bookNum;
 	}
-	public void setBookRow(int bookRow) {
-		this.bookRow = bookRow;
+	public void setBookNum(int bookNum) {
+		this.bookNum = bookNum;
+	}
+	public String getSeatGrade() {
+		return seatGrade;
+	}
+	public void setSeatGrade(String seatGrade) {
+		this.seatGrade = seatGrade;
+	}
+	public String getSeatCategory() {
+		return seatCategory;
+	}
+	public void setSeatCategory(String seatCategory) {
+		this.seatCategory = seatCategory;
 	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"BookVO [bookNumber=%s, mCode=%s, sCode=%s, pCode=%s, dCode=%s, bookDate=%s, bookTime=%s, bookState=%s, bookFloor=%s, bookCol=%s, bookRow=%s]",
-				bookNumber, mCode, sCode, pCode, dCode, bookDate, bookTime, bookState, bookFloor, bookCol, bookRow);
+				"BookVO [bookNumber=%s, mCode=%s, sCode=%s, pCode=%s, dCode=%s, bookDate=%s, bookTime=%s, bookState=%s, bookFloor=%s, bookZone=%s, bookNum=%s, seatGrade=%s, seatCategory=%s]",
+				bookNumber, mCode, sCode, pCode, dCode, bookDate, bookTime, bookState, bookFloor, bookZone, bookNum,
+				seatGrade, seatCategory);
 	}
+	
+	
 	
 	
 }

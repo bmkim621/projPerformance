@@ -17,8 +17,10 @@ CREATE TABLE book (
 	book_time     TIME        NOT NULL COMMENT '예매시간', -- 예매시간
 	book_state    TINYINT(4)  NOT NULL COMMENT '0: 예매완료, 1: 예매중, ..', -- 예매상태
 	book_floor    INT(11)     NOT NULL COMMENT '층', -- 예매층
-	book_col      INT(11)     NOT NULL COMMENT '행', -- 예매행
-	book_row      CHAR(2)     NOT NULL COMMENT '열' -- 예매열
+	book_zone     CHAR(1)     NOT NULL COMMENT '구역', -- 구역 ex) A
+	book_num      INT         NOT NULL COMMENT '번호', -- 번호 ex) 1, A구역 1번
+	seat_grade    CHAR(1)     NULL     COMMENT '좌석등급', -- 좌석등급, 전석일 경우 null 지정석일경우 R, S, A, B
+	seat_category CHAR(5)     NOT NULL COMMENT '좌석분류' -- 좌석분류 SEAT1:전석, SEAT2:지정석
 )
 COMMENT '예매';
 
@@ -50,7 +52,11 @@ CREATE TABLE facilities (
 	total_floor     INT(11)     NOT NULL COMMENT '1층, 2층 = 2', -- 층개수
 	zone_cnt        INT(11)     NOT NULL COMMENT 'A, B, C, BR, BL의 개수 = 5', -- 구역개수
 	total_seatCnt   INT(11)     NOT NULL COMMENT '1층(140개), 2층(60개) = 200', -- 총좌석수
-	facilities_name VARCHAR(50) NOT NULL COMMENT '본관, 별관' -- 공연시설명
+	facilities_name VARCHAR(50) NOT NULL COMMENT '본관, 별관', -- 공연시설명
+	r_seat_cnt      INT         NOT NULL COMMENT 'R총좌석수', -- R총좌석수
+	s_seat_cnt      INT         NOT NULL COMMENT 'S총좌석수', -- S총좌석수
+	a_seat_cnt      INT         NOT NULL COMMENT 'A총좌석수', -- A총좌석수
+	b_seat_cnt      INT         NOT NULL COMMENT 'B총좌석수' -- B총좌석수
 )
 COMMENT '시설';
 
@@ -143,7 +149,12 @@ CREATE TABLE performance (
 	show_enddate    DATE         NOT NULL COMMENT '공연종료일', -- 공연종료일
 	facilities_no   INT(11)      NULL     COMMENT '공연시설번호', -- 공연시설번호
 	seat_category   CHAR(5)      NULL     COMMENT '좌석분류', -- 좌석분류 SEAT0:좌석정해지지않음, SEAT1: 전석, SEAT2: 지정석(등급O)
-	show_image_path TEXT         NULL     COMMENT '공연이미지경로' -- 공연이미지경로
+	show_image_path TEXT         NULL     COMMENT '공연이미지경로', -- 공연이미지경로,
+	remain_seat     INT          NULL     COMMENT '잔여석', -- 잔여석
+	r_remain_seat   INT          NULL     COMMENT 'R잔여석', -- R잔여석
+	s_remain_seat   INT          NULL     COMMENT 'S잔여석', -- S잔여석
+	a_remain_seat   INT          NULL     COMMENT 'A잔여석', -- A잔여석
+	b_remain_seat   INT          NULL     COMMENT 'B잔여석' -- B잔여석
 )
 COMMENT '공연';
 

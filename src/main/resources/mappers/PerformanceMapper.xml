@@ -2,24 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.PerformanceMapper">
 
-	<!-- 공연 추가, 수정, 삭제 : performance 테이블 -->
-	<insert id="insertPerf" parameterType="PerformanceVO">
-		insert into performance values
-		(nextshowcode(), #{showName}, #{showType}, #{totalTime}, #{startTime}, #{showStartdate}, #{showEnddate}, #{fno.facilitiesNo}, #{seatCategory}, #{showImagePath})
-	</insert>
-	
 	<resultMap type="PerformanceVO" id="resultPerf">
 		<!-- <id column="show_code" property="showCode"/> -->
 		<result column="facilities_no" property="fno.facilitiesNo"/>
+		<result column="total_floor" property="fno.totalFloor"/>
+		<result column="zone_cnt" property="fno.zoneCnt"/>
+		<result column="total_seatCnt" property="fno.totalSeatCnt"/>
+		<result column="facilities_name" property="fno.facilitiesName"/>
+		<result column="r_seat_cnt" property="fno.rSeatCnt"/>
+		<result column="s_seat_cnt" property="fno.sSeatCnt"/>
+		<result column="a_seat_cnt" property="fno.aSeatCnt"/>
+		<result column="b_seat_cnt" property="fno.bSeatCnt"/>  
 	</resultMap>
-	
+           
+	<!-- 공연 추가, 수정, 삭제 : performance 테이블 -->
+	<insert id="insertPerf" parameterType="PerformanceVO">
+		insert into performance values
+		(nextshowcode(), #{showName}, #{showType}, #{totalTime}, #{startTime}, #{showStartdate}, #{showEnddate}, #{fno.facilitiesNo}, #{seatCategory}, #{showImagePath}, (select total_seatCnt from facilities where facilities_no = #{fno.facilitiesNo} ))
+	</insert>
+
 	<select id="perfListAll" resultMap="resultPerf">
-		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no, show_image_path, seat_category
+		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no, show_image_path, seat_category, remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat
 		from performance
 	</select>
 		
 	<sql id="perfSql">
-		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no, show_image_path, seat_category
+		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, facilities_no, show_image_path, seat_category, remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat
 		from performance
 	</sql>
 	
@@ -35,7 +43,7 @@
 	</sql>
 	
 	<select id="perfListAllByShowName" resultMap="resultPerf">  
-		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, start_time, show_image_path, facilities_no, seat_category
+		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, start_time, show_image_path, facilities_no, seat_category, remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat
 		from performance
 		where show_name = #{showName}
 	</select>
@@ -44,7 +52,7 @@
 	<select id="facilitiesList" resultType="FacilitiesVO">
 		select facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name from facilities
 	</select>
-	
+	             
 	<!-- if 조건 -->
 	<select id="selectPerformanceByCondition" parameterType="hashmap" resultMap="resultPerf">
 		<include refid="perfSql" />

@@ -16,7 +16,7 @@
 		'<fmt:formatDate value="${vo.showStartdate }" pattern="yyyy-MM-dd"/>',   
 	</c:forEach>
 ];   
-</script>
+</script>   
   
 <div class="container-fluid bookContainer">
 	<div class="row">
@@ -34,7 +34,7 @@
 </div>
 <!-- container end -->
 
-
+<h5>${vo }</h5>
 
 <!-- 공연안내  -->
 <div class="container bookWrapper">
@@ -68,18 +68,18 @@
 				<!-- 정보 -->   
 				<div class='PerfInfoWrapper'>
 					<div class='timeTitleWrapper'>
-						<h4>회차(관람시간)</h4>
+						<!-- <h4>회차(관람시간)</h4>
 						<div class='chkTimeWrapper'>
 							<input type='button' value='15:00' class='btnSelectTime btnActive'>  
 							<input type='button' value='20:00' class='btnSelectTime'>
-						</div>
+						</div> -->
 					</div>
 					<div class='seatTitleWrapper'>
-						<h4>좌석등급/잔여석</h4>
+						<!-- <h4>좌석등급/잔여석</h4>
 						<div class='chkSeatWrapper'>
 							
-						
-						</div>
+						             
+						</div> -->
 					</div>
 				</div> 
 				                                
@@ -165,9 +165,14 @@
 <!-- 템플릿2 -->
 <script id="template2" type="text/x-handlebars-template">
 {{#each.}}
-<input type='button' value='{{seatCategory}}'>           
-{{/each}}                               
-</script>            
+<input type='button' value='{{seatCategory}}'>
+<p>{{fno.totalSeatCnt}}</p>
+<p>{{rRemainSeat}}</p>
+<p>{{aRemainSeat}}</p>
+<p>{{bRemainSeat}}</p>
+<p>{{sRemainSeat}}</p>                 
+{{/each}}                                    
+</script>                 
 
 <!-- 시간 헬퍼 -->
 <script>

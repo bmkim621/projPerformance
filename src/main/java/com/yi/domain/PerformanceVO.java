@@ -19,6 +19,11 @@ public class PerformanceVO {
 	private String showImagePath;
 	//좌석분류
 	private String seatCategory;
+	private int remainSeat;	//잔여석
+	private int rRemainSeat;	//R 잔여석
+	private int sRemainSeat;
+	private int aRemainSeat;
+	private int bRemainSeat;
 	
 	public String getShowCode() {
 		return showCode;
@@ -80,14 +85,46 @@ public class PerformanceVO {
 	public void setSeatCategory(String seatCategory) {
 		this.seatCategory = seatCategory;
 	}
+	public int getRemainSeat() {
+		return remainSeat;
+	}
+	public void setRemainSeat(int remainSeat) {
+		this.remainSeat = remainSeat;
+	}
+	public int getrRemainSeat() {
+		return rRemainSeat;
+	}
+	public void setrRemainSeat(int rRemainSeat) {
+		this.rRemainSeat = rRemainSeat;
+	}
+	public int getsRemainSeat() {
+		return sRemainSeat;
+	}
+	public void setsRemainSeat(int sRemainSeat) {
+		this.sRemainSeat = sRemainSeat;
+	}
+	public int getaRemainSeat() {
+		return aRemainSeat;
+	}
+	public void setaRemainSeat(int aRemainSeat) {
+		this.aRemainSeat = aRemainSeat;
+	}
+	public int getbRemainSeat() {
+		return bRemainSeat;
+	}
+	public void setbRemainSeat(int bRemainSeat) {
+		this.bRemainSeat = bRemainSeat;
+	}
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"PerformanceVO [showCode=%s, showName=%s, showType=%s, totalTime=%s, startTime=%s, showStartdate=%s, showEnddate=%s, fno=%s, showImagePath=%s, seatCategory=%s]",
+				"PerformanceVO [showCode=%s, showName=%s, showType=%s, totalTime=%s, startTime=%s, showStartdate=%s, showEnddate=%s, fno=%s, showImagePath=%s, seatCategory=%s, remainSeat=%s, rRemainSeat=%s, sRemainSeat=%s, aRemainSeat=%s, bRemainSeat=%s]",
 				showCode, showName, showType, totalTime, startTime, showStartdate, showEnddate, fno, showImagePath,
-				seatCategory);
+				seatCategory, remainSeat, rRemainSeat, sRemainSeat, aRemainSeat, bRemainSeat);
 	}
+	
+	
 	
 	
 	

@@ -41,3 +41,8 @@ where upload_path = DATE_FORMAT(date_add(now(), interval -1 day), '%Y\%m\%d'); -
 select last_insert_id();
 
 select count(review_no) from review where review_writer like CONCAT('%', '김보민', '%');
+
+select * from performance;
+
+insert into performance values
+('P19018', '한헝 수교 30주년 기념 공연 오페라 콘체르탄테 <반크 반>', 'A', 160, '19:00', '2019-01-17', '2019-01-17', 1, null, null, (select total_seatCnt from facilities where facilities_no = 1 ));
