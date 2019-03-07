@@ -44,23 +44,16 @@ $(function(){
 			success: function(json){
 				             
 				console.log(json);
-				
-				$(".PerfInfoWrapper").empty();
+				  
+				$(".chkTimeWrapper").empty();  
 				
 				var source = $("#template").html();
 				var f = Handlebars.compile(source);   
-				var result = f(json);
-				$(".PerfInfoWrapper").append(result);
+				var result = f(json);    
+				$(".chkTimeWrapper").append(result);
 				
 			}
-		})	//ajax end
-		
-		
-		
-		
-//		location.href = contextPath+"/book/search?showName=" + showName + "&bookDate=" + bookDate + "&bookTime=" + bookTime;	
-		
-		
+		})	//ajax end		
 	}   
 	
 
@@ -89,14 +82,17 @@ $(function(){
 //				console.log(date);         	                                     
 //		        alert('선택하신 날짜는 '+date);
 		        $("#book-date-span").text(date);	//값 넣음.
-		        selectBookDate(date);          
+		        selectBookDate(date);
+		                        	
 		    }                                          
 		});
 	
 	
-	//시간 선택했을 때 => 동적으로 추가했기 때문에 document.on(~~) 사용해야 함.
-	$(document).on("click", ".btntest", function(){
-		var res = $(this).val();
+	//회차(시간) 선택했을 때 => 동적으로 추가했기 때문에 document.on(~~) 사용해야 함.
+	$(document).on("click", ".btnSelectTime", function(){
+		var res = $(this).val(); //값
+		
+		$(this).addClass("btnActive");   //시간 선택하면 버튼 색깔 바뀌도록 클래스 추가  
 //		console.log(res);
 		$("#book-time-span").html(res);
 		
@@ -112,11 +108,13 @@ $(function(){
 			success : function(json) {
 
 				console.log(json);
+				
+				$(".chkSeatWrapper").empty();
 
 				var source = $("#template2").html();
 				var f = Handlebars.compile(source);  
 				var result = f(json);
-				$(".PerfInfoWrapper").append(result);            
+				$(".chkSeatWrapper").append(result);            
 			}
 		}) // ajax end
 		

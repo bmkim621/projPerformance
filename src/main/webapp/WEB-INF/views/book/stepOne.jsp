@@ -3,11 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?s" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?bb" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- js -->
-<script src="${pageContext.request.contextPath }/resources/js/book.js?bbb"></script>
+<script src="${pageContext.request.contextPath }/resources/js/book.js?ba"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <script>  
@@ -68,18 +68,19 @@
 				<!-- 정보 -->   
 				<div class='PerfInfoWrapper'>
 					<div class='timeTitleWrapper'>
-						<!-- <h4>회차(관람시간)</h4>
+						<h4>회차(관람시간)</h4>  
 						<div class='chkTimeWrapper'>
+							<p id='noticeChkDateSpan'>먼저 관람일을 선택해주세요.</p>
+						</div>
+						<!-- <div class='chkTimeWrapper'>
 							<input type='button' value='15:00' class='btnSelectTime btnActive'>  
 							<input type='button' value='20:00' class='btnSelectTime'>
-						</div> -->
+						</div> -->		
 					</div>
+					
 					<div class='seatTitleWrapper'>
-						<!-- <h4>좌석등급/잔여석</h4>
-						<div class='chkSeatWrapper'>
-							
-						             
-						</div> -->
+						<h4>좌석등급/잔여석</h4>   
+						<div class='chkSeatWrapper'></div>
 					</div>
 				</div> 
 				                                
@@ -148,30 +149,36 @@
 	  		                              
 		</div>             
 	</div>
-</div>        
+</div> 
+
+<!-- <div class='temp'><div class='temptemp'>1</div>R석<span class='verticalBar'>&#124;</span>0석</div> -->
+<!-- <input type='button' value='15:00' class='btnSelectTime btnActive'> -->  
+							
 
 <!-- 템플릿 -->  
 <script id="template" type="text/x-handlebars-template">
-<div class='temptemp'>
+<div class='chkTimeWrapper'>  
 {{#each.}}
-<input type='button' value='{{temptime startTime}}' class='btntest'>   
+	<input type='button' value='{{temptime startTime}}' class='btnSelectTime'>   
 {{/each}}
-</div>
-<div class='temp1'>
-회차를 선택해주세요.
-</div>                                  
+</div>                                
 </script>
 
 <!-- 템플릿2 -->
 <script id="template2" type="text/x-handlebars-template">
-{{#each.}}
-<input type='button' value='{{seatCategory}}'>
-<p>{{fno.totalSeatCnt}}</p>
-<p>{{rRemainSeat}}</p>
-<p>{{aRemainSeat}}</p>
-<p>{{bRemainSeat}}</p>
-<p>{{sRemainSeat}}</p>                 
-{{/each}}                                    
+<div class='chkSeatWrapper'>
+{{#each.}}       
+	{{#ifCond seatCategory}}
+		<div class='ckhSeatContainer'><div class='nDiv'></div>전석<span class='verticalBar'>&#124;</span>{{fno.totalSeatCnt}}석</div>
+  
+	{{else}}                          
+		<div class='ckhSeatContainer'><div class='rDiv'></div>R석<span class='verticalBar'>&#124;</span>{{rRemainSeat}}석</div>
+		<div class='ckhSeatContainer'><div class='sDiv'></div>S석<span class='verticalBar'>&#124;</span>{{sRemainSeat}}석</div>
+		<div class='ckhSeatContainer'><div class='aDiv'></div>A석<span class='verticalBar'>&#124;</span>{{aRemainSeat}}석</div>
+		<div class='ckhSeatContainer'><div class='bDiv'></div>B석<span class='verticalBar'>&#124;</span>{{bRemainSeat}}석</div>
+	{{/ifCond}}                               
+{{/each}}
+</div>                                   
 </script>                 
 
 <!-- 시간 헬퍼 -->
@@ -187,6 +194,16 @@ Handlebars.registerHelper("temptime", function(value){
 	
 	return hour + ":" + minutes;      
 })
+
+//Handlebar if문
+Handlebars.registerHelper('ifCond', function(seatCategory, options) {
+	if(seatCategory === "SEAT1") {
+		return options.fn(this);
+	}
+	return options.inverse(this);
+});
+
+
 </script>
 
 

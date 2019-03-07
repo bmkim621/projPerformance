@@ -561,13 +561,13 @@ p.myTitle{
 
 /* 회차 */
 div.timeTitleWrapper{
-	border: 1px solid red;
-	width: 35%;
+	width: 35%;         
 	height: 350px;
 	display: inline-block;
 	margin-right: 20px;     
 	float: left;
-	padding: 10px;   
+	padding: 10px;
+	text-align: center;  
 }
 
 div.timeTitleWrapper h4{
@@ -575,11 +575,23 @@ div.timeTitleWrapper h4{
 	font-weight: bold;
 	color: #535353;
 	margin-bottom: 15px;
+	padding-bottom: 12px;         
+	border-bottom: 1px solid #dcdcdc;
 }
 
+/* 관림일을 선택해주세요 */
+p#noticeChkDateSpan{
+	font-size: 14px;    
+	letter-spacing: -0.5px;
+	color: #666;
+	font-weight: bold;
+	width: 80px;
+	display: inline-block;
+	
+}
+  
 div.chkTimeWrapper{
-	border-top: 1px solid #dcdcdc;
-	padding-top: 20px;
+/* 	padding-top: 20px; */
 }
 
 input.btnSelectTime{
@@ -609,9 +621,77 @@ input.btnSelectTime.btnActive{
 
 /* 장소 */
 div.seatTitleWrapper{
-	border: 1px solid blue;
+	border: 1px solid #f0f0f0;
 	width: 58%;                                     
 	height: 350px;
 	display: inline-block;
-	float: right;                 
+	float: right;
+	padding: 10px;                        
+}
+
+div.seatTitleWrapper h4{
+	font-size: 17px;
+	font-weight: bold;
+	color: #535353;
+	margin-bottom: 15px;
+	padding-bottom: 12px;         
+	border-bottom: 1px solid #dcdcdc;
+}
+
+p.pRemainSeat{
+	font-size: 14px;    
+	letter-spacing: -0.5px;
+	color: #666;
+}
+
+div.ckhSeatContainer{
+	font-size: 15px;         
+	letter-spacing: -0.5px;
+	color: #666;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+div.rDiv{
+	display: inline-block;
+	width: 15px;           
+	height: 15px;       
+	background-color: #B5B2FF;
+	margin-right: 8px;
+}
+
+div.sDiv{
+	background-color: #B2EBF4;
+	display: inline-block;
+	width: 15px;           
+	height: 15px;
+	margin-right: 8px;
+}
+
+div.aDiv{
+	background-color: #FFDD73;
+	display: inline-block;
+	width: 15px;           
+	height: 15px;
+	margin-right: 8px;
+}
+
+div.bDiv{
+	background-color: #BCE55C;
+	display: inline-block;
+	width: 15px;           
+	height: 15px;
+	margin-right: 8px;
+}
+
+div.nDiv{
+	background-color: #FFA7A7;
+	display: inline-block;
+	width: 15px;           
+	height: 15px;
+	margin-right: 8px;
+}
+
+span.verticalBar{
+	margin: 0 5px;  
 }
