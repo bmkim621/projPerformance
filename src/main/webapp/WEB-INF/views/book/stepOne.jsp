@@ -6,9 +6,12 @@
 <link href="${pageContext.request.contextPath }/resources/css/book.css?bb" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
+<!-- alert plugin -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/book.js?ba"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+
 
 <script>  
  var availableDates = [
@@ -34,18 +37,17 @@
 </div>
 <!-- container end -->
 
-<h5>${vo }</h5>
 
-<!-- 공연안내  -->
+<!-- 공연안내  -->            
 <div class="container bookWrapper">
 	<!-- 진행 단계 선택 -->
 	<div class="book-progress-wrapper">
 		<ul>
-			<li class='selectStyle'><a href="#"><span class='spanStep'>01</span>&nbsp;&nbsp;관람일/회차선택</a></li>
-			<li><a href="#"><span class='spanStep'>02</span>&nbsp;&nbsp;좌석선택</a></li>
-			<li><a href="#"><span class='spanStep'>03</span>&nbsp;&nbsp;가격/할인선택</a></li>
-			<li><a href="#"><span class='spanStep'>04</span>&nbsp;&nbsp;배송선택/주문자확인</a></li>
-			<li><a href="#"><span class='spanStep'>05</span>&nbsp;&nbsp;결제하기</a></li>
+			<li class='selectStyle'><span class='spanStep'>01</span>&nbsp;&nbsp;관람일/회차선택</li>
+			<li><span class='spanStep'>02</span>&nbsp;&nbsp;좌석선택</li>
+			<li><span class='spanStep'>03</span>&nbsp;&nbsp;가격/할인선택</li>
+			<li><span class='spanStep'>04</span>&nbsp;&nbsp;배송선택/주문자확인</li>
+			<li><span class='spanStep'>05</span>&nbsp;&nbsp;결제하기</li>  
 		</ul>
 	</div>                                             
 	
@@ -142,7 +144,7 @@
 							<span class='spanTotalPriceTitle'>최종 결제금액</span>
 							<span class='spanPerfTotalPrice'>&nbsp;</span><span class='spanWon'>원</span>
 						</span>
-						<button id="btnNextStep">다음단계</button>           
+						<button id="btnNextStep" type="button">다음단계</button>           
 					</div>            
 				</div>           
 			</div>                 
@@ -151,10 +153,17 @@
 	</div>
 </div> 
 
-<!-- <div class='temp'><div class='temptemp'>1</div>R석<span class='verticalBar'>&#124;</span>0석</div> -->
-<!-- <input type='button' value='15:00' class='btnSelectTime btnActive'> -->  
-							
 
+<!-- 다음 단계 이동 시 필요한 정보들 -->
+<form id="f1" action="stepTwo" method="post">  
+	<input type='hidden' id='selectShowCode' value='${vo.showCode }' name='showCode'>    
+	<input type='hidden' id='selectMemberCode' value='${memberVO.memberCode }' name='memberCode'>
+	<input type='hidden' id='selectShowDate' value='' name='bookDate'>
+	<input type='hidden' id='selectShowTime' value='' name='bookTime'>
+	<input type='hidden' id='selectSeatCategory' value='${vo.seatCategory }' name='seatCategory'>    
+</form>
+							  
+ 
 <!-- 템플릿 -->  
 <script id="template" type="text/x-handlebars-template">
 <div class='chkTimeWrapper'>  
@@ -202,8 +211,6 @@ Handlebars.registerHelper('ifCond', function(seatCategory, options) {
 	}
 	return options.inverse(this);
 });
-
-
 </script>
 
 

@@ -46,6 +46,7 @@
 			<mapping path="/review/read"/>
 			<mapping path="/review/modify"/>
 			<mapping path="/review/remove"/>
+			<mapping path="/book/stepOne"/>                     
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 	</interceptors>

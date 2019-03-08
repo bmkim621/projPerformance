@@ -5,7 +5,6 @@
 	<resultMap type="PerformanceVO" id="resultPerf">
 		<!-- <id column="show_code" property="showCode"/> -->
 		<result column="facilities_no" property="fno.facilitiesNo"/>
-		<result column="total_floor" property="fno.totalFloor"/>
 		<result column="zone_cnt" property="fno.zoneCnt"/>
 		<result column="total_seatCnt" property="fno.totalSeatCnt"/>
 		<result column="facilities_name" property="fno.facilitiesName"/>
@@ -50,7 +49,7 @@
 	
 	<!-- 시설정보: facilities 테이블 -->
 	<select id="facilitiesList" resultType="FacilitiesVO">
-		select facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name from facilities
+		select facilities_no, zone_cnt, total_seatCnt, facilities_name from facilities
 	</select>
 	             
 	<!-- if 조건 -->

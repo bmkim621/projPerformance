@@ -4,7 +4,6 @@
 	
 	<resultMap type="PerformanceVO" id="resultPerf">
 		<result column="facilities_no" property="fno.facilitiesNo"/>
-		<result column="total_floor" property="fno.totalFloor"/>
 		<result column="zone_cnt" property="fno.zoneCnt"/>
 		<result column="total_seatCnt" property="fno.totalSeatCnt"/>
 		<result column="facilities_name" property="fno.facilitiesName"/>
@@ -17,7 +16,7 @@
 	<!-- 공연이름으로 공연정보 가지고 오기 -->
 	<select id="selectListByShowName" resultMap="resultPerf">
 		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, show_image_path, seat_category,
-		remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat, facilities.facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt
+		remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat, facilities.facilities_no, zone_cnt, total_seatCnt, facilities_name, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt
 		from performance left join facilities on performance.facilities_no = facilities.facilities_no
 	    where show_name = #{showName}                 
 	</select>  
@@ -25,7 +24,7 @@
 	<select id="perfListAllByShowName" resultMap="resultPerf">  
 		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, 
 		start_time, show_image_path, seat_category, remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat,   
-		facilities.facilities_no, facilities_name, total_floor, total_seatCnt, zone_cnt, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt
+		facilities.facilities_no, facilities_name, total_seatCnt, zone_cnt, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt
 		from performance left join facilities on performance.facilities_no = facilities.facilities_no
 		where show_name = #{showName}         
 	</select>
@@ -35,7 +34,7 @@
 	<!-- 검색 -->
 	<select id="searchPerformance" resultMap="resultPerf" parameterType="hashmap">
 		select show_code, show_name, show_type, total_time, start_time, show_startdate, show_enddate, show_image_path, seat_category,
-		remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat, facilities.facilities_no, total_floor, zone_cnt, total_seatCnt, facilities_name, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt
+		remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat, facilities.facilities_no, zone_cnt, total_seatCnt, facilities_name, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt
 		from performance left join facilities on performance.facilities_no = facilities.facilities_no
 		<include refid="whereSql" />
 	</select>
@@ -54,12 +53,44 @@
 		</where>
 	</sql>
 	
+	
+	<!-- 아이디 검색해서 회원 정보 가지고 오기 -->
+	<select id="readMember" resultType="MemberVO">
+		select * from tbl_member
+		where id = #{id}
+	</select>
+	
     
+    <resultMap type="SeatVO" id="resultSeat">
+		<result column="zone_cnt" property="facilitiesNo.zoneCnt"/>
+		<result column="total_seatCnt" property="facilitiesNo.totalSeatCnt"/>
+		<result column="r_seat_cnt" property="facilitiesNo.rSeatCnt"/>
+		<result column="s_seat_cnt" property="facilitiesNo.sSeatCnt"/>
+		<result column="a_seat_cnt" property="facilitiesNo.aSeatCnt"/>
+		<result column="b_seat_cnt" property="facilitiesNo.bSeatCnt"/>  
+		<result column="facilities_name" property="facilitiesNo.facilitiesName"/>
+		<result column="facilities_no" property="facilitiesNo.facilitiesNo"/>
+	</resultMap> 
 
-             
+   <!-- 좌석 -->
+   <select id="getSeatInfo" resultMap="resultSeat">  
+		select f.facilities_no, zone_cnt, total_seatCnt, r_seat_cnt, s_seat_cnt, a_seat_cnt, b_seat_cnt, loc_code, 
+		`zone`, start_loc, end_loc
+		from seat s join facilities f on f.facilities_no = s.facilities_no
+		where loc_code = #{locCode}   
+   </select>
+   
+   <!-- 예약 좌석 정보 -->
+   <select id="getResvSeat" resultType="ResvSeatVO">
+   		select * from resv_seat where resv_zone = #{resvZone} and resv_num = #{resvNum}
+   </select>         
 
 
-
+	<!-- 예약완료된 좌석 정보 -->
+	<select id="getFinishResvSeat" resultType="BookVO">
+		select * from book
+		where book_state = 0 and show_code = #{showCode}
+	</select>
 
 
 </mapper>

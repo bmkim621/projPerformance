@@ -6,17 +6,16 @@ CREATE SCHEMA proj_performance;
 
 use proj_performance;
 
--- 예매
+-- 예매 
 CREATE TABLE book (
-	book_number   VARCHAR(10) NOT NULL COMMENT '예매번호', -- 예매번호
-	member_code   CHAR(5)     NOT NULL COMMENT '고객코드', -- 회원코드
+	book_number   CHAR(6) NOT NULL COMMENT '예매번호', -- 예매번호
+	member_code   CHAR(6)     NOT NULL COMMENT '고객코드', -- 회원코드
 	show_code     CHAR(6)     NOT NULL COMMENT '공연코드', -- 공연코드
 	payment_code  CHAR(5)     NOT NULL COMMENT '결제방식코드', -- 결제방식코드
 	discount_code CHAR(2)     NOT NULL COMMENT '할인분류코드', -- 할인분류코드
 	book_date     DATE        NOT NULL COMMENT '예매일', -- 예매일
 	book_time     TIME        NOT NULL COMMENT '예매시간', -- 예매시간
 	book_state    TINYINT(4)  NOT NULL COMMENT '0: 예매완료, 1: 예매중, ..', -- 예매상태
-	book_floor    INT(11)     NOT NULL COMMENT '층', -- 예매층
 	book_zone     CHAR(1)     NOT NULL COMMENT '구역', -- 구역 ex) A
 	book_num      INT         NOT NULL COMMENT '번호', -- 번호 ex) 1, A구역 1번
 	seat_grade    CHAR(1)     NULL     COMMENT '좌석등급', -- 좌석등급, 전석일 경우 null 지정석일경우 R, S, A, B
@@ -49,7 +48,6 @@ ALTER TABLE discount
 -- 시설
 CREATE TABLE facilities (
 	facilities_no   INT(11)     NOT NULL COMMENT '1: 본관, 2: 별관', -- 공연시설번호
-	total_floor     INT(11)     NOT NULL COMMENT '1층, 2층 = 2', -- 층개수
 	zone_cnt        INT(11)     NOT NULL COMMENT 'A, B, C, BR, BL의 개수 = 5', -- 구역개수
 	total_seatCnt   INT(11)     NOT NULL COMMENT '1층(140개), 2층(60개) = 200', -- 총좌석수
 	facilities_name VARCHAR(50) NOT NULL COMMENT '본관, 별관', -- 공연시설명
@@ -425,6 +423,13 @@ ALTER TABLE review_attach
 alter table review add column replycnt int default 0;
 
 update review set replycnt = (select count(reply_no) from reply where review_no = review.review_no);
+
+-- 예약좌석
+CREATE TABLE resv_seat (
+	resv_zone CHAR(1) NOT NULL COMMENT '구역', -- 구역
+	resv_num  INT     NOT NULL COMMENT '번호' -- 번호
+)
+COMMENT '예약좌석';
 	
 -- 공연코드 다음번호 가지고 오는 함수
 DROP FUNCTION IF EXISTS nextshowcode;

@@ -27,31 +27,32 @@ $(function(){
 //		alert("test");     
 //		console.log(date);
 		var showName = $(".perfTitleSpan").text();   
-		console.log(showName);
+//		console.log(showName);
 		
 		var bookDate = $("#book-date-span").text();
-		console.log(bookDate);
+//		console.log(bookDate);  
+		$("#book-time-span").text("");
 		
-		var bookTime = $("#book-time-span").text();
-		console.log(bookTime);
 		
-		$.ajax({
+		$.ajax({         
 			
 			url: contextPath + "/book/search",  
 			type: "GET",
-			data:{showName:showName, bookDate: bookDate, bookTime: bookTime },
+			data:{showName:showName, bookDate: bookDate, bookTime: "" },
 			dataType: "json",              
 			success: function(json){
 				             
 				console.log(json);
 				  
 				$(".chkTimeWrapper").empty();  
+				$(".chkSeatWrapper").empty();	
 				
 				var source = $("#template").html();
 				var f = Handlebars.compile(source);   
 				var result = f(json);    
 				$(".chkTimeWrapper").append(result);
 				
+							
 			}
 		})	//ajax end		
 	}   
@@ -91,7 +92,7 @@ $(function(){
 	//회차(시간) 선택했을 때 => 동적으로 추가했기 때문에 document.on(~~) 사용해야 함.
 	$(document).on("click", ".btnSelectTime", function(){
 		var res = $(this).val(); //값
-		
+		$(".btnSelectTime").removeClass("btnActive");
 		$(this).addClass("btnActive");   //시간 선택하면 버튼 색깔 바뀌도록 클래스 추가  
 //		console.log(res);
 		$("#book-time-span").html(res);
@@ -120,6 +121,40 @@ $(function(){
 		
 	})            
 	
+	
+	//step1. 다음단계 버튼 누를 때
+	$("#btnNextStep").click(function(){
+		var show_date = $("#book-date-span").text();
+//		console.log(show_date);
+		if(show_date == ""){
+			swal({
+				  text: "공연일자를 선택해주세요.",
+				 /* icon: "error",*/
+				  closeOnClickOutside: false,	//버튼 눌러야만 창 닫도록 함.
+				  button: "확인",
+				});
+		} else{
+			var chk_date = $("#selectShowDate").val(show_date);
+		}
+		
+		var show_time = $("#book-time-span").text();
+//		console.log(show_time);
+		if(show_time == ""){
+			swal({
+				  text: "공연회차를 선택하세요.",
+				  closeOnClickOutside: false,	//버튼 눌러야만 창 닫도록 함.
+				  button: "확인",
+				});
+		} else{
+			var chk_time = $("#selectShowTime").val(show_time);
+		}
+		
+		//폼 전송
+		if(show_date != "" && show_time != ""){
+			$("#f1").submit();        
+		}
+		
+	})
 	
      
 })        

@@ -2,12 +2,13 @@ package com.yi.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -19,11 +20,17 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yi.domain.BookVO;
+import com.yi.domain.LoginDTO;
+import com.yi.domain.MemberVO;
 import com.yi.domain.PerformanceVO;
+import com.yi.domain.SeatVO;
+import com.yi.interceptor.LoginInterceptor;
 import com.yi.service.BookService;
 import com.yi.util.MediaUtils;
 
@@ -32,22 +39,32 @@ import com.yi.util.MediaUtils;
 public class BookController {
 	//로그
 	private static final Logger logger = LoggerFactory.getLogger(BookController.class);
+	
+	
+	
 	         
 	//서비스
 	@Autowired
 	private BookService service;
 	
 	//이름으로 공연정보 가지고 오기
+	// ==================== step1 ======================
 	@RequestMapping(value = "stepOne", method = RequestMethod.GET)
-	public void stepOneGet(String showName, Model model) {
-		logger.info("=====> Book StepOne : GET");
+	public void stepOneGet(String showName, Model model, HttpSession session) {
+		logger.info("=====> Book Step1 : GET");
 		logger.info("showname = " + showName);
 		
 		PerformanceVO vo = service.perfListAllByShowName(showName);
 		List<PerformanceVO> list = service.selectListByShowName(showName);
+		
+		//아이디
+		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
+		logger.info("info = " + info);
+		MemberVO memberVO = service.readMember(info.getUserid());
 			
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
+		model.addAttribute("memberVO", memberVO);
 	}
 	           
 	
@@ -105,9 +122,6 @@ public class BookController {
 		return entity;
 	}  
 	  
-	
-	
-	     
 	   
 	// 서버 <-> 브라우저(데이터 요청하면 보내줄거니까 안보여도 됨) 파일명에 해당하는 이미지의 데이터만 줌.
 	@ResponseBody
@@ -139,5 +153,35 @@ public class BookController {
 		}
 
 		return entity;
+	}
+	
+	
+	
+	// ==================== step2 ======================
+	@RequestMapping(value = "stepTwo", method = RequestMethod.POST)
+	public void stepTwoGet(@ModelAttribute("vo") BookVO vo, MemberVO mCode, PerformanceVO sCode, Model model) {         
+		logger.info("=====> Book Step2 : POST");
+		logger.info("mCode : " + mCode);
+		logger.info("sCode = " + sCode);
+		
+		//set해야함.
+		vo.setmCode(mCode);
+		vo.setsCode(sCode);
+		
+		logger.info("vo = " + vo);
+		
+		//열
+		int row = BookVO.getSeatRow();
+		model.addAttribute("row", row);
+//		logger.info("row = " + row);
+		
+		//좌석정보
+		List<SeatVO> list = service.getSeatInfo(vo.getSeatCategory()); 
+		model.addAttribute("list", list);
+		
+		//이미 예약 완료 된 좌석
+		BookVO reservedSeat = service.getFinishResvSeat(vo.getsCode().getShowCode());
+		logger.info("reservedSeat ===> " + reservedSeat);
+		model.addAttribute("reservedSeat", reservedSeat);
 	}
 }

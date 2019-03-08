@@ -2,7 +2,6 @@ package com.yi.domain;
 
 public class FacilitiesVO {
 	private int facilitiesNo;
-	private int totalFloor;
 	private int zoneCnt;
 	private int totalSeatCnt;
 	private String facilitiesName;
@@ -16,12 +15,6 @@ public class FacilitiesVO {
 	}
 	public void setFacilitiesNo(int facilitiesNo) {
 		this.facilitiesNo = facilitiesNo;
-	}
-	public int getTotalFloor() {
-		return totalFloor;
-	}
-	public void setTotalFloor(int totalFloor) {
-		this.totalFloor = totalFloor;
 	}
 	public int getZoneCnt() {
 		return zoneCnt;
@@ -69,8 +62,8 @@ public class FacilitiesVO {
 	@Override
 	public String toString() {
 		return String.format(
-				"FacilitiesVO [facilitiesNo=%s, totalFloor=%s, zoneCnt=%s, totalSeatCnt=%s, facilitiesName=%s, rSeatCnt=%s, sSeatCnt=%s, aSeatCnt=%s, bSeatCnt=%s]",
-				facilitiesNo, totalFloor, zoneCnt, totalSeatCnt, facilitiesName, rSeatCnt, sSeatCnt, aSeatCnt,
+				"FacilitiesVO [facilitiesNo=%s, zoneCnt=%s, totalSeatCnt=%s, facilitiesName=%s, rSeatCnt=%s, sSeatCnt=%s, aSeatCnt=%s, bSeatCnt=%s]",
+				facilitiesNo, zoneCnt, totalSeatCnt, facilitiesName, rSeatCnt, sSeatCnt, aSeatCnt,
 				bSeatCnt);
 	}
 	

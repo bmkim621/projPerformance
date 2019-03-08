@@ -70,12 +70,20 @@ div.container.bookWrapper div.book-progress-wrapper ul{
 	padding: 0;    
 }
 
+div.container.bookWrapper div.book-progress-wrapper ul li span.spanStep{
+	font-weight: bold;
+	color: #666;  
+}
+
 div.container.bookWrapper div.book-progress-wrapper ul li{
 	float: left;
 	height: 48px;
 	line-height: 48px;
 	width: 20%;
-	border-left: 1px solid #ddd;  
+	border-left: 1px solid #ddd;
+	letter-spacing: -0.5px; 
+	color: #666;
+	font-weight: bold;
 }
 
 /* 현재 진행 중인 메뉴 */
@@ -83,7 +91,11 @@ div.container.bookWrapper div.book-progress-wrapper ul li.selectStyle{
 	background: #3d49a2;          
 }
 
-div.container.bookWrapper div.book-progress-wrapper ul li.selectStyle a{
+div.container.bookWrapper div.book-progress-wrapper ul li.selectStyle span.spanStep{
+	color: white;
+}
+
+div.container.bookWrapper div.book-progress-wrapper ul li.selectStyle{
 	color: white;
 	font-weight: bold;
 	font-size: 17px;
@@ -694,4 +706,16 @@ div.nDiv{
 
 span.verticalBar{
 	margin: 0 5px;  
+}
+
+/* sweetalert */
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  font-size: 13px;   
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);  
+}
+
+.swal-overlay {
+  background-color: rgba(51, 51, 51, 0.45);                    
 }

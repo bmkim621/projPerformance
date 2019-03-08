@@ -1,7 +1,9 @@
 -- 시설
 insert into facilities values
-(1, 1, 3, 120, '대구오페라하우스 본관', 30, 30, 30, 30),
-(2, 1, 3, 120, '대구오페라하우스 별관', 30, 30, 30, 30);
+(1, 3, 120, '대구오페라하우스 본관', 30, 30, 30, 30),
+(2, 3, 120, '대구오페라하우스 별관', 30, 30, 30, 30);
+
+insert into resv_seat values('A', 1), ('A', 20);
 
 -- 공연
 insert into performance values
@@ -135,4 +137,8 @@ insert into review(review_title, review_writer, review_content, member_code) val
 ('공연관람후기 테스트', '김영희', '공연관람후기 테스트입니다.', 'M19004'),
 ('코믹반전스릴러 연극 <그녀가 산다> - 대구공연', '김철수', '색다른 코드의 코믹스릴러! 반전의 스토리!!', 'M19003'),
 ('[서구문화회관] 비타민콘서트 안내', '김소현', '서구문화회관 시즌기획공연 "비타민콘서트" 안내', 'M19005');
+
+insert into book(book_number, member_code, show_code, payment_code, discount_code, book_date, book_time, book_state, book_zone, book_num, seat_grade, seat_category) values 
+('B19001', 'M19003', 'P19008', 'PAY01', '00', '2019-03-29', '19:30', 0, 'A', 10, 'R', 'SEAT2'),
+('B19002', 'M19003', 'P19007', 'PAY01', '00', '2019-03-09', '15:00', 0, 'A', 10, null, 'SEAT1');
 
