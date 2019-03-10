@@ -56,7 +56,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public BookVO getFinishResvSeat(String showCode) {
+	public List<BookVO> getFinishResvSeat(String showCode) {
 		// TODO Auto-generated method stub
 		return dao.getFinishResvSeat(showCode);
 	}

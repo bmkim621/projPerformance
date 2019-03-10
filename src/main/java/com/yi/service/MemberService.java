@@ -1,13 +1,16 @@
 package com.yi.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import com.yi.domain.MemberVO;
 
 public interface MemberService {
 	public String getTime();
 	
-	public void insertMember(MemberVO vo);
+	public void insertMember(MemberVO vo) throws MessagingException, UnsupportedEncodingException;
 	
 	public MemberVO readMember(String userid);
 	
@@ -20,4 +23,8 @@ public interface MemberService {
 	
 	//아이디, 비밀번호 일치하는 회원 찾기
 	public MemberVO read(String userid, String userpw);
+	
+	//아이디 중복확인
+	public int idDuplicateChk(String userid);
+	
 }

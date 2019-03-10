@@ -21,5 +21,7 @@ public interface MemberDAO {
 	//아이디, 비밀번호 일치하는 회원 찾기
 	public MemberVO read(String userid, String userpw);
 	
-	
+	//아이디 중복확인
+	public int idDuplicateChk(String userid);
+		
 }

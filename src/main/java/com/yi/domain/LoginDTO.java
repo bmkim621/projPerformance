@@ -25,10 +25,12 @@ public class LoginDTO {
 		this.isMember = isMember;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return String.format("LoginDTO [userid=%s, username=%s, isMember=%s]", userid, username, isMember);
 	}
+	
 	
 	
 }

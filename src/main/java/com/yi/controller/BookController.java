@@ -179,9 +179,10 @@ public class BookController {
 		List<SeatVO> list = service.getSeatInfo(vo.getSeatCategory()); 
 		model.addAttribute("list", list);
 		
-		//이미 예약 완료 된 좌석
-		BookVO reservedSeat = service.getFinishResvSeat(vo.getsCode().getShowCode());
+		//이미 예약 완료 된 좌석  
+		List<BookVO> reservedSeat = service.getFinishResvSeat(vo.getsCode().getShowCode());
 		logger.info("reservedSeat ===> " + reservedSeat);
+
 		model.addAttribute("reservedSeat", reservedSeat);
 	}
 }

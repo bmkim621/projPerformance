@@ -7,8 +7,8 @@
 	</select>
 	
 	<insert id="insertMember">
-		insert into tbl_member (member_code, member_name, id, password, email, phone, dob, address, isMember, grade_code) values
-		(nextmemcode(), #{memberName}, #{id}, password(#{password}), #{email}, #{phone}, #{dob}, #{address}, #{isMember}, #{gCode.gradeCode});
+		insert into tbl_member (member_code, member_name, id, password, email, phone, address, isMember) values
+		(nextmemcode(), #{memberName}, #{id}, password(#{password}), #{email}, #{phone}, #{address}, #{isMember});
 	</insert>
 	
 	<select id="readMember" resultType="MemberVO">
@@ -35,5 +35,11 @@
 		select * from tbl_member
 		where id = #{userid} and password = password(#{userpw})
 	</select>
+	
+	<!-- 아이디 -->
+	<select id="idDuplicateChk" parameterType = "String" resultType = "int">
+		SELECT COUNT(*) FROM tbl_member WHERE id = #{id}    
+	</select>
+	
 
 </mapper>

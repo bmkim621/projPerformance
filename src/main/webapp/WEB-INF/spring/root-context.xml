@@ -59,4 +59,22 @@
 	
 	<!-- ex05 FileCheckTask -->
 	<context:component-scan base-package="com.yi.task"></context:component-scan>
+	
+	<!-- 메일 인증 관련 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="dgoperaproj@gmail.com" />	<!-- 메일 -->
+		<property name="password" value="ALSQH1103!" />	<!-- 비밀번호 -->
+		<!-- email 요청시는 SMTP -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
 </beans>

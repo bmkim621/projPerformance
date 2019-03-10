@@ -165,3 +165,128 @@ p.text-center.notMember a.btnGoJoinForm:hover{
 	color: #656da8;
 	border: 1px solid #656da8;         
 }
+
+
+/* 회원가입 폼 */
+div.titleWrapper{                                                                                     
+	padding-top: 60px;
+	border: 1pxx solid red;                  
+}
+
+div.titleWrapper h2{
+	margin-bottom: 40px;
+	letter-spacing: -0.8px;
+}
+
+div.joinNoticeWrapper{
+	border-bottom: 1px solid #2a3072;
+	margin: 30px 0;
+	padding-bottom: 30px;
+}
+
+div.joinNoticeWrapper h2{  
+	letter-spacing: -0.8px;
+	color: #000;   
+	font-size: 30px;
+}
+
+div.joinNoticeWrapper span#joinNoticeSpan{
+	letter-spacing: -0.8px!important;
+	color: #686868!important;               
+}
+
+div.joinNoticeWrapper img{
+	margin-right: 3px;   
+}
+
+#f1 label{
+	font-size: 16px;
+	letter-spacing: -0.8px;
+	color: #000;
+}
+
+div.form-group{
+	width: 90%;
+	margin: 0 auto;
+	padding: 20px 0;
+	border-bottom: 1px solid #eaeaea;   
+}
+
+div.form-group label img{
+	margin-right: 5px;
+}
+
+button#btnIdCheck{
+	border: none;
+	background-color: #fff;
+	overflow: hidden;
+	padding: 0;
+}
+
+button#btnIdCheck img{
+	width: 112px;
+	height: 38px;     
+}
+
+div.col-sm-6{
+	padding-left: 0;
+	height: 41px;
+	line-height: 41px;
+}
+
+span.validationTitle{
+	color: #ff6666;
+	letter-spacing: -0.8px;
+	margin-left: 10px;
+}
+
+.form-control {
+	border-color: #ccc;
+	min-height: 41px;
+	box-shadow: none !important;
+	padding-left: 15px;  
+}
+
+.form-control:focus {
+	border-color: #5cd3b4;
+}
+
+.phoneNum{
+	display: inline-block;
+	padding: 5px 12px;   
+	margin: 0 5px;
+}
+
+select{
+	min-height: 41px;
+	padding: 5px 6px; 
+	margin-right: 5px;
+	letter-spacing: -0.8px;
+}
+
+.btn-default{
+	border: 1px solid #ccc;
+	min-height: 41px;
+	margin-left: 10px;
+	letter-spacing: -0.8px;
+	color: #000;
+}
+
+.btn-default i{
+	color: #000;
+}
+
+#btnSignUp{
+	width: 230px;
+	height: 50px;
+	color: white;
+	background-color: #2a3072;
+	letter-spacing: -0.8px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+div.text-center{
+	margin-top: 30px;
+	margin-bottom: 60px;    
+}

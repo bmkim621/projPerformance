@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memDao;
-	
+
 	@Override
 	public String getTime() {
 		// TODO Auto-generated method stub
@@ -23,7 +23,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertMember(MemberVO vo) {
 		// TODO Auto-generated method stub
-		memDao.insertMember(vo);
+		memDao.insertMember(vo);	//tbl_member 테이블에 회원 추가
+
 	}
 
 	@Override
@@ -54,6 +55,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO read(String userid, String userpw) {
 		// TODO Auto-generated method stub
 		return memDao.read(userid, userpw);
+	}
+
+	@Override  
+	public int idDuplicateChk(String userid) {
+		// TODO Auto-generated method stub
+		return memDao.idDuplicateChk(userid);
 	}
 
 }

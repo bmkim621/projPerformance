@@ -111,12 +111,10 @@ insert into payment values
 insert into grade values ('G01', '관리자'), ('G02', '사원');
 
 -- 고객
-insert into tbl_member (member_code, member_name, id, password, email, phone, dob, address, isMember, grade_code) values 
-('M19001', '김보민', 'bmkim621', password('qwerty1234'), 'test@gmail.com', '010-123-1234', '1991-06-21', '대구광역시', 0, null),
-('M19002', '홍길동', 'gdhong', password('12341234'), 'hong@naver.com.com', '010-777-7777', '1990-01-01', '대구광역시', 1, 'G01'),
-('M19003', '김철수', 'test01', password('12341234'), 'kcs@ghanmail.net', '010-111-1111', '1995-05-05', '서울특별시', 0, null),
-('M19004', '김영희', 'test02', password('12341234'), 'yhk@gmail.com', '010-222-2222', '1997-07-07', '인천광역시', 0, null),
-('M19005', '김소현', 'test03', password('12341234'), 'ksh@naver.com', '010-127-3333', '1999-06-04', '서울특별시', 0, null);
+insert into tbl_member (member_code, member_name, id, password, email, phone, address, isMember, grade_code) values 
+('M19001', '김보민', 'bmkim621', password('qwerty1234'), 'test@gmail.com', '010-123-1234', '대구광역시', 0, null),
+('M19002', '홍길동', 'gdhong', password('12341234'), 'hong@naver.com.com', '010-777-7777', '대구광역시', 1, 'G01'),
+('M19003', '김철수', 'test01', password('12341234'), 'kcs@ghanmail.net', '010-111-1111', '서울특별시', 0, null);
 
 -- 공지
 insert into notice(content, title, is_notice, member_code, writer) values
@@ -134,11 +132,12 @@ insert into notice(content, title, is_notice, member_code, writer) values
 
 -- 후기
 insert into review(review_title, review_writer, review_content, member_code) values
-('공연관람후기 테스트', '김영희', '공연관람후기 테스트입니다.', 'M19004'),
+('공연관람후기 테스트', '김철수', '공연관람후기 테스트입니다.', 'M19003'),
 ('코믹반전스릴러 연극 <그녀가 산다> - 대구공연', '김철수', '색다른 코드의 코믹스릴러! 반전의 스토리!!', 'M19003'),
-('[서구문화회관] 비타민콘서트 안내', '김소현', '서구문화회관 시즌기획공연 "비타민콘서트" 안내', 'M19005');
+('[서구문화회관] 비타민콘서트 안내', '김철수', '서구문화회관 시즌기획공연 "비타민콘서트" 안내', 'M19003');
 
 insert into book(book_number, member_code, show_code, payment_code, discount_code, book_date, book_time, book_state, book_zone, book_num, seat_grade, seat_category) values 
 ('B19001', 'M19003', 'P19008', 'PAY01', '00', '2019-03-29', '19:30', 0, 'A', 10, 'R', 'SEAT2'),
-('B19002', 'M19003', 'P19007', 'PAY01', '00', '2019-03-09', '15:00', 0, 'A', 10, null, 'SEAT1');
+('B19002', 'M19003', 'P19007', 'PAY01', '00', '2019-03-09', '15:00', 0, 'A', 10, null, 'SEAT1'),
+('B19003', 'M19003', 'P19008', 'PAY01', '00', '2019-03-29', '19:30', 0, 'A', 32, 'B', 'SEAT2');
 

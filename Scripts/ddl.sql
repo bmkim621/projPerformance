@@ -229,10 +229,9 @@ CREATE TABLE tbl_member (
 	password    CHAR(41)    NULL     COMMENT '비밀번호', -- 비밀번호
 	email       VARCHAR(30) NOT NULL COMMENT '이메일', -- 이메일
 	phone       VARCHAR(30) NOT NULL COMMENT '연락처', -- 연락처
-	dob         DATE        NOT NULL COMMENT '생년월일', -- 생년월일
 	regdate     TIMESTAMP   NULL     DEFAULT now() COMMENT '가입일', -- 가입일
 	address     TEXT        NOT NULL COMMENT '주소', -- 주소
-	isMember    TINYINT(1)  NULL     COMMENT '회원구분 0: 회원, 1: 관리자', -- 회원구분
+	isMember    TINYINT(1)  NULL     DEFAULT 0 COMMENT '회원구분 0: 회원, 1: 관리자', -- 회원구분
 	grade_code  VARCHAR(5)  NULL     COMMENT '등급코드' -- 등급코드
 )
 COMMENT '고객';
@@ -461,7 +460,7 @@ begin
 	declare return_memCode char(6);
 	
 	select concat('M', DATE_FORMAT(now(), "%y"), lpad(right(max(member_code), 3) + 1, 3, '000')) into return_memCode
-	from customer;
+	from tbl_member;
 	
 	return return_memCode;
 	

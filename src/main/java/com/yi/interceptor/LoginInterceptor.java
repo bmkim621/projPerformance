@@ -41,14 +41,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if(dto != null) {
 			HttpSession session = request.getSession();
 			//로그인 시에 dto 전체를 가지고 와야 됨.
-			session.setAttribute(LOGIN, dto);
+			session.setAttribute(LOGIN, dto);      
 			
 			//리스트에 dest에 있는 검색어 정보들을 꺼내온다.
 			Object dest = session.getAttribute("dest");
 			String path = dest != null ? (String) dest : request.getContextPath();
 			
 			response.sendRedirect(path);
-		}
+		} 
 	}
 
 	@Override

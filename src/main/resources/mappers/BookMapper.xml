@@ -89,7 +89,7 @@
 	<!-- 예약완료된 좌석 정보 -->
 	<select id="getFinishResvSeat" resultType="BookVO">
 		select * from book
-		where book_state = 0 and show_code = #{showCode}
+		where book_state = 0 and show_code = #{showCode}  
 	</select>
 
 

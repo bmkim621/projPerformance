@@ -15,6 +15,7 @@ public class MemberDaoImpl implements MemberDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+
 	
 	private static final String namespace = "com.yi.mapper.MemberMapper";
 	
@@ -24,6 +25,7 @@ public class MemberDaoImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".getTime");
 	}
 
+	//회원가입
 	@Override
 	public void insertMember(MemberVO vo) {
 		// TODO Auto-generated method stub
@@ -62,6 +64,12 @@ public class MemberDaoImpl implements MemberDAO {
 		map.put("userpw", userpw);
 		
 		return sqlSession.selectOne(namespace + ".read", map);
+	}
+
+	@Override
+	public int idDuplicateChk(String userid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".idDuplicateChk", userid);	//0: 사용가능  
 	}
 
 }

@@ -9,6 +9,8 @@ select * from tbl_member;
 select * from review;
 select * from review_attach;
 
+SELECT COUNT(*) FROM tbl_member WHERE id = 'gdhong';
+
 select count(notice_no) from notice;
 select count(review_no) from review;
 
@@ -37,12 +39,14 @@ select notice.nextval from dual;
 select * from notice_attach
 where upload_path = DATE_FORMAT(date_add(now(), interval -1 day), '%Y\%m\%d'); -- 어제날짜
 
+select concat('M', DATE_FORMAT(now(), "%y"), lpad(right(max(member_code), 3) + 1, 3, '000')) from tbl_member;
 
 select last_insert_id();
 
 select count(review_no) from review where review_writer like CONCAT('%', '김보민', '%');
 
 select * from performance;
+select * from tbl_member;
 
 insert into performance values
 ('P19018', '한헝 수교 30주년 기념 공연 오페라 콘체르탄테 <반크 반>', 'A', 160, '19:00', '2019-01-17', '2019-01-17', 1, null, null, (select total_seatCnt from facilities where facilities_no = 1 ));

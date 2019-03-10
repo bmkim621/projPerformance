@@ -61,9 +61,14 @@ public class BookDaoImpl implements BookDAO {
 	}
 
 	@Override
-	public BookVO getFinishResvSeat(String showCode) {
+	public List<BookVO> getFinishResvSeat(String showCode) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".getFinishResvSeat", showCode);
+	/*	Map<String, Object> map = new HashMap<>();
+		map.put("showCode", showCode);
+		map.put("bookZone", bookZone);
+		map.put("bookNum", bookNum);*/
+		
+		return sqlSession.selectList(namespace + ".getFinishResvSeat", showCode);
 	}
 
 

@@ -30,6 +30,6 @@ public interface BookDAO {
 	public ResvSeatVO getResvSeat(String resvZone, int resvNum);
 	
 	//예약완료된 좌석
-	public BookVO getFinishResvSeat(String showCode);
-	
+	public List<BookVO> getFinishResvSeat(String showCode);
+	 
 }

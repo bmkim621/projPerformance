@@ -66,7 +66,20 @@ div.gradeA{
 div.gradeB{
 	background-color: pink;
 }
+
+.test{
+	z-index: 999;
+}
 </style>
+
+<script>  
+ 
+
+ 
+</script>   
+
+
+
 <div class="container-fluid bookContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -83,7 +96,17 @@ div.gradeB{
 </div>
 <!-- container end -->
 
-<h4>${reservedSeat }</h4>
+
+
+<c:forEach items="${reservedSeat }" var="rs">
+	<p>${rs }</p>
+</c:forEach>
+${reservedSeat }
+<c:forEach items="${reservedSeat }" var="seat">
+<c:set var="xx" value="${seat.bookNum }"></c:set>
+</c:forEach>
+
+<h2>${r }</h2>
 
 <!-- 공연안내  -->            
 <div class="container bookWrapper">
@@ -130,19 +153,40 @@ div.gradeB{
 					</div> 
 				</c:if>
 				
-				<c:if test="${list[0].locCode eq 'SEAT2' }">
-					<div class='aWrapper'>
+				
+				
+				
+			<c:set var="break" value="false" />
+			<c:forEach items="${reservedSeat }" var="seat">
+			${seat }
+			</c:forEach>
+				
+			<c:if test="${list[0].locCode eq 'SEAT2' }">
+					<div class='temptemp' style='border:1px solid red;'>
 					<c:forEach begin="${list[0].startLoc }" end="${list[0].endLoc }" var="x">  
-						<c:if test="${x <= (row * 2) }">
+					
+				<c:if test="${x <= (row * 2) }">
 							<div class='seatContainer gradeR' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='R'>
-								<c:if test="${reservedSeat.bookNum == x }">..</c:if> 
-							</div>  
+							</div>
+							
+							<c:forEach items="${reservedSeat }" var="zz">
+								<c:if test="${zz.bookNum == x}">*</c:if>
+							</c:forEach>
+							
 							 
 							<c:if test="${x % row == 0 }"><br></c:if>
 						</c:if>
 						
 						<c:if test="${ x >= (row * 2) + list[0].startLoc && x <= (row * 4) }">
-							<div class='seatContainer gradeS' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='S'></div>
+							
+							
+							<c:forEach items="${reservedSeat }" var="zz">
+								<c:if test="${zz.bookNum == x && zz.bookZone == 'S'}">*</c:if>
+								<c:if test="${zz.bookNum != x && zz.bookZone == 'S'}">
+								
+								</c:if>
+							</c:forEach>
+							
 							<c:if test="${x % row == 0 }"><br></c:if>
 						</c:if> 
 						
@@ -155,34 +199,37 @@ div.gradeB{
 							<div class='seatContainer gradeB' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='B'></div>
 							<c:if test="${x % row == 0 }"><br></c:if>
 						</c:if>
+					
+						
+						
 					</c:forEach>
+					
 					</div>
 				</c:if>  
-					
-			
-				
-				 
 				
 				    
 				  
 				
-				                     
-			</div>               
+           
 	  
 			
 	  		                              
 		</div>             
 	</div>
 </div> 
-
+</div>
            
 <script>
+
+	var seat = [<c:forEach items="${reservedSeat }" var="seat">${seat.bookNum},</c:forEach>];
+	var zone = [<c:forEach items="${reservedSeat }" var="seat">'${seat.bookZone}',</c:forEach>];
+	
  	$(function(){
-		
-		$(document).on("click", ".seatContainer", function(){
-			var t = $(this).attr("data-seatnum");
-			alert(t);
+ 		$.each(seat, function(i, obj){
+//			alert(obj);
+
 		})
+		
 	}) 
 </script>
 
