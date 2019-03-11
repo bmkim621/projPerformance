@@ -477,15 +477,16 @@ div.chkMyContainer i{
 
 div.choice-info-wrapper{
 	overflow: hidden;
-	width: 280px;
-	height: 100px;                   
+	width: 300px;
+	height: 115px;                          
 }
 
 span.info-contents-span{
 	color: white;
 	font-size: 15px;              
 	letter-spacing: -0.5px;
-	padding-left: 50px;        
+	padding-left: 30px;   
+	overflow: hidden;    
 }      
         
 /* 결제내역 */
@@ -569,6 +570,11 @@ p.myTitle{
 	color: #8C8C8C;
 	font-size: 15px;
 	letter-spacing: -0.5px;
+}
+
+div.choice-info-wrapper > p.myTitle:nth-child(3){
+	margin-bottom: 0;
+	height: 50px;  
 }
 
 /* 회차 */
@@ -718,4 +724,18 @@ span.verticalBar{
 
 .swal-overlay {
   background-color: rgba(51, 51, 51, 0.45);                    
+}
+
+/* ================ 예매 3번째 단계 =============== */
+span.mySelectSeatInfo:first-child{
+	padding-left: 27px;                 
+} 
+
+span.mySelectSeatInfo:nth-child(3){
+	padding-left: 83px;                 
+}
+  
+span.mySelectSeatInfo{
+	padding: 0 5px;
+	display: inline-block; 
 }

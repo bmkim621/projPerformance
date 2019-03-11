@@ -61,6 +61,7 @@ div.login-wrapper{
 	border: 1px solid #ccc;           
 }
 
+
 .form-control:focus {
 	/* background: #e2e2e2; */
 	border: 1px solid #2a3072;
@@ -132,7 +133,7 @@ div.login-wrapper{
 .login-form i {
 	position: absolute;
 	left: 13px;
-	top: 12px;                  
+	top: 32px;                                         
 	font-size: 18px;          
 }
 

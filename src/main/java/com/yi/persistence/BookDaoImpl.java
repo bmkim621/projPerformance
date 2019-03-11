@@ -104,6 +104,18 @@ public class BookDaoImpl implements BookDAO {
 		sqlSession.delete(namespace + ".delTempResvSeat", map);   
 	}
 
+	@Override
+	public void delAllTempResvSeat() {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace + ".delAllTempResvSeat");
+	}
+
+	@Override
+	public PerformanceVO selectListByShowCode(String showCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".selectListByShowCode", showCode);
+	}
+
 
   
 	

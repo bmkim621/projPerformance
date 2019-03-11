@@ -16,6 +16,9 @@ public interface BookService {
 	//공연이름으로 공연정보 가져오기
 	public List<PerformanceVO> selectListByShowName(String showName);
 	
+	//공연코드로 공연정보 가져오기
+	public PerformanceVO selectListByShowCode(String showCode);
+	
 	//검색
 	public List<PerformanceVO> searchPerformance(Map<String, Object> map);
 	
@@ -39,5 +42,8 @@ public interface BookService {
 	
 	//임시 좌석 삭제
 	public void delTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum);
+	
+	//임시 좌석 삭제(조건 X)
+	public void delAllTempResvSeat();
 	
 }

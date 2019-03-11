@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
+import com.yi.service.BookService;
 import com.yi.service.MemberService;
 
 @Controller
@@ -31,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private BookService bookService;
+	
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public void loginGet() {
@@ -69,6 +73,7 @@ public class MemberController {
 		logger.info("==========> Logout GET ");
 		//로그아웃 => 세션 날리기
 		session.invalidate();
+		bookService.delAllTempResvSeat();
 		
 		//로그아웃 후 홈화면으로 이동하기
 		return "redirect:/";

@@ -215,13 +215,14 @@ public class BookController {
 	//좌석 선택할 때
 	@ResponseBody
 	@RequestMapping(value = "insertTempSeat", method = RequestMethod.POST)
-	public ResponseEntity<String> insertTempSeat(String selectShowCode, String selectSeatZone, String selectSeatNum, HttpSession session){
+	public ResponseEntity<String> insertTempSeat(String selectShowCode, String selectSeatZone, String selectSeatNum, String selectSeatGrade, HttpSession session){
 		ResponseEntity<String> entity = null;
 		
 		logger.info("좌석 선택하기(임시좌석) =======> insertTempSeat : POST");
 		logger.info("selectShowCode = " + selectShowCode);
 		logger.info("selectSeatZone = " + selectSeatZone);
 		logger.info("selectSeatNum = " + selectSeatNum);
+		logger.info("selectSeatGrade = " + selectSeatGrade);
 		
 		try {
 			int res = service.getTempResvSeat(selectShowCode, selectSeatZone, selectSeatNum);
@@ -239,6 +240,7 @@ public class BookController {
 				if(bvo.getBookZone() == null) {
 					bvo.setBookZone(selectSeatZone);
 					bvo.setBookNum(Integer.parseInt(selectSeatNum));
+					bvo.setSeatGrade(selectSeatGrade);
 				} else {
 					BookVO addBvo = new BookVO();
 					addBvo.setBookDate(bvo.getBookDate());
@@ -252,12 +254,12 @@ public class BookController {
 					addBvo.setmCode(mvo);
 					addBvo.setBookZone(selectSeatZone);
 					addBvo.setBookNum(Integer.parseInt(selectSeatNum));
+					addBvo.setSeatGrade(selectSeatGrade);
+					
 					bookList.add(addBvo);
 				}
-				
-					
-//					bookList.add(bvo);
 				entity = new ResponseEntity<String>("success", HttpStatus.OK);
+				
 			} else if(res > 0) {
 				logger.info("이미 선택된 좌석");
 				
@@ -271,7 +273,7 @@ public class BookController {
 				if(mvo.getMemberCode().equals(bvo.getmCode().getMemberCode())) {
 					logger.info("수정..");
 					service.delTempResvSeat(selectShowCode, selectSeatZone, selectSeatNum);  
-					
+										
 					entity = new ResponseEntity<String>("modify", HttpStatus.OK);     
 					
 				} else {
@@ -289,15 +291,35 @@ public class BookController {
 	}
 	  
 	// ==================== step3 ======================
-		@RequestMapping(value = "stepThree", method = RequestMethod.GET)
-		public void stepThreeGet(HttpSession session, Model model) {
-			logger.info("stepThree : GET");
-			List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
-			for(int i = 0; i < bookList.size() ; i++) {
-				
-			}
-			logger.info("list=========>" + bookList);
+	@RequestMapping(value = "stepThree", method = RequestMethod.GET)
+	public void stepThreeGet(HttpSession session, Model model) {
+		logger.info("stepThree : GET");
+		
+		List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
 			
-			model.addAttribute("list", bookList);       
+		for(int i = 0; i < bookList.size() ; i++) {
+			BookVO bvo = bookList.get(i);
+			logger.info("bvo ===========> " + bvo);
+			
+			//디스플레이하기 위해 필요한 공연정보.....
+			PerformanceVO searchPerf = service.selectListByShowCode(bvo.getsCode().getShowCode());	//공연코드로 해당 공연정보 가지고 오기
+			logger.info("searchPerf ===========> " + searchPerf);
+			PerformanceVO pvo  = service.perfListAllByShowName(searchPerf.getShowName());
+			logger.info("pvo ===========> " + pvo);
+			
+			model.addAttribute("pvo", pvo);
+			
+			int res = service.getTempResvSeat(bvo.getsCode().getShowCode(), bvo.getBookZone(), String.valueOf(bvo.getBookNum()));
+			logger.info("res ===========> " + res);
+			
+			if(res > 0) {
+				model.addAttribute("bvo", bookList);  
+				logger.info("res 0 이상인 bvo ===========> " + bvo);  
+			} else {
+				bookList.remove(bvo);	//이미 resv_seat 테이블에 데이터가 없으므로 세션에서도 없애줌.
+			}
+				
 		}
+			      
+	}
 }

@@ -21,6 +21,11 @@
 	    where show_name = #{showName}                 
 	</select>  
 	
+	<!-- 공연코드로 공연정보 가지고 오기 -->
+	<select id="selectListByShowCode" resultType="PerformanceVO">
+		select * from performance where show_code = #{showCode}; 
+	</select>
+	
 	<select id="perfListAllByShowName" resultMap="resultPerf">  
 		select min(show_startdate) as show_startdate, max(show_startdate) as show_enddate, show_code, show_name, show_type, total_time, 
 		start_time, show_image_path, seat_category, remain_seat, r_remain_seat, s_remain_seat, a_remain_seat, b_remain_seat,   
@@ -105,6 +110,10 @@
 	
 	<delete id="delTempResvSeat">
 		delete from resv_seat where resv_zone = #{selectSeatZone} and resv_num = #{selectSeatNum} and show_code = #{selectShowCode}
+	</delete>
+	
+	<delete id="delAllTempResvSeat">
+		delete from resv_seat
 	</delete>
 
 </mapper>

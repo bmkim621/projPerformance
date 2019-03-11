@@ -259,7 +259,11 @@ span.span-wrapper{
 					선택한 좌석 : <span id='spanResultInfo'>&nbsp;&nbsp;</span>
 				</div>
 				
-				<div class='btnWrapper'><button id="goThird" type="button">다음단계</button></div>
+				<div class='btnWrapper'>
+				<button id="goThird" type="button">좌석선택완료</button>
+				<button>이전화면</button>
+				<button>좌석다시선택</button>
+				</div>
 				    
 				  
 				
@@ -292,6 +296,7 @@ span.span-wrapper{
 			var selectSeatNum = $(this).attr('data-seatnum');	//선택한 좌석 번호
 			var selectSeatZone = $(this).attr('data-seatzone');	//선택한 좌석 구역
 			var selectShowCode = $("#twoShowCode").val();		//공연코드
+			var selectSeatGrade = $(this).attr('data-seatgrade');
 			
 //			console.log(selectSeatNum);
 //			console.log(selectSeatZone);
@@ -303,7 +308,7 @@ span.span-wrapper{
 			$.ajax({
 				url: "${pageContext.request.contextPath}/book/insertTempSeat",
 				type: "POST",
-				data : {selectShowCode: selectShowCode, selectSeatZone: selectSeatZone, selectSeatNum: selectSeatNum},
+				data : {selectShowCode: selectShowCode, selectSeatZone: selectSeatZone, selectSeatNum: selectSeatNum, selectSeatGrade: selectSeatGrade},
 				success: function(data){
 //					console.log(data);  
 					if(data == "success"){
@@ -325,7 +330,8 @@ span.span-wrapper{
 						me.addClass("alreadyResvSeat");              
 					}
 					if(data == "modify"){
-						me.removeClass("chkSeat");           
+						me.removeClass("chkSeat");  
+						$(".span-wrapper").html("");              
 					}
 					    
 				}
@@ -344,5 +350,50 @@ span.span-wrapper{
 	})   
 </script>
 
+
+<script>
+//브라우저에서 X버튼 누를 시 세션 종료시키도록 한다.
+var MouseEventObj = new Object();
+
+function addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    }
+    else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
+    }
+}
+
+addEvent(document, "mouseout", function(e) {
+    e = e ? e : window.event;
+    var from = e.relatedTarget || e.toElement;
+    if(!from) {
+        MouseEventObj.clientX = e.clientX;
+        MouseEventObj.clientY = e.clientY;
+    }
+});
+
+addEvent(document, "mouseover", function(e) {
+    e = e ? e : window.event;
+    var from = e.relatedTarget || e.toElement;
+    if(from) {
+        MouseEventObj.clientX = e.clientX;
+        MouseEventObj.clientY = e.clientY;
+    } 
+});
+
+window.onbeforeunload = function(e) {
+ e = e ? e : window.event;
+ if(e.clientX && e.clientY) {
+     MouseEventObj.clientX = e.clientX;
+     MouseEventObj.clientY = e.clientY;
+ }
+ 
+ if ((MouseEventObj.clientY <0) ||(e.altKey) ||(e.ctrlKey)||((MouseEventObj.clientY < 129) && (MouseEventObj.clientY>107))) { 
+  console.log(MouseEventObj);
+  $.get( "${pageContext.request.contextPath}/member/logout", function( data ) {});
+ } 
+}
+</script>
 
 <%@ include file="../include/footer.jsp"%>

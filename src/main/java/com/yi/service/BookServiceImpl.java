@@ -79,5 +79,17 @@ public class BookServiceImpl implements BookService {
 		dao.delTempResvSeat(selectShowCode, selectSeatZone, selectSeatNum);
 	}
 
+	@Override
+	public void delAllTempResvSeat() {
+		// TODO Auto-generated method stub
+		dao.delAllTempResvSeat();
+	}
+
+	@Override
+	public PerformanceVO selectListByShowCode(String showCode) {
+		// TODO Auto-generated method stub
+		return dao.selectListByShowCode(showCode);
+	}
+
 
 }
