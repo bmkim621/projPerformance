@@ -426,7 +426,9 @@ update review set replycnt = (select count(reply_no) from reply where review_no 
 -- 예약좌석
 CREATE TABLE resv_seat (
 	resv_zone CHAR(1) NOT NULL COMMENT '구역', -- 구역
-	resv_num  INT     NOT NULL COMMENT '번호' -- 번호
+	resv_num  INT     NOT NULL COMMENT '번호', -- 번호
+	show_code CHAR(6) NOT NULL COMMENT 'P19(연도)001', -- 공연코드
+	resv_date TIMESTAMP NOT NULL DEFAULT now() COMMENT '예약일' -- 예약일
 )
 COMMENT '예약좌석';
 	

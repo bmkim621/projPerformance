@@ -31,5 +31,14 @@ public interface BookDAO {
 	
 	//예약완료된 좌석
 	public List<BookVO> getFinishResvSeat(String showCode);
+	
+	//좌석선택(임시좌석)
+	public void insertTempSeat(String selectShowCode, String selectSeatZone, String selectSeatNum);
+	
+	//임시 좌석
+	public int getTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum);
+	
+	//임시 좌석 삭제
+	public void delTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum);
 	 
 }

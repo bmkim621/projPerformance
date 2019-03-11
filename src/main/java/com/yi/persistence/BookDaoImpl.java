@@ -71,6 +71,39 @@ public class BookDaoImpl implements BookDAO {
 		return sqlSession.selectList(namespace + ".getFinishResvSeat", showCode);
 	}
 
+	@Override
+	public void insertTempSeat(String selectShowCode, String selectSeatZone, String selectSeatNum) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("selectShowCode", selectShowCode);
+		map.put("selectSeatZone", selectSeatZone);
+		map.put("selectSeatNum", selectSeatNum);
+		
+		sqlSession.insert(namespace + ".insertTempSeat", map);  
+	}
+
+	@Override
+	public int getTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("selectShowCode", selectShowCode);
+		map.put("selectSeatZone", selectSeatZone);
+		map.put("selectSeatNum", selectSeatNum);
+		
+		return sqlSession.selectOne(namespace + ".getTempResvSeat", map);
+	}
+
+	@Override
+	public void delTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("selectShowCode", selectShowCode);
+		map.put("selectSeatZone", selectSeatZone);
+		map.put("selectSeatNum", selectSeatNum);
+		
+		sqlSession.delete(namespace + ".delTempResvSeat", map);   
+	}
+
 
   
 	

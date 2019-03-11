@@ -92,5 +92,19 @@
 		where book_state = 0 and show_code = #{showCode}  
 	</select>
 
+	<!-- 임시좌석 -->
+	<insert id="insertTempSeat">
+		insert into resv_seat (resv_zone, resv_num, show_code) values
+		(#{selectSeatZone}, #{selectSeatNum}, #{selectShowCode})  
+	</insert>
+	  
+	<select id="getTempResvSeat" parameterType = "String" resultType = "int">     
+		select count(*) from resv_seat  
+		where resv_zone = #{selectSeatZone} and resv_num = #{selectSeatNum} and show_code = #{selectShowCode}    
+	</select>
+	
+	<delete id="delTempResvSeat">
+		delete from resv_seat where resv_zone = #{selectSeatZone} and resv_num = #{selectSeatNum} and show_code = #{selectShowCode}
+	</delete>
 
 </mapper>

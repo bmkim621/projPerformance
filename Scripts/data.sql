@@ -3,7 +3,7 @@ insert into facilities values
 (1, 3, 120, '대구오페라하우스 본관', 30, 30, 30, 30),
 (2, 3, 120, '대구오페라하우스 별관', 30, 30, 30, 30);
 
-insert into resv_seat values('A', 1), ('A', 20);
+-- insert into resv_seat values('A', 1, 'P19008'), ('A', 20, 'P19008');
 
 -- 공연
 insert into performance values

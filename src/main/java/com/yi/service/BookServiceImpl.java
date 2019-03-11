@@ -61,5 +61,23 @@ public class BookServiceImpl implements BookService {
 		return dao.getFinishResvSeat(showCode);
 	}
 
+	@Override  
+	public void insertTempSeat(String selectShowCode, String selectSeatZone, String selectSeatNum) {
+		// TODO Auto-generated method stub
+		dao.insertTempSeat(selectShowCode, selectSeatZone, selectSeatNum);
+	}
+
+	@Override
+	public int getTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum) {
+		// TODO Auto-generated method stub
+		return dao.getTempResvSeat(selectShowCode, selectSeatZone, selectSeatNum);  
+	}
+
+	@Override
+	public void delTempResvSeat(String selectShowCode, String selectSeatZone, String selectSeatNum) {
+		// TODO Auto-generated method stub
+		dao.delTempResvSeat(selectShowCode, selectSeatZone, selectSeatNum);
+	}
+
 
 }
