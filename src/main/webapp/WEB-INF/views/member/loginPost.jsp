@@ -8,7 +8,7 @@
 <body>
 	<script>
 		alert("정보가 정확하지 않습니다. 다시 입력해주세요.");
-		location.href = "${pageContext.request.contextPath }/member/login }";     
+		location.href = "${pageContext.request.contextPath }/member/login";     
 	</script>
 
 </body>

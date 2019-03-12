@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/join.css?bb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/join.css?bccb" rel="stylesheet" type="text/css">
 
 <div class="container-fluid loginContainer">
 	<div class="row">

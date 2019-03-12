@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.DiscountVO;
 import com.yi.domain.MemberVO;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.ResvSeatVO;
@@ -114,6 +115,12 @@ public class BookDaoImpl implements BookDAO {
 	public PerformanceVO selectListByShowCode(String showCode) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".selectListByShowCode", showCode);
+	}
+
+	@Override
+	public List<DiscountVO> selectDiscountAll() {
+		// TODO Auto-generated method stub  
+		return sqlSession.selectList(namespace + ".selectDiscountAll");
 	}
 
 

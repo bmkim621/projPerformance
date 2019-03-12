@@ -1,8 +1,5 @@
 package com.yi.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-
-import java.awt.print.Book;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -31,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.DiscountVO;
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
 import com.yi.domain.PerformanceVO;
+import com.yi.domain.PriceDTO;
 import com.yi.domain.SeatVO;
 import com.yi.interceptor.LoginInterceptor;
 import com.yi.service.BookService;
@@ -199,6 +198,13 @@ public class BookController {
 		if(bookList == null) {
 			bookList = new ArrayList<>();
 			session.setAttribute("bookList", bookList);
+			Map<String, Integer> pricemap = new HashMap<>();
+			pricemap.put("R", 100000);
+			pricemap.put("S", 80000);
+			pricemap.put("A", 50000);
+			pricemap.put("B", 30000);
+			pricemap.put("N", 20000);
+			session.setAttribute("pMap", pricemap);
 		}
 		BookVO bvo = new BookVO();
 		bvo.setmCode(mCode);
@@ -295,8 +301,20 @@ public class BookController {
 	public void stepThreeGet(HttpSession session, Model model) {
 		logger.info("stepThree : GET");
 		
+		logger.info("discount 내용들 ======> ");
+		List<DiscountVO> discountList = service.selectDiscountAll();
+		model.addAttribute("discountList", discountList);
+		
+		
 		List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
-			
+		int total =0;
+		Map<String, Integer> pMap = (Map<String, Integer>) session.getAttribute("pMap");
+		
+		for(BookVO bvo: bookList) {
+			total += pMap.get(bvo.getSeatGrade());  
+		}
+		int tax = (int) (total*0.1);
+
 		for(int i = 0; i < bookList.size() ; i++) {
 			BookVO bvo = bookList.get(i);
 			logger.info("bvo ===========> " + bvo);
@@ -312,8 +330,12 @@ public class BookController {
 			int res = service.getTempResvSeat(bvo.getsCode().getShowCode(), bvo.getBookZone(), String.valueOf(bvo.getBookNum()));
 			logger.info("res ===========> " + res);
 			
+			
 			if(res > 0) {
-				model.addAttribute("bvo", bookList);  
+				model.addAttribute("bvo", bookList);
+				model.addAttribute("total", total);
+				model.addAttribute("tax", tax);
+				
 				logger.info("res 0 이상인 bvo ===========> " + bvo);  
 			} else {
 				bookList.remove(bvo);	//이미 resv_seat 테이블에 데이터가 없으므로 세션에서도 없애줌.
@@ -321,5 +343,56 @@ public class BookController {
 				
 		}
 			      
+	}
+	
+	
+	// ==================== step4 ======================
+	@RequestMapping(value = "stepFour", method = RequestMethod.GET)        
+	public void stepFourGet(HttpSession session, Model model, String p, String f, String d, String t, PriceDTO price, String dCode) {
+		logger.info("stepFour : POST");       
+		logger.info("ticketPrice = " + p);
+		logger.info("ticketFee = " + f);
+		logger.info("ticketDiscount = " + d);
+		logger.info("ticketTotalPrice = " + t);
+		logger.info("dCode = " + dCode);
+		
+		//======================== 가격정보 ===============
+		Map<String, Integer> priceInfoMap = new HashMap<>();
+		priceInfoMap.put("ticketPrice", Integer.parseInt(p));
+		priceInfoMap.put("ticketFee", Integer.parseInt(f));
+		priceInfoMap.put("ticketDiscount", Integer.parseInt(d));
+		priceInfoMap.put("deliveryFee", 0);
+		priceInfoMap.put("totalPrice", Integer.parseInt(t));
+
+		session.setAttribute("priceInfoMap", priceInfoMap);
+		//==============================================
+		
+		List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
+		
+		for(int i = 0 ; i < bookList.size() ; i++) {
+			BookVO bvo = bookList.get(i);
+			logger.info("bvo ===========> " + bvo);
+			
+			//디스플레이하기 위해 필요한 공연정보.....
+			PerformanceVO searchPerf = service.selectListByShowCode(bvo.getsCode().getShowCode());	//공연코드로 해당 공연정보 가지고 오기
+			logger.info("searchPerf ===========> " + searchPerf);
+			PerformanceVO pvo  = service.perfListAllByShowName(searchPerf.getShowName());
+			logger.info("pvo ===========> " + pvo);
+			
+			model.addAttribute("pvo", pvo);
+			
+			//할인분류코드
+			DiscountVO dvo = new DiscountVO();
+			dvo.setDiscountCode(dCode);
+			bvo.setdCode(dvo);
+			
+			model.addAttribute("bvo", bookList);
+			//가격
+			model.addAttribute("priceInfoMap", priceInfoMap);
+		}
+		
+		// ================ 로그인 한 고객 정보 =================
+		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
+		logger.info("info = " + info);
 	}
 }

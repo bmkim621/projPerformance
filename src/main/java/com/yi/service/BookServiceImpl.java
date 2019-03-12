@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.DiscountVO;
 import com.yi.domain.MemberVO;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.ResvSeatVO;
@@ -89,6 +90,12 @@ public class BookServiceImpl implements BookService {
 	public PerformanceVO selectListByShowCode(String showCode) {
 		// TODO Auto-generated method stub
 		return dao.selectListByShowCode(showCode);
+	}
+
+	@Override  
+	public List<DiscountVO> selectDiscountAll() {
+		// TODO Auto-generated method stub
+		return dao.selectDiscountAll();
 	}
 
 

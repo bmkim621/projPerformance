@@ -3,15 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?bab" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?aa" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/book.js?a"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-
 
 <div class="container-fluid bookContainer">
 	<div class="row">
@@ -45,12 +43,46 @@
 	<div class='book-step-wrapper'>
 		<div class="row">          
 			<div class="col-md-8">
+				<div class='selectDiscountWrapper'>
+					<span id='spanSelectDiscount'>할인선택</span>
+					<ul>
+						<c:forEach items="${discountList }" var="discount">
+							<c:if test="${discount.discountCode eq '00' }">
+								<li>                   
+									<input type="radio" checked="checked" name='dCode' value='${discount.discountRate }' data-discountCode ='${discount.discountCode }'>
+									<span class='discountTitle'>${discount.discountName }</span>  
+								</li>
+							</c:if>
+							<c:if test="${discount.discountCode ne '00' }">
+								<li><input type="radio" name='dCode' value='${discount.discountRate }' data-discountCode ='${discount.discountCode }'>
+									<span class='discountTitle'>${discount.discountName } ${discount.discountRate }% 할인</span>
+								</li>  
+							</c:if>
+							
+						</c:forEach>	
+					</ul>              
+				</div>       
 				
-
-          	<p>${bvo }</p>      
-	  
-			<p>${pvo }</p>
-	  		                              
+				<div class='DiscountNoticeWrapper'>
+					<span id='spanNoticeDiscount'>입장권 수령 안내</span>
+					<ul>
+						<li><span class='spanBold'>공연 당일 수령</span>: 공연시작 1시간 30분 전부터 1층 매표소에서 수령하실 수 있습니다.</li>
+						<li><span class='spanBold'>공연일 이전 수령</span>: 대구오페라하우스 별관(카메라타)에서 수령하실 수 있습니다. (단, 오페라하우스 기획공연으로 전화예매 티켓에 한함)</li>
+						<li>티켓 수령 시 예매자명과 예매번호를 정확히 알고 오시면 티켓 수령이 좀 더 원활할 수 있습니다.</li>
+						<li>입장권 분실 및 파손 시 <span class='spanUnderline'>재발급이 되지 않으니</span> 보관에 유의하여 주십시오.</li>
+					</ul>
+				</div>
+				
+				<div class='divNoticeWrapper'>
+					<span id='spanNoticeTitle'>유의사항</span>
+					<ul>
+						<li>- 할인은 자동선택 되지 않으니, <span class='spanUnderline'>적용 받고자 하는 할인이 있는 경우 직접 선택해주시기 바랍니다.</span></li>
+						<li>- 장애인, 국가유공자, 학생 할인 등 증빙서류가 필요한 경우 현장수령만 가능하며, <span class='spanUnderline'>현장에서 증빙서류 미지참 시 차액 지불</span>하셔야 합니다.</li>
+						<li>- <span class='spanUnderline'>쿠폰을 사용하거나 복합결제를 한 경우 부분취소가 불가</span>합니다. 고객센터로 문의해주시기 바랍니다.</li>
+						<li>- <span class='spanUnderline'>관람 당일 공연 예매 시에는 변경/취소/환불이 불가</span>합니다.</li>
+					</ul>
+				</div>
+                               
 			</div>    
 			
 			
@@ -81,69 +113,150 @@
 								<p class='myTitle'>좌석<span class='info-contents-span' id="book-seat-span"><c:forEach items="${bvo }" var="bvo"><c:if test="${bvo.seatGrade == null }"><span class='mySelectSeatInfo'>전석 ${bvo.bookZone }구역 ${bvo.bookNum }번</span></c:if><c:if test="${bvo.seatGrade != null }"><span class='mySelectSeatInfo'>${bvo.seatGrade }석 ${bvo.bookZone }구역 ${bvo.bookNum }번</span></c:if></c:forEach></span></p>	           		
 							</div>       
 					</div>
-					
+				                          	
 					<div class='chkPaymentContainer'>            
 						<h4><i class="far fa-credit-card"></i>결제내역</h4>
 						<div class='payment-info-wrapper'>
 							<p class='myTitle'>티켓금액<span class='info-contents-span' id="book-price-span">
-							<c:forEach items="${bvo }" var="bvo">
-						 		<c:if test="${bvo.seatGrade eq 'R'}"><span class='ticketPriceSpan'>100000</span></c:if>
-						 		<c:if test="${bvo.seatGrade eq 'S'}"><span class='ticketPriceSpan'>80000</span></c:if>
-						 		<c:if test="${bvo.seatGrade eq 'A'}"><span class='ticketPriceSpan'>50000</span></c:if>
-						 		<c:if test="${bvo.seatGrade eq 'B'}"><span class='ticketPriceSpan'>30000</span></c:if>
-						 		<c:if test="${bvo.seatGrade == null}"><span class='ticketPriceSpan'>20000</span></c:if>
-						 	</c:forEach> 
-							</span></p>
+								<span class='ticketPriceSpan'><fmt:formatNumber value='${total }' pattern="#,###"/></span>원</span>   
+							</p>
 							<p class='myTitle'>예매수수료<span class='info-contents-span' id="book-fee-span">
-							<c:forEach items="${bvo }" var="bvo">
-						 		<c:if test="${bvo.seatGrade eq 'R'}"><span class='ticketFeeSpan'>1000</span></c:if>
-						 		<c:if test="${bvo.seatGrade eq 'S'}"><span class='ticketFeeSpan'>800</span></c:if>
-						 		<c:if test="${bvo.seatGrade eq 'A'}"><span class='ticketFeeSpan'>500</span></c:if>
-						 		<c:if test="${bvo.seatGrade eq 'B'}"><span class='ticketFeeSpan'>300</span></c:if>
-						 		<c:if test="${bvo.seatGrade == null}"><span class='ticketFeeSpan'>200</span></c:if>  
-						 	</c:forEach>
-							</span></p>
+							<span class='ticketFeeSpan'><fmt:formatNumber value='${tax }' pattern="#,###"/></span>원</span>
+							</p>  
 							<p class='myTitle'>배송료<span class='info-contents-span' id="book-delivery-span"></span></p>
-						    <p class='myTitle'>할인금액<span class='info-contents-span' id="book-discount-span"></span></p>
+						    <p class='myTitle'>할인금액<span class='info-contents-span' id="book-discount-span">
+						    <span class='ticketDiscountSpan'>0</span>원</span></p>
 						</div>    
 					</div>
 				
 					<div class='chkMyStepContainer'>
 						<span class='spanTotalPrice'>
 							<span class='spanTotalPriceTitle'>최종 결제금액</span>
-							<span class='spanPerfTotalPrice'>&nbsp;</span><span class='spanWon'>원</span>
+							<span class='spanPerfTotalPrice'>&nbsp;</span>원
 						</span>
 						<button id="btnNextStep" type="button">다음단계</button>           
 					</div>  
-				
-			
-			
-				
-				 
-				 
+
 				</div>	<!-- selectPerfWrapper end -->         
 			</div>                
-			
-			
-			
-			
-			
-			         
+	         
 		</div>
-	</div> 
-</div>
+	</div>
+	
+</div>  
 
 <script>
-	$(function(){
-		//가격 계산하기
-		var p = $("#book-price-span").children(".ticketPriceSpan");
-				
-		$.each(p, function(i, obj){
-			res += $(this).text()
-			console.log(res);     
-		})      
-//		console.log(p);
+	//1000단위 콤마 붙이기
+	function AddComma(data_value) {
+		return Number(data_value).toLocaleString('en').split(".")[0];
+	}
+	
+	//값 더하기
+	function getTotalPrice(price, fee, discount){
+		var sum = parseInt(price) + parseInt(fee) - parseInt(discount);
+		$(".spanPerfTotalPrice").html(AddComma(sum));
+	}
+
+	$(function() {	             
+		
+		//화면 바로 실행될 때 나오는 최종 결제금액
+		var price = "";
+		var priceArray = $(".ticketPriceSpan").html().split(",");
+			for (var i = 0; i < priceArray.length; i++) {
+				price += priceArray[i];
+			}
+			
+		var fee = "";
+		var feeArray = $(".ticketFeeSpan").html().split(",");
+			for(var j = 0 ; j < feeArray.length ; j++){
+				fee += feeArray[j];
+			}
+		getTotalPrice(price, fee, 0);
+		
+		//할인 선택할 때
+		$("input[name='dCode']").on('click', function() {
+			var selectDiscount = $("input[name='dCode']:checked").val();
+//			console.log(selectDiscount);
+
+			//할인코드
+			var selectDiscountCode = $(this).attr('data-discountCode');
+//			console.log(selectDiscountCode);
+			
+			//티켓금액         
+			var price = "";
+			var priceArray = $(".ticketPriceSpan").html().split(",");
+			for (var i = 0; i < priceArray.length; i++) {
+				price += priceArray[i];
+			}
+//			console.log(price);
+
+			discountPrice = price * (selectDiscount / 100);   
+//			console.log(discountPrice);      
+			$(".ticketDiscountSpan").html(AddComma(discountPrice));
+			
+			//최종 결제 금액
+			//1. 티켓금액
+			var price = "";
+			var priceArray = $(".ticketPriceSpan").html().split(",");
+				for (var i = 0; i < priceArray.length; i++) {
+					price += priceArray[i];
+				}
+//			console.log(price);
+			
+			//2. 예매 수수료
+			var fee = "";
+			var feeArray = $(".ticketFeeSpan").html().split(",");
+				for(var j = 0 ; j < feeArray.length ; j++){
+					fee += feeArray[j];
+				}
+//			console.log(fee);   
+
+			getTotalPrice(price, fee, discountPrice);
+
+		})
+		
+		
+		//다음단계 버튼
+		$("#btnNextStep").click(function(){
+			//티켓금액
+			//1. 티켓금액
+			var price = "";
+			var priceArray = $(".ticketPriceSpan").html().split(",");
+				for (var i = 0; i < priceArray.length; i++) {
+					price += priceArray[i];
+				}
+			
+			//2. 예매 수수료
+			var fee = "";
+			var feeArray = $(".ticketFeeSpan").html().split(",");
+				for(var j = 0 ; j < feeArray.length ; j++){
+					fee += feeArray[j];
+				}
+			
+			//3. 할인금액
+			var discount = "";
+			var discountArray = $(".ticketDiscountSpan").html().split(",");
+				for(var k = 0 ; k < discountArray.length ; k++){
+					discount += discountArray[k];
+				}
+			
+			//4. 최종 결제 금액
+			var totalTicketPrice = "";
+			var totalTicketPriceArray = $(".spanPerfTotalPrice").html().split(",");
+			for(var l = 0 ; l < totalTicketPriceArray.length ; l++){
+				totalTicketPrice += totalTicketPriceArray[l];
+			}
+
+			//할인코드
+			var dCode = $("input[name='dCode']:checked").attr('data-discountCode');    
+			alert(dCode);
+			
+			location.href = "${pageContext.request.contextPath}/book/stepFour?p=" + price + "&f=" + fee + "&d=" + discount + "&t=" + totalTicketPrice + "&dCode=" + dCode;
+		})
+		
 	})
 </script>
 
+			 			 	
+						 	
 <%@ include file="../include/footer.jsp"%>

@@ -128,6 +128,8 @@ div.login-wrapper{
 
 .myId, .myPw{
 	position: relative;
+	padding: 7px 0!important;      
+	border-bottom: none!important;
 }
 
 .login-form i {

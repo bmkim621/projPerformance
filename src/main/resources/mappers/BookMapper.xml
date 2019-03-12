@@ -115,5 +115,10 @@
 	<delete id="delAllTempResvSeat">
 		delete from resv_seat
 	</delete>
+	
+	<!-- 할인 -->
+	<select id="selectDiscountAll" resultType="DiscountVO">
+		select * from discount
+	</select>
 
 </mapper>

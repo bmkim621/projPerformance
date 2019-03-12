@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.DiscountVO;
 import com.yi.domain.MemberVO;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.ResvSeatVO;
@@ -46,4 +47,6 @@ public interface BookService {
 	//임시 좌석 삭제(조건 X)
 	public void delAllTempResvSeat();
 	
+	//할인 테이블
+	public List<DiscountVO> selectDiscountAll();
 }
