@@ -1,10 +1,11 @@
 package com.yi.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class BookVO {
+public class BookVO implements Serializable{
 	public static final int SEAT_ROW = 5;
 	private String bookNumber;
 	private MemberVO mCode;	//회원코드

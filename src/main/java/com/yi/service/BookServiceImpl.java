@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.yi.domain.BookVO;
 import com.yi.domain.DiscountVO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.PaymentVO;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.ResvSeatVO;
 import com.yi.domain.SeatVO;
@@ -96,6 +97,18 @@ public class BookServiceImpl implements BookService {
 	public List<DiscountVO> selectDiscountAll() {
 		// TODO Auto-generated method stub
 		return dao.selectDiscountAll();
+	}
+
+	@Override
+	public List<PaymentVO> selectPaymentAll() {
+		// TODO Auto-generated method stub
+		return dao.selectPaymentAll();
+	}
+
+	@Override
+	public void insertBook(BookVO vo) {
+		// TODO Auto-generated method stub
+		dao.insertBook(vo);
 	}
 
 

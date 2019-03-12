@@ -6,6 +6,7 @@ import java.util.Map;
 import com.yi.domain.BookVO;
 import com.yi.domain.DiscountVO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.PaymentVO;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.ResvSeatVO;
 import com.yi.domain.SeatVO;
@@ -49,4 +50,10 @@ public interface BookService {
 	
 	//할인 테이블
 	public List<DiscountVO> selectDiscountAll();
+	
+	//결제 테이블
+	public List<PaymentVO> selectPaymentAll();
+	
+	//예매 테이블 추가
+	public void insertBook(BookVO vo);
 }

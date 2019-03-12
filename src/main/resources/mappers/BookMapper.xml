@@ -120,5 +120,23 @@
 	<select id="selectDiscountAll" resultType="DiscountVO">
 		select * from discount
 	</select>
+	
+	<!-- 결제 -->
+	<select id="selectPaymentAll" resultType="PaymentVO">
+		select * from payment
+	</select>
+	
+	<!-- 예매테이블에 추가 -->
+	<resultMap type="BookVO" id="resultBook">
+		<result column="member_code" property="mCode.memberCode"/>
+		<result column="show_code" property="sCode.showCode"/>
+		<result column="payment_code" property="pCode.paymentCode"/>
+		<result column="discount_code" property="dCode.discountCode"/>
+	</resultMap>
+	
+	<insert id="insertBook" parameterType="BookVO">
+		insert into book(book_number, member_code, show_code, payment_code, discount_code, book_date, book_time, book_zone, book_num, seat_grade, seat_category) values 
+		(nextbookCode(), #{mCode.memberCode}, #{sCode.showCode}, #{pCode.paymentCode}, #{dCode.discountCode}, #{bookDate}, #{bookTime}, #{bookZone}, #{bookNum}, #{seatGrade}, #{seatCategory})
+	</insert>
 
 </mapper>

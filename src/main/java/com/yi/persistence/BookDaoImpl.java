@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.yi.domain.BookVO;
 import com.yi.domain.DiscountVO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.PaymentVO;
 import com.yi.domain.PerformanceVO;
 import com.yi.domain.ResvSeatVO;
 import com.yi.domain.SeatVO;
@@ -121,6 +122,18 @@ public class BookDaoImpl implements BookDAO {
 	public List<DiscountVO> selectDiscountAll() {
 		// TODO Auto-generated method stub  
 		return sqlSession.selectList(namespace + ".selectDiscountAll");
+	}
+
+	@Override
+	public List<PaymentVO> selectPaymentAll() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".selectPaymentAll");
+	}
+
+	@Override
+	public void insertBook(BookVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + ".insertBook", vo);
 	}
 
 

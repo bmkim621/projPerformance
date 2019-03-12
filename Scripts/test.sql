@@ -4,6 +4,7 @@ select * from customer where password = password('qwerty1234');
 insert into tbl_board (title, content, writer)
 (select title, content, writer from tbl_board);
 
+select * from book;
 select * from notice;
 select * from tbl_member;
 select * from review;

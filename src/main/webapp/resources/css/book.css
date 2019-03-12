@@ -497,6 +497,10 @@ div.payment-info-wrapper > p.myTitle:nth-child(2) #book-fee-span{
 	float: right;                    
 }
 
+div.payment-info-wrapper > p.myTitle:nth-child(3) #book-delivery-span{
+	float: right;                                           
+}
+
 div.payment-info-wrapper p.myTitle:last-child #book-discount-span{
 	float: right; 
 }

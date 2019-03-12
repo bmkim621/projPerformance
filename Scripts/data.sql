@@ -138,6 +138,6 @@ insert into review(review_title, review_writer, review_content, member_code) val
 
 insert into book(book_number, member_code, show_code, payment_code, discount_code, book_date, book_time, book_state, book_zone, book_num, seat_grade, seat_category) values 
 ('B19001', 'M19003', 'P19008', 'PAY01', '00', '2019-03-29', '19:30', 0, 'A', 10, 'R', 'SEAT2'),
-('B19002', 'M19003', 'P19007', 'PAY01', '00', '2019-03-09', '15:00', 0, 'A', 10, null, 'SEAT1'),
+('B19002', 'M19003', 'P19007', 'PAY01', '00', '2019-03-09', '15:00', 0, 'A', 10, 'N', 'SEAT1'),
 ('B19003', 'M19003', 'P19008', 'PAY01', '00', '2019-03-29', '19:30', 0, 'A', 32, 'B', 'SEAT2');
 

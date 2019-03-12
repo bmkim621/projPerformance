@@ -8,17 +8,17 @@ use proj_performance;
 
 -- 예매 
 CREATE TABLE book (
-	book_number   CHAR(6) NOT NULL COMMENT '예매번호', -- 예매번호
+	book_number   CHAR(6) 	  NOT NULL COMMENT '예매번호', -- 예매번호
 	member_code   CHAR(6)     NOT NULL COMMENT '고객코드', -- 회원코드
 	show_code     CHAR(6)     NOT NULL COMMENT '공연코드', -- 공연코드
 	payment_code  CHAR(5)     NOT NULL COMMENT '결제방식코드', -- 결제방식코드
 	discount_code CHAR(2)     NOT NULL COMMENT '할인분류코드', -- 할인분류코드
 	book_date     DATE        NOT NULL COMMENT '예매일', -- 예매일
 	book_time     TIME        NOT NULL COMMENT '예매시간', -- 예매시간
-	book_state    TINYINT(4)  NOT NULL COMMENT '0: 예매완료, 1: 예매중, ..', -- 예매상태
+	book_state    TINYINT(4)  NOT NULL DEFAULT 0 COMMENT '0: 예매완료, 1: 예매중, ..', -- 예매상태
 	book_zone     CHAR(1)     NOT NULL COMMENT '구역', -- 구역 ex) A
 	book_num      INT         NOT NULL COMMENT '번호', -- 번호 ex) 1, A구역 1번
-	seat_grade    CHAR(1)     NULL     COMMENT '좌석등급', -- 좌석등급, 전석일 경우 null 지정석일경우 R, S, A, B
+	seat_grade    CHAR(1)     NULL     COMMENT '좌석등급', -- 좌석등급, 전석일 경우 N 지정석일경우 R, S, A, B
 	seat_category CHAR(5)     NOT NULL COMMENT '좌석분류' -- 좌석분류 SEAT1:전석, SEAT2:지정석
 )
 COMMENT '예매';
@@ -465,6 +465,24 @@ begin
 	from tbl_member;
 	
 	return return_memCode;
+	
+END$$
+DELIMITER ;
+
+-- 예매
+DROP FUNCTION IF EXISTS nextbookCode;
+
+DELIMITER $$
+$$
+CREATE FUNCTION nextbookCode()
+RETURNS CHAR(6)
+begin
+	declare return_bookCode char(6);
+	
+	select concat('B', DATE_FORMAT(now(), "%y"), lpad(right(max(book_number), 3) + 1, 3, '000')) into return_bookCode
+	from book;
+	
+	return return_bookCode;
 	
 END$$
 DELIMITER ;

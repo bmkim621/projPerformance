@@ -31,8 +31,8 @@ import com.yi.domain.BookVO;
 import com.yi.domain.DiscountVO;
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.PaymentVO;
 import com.yi.domain.PerformanceVO;
-import com.yi.domain.PriceDTO;
 import com.yi.domain.SeatVO;
 import com.yi.interceptor.LoginInterceptor;
 import com.yi.service.BookService;
@@ -348,8 +348,8 @@ public class BookController {
 	
 	// ==================== step4 ======================
 	@RequestMapping(value = "stepFour", method = RequestMethod.GET)        
-	public void stepFourGet(HttpSession session, Model model, String p, String f, String d, String t, PriceDTO price, String dCode) {
-		logger.info("stepFour : POST");       
+	public void stepFourGet(HttpSession session, Model model, String p, String f, String d, String t, String dCode) {
+		logger.info("stepFour : GET");       
 		logger.info("ticketPrice = " + p);
 		logger.info("ticketFee = " + f);
 		logger.info("ticketDiscount = " + d);
@@ -394,5 +394,78 @@ public class BookController {
 		// ================ 로그인 한 고객 정보 =================
 		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
 		logger.info("info = " + info);
+		
+		MemberVO mvo = memService.readMember(info.getUserid());
+		model.addAttribute("mvo", mvo);
+	}
+	
+	
+	
+	// ==================== step5 ======================
+	@RequestMapping(value = "stepFive", method = RequestMethod.GET)
+	public void stepFiveGet(HttpSession session, Model model) {
+		logger.info("stepFive : GET");
+		
+		List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
+		
+		for(int i = 0 ; i < bookList.size() ; i++) {
+			BookVO bvo = bookList.get(i);
+			logger.info("bvo ===========> " + bvo);
+			
+			//디스플레이하기 위해 필요한 공연정보.....
+			PerformanceVO searchPerf = service.selectListByShowCode(bvo.getsCode().getShowCode());	//공연코드로 해당 공연정보 가지고 오기
+			logger.info("searchPerf ===========> " + searchPerf);
+			PerformanceVO pvo  = service.perfListAllByShowName(searchPerf.getShowName());
+			logger.info("pvo ===========> " + pvo);
+			
+			model.addAttribute("pvo", pvo);	
+		}
+		
+		//가격
+		Map<String, Integer> priceInfoMap = (Map<String, Integer>) session.getAttribute("priceInfoMap");
+		
+		//결제
+		List<PaymentVO> paymentList = service.selectPaymentAll();
+		model.addAttribute("paymentList", paymentList);
+		
+		model.addAttribute("bvo", bookList);
+		model.addAttribute("priceInfoMap", priceInfoMap);
+	}
+	
+	// ======================= 예매 ==========================
+	@ResponseBody
+	@RequestMapping(value = "insertBook", method = RequestMethod.POST)
+	public ResponseEntity<String> insertBook(HttpSession session, Model model, String pCode) {
+		logger.info("insertBook : POST");
+		logger.info("pCode ===> " + pCode);
+		ResponseEntity<String> entity = null;
+		
+		try {
+			List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
+			
+			for(int i = 0 ; i < bookList.size() ; i++) {
+				BookVO bvo = bookList.get(i);
+				logger.info("bvo ===========> " + bvo);
+				
+				PaymentVO paymentVO = new PaymentVO();
+				paymentVO.setPaymentCode(pCode);
+				//
+				bvo.setpCode(paymentVO);
+				
+				service.insertBook(bvo);	
+			}
+			entity = new ResponseEntity<String>("insert", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;       
+	}
+	
+	// ==== 예매 결과 ===
+	@RequestMapping(value = "bookResult", method = RequestMethod.GET)
+	public void bookResultGET() {
+		logger.info("=====> bookResult ----- GET");
 	}
 }

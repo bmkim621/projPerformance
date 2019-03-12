@@ -249,7 +249,7 @@
 
 			//할인코드
 			var dCode = $("input[name='dCode']:checked").attr('data-discountCode');    
-			alert(dCode);
+//			alert(dCode);
 			
 			location.href = "${pageContext.request.contextPath}/book/stepFour?p=" + price + "&f=" + fee + "&d=" + discount + "&t=" + totalTicketPrice + "&dCode=" + dCode;
 		})
