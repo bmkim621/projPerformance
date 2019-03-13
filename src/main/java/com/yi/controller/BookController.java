@@ -70,13 +70,15 @@ public class BookController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		model.addAttribute("memberVO", memberVO);
+		
+		
 	}
 	           
 	
 	//날짜로 공연정보 가지고 오기  
 	@ResponseBody   
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<List<PerformanceVO>> search(String showName, String bookDate, String bookTime) {
+	public ResponseEntity<List<PerformanceVO>> search(String showName, String bookDate, String bookTime, HttpServletRequest request) {
 		ResponseEntity<List<PerformanceVO>> entity = null;
 		
 		logger.info("====== Search ======");
@@ -118,6 +120,12 @@ public class BookController {
 			List<PerformanceVO> list = service.searchPerformance(map);
 			logger.info("list = " + list);  
 			entity = new ResponseEntity<List<PerformanceVO>>(list, HttpStatus.OK);
+			
+			String scode = list.get(0).getShowCode();
+			HttpSession session = request.getSession();
+			session.setAttribute("scode", scode);
+			
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -169,8 +177,14 @@ public class BookController {
 		logger.info("mCode : " + mCode);
 		logger.info("sCode = " + sCode);
 		
+		HttpSession session = request.getSession();
+		
 		//set해야함.
 		vo.setmCode(mCode);
+		String code = (String) session.getAttribute("scode");
+		logger.info("code ======> " + code); 
+		
+		sCode.setShowCode(code);
 		vo.setsCode(sCode);
 		
 		logger.info("vo = " + vo);
@@ -192,9 +206,10 @@ public class BookController {
 		model.addAttribute("reservedSeat", reservedSeat);
 		
 		//
-		HttpSession session = request.getSession();
+		
 		
 		List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
+		
 		if(bookList == null) {
 			bookList = new ArrayList<>();
 			session.setAttribute("bookList", bookList);
@@ -307,6 +322,8 @@ public class BookController {
 		
 		
 		List<BookVO> bookList = (List<BookVO>) session.getAttribute("bookList");
+//		logger.info("bookList size====>" + bookList.size());
+		
 		int total =0;
 		Map<String, Integer> pMap = (Map<String, Integer>) session.getAttribute("pMap");
 		
@@ -452,8 +469,12 @@ public class BookController {
 				//
 				bvo.setpCode(paymentVO);
 				
-				service.insertBook(bvo);	
+				service.insertBook(bvo);
+				
 			}
+			service.delAllTempResvSeat();
+			bookList.clear();
+			
 			entity = new ResponseEntity<String>("insert", HttpStatus.OK);
 			
 		} catch (Exception e) {

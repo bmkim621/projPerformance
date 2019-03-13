@@ -679,6 +679,7 @@ p.pRemainSeat{
 	color: #666;
 }
 
+        
 div.ckhSeatContainer{
 	font-size: 15px;         
 	letter-spacing: -0.5px;
@@ -725,10 +726,10 @@ div.nDiv{
 	width: 15px;           
 	height: 15px;
 	margin-right: 8px;
-}
+}        
 
 span.verticalBar{
-	margin: 0 5px;  
+	margin: 0 10px;     
 }
 
 /* sweetalert */
@@ -755,4 +756,29 @@ span.mySelectSeatInfo:nth-child(3){
 span.mySelectSeatInfo{
 	padding: 0 5px;
 	display: inline-block; 
+}
+
+/* 02 좌석 선택 */
+div.seatWrapper{
+	border: 1px solid #BDBDBD;  
+	padding: 40px 0;          
+}
+
+div.seat-contents-wrapper{
+	text-align: center;
+}
+
+div.stageWrapper{
+	width: 519px;                            
+	background-color: #999;
+	height: 50px;
+	margin: 20px auto;
+	margin-top: 0;
+	line-height: 50px;
+}
+ 
+span.spanStageTitle{
+	font-size: 20px;
+	color: #fff;
+	letter-spacing: 10px;                                   
 }

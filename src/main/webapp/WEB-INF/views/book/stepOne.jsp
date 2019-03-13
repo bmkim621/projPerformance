@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?bb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?baa" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
@@ -20,7 +20,7 @@
 	</c:forEach>
 ];   
 </script>   
-  
+    
 <div class="container-fluid bookContainer">
 	<div class="row">
 		<div class="col-sm-12" id="bgWrapper">   
@@ -36,8 +36,7 @@
 	<!-- row end -->           
 </div>
 <!-- container end -->
-
-
+ 
 <!-- 공연안내  -->            
 <div class="container bookWrapper">
 	<!-- 진행 단계 선택 -->
@@ -155,8 +154,7 @@
 
 
 <!-- 다음 단계 이동 시 필요한 정보들 -->
-<form id="f1" action="stepTwo" method="post">  
-	<input type='hidden' id='selectShowCode' value='${vo.showCode }' name='showCode'>    
+<form id="f1" action="stepTwo" method="post">    
 	<input type='hidden' id='selectMemberCode' value='${memberVO.memberCode }' name='memberCode'>
 	<input type='hidden' id='selectShowDate' value='' name='bookDate'>
 	<input type='hidden' id='selectShowTime' value='' name='bookTime'>
@@ -175,10 +173,10 @@
 
 <!-- 템플릿2 -->
 <script id="template2" type="text/x-handlebars-template">
-<div class='chkSeatWrapper'>
+<div class='templateSeatWrapper'>
 {{#each.}}       
 	{{#ifCond seatCategory}}
-		<div class='ckhSeatContainer'><div class='nDiv'></div>전석<span class='verticalBar'>&#124;</span>{{fno.totalSeatCnt}}석</div>
+		<div class='ckhSeatContainer'><div class='nDiv'></div>전석<span class='verticalBar'>&#124;</span>{{remain_seat}}석</div>
   
 	{{else}}                          
 		<div class='ckhSeatContainer'><div class='rDiv'></div>R석<span class='verticalBar'>&#124;</span>{{rRemainSeat}}석</div>

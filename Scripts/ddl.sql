@@ -486,3 +486,25 @@ begin
 	
 END$$
 DELIMITER ;
+
+-- 좌석 수
+DROP  TRIGGER IF exists tri_update_cnt;
+
+delimiter  $
+CREATE TRIGGER tri_update_cnt
+AFTER INSERT
+ON book FOR EACH row
+begin
+	if new.seat_grade = 'R' then 
+		update performance set r_remain_seat = r_remain_seat -1 where show_code = new.show_code;
+	elseif new.seat_grade = 'S' then 
+		update performance set s_remain_seat = s_remain_seat -1 where show_code = new.show_code;
+	elseif new.seat_grade = 'A' then 
+		update performance set a_remain_seat = a_remain_seat -1 where show_code = new.show_code;
+	elseif new.seat_grade = 'B' then
+		update performance set b_remain_seat = b_remain_seat -1 where show_code = new.show_code;
+	else 
+		update performance set remain_seat = remain_seat -1 where show_code = new.show_code;
+	end if;
+	
+end $

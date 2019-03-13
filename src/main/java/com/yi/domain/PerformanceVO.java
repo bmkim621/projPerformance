@@ -123,6 +123,29 @@ public class PerformanceVO {
 				showCode, showName, showType, totalTime, startTime, showStartdate, showEnddate, fno, showImagePath,
 				seatCategory, remainSeat, rRemainSeat, sRemainSeat, aRemainSeat, bRemainSeat);
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((showCode == null) ? 0 : showCode.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PerformanceVO other = (PerformanceVO) obj;
+		if (showCode == null) {
+			if (other.showCode != null)
+				return false;
+		} else if (!showCode.equals(other.showCode))
+			return false;
+		return true;
+	}
 	
 	
 	

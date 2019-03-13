@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?abc" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?ccc" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
@@ -13,67 +13,68 @@
 
 
 <style>
-div.seatContainer {
+div.seatContainer {             
 	display: inline-block;
-	width: 15px;
-	height: 15px;     
-	border: 1px solid black;
+	width: 22px;
+	height: 22px;                        
+	border: 1px solid #bebebe;
 	background-color: gray;
+	margin: 2px;
+	font-size: 12px;          
 }   
-
-div.aWrapper{    
+                
+div.aWrapper, div.bWrapper, div.cWrapper{    
 	display: inline-block;
-	width: 150px;   
-	height: 210px;   
-	border: 1px solid red;
+	width: 157px;                                                                                                
+	height: 256px;                                       
+	border: 1px solid #f0f0f0;      
 	text-align: center;
-	padding: 5px;     
+	padding: 5px;           
 	overflow: hidden;     
 }
 
-div.bWrapper{
-	display: inline-block;
-	width: 150px;   
-	height: 210px;   
-	border: 1px solid orange;
-	text-align: center;
-	padding: 5px;     
-	overflow: hidden; 
-}
-                  
-div.cWrapper{
-	display: inline-block;
-	width: 150px;   
-	height: 210px;   
-	border: 1px solid green;
-	text-align: center;
-	padding: 5px;     
-	overflow: hidden; 
+div.bWrapper, div.cWrapper, div.bInfoWrapper, div.cInfoWrapper{
+	margin-left: 20px;
 }
 
+div.aInfoWrapper, div.bInfoWrapper, div.cInfoWrapper{
+	display: inline-block;
+	width: 157px;                                                                                                
+	height: 30px;                                      
+	background: #eaeaea;     
+	text-align: center;               
+	overflow: hidden;
+	margin-top: 10px;        
+}
+ 
+span.aInfoTitle{
+	color: #666;
+	font-size: 13px;      
+}
+            
 div.gradeR{
-	background-color: purple;
+	background-color: #B5B2FF;
 }
 
 div.gradeS{
-	background-color: orange;
+	background-color: #B2EBF4;
 }
 
 div.gradeA{
-	background-color: green;
+	background-color: #FFDD73;
 }
 
 div.gradeB{
-	background-color: pink;
+	background-color: #BCE55C;
 }
 
 div.booked{
-	background-color: black;     
+	background-color: #BDBDBD;       
 }
 
 div.chkSeat{
-	background-color: lightblue;
-}
+	border: 3px solid gray;                   
+}        
 
 /* 이미 선택된 좌석 */
 .alreadyResvSeat{
@@ -119,162 +120,163 @@ span.span-wrapper{
 	
 	<div class='book-step-wrapper'>
 		<div class="row">          
-			<div class="col-md-12">
-				
-				<c:if test="${list[0].locCode eq 'SEAT1' }">
-					<div class='aWrapper'>
-					<c:forEach begin="${list[0].startLoc }" end="${list[0].endLoc }" var="x">
-						<div class='seatContainer' data-seatzone='${list[0].zone }' data-seatnum='${x }'></div>  
-						<c:if test="${x % row == 0 }"><br></c:if>  
-					</c:forEach>
-					</div>
-					 
-					<div class='bWrapper'> 
-					<c:forEach begin="${list[1].startLoc }" end="${list[0].endLoc }" var="y">
-						<div class='seatContainer' data-seatzone='${list[1].zone }' data-seatnum='${y }'></div>
-						<c:if test="${y % row == 0 }"><br></c:if>
-					</c:forEach>
-					</div>
+			<div class="col-md-12">        
+				<div class='seatWrapper'>
+					<div class='seat-contents-wrapper'>
+						<!-- 좌석분류 : SEAT1 -->
+						<c:if test="${list[0].locCode eq 'SEAT1' }">
+							<div class='stageWrapper'><span class='spanStageTitle'>STAGE</span></div>
+							<div class='aWrapper'>	<!-- A구역 -->
+								<c:forEach begin="${list[0].startLoc }" end="${list[0].endLoc }" var="x">
+									<div class='seatContainer' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='N'></div>  
+									<c:if test="${x % row == 0 }"><br></c:if>  
+								</c:forEach>
+							</div>
+						 
+							<div class='bWrapper'>	<!-- B구역 -->
+								<c:forEach begin="${list[1].startLoc }" end="${list[0].endLoc }" var="y">
+									<div class='seatContainer' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='N'></div>
+									<c:if test="${y % row == 0 }"><br></c:if>
+								</c:forEach>
+							</div>
+						
+							<div class='cWrapper'>	<!-- C구역 -->
+								<c:forEach begin="${list[2].startLoc }" end="${list[0].endLoc }" var="z">
+									<div class='seatContainer' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='N'></div>
+									<c:if test="${z % row == 0 }"><br></c:if>
+								</c:forEach>
+							</div> 
+						</c:if>
+						
+						<!-- 좌석분류 : SEAT2 -->
+						<c:if test="${list[0].locCode eq 'SEAT2' }">
+							<div class='stageWrapper'><span class='spanStageTitle'>STAGE</span></div>
+							<!-- A구역 -->
+							<div class='aWrapper'>
+								<c:forEach begin="${list[0].startLoc }" end="${list[0].endLoc }" var="x">  						
+									<!-- R석 -->
+									<c:if test="${x <= (row * 2) }">
+										<div class='seatContainer gradeR' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='R'></div>							
+										<c:if test="${x % row == 0 }"><br></c:if>
+									</c:if>
+								
+									<!-- S석 -->
+									<c:if test="${ x >= (row * 2) + list[0].startLoc && x <= (row * 4) }">
+										<div class='seatContainer gradeS' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='S'></div>  							
+										<c:if test="${x % row == 0 }"><br></c:if>
+									</c:if> 
+								
+									<!-- A석 -->
+									<c:if test="${ x >= (row * 4) + list[0].startLoc && x <= (row * 6) }">
+										<div class='seatContainer gradeA' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='A'></div>
+										<c:if test="${x % row == 0 }"><br></c:if>
+									</c:if> 
+									
+									<!-- B석 -->
+									<c:if test="${ x >= (row * 6) + list[0].startLoc && x <= (row * 8) }">
+										<div class='seatContainer gradeB' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='B'></div>
+										<c:if test="${x % row == 0 }"><br></c:if>
+									</c:if>				
+								</c:forEach>
+							</div>
+						
+							<!-- B구역 -->
+							<div class='bWrapper'>
+								<c:forEach begin="${list[1].startLoc }" end="${list[1].endLoc }" var="y">  
+									<!-- R석 -->
+									<c:if test="${y <= (row * 2) }">
+										<div class='seatContainer gradeR' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='R'></div>
+										<c:if test="${y % row == 0 }"><br></c:if>
+									</c:if>
+									
+									<!-- S석 -->	
+									<c:if test="${ y >= (row * 2) + list[1].startLoc && y <= (row * 4) }">
+										<div class='seatContainer gradeS' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='S'></div>  
+										<c:if test="${y % row == 0 }"><br></c:if>
+									</c:if> 
+									
+									<!-- B석 -->	
+									<c:if test="${ y >= (row * 4) + list[1].startLoc && y <= (row * 6) }">
+										<div class='seatContainer gradeA' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='A'></div>
+										<c:if test="${y % row == 0 }"><br></c:if>
+									</c:if> 
+									
+									<!-- A석 -->	
+									<c:if test="${ y >= (row * 6) + list[1].startLoc && y <= (row * 8) }">
+										<div class='seatContainer gradeB' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='B'></div>
+										<c:if test="${y % row == 0 }"><br></c:if>
+									</c:if>		 	
+								</c:forEach>	
+							</div>
+						
+							<!-- C구역 -->
+							<div class='cWrapper'>
+								<c:forEach begin="${list[2].startLoc }" end="${list[2].endLoc }" var="z">  
+									<!-- R석 -->
+									<c:if test="${z <= (row * 2) }">
+										<div class='seatContainer gradeR' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='R'></div>
+										<c:if test="${z % row == 0 }"><br></c:if>
+									</c:if>
+									
+									<!-- S석 -->	
+									<c:if test="${ z >= (row * 2) + list[2].startLoc && z <= (row * 4) }">
+										<div class='seatContainer gradeS' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='S'></div>  
+										<c:if test="${z % row == 0 }"><br></c:if>
+									</c:if> 
+									
+									<!-- A석 -->	
+									<c:if test="${ z >= (row * 4) + list[2].startLoc && z <= (row * 6) }">
+										<div class='seatContainer gradeA' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='A'></div>
+										<c:if test="${z % row == 0 }"><br></c:if>
+									</c:if> 
+									
+									<!-- B석 -->
+									<c:if test="${ z >= (row * 6) + list[2].startLoc && z <= (row * 8) }">
+										<div class='seatContainer gradeB' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='B'></div>
+										<c:if test="${z % row == 0 }"><br></c:if>  
+									</c:if>		 	
+								</c:forEach>
+							</div>
+						</c:if>  
+						
+						<br>
+						<div class='aInfoWrapper'><span class='aInfoTitle'>A구역</span></div>
+						<div class='bInfoWrapper'><span class='aInfoTitle'>B구역</span></div>
+						<div class='cInfoWrapper'><span class='aInfoTitle'>C구역</span></div>
 					
-					<div class='cWrapper'>
-					<c:forEach begin="${list[2].startLoc }" end="${list[0].endLoc }" var="z">
-						<div class='seatContainer' data-seatzone='${list[2].zone }' data-seatnum='${z }'></div>
-						<c:if test="${z % row == 0 }"><br></c:if>
-					</c:forEach>
-					</div> 
-				</c:if>
+					</div>	<!-- seat-contents-wrapper end -->
+				</div>	<!-- seatWrapper end -->
 				
+				<!-- 좌석 선택 -->
+				<div class='chkMySeatWrapper'>
+						<span id='spanChkSeat'>선택한 좌석</span>
+						<div class='chkMySeat'></div>			
+				</div>
 				
+				<div class='seatNoticeWrapper'>
+					<ul>
+						<li>선택한 좌석을 다시 클릭하면 취소됩니다.</li>
+						<li>좌석 선택 후 결제가 완료되지 않을 경우, 선택하신 좌석의 선점기회를 잃게 됩니다.</li>
+					</ul>
+				</div>
 				
-				
+				<div class='chkSeatBtnWrapper'>
+					<button type="button" id='goThird'>좌석선택 완료</button>
+				</div>
+			</div>	<!-- col-md-8 end -->
+		</div>	<!-- row end -->
+	</div>	<!-- book-step-wrapper end -->
+</div>	<!-- bookWrapper end -->				
 
-			<c:if test="${list[0].locCode eq 'SEAT2' }">
-					<div class='aWrapper'>
-					<c:forEach begin="${list[0].startLoc }" end="${list[0].endLoc }" var="x">  
-					
-				<c:if test="${x <= (row * 2) }">
-							<div class='seatContainer gradeR' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='R'>
-							</div>
-							
-							<c:if test="${x % row == 0 }"><br></c:if>
-						</c:if>
-						
-						<c:if test="${ x >= (row * 2) + list[0].startLoc && x <= (row * 4) }">
-							
-							<div class='seatContainer gradeS' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='S'>
-							</div>  
-							
-							<c:if test="${x % row == 0 }"><br></c:if>
-						</c:if> 
-						
-						<c:if test="${ x >= (row * 4) + list[0].startLoc && x <= (row * 6) }">
-							<div class='seatContainer gradeA' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='A'></div>
-							<c:if test="${x % row == 0 }"><br></c:if>
-						</c:if> 
-						
-						<c:if test="${ x >= (row * 6) + list[0].startLoc && x <= (row * 8) }">
-							<div class='seatContainer gradeB' data-seatzone='${list[0].zone }' data-seatnum='${x }' data-seatgrade='B'></div>
-							<c:if test="${x % row == 0 }"><br></c:if>
-						</c:if>
-											
-					</c:forEach>
-					</div>
-					
-					
-					
-					<!-- B구역 -->
-					<div class='bWrapper'>
-					
-					<c:forEach begin="${list[1].startLoc }" end="${list[1].endLoc }" var="y">  
-					
-					<c:if test="${y <= (row * 2) }">
-							<div class='seatContainer gradeR' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='R'>
-							</div>
-							
-							<c:if test="${y % row == 0 }"><br></c:if>
-						</c:if>
-						
-						<c:if test="${ y >= (row * 2) + list[1].startLoc && y <= (row * 4) }">
-							
-							<div class='seatContainer gradeS' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='S'>
-							</div>  
-							
-							<c:if test="${y % row == 0 }"><br></c:if>
-						</c:if> 
-						
-						<c:if test="${ y >= (row * 4) + list[1].startLoc && y <= (row * 6) }">
-							<div class='seatContainer gradeA' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='A'></div>
-							<c:if test="${y % row == 0 }"><br></c:if>
-						</c:if> 
-						
-						<c:if test="${ y >= (row * 6) + list[1].startLoc && y <= (row * 8) }">
-							<div class='seatContainer gradeB' data-seatzone='${list[1].zone }' data-seatnum='${y }' data-seatgrade='B'></div>
-							<c:if test="${y % row == 0 }"><br></c:if>
-						</c:if>		 
-					
-					</c:forEach>
-					
-					</div>
-					
-					
-					<!-- C구역 -->
-					<div class='cWrapper'>
-					
-					<c:forEach begin="${list[2].startLoc }" end="${list[2].endLoc }" var="z">  
-					
-					<c:if test="${z <= (row * 2) }">
-							<div class='seatContainer gradeR' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='R'>
-							</div>
-							
-							<c:if test="${z % row == 0 }"><br></c:if>
-						</c:if>
-						
-						<c:if test="${ z >= (row * 2) + list[2].startLoc && z <= (row * 4) }">
-							
-							<div class='seatContainer gradeS' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='S'>
-							</div>  
-							
-							<c:if test="${z % row == 0 }"><br></c:if>
-						</c:if> 
-						
-						<c:if test="${ z >= (row * 4) + list[2].startLoc && z <= (row * 6) }">
-							<div class='seatContainer gradeA' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='A'></div>
-							<c:if test="${z % row == 0 }"><br></c:if>
-						</c:if> 
-						
-						<c:if test="${ z >= (row * 6) + list[2].startLoc && z <= (row * 8) }">
-							<div class='seatContainer gradeB' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='B'></div>
-							<c:if test="${z % row == 0 }"><br></c:if>  
-						</c:if>		 
-					
-					</c:forEach>
-					
-					</div>
-					
-					
-					
-				</c:if>  
+			
 				
-				<div class='seatResultWrapper'>
-					선택한 좌석 : <span id='spanResultInfo'>&nbsp;&nbsp;</span>
-				</div>
-				
-				<div class='btnWrapper'>
-				<button id="goThird" type="button">좌석선택완료</button>
-				<button>이전화면</button>
-				<button>좌석다시선택</button>
-				</div>
+			
 				    
 				  
 				
-           
-	  
-			
-	  		                              
-		</div>             
-	</div>
-</div> 
-</div>
+          
+
+
 
 <form>
 	<input type='hidden' name='showCode' id='twoShowCode' value='${vo.sCode.showCode }'>  
@@ -300,8 +302,7 @@ span.span-wrapper{
 			
 //			console.log(selectSeatNum);
 //			console.log(selectSeatZone);
-			
-			
+				
 			me.addClass("chkSeat");  
 //			$(".chkSeat").unbind('click');              
 			
@@ -371,7 +372,7 @@ addEvent(document, "mouseout", function(e) {
         MouseEventObj.clientX = e.clientX;
         MouseEventObj.clientY = e.clientY;
     }
-});
+});  
 
 addEvent(document, "mouseover", function(e) {
     e = e ? e : window.event;

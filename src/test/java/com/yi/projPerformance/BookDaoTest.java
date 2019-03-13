@@ -20,10 +20,14 @@ public class BookDaoTest {
 	@Autowired
 	private BookDAO dao;
 	
-	//@Test
+	@Test
 	public void test01selectListByShowName() {
-		List<PerformanceVO> list = dao.selectListByShowName("뮤지컬 시카고");
+		List<PerformanceVO> list = dao.selectListByShowName("영아티스트 오페라 <사랑의 묘약>");
 		System.out.println(list);
+		PerformanceVO v = new PerformanceVO();
+		v.setShowCode("P19008");
+		int index = list.indexOf(v);
+		System.out.println(index);
 	}
 	
 }
