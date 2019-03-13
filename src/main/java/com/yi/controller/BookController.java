@@ -328,7 +328,7 @@ public class BookController {
 		Map<String, Integer> pMap = (Map<String, Integer>) session.getAttribute("pMap");
 		
 		for(BookVO bvo: bookList) {
-			total += pMap.get(bvo.getSeatGrade());  
+			total += pMap.get(bvo.getSeatGrade());        
 		}
 		int tax = (int) (total*0.1);
 
@@ -484,8 +484,8 @@ public class BookController {
 		return entity;       
 	}
 	
-	// ==== 예매 결과 ===
-	@RequestMapping(value = "bookResult", method = RequestMethod.GET)
+	// ==== 예매 결과 ===  
+	@RequestMapping(value = "result", method = RequestMethod.GET)
 	public void bookResultGET() {
 		logger.info("=====> bookResult ----- GET");
 	}

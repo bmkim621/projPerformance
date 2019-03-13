@@ -53,7 +53,7 @@
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/perf/perfList">공연안내</a></li>
 									<li><a href="#">예매안내</a></li>
-									<li><a href="#">예매확인/취소</a></li>
+									<li><a href="#">예매확인</a></li>
 								</ul>
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yi.domain.BookVO;
 import com.yi.domain.MemberVO;
 
 @Repository
@@ -70,6 +71,12 @@ public class MemberDaoImpl implements MemberDAO {
 	public int idDuplicateChk(String userid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".idDuplicateChk", userid);	//0: 사용가능  
+	}
+
+	@Override
+	public List<BookVO> selectMyBookList(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".selectMyBookList", memberCode);
 	}
 
 }

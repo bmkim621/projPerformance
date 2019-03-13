@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yi.domain.BookVO;
 import com.yi.domain.MemberVO;
 import com.yi.persistence.MemberDAO;
 
@@ -61,6 +62,12 @@ public class MemberServiceImpl implements MemberService {
 	public int idDuplicateChk(String userid) {
 		// TODO Auto-generated method stub
 		return memDao.idDuplicateChk(userid);
+	}
+
+	@Override
+	public List<BookVO> selectMyBookList(String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.selectMyBookList(memberCode);
 	}
 
 }

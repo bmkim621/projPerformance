@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
+import com.yi.domain.BookVO;
 import com.yi.domain.MemberVO;
 
 public interface MemberService {
@@ -26,5 +27,8 @@ public interface MemberService {
 	
 	//아이디 중복확인
 	public int idDuplicateChk(String userid);
+	
+	//나의 예매내역
+	public List<BookVO> selectMyBookList(String memberCode);
 	
 }

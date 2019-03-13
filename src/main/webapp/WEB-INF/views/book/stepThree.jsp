@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?aa" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?b" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
@@ -45,18 +45,24 @@
 			<div class="col-md-8">
 				<div class='selectDiscountWrapper'>
 					<span id='spanSelectDiscount'>할인선택</span>
-					<ul>
+					<ul id='selectDiscountWrapperUl'>
 						<c:forEach items="${discountList }" var="discount">
 							<c:if test="${discount.discountCode eq '00' }">
-								<li>                   
-									<input type="radio" checked="checked" name='dCode' value='${discount.discountRate }' data-discountCode ='${discount.discountCode }'>
-									<span class='discountTitle'>${discount.discountName }</span>  
+								<li>
+									<div class="radio">      
+										<label><input type="radio" checked="checked" value='${discount.discountRate }' data-discountCode ='${discount.discountCode }' name='dCode'>
+										<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>${discount.discountName } </label>
+									</div>
 								</li>
-							</c:if>
+							</c:if>          
+							
 							<c:if test="${discount.discountCode ne '00' }">
-								<li><input type="radio" name='dCode' value='${discount.discountRate }' data-discountCode ='${discount.discountCode }'>
-									<span class='discountTitle'>${discount.discountName } ${discount.discountRate }% 할인</span>
-								</li>  
+								<li>
+									<div class="radio">      
+										<label><input type="radio" value='${discount.discountRate }' data-discountCode ='${discount.discountCode }' name='dCode'>
+										<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>${discount.discountName } ${discount.discountRate }% 할인</label>
+									</div>
+								</li>
 							</c:if>
 							
 						</c:forEach>	
@@ -65,17 +71,16 @@
 				
 				<div class='DiscountNoticeWrapper'>
 					<span id='spanNoticeDiscount'>입장권 수령 안내</span>
-					<ul>
-						<li><span class='spanBold'>공연 당일 수령</span>: 공연시작 1시간 30분 전부터 1층 매표소에서 수령하실 수 있습니다.</li>
-						<li><span class='spanBold'>공연일 이전 수령</span>: 대구오페라하우스 별관(카메라타)에서 수령하실 수 있습니다. (단, 오페라하우스 기획공연으로 전화예매 티켓에 한함)</li>
-						<li>티켓 수령 시 예매자명과 예매번호를 정확히 알고 오시면 티켓 수령이 좀 더 원활할 수 있습니다.</li>
-						<li>입장권 분실 및 파손 시 <span class='spanUnderline'>재발급이 되지 않으니</span> 보관에 유의하여 주십시오.</li>
+					<ul id='spanNoticeDiscountUl'>
+						<li><span class='spanBold'>- 공연 당일 수령</span>: 공연시작 1시간 30분 전부터 1층 매표소에서 수령하실 수 있습니다.</li>
+						<li><span class='spanBold'>- 공연일 이전 수령</span>: 대구오페라하우스 별관(카메라타)에서 수령하실 수 있습니다. (단, 오페라하우스 기획공연으로 전화예매 티켓에 한함)</li>
+						<li>- 입장권 분실 및 파손 시 <span class='spanUnderline'>재발급이 되지 않으니</span> 보관에 유의하여 주십시오.</li>
 					</ul>
 				</div>
 				
-				<div class='divNoticeWrapper'>
+				<div class='divNoticeWrapper'>       
 					<span id='spanNoticeTitle'>유의사항</span>
-					<ul>
+					<ul id='spanNoticeTitleUl'>
 						<li>- 할인은 자동선택 되지 않으니, <span class='spanUnderline'>적용 받고자 하는 할인이 있는 경우 직접 선택해주시기 바랍니다.</span></li>
 						<li>- 장애인, 국가유공자, 학생 할인 등 증빙서류가 필요한 경우 현장수령만 가능하며, <span class='spanUnderline'>현장에서 증빙서류 미지참 시 차액 지불</span>하셔야 합니다.</li>
 						<li>- <span class='spanUnderline'>쿠폰을 사용하거나 복합결제를 한 경우 부분취소가 불가</span>합니다. 고객센터로 문의해주시기 바랍니다.</li>

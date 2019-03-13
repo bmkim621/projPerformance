@@ -107,10 +107,6 @@
 				<div class="form-group" id="ChkSeatCategory">
 					<label for="seatCategory">공연 좌석분류 선택</label>  	              
 					<div class="radio">      
-						<label><input type="radio" value="SEAT0" name="selectSeat">
-						<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>미정</label>
-					</div>
-					<div class="radio">      
 						<label><input type="radio" value="SEAT1" name="selectSeat">
 						<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>전석</label>
 					</div>

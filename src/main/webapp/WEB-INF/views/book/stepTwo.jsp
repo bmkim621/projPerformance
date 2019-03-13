@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?ccc" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?cac" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
@@ -247,17 +247,18 @@ span.span-wrapper{
 					</div>	<!-- seat-contents-wrapper end -->
 				</div>	<!-- seatWrapper end -->
 				
-				<!-- 좌석 선택 -->
-				<div class='chkMySeatWrapper'>
-						<span id='spanChkSeat'>선택한 좌석</span>
-						<div class='chkMySeat'></div>			
+				<div class='seatNoticeWrapper'>  
+					<span id='span-notice-seat'>좌석 선택 시 유의사항</span> 
+					<ul id='seat-notice-ul'>
+						<li>- 선택한 좌석을 다시 클릭하면 취소됩니다.</li>
+						<li>- 좌석 선택 후 결제가 완료되지 않을 경우, 선택하신 좌석의 선점기회를 잃게 됩니다.</li>
+					</ul>
 				</div>
 				
-				<div class='seatNoticeWrapper'>
-					<ul>
-						<li>선택한 좌석을 다시 클릭하면 취소됩니다.</li>
-						<li>좌석 선택 후 결제가 완료되지 않을 경우, 선택하신 좌석의 선점기회를 잃게 됩니다.</li>
-					</ul>
+				<!-- 좌석 선택 -->  
+				<div class='chkMySeatWrapper'>
+						<span id='spanChkSeat'>선택한 좌석</span>   
+						<ul id='chkMySeat'></ul>			
 				</div>
 				
 				<div class='chkSeatBtnWrapper'>
@@ -317,9 +318,9 @@ span.span-wrapper{
 	//					$("#spanSeatZone").html(selectSeatZone + "구역 ");
 	//					$("#spanSeatNum").html(selectSeatNum + "번");
 						str = "";    
-						str += "<span class='span-wrapper'><span id='spanSeatZone'>" + selectSeatZone + "구역 </span><span id='spanSeatNum'>" + selectSeatNum + "</span>번</span>";
-						$("#spanResultInfo").append(str);
-					}
+						str += "<li>- <span id='spanSeatZone'>" + selectSeatZone + "구역 </span><span id='spanSeatNum'>" + selectSeatNum + "</span>번</li>";
+						$("#chkMySeat").append(str);
+					}         
 					if(data == "fail"){  
 						swal({
 			  				  text: "이미 선택된 좌석입니다.",
@@ -331,8 +332,8 @@ span.span-wrapper{
 						me.addClass("alreadyResvSeat");              
 					}
 					if(data == "modify"){
-						me.removeClass("chkSeat");  
-						$(".span-wrapper").html("");              
+						me.removeClass("chkSeat");               
+						$("#chkMySeat").empty();                    
 					}
 					    
 				}
@@ -345,7 +346,20 @@ span.span-wrapper{
 		$(".booked").unbind('click');  
  		
  		$("#goThird").click(function(){
- 			location.href = "${pageContext.request.contextPath}/book/stepThree";
+ 			var seatInfo = $("#chkMySeat").html();
+ 			console.log(seatInfo);
+ 			
+ 			if(seatInfo == ""){
+ 				swal({
+	  				  text: "좌석을 선택해주세요.",
+	  				  closeOnClickOutside: false,	//버튼 눌러야만 창 닫도록 함.
+	  				  button: "확인",
+	  				});
+ 			} else{
+ 				location.href = "${pageContext.request.contextPath}/book/stepThree";
+ 			}
+ 			
+ 			
  		})
  		
 	})   

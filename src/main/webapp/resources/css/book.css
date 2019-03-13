@@ -782,3 +782,471 @@ span.spanStageTitle{
 	color: #fff;
 	letter-spacing: 10px;                                   
 }
+
+div.seatNoticeWrapper, div.chkMySeatWrapper{     
+	border-left: 1px solid #bdbdbd;
+	border-right: 1px solid #bdbdbd;
+	border-bottom: 1px solid #bdbdbd;
+	overflow: hidden;
+}
+
+span#span-notice-seat, span#spanChkSeat{
+	background-color: #f0f0f0;
+	display: block;
+	color: #535353;
+	font-weight: bold;
+	padding: 7px 7px 7px 15px;                  
+	font-size: 17px;
+}
+
+#seat-notice-ul, ul#chkMySeat{
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+}                     
+
+#seat-notice-ul li, ul#chkMySeat li{   
+	display: block;
+	text-align: left;
+	font-size: 13px;
+	letter-spacing: -0.5px;
+	color: #666;         
+}
+
+div.chkSeatBtnWrapper{
+	margin: 20px auto;
+	overflow: hidden;
+	text-align: center;
+}
+
+button#goThird{
+	border: 1px solid #4C4C4C;            
+	width: 280px;
+	height: 35px;
+	color: white;
+	background: #3b417d;                      
+	font-size: 16px;      
+	letter-spacing: -0.5px;
+	font-weight: bold;  
+}
+
+/* 03 가격/할인선택 */
+div.selectDiscountWrapper{
+	border: 1px solid #BDBDBD;
+}
+
+div.DiscountNoticeWrapper {
+	margin-top: 35px;                                     
+	border: 1px solid #BDBDBD;
+}
+
+div.divNoticeWrapper{
+	border-left: 1px solid #BDBDBD;
+	border-right: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+span#spanSelectDiscount, span#spanNoticeDiscount{
+	background-color: #f0f0f0;
+	display: block;
+	color: #535353;
+	font-weight: bold;
+	padding: 7px 7px 7px 15px;                  
+	font-size: 17px;
+}
+
+#spanNoticeDiscountUl, #spanNoticeTitleUl, #selectDiscountWrapperUl{
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+}
+
+#selectDiscountWrapperUl{
+	padding-left: 20px;      
+}
+
+#spanNoticeDiscountUl li, #spanNoticeTitleUl li{
+	display: block;
+	text-align: left;
+	font-size: 13px;
+	letter-spacing: -0.5px;
+	color: #666; 
+}
+
+#selectDiscountWrapperUl li{
+	display: block;
+	text-align: left;
+	font-size: 14px;               
+	letter-spacing: -0.5px;
+	color: #666; 
+}
+
+span.spanBold{
+	font-weight: bold;
+}
+
+
+/* 04 배송선택/주문자확인 */
+div.selectDeliveryWrapper{
+	border: 1px solid #BDBDBD;
+}
+
+span#spanSelectDelivery {
+	background-color: #f0f0f0;
+	display: block;
+	color: #535353;
+	font-weight: bold;
+	padding: 7px 7px 7px 15px;                  
+	font-size: 17px;
+}
+     
+#selectDeliveryWrapperUl, #selectDeliveryNoticeWrapperUl{
+	list-style: none;
+	margin: 0;
+	padding: 10px;        
+}
+
+#selectDeliveryWrapperUl li{
+	display: block;
+	text-align: left;
+	font-size: 14px;               
+	letter-spacing: -0.5px;
+	color: #666; 
+}
+
+#selectDeliveryWrapperUl li:last-child p{
+	margin-bottom: 0;
+}
+
+span.spanDecoration{
+	color: #f04040;
+}
+
+#selectDeliveryNoticeWrapperUl li{
+	display: block;
+	text-align: left;
+	font-size: 13px;
+	letter-spacing: -0.5px;
+	color: #666;
+}
+
+div.MyInfoWrapper{
+	margin-top: 30px;                                             
+	border: 1px solid #BDBDBD;
+}
+
+div.MyInfoWrapper table{
+	margin: 10px;
+}
+
+div.MyInfoWrapper table tbody{
+	color: #535353;
+	font-size: 14px;
+	letter-spacing: -0.8px;
+}
+
+div.MyInfoWrapper table tbody tr{
+	margin: 10px;
+}
+
+div.MyInfoWrapper table tr td{
+	padding: 5px 0;      
+}
+          
+div.MyInfoWrapper table tr td:first-child{
+	width: 15%;
+	text-align: center;
+	font-weight: bold;                 
+}
+
+span#spanBirth{
+	margin-left: 15px;
+}
+
+span#spanInfoNotice, span#spanChkNotice{
+	text-align: left;
+	display: block;
+	padding-left: 28px;
+	font-weight: normal;                              
+}
+
+input#memName{
+	width: 12%;         
+	padding: 2px 5px;
+	margin: 0;
+	font-size: 14px;
+	letter-spacing: -0.8px;
+	color: #666;           
+}
+
+input#memDob{
+	width: 12%;                  
+	padding: 2px 5px;
+	margin: 0;
+	font-size: 14px;
+	letter-spacing: -0.8px;
+	color: #666; 
+}
+
+input#firstPhoneNum, input#secondPhoneNum, input#thirdPhoneNum{
+	width: 8%;                                 
+	padding: 2px 5px;
+	font-size: 14px;
+	letter-spacing: -0.8px;
+	color: #666;      
+}
+
+input#firstPhoneNum{
+	margin-right: 5px;
+}
+
+input#secondPhoneNum, input#thirdPhoneNum{
+	margin: 0 5px;
+}
+
+input#memEmail{
+	width: 29%;                                                      
+	padding: 2px 5px;
+	margin: 0;
+	font-size: 14px;
+	letter-spacing: -0.8px;
+	color: #666; 
+}
+
+div.selectDeliveryNoticeWrapper{
+	border-left: 1px solid #BDBDBD;
+	border-right: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+/* 05 결제하기 */
+div.selectPaymentWrapper{
+	border: 1px solid #BDBDBD;
+}
+
+span#spanSelectPayment{
+	background-color: #f0f0f0;
+	display: block;
+	color: #535353;
+	font-weight: bold;
+	padding: 7px 7px 7px 15px;                  
+	font-size: 17px;
+}
+
+#selectPaymentWrapperUl, #selectPaymentNoticeWrapperUl{
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+}
+
+#selectPaymentWrapperUl li{
+	display: block;
+	text-align: left;
+	font-size: 14px;               
+	letter-spacing: -0.5px;
+	color: #666; 
+}
+
+div.selectPaymentNoticeWrapper{
+	margin-top: 30px;                                             
+	border: 1px solid #BDBDBD;
+}
+
+#selectPaymentNoticeWrapperUl li{
+	display: block;
+	text-align: left;
+	font-size: 13px;
+	letter-spacing: -0.5px;
+	color: #666;
+}
+
+div.selectPaymentTermsWrapper{
+	border-left: 1px solid #BDBDBD;
+	border-right: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;     
+}
+
+div.selectPaymentTermsWrapper div.terms{
+	height: 156px;           
+	border: 1px solid #f0f0f0;
+	padding: 10px 15px;
+	overflow: auto;
+	margin: 15px;
+}
+
+div.terms p{
+	font-size: 14px;
+	letter-spacing: -0.5px;
+	color: #666;      
+}
+
+span.textBold{
+	font-weight: bold;
+}
+
+div#allowWrapper{
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	color: #666;
+	padding-bottom: 13px;         
+	padding-top: 5px;
+}
+       
+button#btnBook{
+	border: 1px solid #4C4C4C;            
+	width: 280px;
+	height: 35px;
+	color: white;
+	background: #3b417d;                      
+	font-size: 16px;      
+	letter-spacing: -0.5px;
+	font-weight: bold;       
+}
+
+/* ========= 라디오버튼 ======== */
+.radio label:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.radio .cr {
+	position: relative;
+	display: inline-block;
+	border: 1px solid #a9a9a9;
+	border-radius: .25em;
+	width: 1.05em;
+	height: 1.05em;                
+	float: left;
+	margin-right: .5em;
+	margin-top: .3em;       
+}
+
+.radio .cr {
+	border-radius: 50%;
+}
+
+.radio .cr .cr-icon {
+	position: absolute;
+	font-size: .05em;                            
+	line-height: 0;
+	top: 48%;                                                    
+	left: 16%;                                
+}         
+
+.radio .cr .cr-icon {
+	/* margin-left: 0.04em; */
+	
+}
+
+.radio label input[type="radio"] {
+	display: none;
+}
+
+.radio label input[type="radio"]+.cr>.cr-icon {
+	transform: scale(3) rotateZ(-20deg);
+	opacity: 0;
+	transition: all .1s ease-in;   
+}
+
+.radio label input[type="radio"]:checked+.cr>.cr-icon {
+	transform: scale(1) rotateZ(0deg);
+	opacity: 1;
+}
+
+.radio label input[type="radio"]:disabled+.cr {
+	opacity: .5;
+}
+
+/* ========== 체크박스 =========== */
+.checkbox label:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr{
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.1em;
+    height: 1.1em;     
+    float: left;
+    margin-right: .5em;
+    margin-top: 3px;             
+}      
+
+.checkbox .cr .cr-icon{
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 52%;              
+    left: 15%;      
+    color: #f04040;  
+}
+
+.checkbox label{
+	margin-bottom: 0;
+}
+
+.checkbox label input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr{
+    opacity: .5;
+}
+
+/* 결과 화면 */
+div#bookResultContainer{
+	background-color: #f0f0f0;       
+	margin: 80px 0;
+	padding: 50px;         
+}
+
+div#bookResultContainer h3{
+	color: #535353;              
+	letter-spacing: -0.8px;
+	font-weight: bold;
+}
+
+div.resultBtnWrapper{    
+	margin-top: 30px;
+	text-align: center;
+}
+
+button#btnGoBookList{
+	border: 1px solid #4C4C4C;            
+	width: 200px;     
+	height: 35px;
+	color: white;
+	background: #3b417d;                      
+	font-size: 16px;      
+	letter-spacing: -0.5px;
+	font-weight: bold;
+	margin-left: 20px;       
+}
+
+button#btnGoHome{
+	border: 1px solid #4C4C4C;            
+	width: 200px;     
+	height: 35px;
+	color: #4C4C4C;
+	background: #fff;                      
+	font-size: 16px;      
+	letter-spacing: -0.5px;
+	font-weight: bold;
+}

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?abb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?cc" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
@@ -48,15 +48,25 @@
 			<div class="col-md-8">
 				<div class='selectDeliveryWrapper'>
 					<span id='spanSelectDelivery'>티켓수령방법</span>
-					<ul>
-						<li><input type='radio' checked="checked" name='chkDelivery' value='0'> 현장수령</li>     
-						<li><input type='radio' name='chkDelivery' disabled="disabled"> 배송(2,800원)</li>
+					<ul id='selectDeliveryWrapperUl'>
 						<li>
-							<p>티켓현장수령은 예매시 부여되는 <span class='spanDecoration'>"예약번호"로 관람일 당일 티켓을 수령하여 입장합니다.</span>
+							<div class="radio">      
+								<label><input type="radio" checked="checked" value='0' name='chkDelivery'>
+								<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>현장수령</label>
+							</div>
+						</li>     
+						<li>
+							<div class="radio">      
+								<label><input type="radio" disabled="disabled" name='chkDelivery'>
+								<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span> 배송(2,800원)</label>
+							</div>
+						</li>
+						<li>
+							<p>※ 티켓현장수령은 예매시 부여되는 <span class='spanDecoration'>"예약번호"로 관람일 당일 티켓을 수령하여 입장합니다.</span>
 						</li>	
 					</ul>              
 				</div>       
-				
+
 				<div class='MyInfoWrapper'>
 					<span id='spanNoticeDiscount'>예매자 확인</span>
 					<table>
@@ -69,7 +79,7 @@
 							<td><input type='text' id='memDob'> <span id='spanBirth'>예) 850101 (YYMMDD)</span></td>
 						</tr>
 						<tr>
-							<td colspan="2"><span id='spanInfoNotice'>현장수령 및 고객문의시 본인확인을 위해 정확한 정보를 입력해주세요.</span></td>
+							<td colspan="2"><span id='spanInfoNotice'>※ 현장수령 및 고객문의시 본인확인을 위해 정확한 정보를 입력해주세요.</span></td>
 						</tr>
 						<tr>
 							<td>연락처</td>
@@ -82,21 +92,21 @@
 							<td><input type='text' value='${mvo.email }' id='memEmail'></td>
 						</tr>
 						<tr>
-							<td colspan="2"><span id='spanChkNotice'>SMS 문자와 이메일로 예매 정보를 보내드립니다.</span>
+							<td colspan="2"><span id='spanChkNotice'>※ SMS 문자와 이메일로 예매 정보를 보내드립니다.</span>
 						</tr>
 					</table>
 				</div>
 				
 				<div class='selectDeliveryNoticeWrapper'>
 					<span id='spanSelectDelivery'>티켓 현장수령 시 유의사항</span>
-					<ul>
+					<ul id='selectDeliveryNoticeWrapperUl'>
 						<li>
-							<p><span class='spanDecoration'>티켓현장수령은 예매 시 부여되는 "예약번호(티켓번호)"로 당일 티켓을 수령, 입장하는 것입니다.</span></p>
+							<p>- <span class='spanDecoration'>티켓현장수령은 예매 시 부여되는 "예약번호(티켓번호)"로 당일 티켓을 수령, 입장하는 것입니다.</span></p>
 						</li>
-						<li>1시간 전 현장에 도착하셔서 티켓을 수령하시면 이용에 불편함이 없으십니다.</li>
-						<li>티켓 수령 시 예매확인서(또는 예약번호)와 신분증을 지참하셔야 합니다.
+						<li>- 1시간 전 현장에 도착하셔서 티켓을 수령하시면 이용에 불편함이 없으십니다.</li>
+						<li>- 티켓 수령 시 예매확인서(또는 예약번호)와 신분증을 지참하셔야 합니다.
 					</ul>              
-				</div>              
+				</div>                      
 			</div>
 		
 	

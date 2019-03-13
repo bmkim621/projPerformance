@@ -100,7 +100,7 @@
 				</div>
 				
 				<div class="noticebody">
-					<p>test</p>
+					<p></p>
 				</div>
 			</div>
 			

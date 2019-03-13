@@ -41,5 +41,22 @@
 		SELECT COUNT(*) FROM tbl_member WHERE id = #{id}    
 	</select>
 	
+	<!-- 나의 예매내역 -->
+	<resultMap type="BookVO" id="resultBook">
+		<result column="member_code" property="mCode.memberCode"/>
+		<result column="show_code" property="sCode.showCode"/>
+		<result column="show_name" property="sCode.showName"/>
+		<result column="payment_code" property="pCode.paymentCode"/>
+		<result column="discount_code" property="dCode.discountCode"/>
+	</resultMap>
+	
+	<select id="selectMyBookList" resultMap="resultBook">
+		select book_number, member_code, book.show_code, payment_code, discount_code, book_date, book_time, book_state, 
+		book_zone, book_num, seat_grade, book.seat_category, show_name
+		from book join performance p on book.show_code = p.show_code
+		where member_code = #{memberCode}
+		
+	</select>
+	
 
 </mapper>

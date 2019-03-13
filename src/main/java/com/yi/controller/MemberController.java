@@ -1,6 +1,7 @@
 package com.yi.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.yi.domain.BookVO;
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
+import com.yi.interceptor.LoginInterceptor;
 import com.yi.service.BookService;
 import com.yi.service.MemberService;
 
@@ -113,6 +116,21 @@ public class MemberController {
 		logger.info("result = " + result);        
 		
 		return String.valueOf(result);
+	}
+	
+	//나의 예매내역
+	@RequestMapping(value = "bookInfo", method = RequestMethod.GET)
+	public void bookInfoGet(HttpSession session, Model model) {
+		logger.info("==========> bookInfo GET ");
+		
+		//아이디 이용해서 회원번호 가지고오기
+		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
+		logger.info("info = " + info);
+		MemberVO mvo = service.readMember(info.getUserid());
+		
+		//예매내역
+		List<BookVO> list = service.selectMyBookList(mvo.getMemberCode());
+		model.addAttribute("list", list);
 	}
 	
 }

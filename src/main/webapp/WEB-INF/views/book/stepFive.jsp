@@ -45,17 +45,22 @@
 			<div class="col-md-8">
 				<div class='selectPaymentWrapper'>
 					<span id='spanSelectPayment'>티켓수령방법</span>
-					<ul>
+					<ul id='selectPaymentWrapperUl'>
 						<c:forEach items="${paymentList }" var="payment">
 							<c:if test="${payment.paymentCode eq 'PAY01' }">
 								<li>                                 
-									<input type="radio" checked="checked" name='pCode' value='${payment.paymentCode }'>
-									<span class='paymentTitle'>${payment.paymentName }</span>  
+									<div class="radio">      
+										<label><input type="radio" checked="checked" value='${payment.paymentCode }' name='pCode'>
+										<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>${payment.paymentName }</label>
+									</div>  
 								</li>
 							</c:if>
 							<c:if test="${payment.paymentCode ne 'PAY01' }">
-								<li><input type="radio" name='pCode' value='${payment.paymentCode }'>
-									<span class='paymentTitle'>${payment.paymentName }</span>
+								<li>
+									<div class="radio">      
+										<label><input type="radio" value='${payment.paymentCode }' name='pCode'>
+										<span class="cr"><i class="cr-icon fas fa-circle" style="color:#e53a40"></i></span>${payment.paymentName }</label>
+									</div>	
 								</li>  
 							</c:if>	
 						</c:forEach>	
@@ -65,16 +70,16 @@
 				<!-- 결제 유의사항 -->
 				<div class='selectPaymentNoticeWrapper'>
 					<span id='spanSelectPayment'>결제 시 유의사항</span>
-					<ul>
-						<li><span class='spanDecoration'>무통장입금 시, 은행에 따라 밤 11시 30분 이후로는 온라인 입금이 제한 될 수 있습니다.</span></li>
-						<li>휴대폰 결제 시 전체 취소만 가능합니다.</li>
-						<li>통신사 별로 한도 금액 내에서 최대 20만원까지 결제 가능합니다.</li>
-						<li>미성년자 명의, 법인 명의, 요금연체, 선불요금제 가입, 사용정지 휴대폰은 휴대폰 결제가 불가능합니다.</li>
+					<ul id='selectPaymentNoticeWrapperUl'>
+						<li>- <span class='spanDecoration'>무통장입금 시, 은행에 따라 밤 11시 30분 이후로는 온라인 입금이 제한 될 수 있습니다.</span></li>
+						<li>- 휴대폰 결제 시 전체 취소만 가능합니다.</li>
+						<li>- 통신사 별로 한도 금액 내에서 최대 20만원까지 결제 가능합니다.</li>
+						<li>- 미성년자 명의, 법인 명의, 요금연체, 선불요금제 가입, 사용정지 휴대폰은 휴대폰 결제가 불가능합니다.</li>
 					</ul>              
 				</div>
 				
 				<!-- 동의 -->
-				<div class='selectPaymentNoticeWrapper'>
+				<div class='selectPaymentTermsWrapper'>
 					<span id='spanSelectPayment'>개인정보 제3자 정보제공</span>
 					<div class='terms'>
 						<p>(주)인터파크가 제공하는 서비스를 통하여 이용자간 거래관계가 이루어진 경우 고객응대 및 공연정보 안내 등을 위하여 관련한 정보는 필요한 범위내에서 거래 당사자에게 아래와 같이 제공됩니다.</p>
@@ -84,7 +89,11 @@
 						<p>4. 개인정보 제공 항목<br><span class='textBold'>성명, 아이디, 연락처, 이메일주소, 주문/배송 정보</span></p>
 						<p>5. 개인정보 보유 및 이용 기간<br><span class='textBold'>개인정보 이용목적 달성 시까지(단, 관계 법령의 규정에 의해 보존의 필요가 있는 경우 및 사전 동의를 득한 경우 해당 보유기간까지</span></p>
 					</div>
-					<p><input type="checkbox">제3자 정보제공 내용에 동의합니다.</p>           
+					<div id='allowWrapper'>
+						<div class="checkbox">
+		        			<label><input type="checkbox" id="chkAllow" name="chkAllow"><span class="cr"><i class="cr-icon fa fa-check"></i></span>제3자 정보제공 내용에 동의합니다.</label>
+	       				</div>
+	       			</div>             
 				</div>
 			
 			
@@ -156,27 +165,36 @@
 
 </div>	<!-- bookWrapper end -->
 
-<p>제 3자 정보 제공 내용을 확인하신 후 동의하기를 체크해주세요.</p>
+
 
 <script>
 	$(function(){
 		$("#btnBook").click(function(){
 			//결제방식 코드
 			var pCode = $("input[name='pCode']:checked").val();    
-			alert(pCode);  
-			
-			$.ajax({
-				url: "${pageContext.request.contextPath}/book/insertBook",
-				type: "POST",
-				data : {pCode: pCode},
-				success: function(data){
-//					console.log(data);  
-					if(data == "insert"){
-//						console.log("예매완료");
-						location.href = "${pageContext.request.contextPath}/book/bookResult";
-					}
-				}	            
-			})	//ajax end  
+//			alert(pCode);  
+
+			if($('input:checkbox[name="chkAllow"]').is(":checked") ==  true){
+				$.ajax({
+					url: "${pageContext.request.contextPath}/book/insertBook",
+					type: "POST",
+					data : {pCode: pCode},
+					success: function(data){
+//						console.log(data);  
+						if(data == "insert"){
+//							console.log("예매완료");
+							location.href = "${pageContext.request.contextPath}/book/bookResult";
+						}
+					}	            
+				})	//ajax end 	
+			} else{
+				swal({
+					  text: "제 3자 정보 제공 내용을 확인하신 후 동의하기를 체크해주세요.",
+					  closeOnClickOutside: false,	//버튼 눌러야만 창 닫도록 함.
+					  button: "확인",
+					}); 
+			}
+	 
 		})
 	})
 </script>
