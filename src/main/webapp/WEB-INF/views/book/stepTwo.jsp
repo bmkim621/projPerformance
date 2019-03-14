@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->  
-<link href="${pageContext.request.contextPath }/resources/css/book.css?cac" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/book.css?cacc" rel="stylesheet" type="text/css">
 <!-- datepicker css 사용하기 위해서는 jquery UI 필요 -->  
 <script src="${pageContext.request.contextPath }/resources/js/jquery-ui.min.js"></script>
 <!-- alert plugin -->
@@ -18,11 +18,26 @@ div.seatContainer {
 	width: 22px;
 	height: 22px;                        
 	border: 1px solid #bebebe;
-	background-color: gray;
+	background-color: #FFA7A7;
 	margin: 2px;
 	font-size: 12px;          
+}
+
+div.seatContainer2{
+	display: inline-block;
+	width: 18px;
+	height: 18px;                        
+	border: 1px solid #bebebe;
+	background-color: #FFA7A7;
+	margin: 2px;
+	font-size: 12px;
+	margin-right: 10px;
 }   
-                
+    
+div.aWrapper{              
+	margin-left: 220px;                                     
+}
+            
 div.aWrapper, div.bWrapper, div.cWrapper{    
 	display: inline-block;
 	width: 157px;                                                                                                
@@ -46,11 +61,44 @@ div.aInfoWrapper, div.bInfoWrapper, div.cInfoWrapper{
 	overflow: hidden;
 	margin-top: 10px;        
 }
+
+div.seatInfoWrapper{
+	width: 180px;        
+	height: 256px;           
+	border: 1px solid #f0f0f0;
+	display: inline-block;
+	float: right;
+	margin-right: 30px;                                   
+}
+
+span#seatInfoTitle{
+	display: block;       
+	color: #535353;
+	font-weight: bold;
+	padding: 7px 7px 7px 15px;
+	font-size: 17px;
+	background-color: #eaeaea;
+	
+}
  
 span.aInfoTitle{
 	color: #666;
 	font-size: 13px;      
 }
+
+ul.seatPriceWrapper{
+	list-style: none;
+	margin: 0;
+	padding: 10px;
+	text-align: left;
+}    
+
+ul.seatPriceWrapper li{
+	letter-spacing: -0.7px;
+	font-size: 15px;
+	color: #666;
+	margin: 10px 0;
+}     
             
 div.gradeR{
 	background-color: #B5B2FF;
@@ -145,6 +193,15 @@ span.span-wrapper{
 									<div class='seatContainer' data-seatzone='${list[2].zone }' data-seatnum='${z }' data-seatgrade='N'></div>
 									<c:if test="${z % row == 0 }"><br></c:if>
 								</c:forEach>
+							</div>
+							
+							<!-- 좌석 정보 -->
+							<div class='seatInfoWrapper'>
+								<span id='seatInfoTitle'>좌석 안내</span>
+								<ul class='seatPriceWrapper'>    
+									<li><div class='seatContainer2 gradeN'></div> 전석 : 20,000원</li>
+									<li><div class='seatContainer2 booked'></div> 예매 완료된 좌석</li>
+								</ul>
 							</div> 
 						</c:if>
 						
@@ -237,7 +294,19 @@ span.span-wrapper{
 									</c:if>		 	
 								</c:forEach>
 							</div>
-						</c:if>  
+							
+							<!-- 좌석 정보 -->
+							<div class='seatInfoWrapper'>
+								<span id='seatInfoTitle'>좌석 안내</span>
+								<ul class='seatPriceWrapper'>
+									<li><div class='seatContainer2 gradeR'></div> R석 : 100,000원</li>
+									<li><div class='seatContainer2 gradeS'></div> S석 : 80,000원</li>
+									<li><div class='seatContainer2 gradeA'></div> A석 : 50,000원</li>
+									<li><div class='seatContainer2 gradeB'></div> B석 : 30,000원</li>
+									<li><div class='seatContainer2 booked'></div> 예매 완료된 좌석</li>
+								</ul>
+							</div>  
+						</c:if>	
 						
 						<br>
 						<div class='aInfoWrapper'><span class='aInfoTitle'>A구역</span></div>

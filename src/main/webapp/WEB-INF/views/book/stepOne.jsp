@@ -176,9 +176,9 @@
 <div class='templateSeatWrapper'>
 {{#each.}}       
 	{{#ifCond seatCategory}}
-		<div class='ckhSeatContainer'><div class='nDiv'></div>전석<span class='verticalBar'>&#124;</span>{{remain_seat}}석</div>
+		<div class='ckhSeatContainer'><div class='nDiv'></div>전석<span class='verticalBar'>&#124;</span>{{remainSeat}}석</div>
   
-	{{else}}                          
+	{{else}}                            
 		<div class='ckhSeatContainer'><div class='rDiv'></div>R석<span class='verticalBar'>&#124;</span>{{rRemainSeat}}석</div>
 		<div class='ckhSeatContainer'><div class='sDiv'></div>S석<span class='verticalBar'>&#124;</span>{{sRemainSeat}}석</div>
 		<div class='ckhSeatContainer'><div class='aDiv'></div>A석<span class='verticalBar'>&#124;</span>{{aRemainSeat}}석</div>

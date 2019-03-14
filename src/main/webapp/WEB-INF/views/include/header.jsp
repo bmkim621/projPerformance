@@ -25,7 +25,7 @@
 	var contextPath = "${pageContext.request.contextPath}";          
 </script>
 </head>
-<body>
+<body>       
 
 	<!-- 네비게이션 -->
 	<nav class="navbar navbar-expand-md fixed-top top-nav">
@@ -53,7 +53,7 @@
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/perf/perfList">공연안내</a></li>
 									<li><a href="#">예매안내</a></li>
-									<li><a href="#">예매확인</a></li>
+									<li><a href="${pageContext.request.contextPath}/member/bookInfo">예매확인</a></li>
 								</ul>
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->
@@ -118,8 +118,8 @@
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/notice/register">공지사항 작성</a></li>
 									<li><a href="${pageContext.request.contextPath}/perf/addPerf">공연 추가</a></li>
-									<li><a href="#">회원관리</a></li>
-								</ul>
+									<!-- <li><a href="#">회원관리</a></li> -->   
+								</ul>           
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->
 					</li>	
@@ -134,7 +134,7 @@
 							<a href="${pageContext.request.contextPath }/member/login" class="rightMenu"><i class="fas fa-sign-in-alt"></i><span class="spanWrap">로그인</span></a>
 						</li>
 						<li class='nav-item'>
-							<a href="#" class="rightMenu"><i class="fas fa-heart"></i><span class="spanWrap">회원가입</span></a>
+							<a href="${pageContext.request.contextPath}/member/joinForm" class="rightMenu"><i class="fas fa-heart"></i><span class="spanWrap">회원가입</span></a>
 						</li>
 					</c:if>
 							         

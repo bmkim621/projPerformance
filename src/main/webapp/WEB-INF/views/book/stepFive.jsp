@@ -183,9 +183,9 @@
 //						console.log(data);  
 						if(data == "insert"){
 //							console.log("예매완료");
-							location.href = "${pageContext.request.contextPath}/book/bookResult";
+							location.href = "${pageContext.request.contextPath}/book/result";
 						}
-					}	            
+					}	                   
 				})	//ajax end 	
 			} else{
 				swal({

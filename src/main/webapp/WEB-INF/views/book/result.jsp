@@ -42,7 +42,7 @@
 		
 		//예매내역 버튼
 		$("#btnGoBookList").click(function(){
-			
+			location.href = "${pageContext.request.contextPath}/member/bookInfo";      
 		})
 	})
 </script>
