@@ -46,7 +46,7 @@
 		<div class="row">
 		
 			<div class="col-md-8">
-				<div class='selectDeliveryWrapper'>
+				<div class='selectDeliveryWrapper'>  
 					<span id='spanSelectDelivery'>티켓수령방법</span>
 					<ul id='selectDeliveryWrapperUl'>
 						<li>

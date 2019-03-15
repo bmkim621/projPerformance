@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class='selectPaymentWrapper'>
-					<span id='spanSelectPayment'>티켓수령방법</span>
+					<span id='spanSelectPayment'>결제방식</span>
 					<ul id='selectPaymentWrapperUl'>
 						<c:forEach items="${paymentList }" var="payment">
 							<c:if test="${payment.paymentCode eq 'PAY01' }">
