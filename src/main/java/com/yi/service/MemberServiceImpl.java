@@ -70,4 +70,34 @@ public class MemberServiceImpl implements MemberService {
 		return memDao.selectMyBookList(memberCode);
 	}
 
+	@Override
+	public int getCountA(String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.getCountA(memberCode);
+	}
+
+	@Override
+	public int getCountB(String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.getCountB(memberCode);
+	}
+
+	@Override
+	public int getCountC(String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.getCountC(memberCode);
+	}
+
+	@Override
+	public int getCountD(String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.getCountD(memberCode);
+	}
+
+	@Override
+	public int getCountE(String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.getCountE(memberCode);
+	}
+
 }

@@ -79,4 +79,34 @@ public class MemberDaoImpl implements MemberDAO {
 		return sqlSession.selectList(namespace + ".selectMyBookList", memberCode);
 	}
 
+	@Override
+	public int getCountA(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getCountA", memberCode);
+	}
+
+	@Override
+	public int getCountB(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getCountB", memberCode);
+	}
+
+	@Override
+	public int getCountC(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getCountC", memberCode);
+	}
+
+	@Override
+	public int getCountD(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getCountD", memberCode);
+	}
+
+	@Override
+	public int getCountE(String memberCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".getCountE", memberCode);
+	}
+
 }

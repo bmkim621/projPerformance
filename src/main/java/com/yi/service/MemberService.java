@@ -31,4 +31,11 @@ public interface MemberService {
 	//나의 예매내역
 	public List<BookVO> selectMyBookList(String memberCode);
 	
+	//============ 예매 공연 종류 ===============
+	public int getCountA(String memberCode);
+	public int getCountB(String memberCode);
+	public int getCountC(String memberCode);
+	public int getCountD(String memberCode);
+	public int getCountE(String memberCode);
+	
 }

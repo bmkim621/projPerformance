@@ -57,4 +57,6 @@ public interface BookDAO {
 	
 	//예매 테이블 추가
 	public void insertBook(BookVO vo);
+	
+	
 }

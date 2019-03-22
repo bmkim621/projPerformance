@@ -37,7 +37,7 @@
 	</select>
 	
 	<!-- 아이디 -->
-	<select id="idDuplicateChk" parameterType = "String" resultType = "int">
+	<select id="idDuplicateChk" parameterType = "String" resultType ="int">
 		SELECT COUNT(*) FROM tbl_member WHERE id = #{id}    
 	</select>
 	
@@ -48,14 +48,46 @@
 		<result column="show_name" property="sCode.showName"/>
 		<result column="payment_code" property="pCode.paymentCode"/>
 		<result column="discount_code" property="dCode.discountCode"/>
+		<result column="show_image_path" property="sCode.showImagePath"/>
+		<result column="show_type" property="sCode.showType"/>
 	</resultMap>
 	
 	<select id="selectMyBookList" resultMap="resultBook">
 		select book_number, member_code, book.show_code, payment_code, discount_code, book_date, book_time, book_state, 
-		book_zone, book_num, seat_grade, book.seat_category, show_name
+		book_zone, book_num, seat_grade, book.seat_category, show_name, show_image_path, show_type            
 		from book join performance p on book.show_code = p.show_code
 		where member_code = #{memberCode}
-		
+	</select>
+	
+	<!-- 공연종류 -->
+	<select id="getCountA" resultType="int">
+		select count(*)           
+		from book join performance p on book.show_code = p.show_code
+		where member_code = #{memberCode} and show_type='A'
+	</select>
+	
+	<select id="getCountB" resultType="int">
+		select count(*)           
+		from book join performance p on book.show_code = p.show_code
+		where member_code = #{memberCode} and show_type='B'
+	</select>
+	
+	<select id="getCountC" resultType="int">
+		select count(*)           
+		from book join performance p on book.show_code = p.show_code
+		where member_code = #{memberCode} and show_type='C'
+	</select>
+	
+	<select id="getCountD" resultType="int">
+		select count(*)           
+		from book join performance p on book.show_code = p.show_code
+		where member_code = #{memberCode} and show_type='D'
+	</select>
+	
+	<select id="getCountE" resultType="int">
+		select count(*)           
+		from book join performance p on book.show_code = p.show_code
+		where member_code = #{memberCode} and show_type='E'
 	</select>
 	
 
