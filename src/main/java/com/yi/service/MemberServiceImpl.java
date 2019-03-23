@@ -100,4 +100,10 @@ public class MemberServiceImpl implements MemberService {
 		return memDao.getCountE(memberCode);
 	}
 
+	@Override
+	public List<BookVO> selectBookListByYear(String year, String memberCode) {
+		// TODO Auto-generated method stub
+		return memDao.selectBookListByYear(year, memberCode);
+	}
+
 }

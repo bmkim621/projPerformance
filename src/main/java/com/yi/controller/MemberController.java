@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yi.domain.BookVO;
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.PerformanceVO;
 import com.yi.interceptor.LoginInterceptor;
 import com.yi.service.BookService;
 import com.yi.service.MemberService;
@@ -153,6 +154,36 @@ public class MemberController {
 		model.addAttribute("countC", countC);
 		model.addAttribute("countD", countD);
 		model.addAttribute("countE", countE);   
+	}
+	
+	//연도별 공연 내역 검색   
+	@ResponseBody
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<List<BookVO>> search(String year, HttpSession session){
+		ResponseEntity<List<BookVO>> entity = null;
+		           
+		logger.info("====== search MyBookList Year ===== ");
+		logger.info("year =====> " + year);
+		
+		//아이디 이용해서 회원번호 가지고오기
+		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
+		logger.info("info = " + info);
+		MemberVO mvo = service.readMember(info.getUserid());
+		
+		try {
+			if(year.equals("")) {
+				List<BookVO> list = service.selectMyBookList(mvo.getMemberCode());
+				entity = new ResponseEntity<List<BookVO>>(list, HttpStatus.OK);
+			} else {
+				List<BookVO> searchList = service.selectBookListByYear(year, mvo.getMemberCode());
+				entity = new ResponseEntity<List<BookVO>>(searchList, HttpStatus.OK);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 	
 	// 서버 <-> 브라우저(데이터 요청하면 보내줄거니까 안보여도 됨) 파일명에 해당하는 이미지의 데이터만 줌.

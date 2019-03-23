@@ -7,7 +7,8 @@
 <!-- 차트 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'></script>
-
+<!-- handlebars -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 <style>
 div.contents-wrapper {
@@ -19,8 +20,8 @@ div.contents-wrapper {
 	margin: 15px;        
 }
 
-.my-perf-img {
-	height: 180px;
+.my-perf-img {  
+	height: 178px;       
 }
 
 div.contents-image-wrapper{
@@ -34,7 +35,7 @@ div.contents-text-wrapper{
 	height: 175px;                                 
 	display: inline-block;     
 	float: right;
-	padding: 25px 15px 30px 0;    
+	padding: 5px 15px 30px 0;          
 	overflow: hidden;
 }
 
@@ -85,6 +86,47 @@ span.my-book-list{
 .chartjs{
 	margin-top: 20px;
 }
+
+div.table-perf-wrapper{
+    background: #fff;
+    padding: 0 25px 20px 25px;
+    margin: 30px auto;
+    margin-bottom: 80px;
+    border-radius: 3px;
+    padding-bottom: 0!important;
+    overflow: hidden;
+}
+
+/* 검색 */
+div.search-filter-group{
+	text-align: right;
+	padding-right: 20px;
+	padding-bottom: 10px;        
+}
+
+div.search-filter-group select{
+	font-size: 14px;
+	letter-spacing: -0.5px;
+	color: #575e96;
+	font-weight: bold;
+	padding-left: 5px;
+	width: 100px;  
+	height: 30px;               
+}
+
+span.no-result{
+	font-size: 22px;
+	letter-spacing: -0.8px;
+	color: #A7A7A7;       
+	text-align: center;
+	display: block;
+	font-weight: 300;      
+}
+
+span.no-result i{
+	display: block;
+	padding: 20px 0 10px 0;
+}
 </style>
 
 <div class="container-fluid bookContainer">
@@ -112,30 +154,43 @@ span.my-book-list{
 		<canvas id="chart-horizontal-stacked" class="chartjs" style="display: block; width: 720px; height: 60px;"></canvas>       
 		<hr>
 	</div>
-     
-	<div class="table-wrapper">
-		<c:forEach items="${list }" var="book">
-			<div class='contents-wrapper'>
-				<div class='contents-image-wrapper'>
-					<img src='displayFile?filename=${book.sCode.showImagePath }' class='my-perf-img'>
+
+	<div class="table-perf-wrapper">
+	
+		<div class="search-filter-group">
+			<select name="searchType" id='selectYear'>
+				<option value=''>전체</option>
+				<option value="2019">2019</option>
+				<option value="2018">2018</option>
+				<option value="2017">2017</option>
+			</select>
+		</div>
+		<!-- search-filter-group end -->
+	
+		<div id='my-book-list-wrapper'>
+			<c:forEach items="${list }" var="book">
+				<div class='contents-wrapper'>
+					<div class='contents-image-wrapper'>
+						<img src='displayFile?filename=${book.sCode.showImagePath }' class='my-perf-img'>
+					</div>
+					<div class='contents-text-wrapper'>
+						<span class='contents-perf-title'>${book.sCode.showName }</span>
+						<span class='span-list'><span class='span-align'>예매번호</span> <span class='span-contents'>${book.bookNumber }</span></span>
+						<span class='span-list'><span class='span-align'>관람일</span> <span class='span-contents'><fmt:formatDate value="${book.bookDate }" pattern="yyyy. MM. dd(E)"/>&nbsp;<fmt:formatDate value="${book.bookTime }" pattern="HH:mm"/></span></span>
+						<span class='span-list'><span class='span-align'>좌석</span> 
+							<c:if test="${book.seatGrade eq 'N' }">
+							<span class='span-contents'>전석 ${book.bookZone }구역 ${book.bookNum }번</span>
+							</c:if>
+							<c:if test="${book.seatGrade ne 'N' }">
+								<span class='span-contents'>${book.seatGrade}석 ${book.bookZone }구역 ${book.bookNum }번</span>
+							</c:if>
+						</span>
+					
+					</div>
 				</div>
-				<div class='contents-text-wrapper'>
-					<span class='contents-perf-title'>${book.sCode.showName }</span>
-					<span class='span-list'><span class='span-align'>예매번호</span> <span class='span-contents'>${book.bookNumber }</span></span>
-					<span class='span-list'><span class='span-align'>관람일</span> <span class='span-contents'><fmt:formatDate value="${book.bookDate }" pattern="yyyy. MM. dd(E)"/>&nbsp;<fmt:formatDate value="${book.bookTime }" pattern="HH:mm"/></span></span>
-					<span class='span-list'><span class='span-align'>좌석</span> 
-						<c:if test="${book.seatGrade eq 'N' }">
-						<span class='span-contents'>전석 ${book.bookZone }구역 ${book.bookNum }번</span>
-						</c:if>
-						<c:if test="${book.seatGrade ne 'N' }">
-							<span class='span-contents'>${book.seatGrade}석 ${book.bookZone }구역 ${book.bookNum }번</span>
-						</c:if>
-					</span>
-				
-				</div>
-			</div>
-		</c:forEach>		    
-	</div>	<!-- table-wrapper end -->
+			</c:forEach>
+		</div>		    
+	</div>	<!-- table-perf-wrapper end -->
 </div>
 
 
@@ -187,22 +242,131 @@ var _stackedHzChart = new Chart(document.getElementById('chart-horizontal-stacke
 	      datalabels: {
 	        display: false,  
 	        backgroundColor: null,
-	        formatter: function (value, ctx) {
-	        	let sum = 0;
-	        	let dataArr = ctx.chart.data.datasets[0].data;
-	        	dataArr.map(data => {
-	        	    sum += data;
-	        	});
-	        	let percentage = (value * 100 / sum).toFixed(0) + "%";
-	        	return percentage;
-	        	}
 	      }, 
 	    }
 	  }  
 	});
 </script>
 
+<!-- 템플릿 -->  
+<script id="template2" type="text/x-handlebars-template">
+{{#each.}}
+<div class='contents-wrapper'>
+	<div class='contents-image-wrapper'>
+		<img src='displayFile?filename={{sCode.showImagePath}}' class='my-perf-img'>
+	</div>
+	<div class='contents-text-wrapper'>
+		<span class='contents-perf-title'>{{sCode.showName}}</span>
+		<span class='span-list'><span class='span-align'>예매번호</span> <span class='span-contents'>{{bookNumber}}</span></span>
+		<span class='span-list'><span class='span-align'>관람일</span> <span class='span-contents'>{{tempDate bookDate}}({{tempweek bookDate}}) {{temptime bookTime}}</span></span>
+		<span class='span-list'><span class='span-align'>좌석</span>
 
+	{{#ifCond seatGrade}}
+		<span class='span-contents'>전석 {{bookZone}}구역 {{bookNum}}번</span>
+	{{else}}
+		<span class='span-contents'>{{seatGrade}}석 {{bookZone}}구역 {{bookNum}}번</span>
+	{{/ifCond}}
+		</span>
+	</div>
+</div>
+{{/each}} 
+</script>
+
+<script id="template1" type="text/x-handlebars-template">  
+<span class='no-result'><i class="fas fa-exclamation-circle fa-2x"></i>검색 결과가 존재하지 않습니다.</span>
+</script>
+
+<script>
+//날짜
+Handlebars.registerHelper("tempDate", function(value){
+	var date = new Date(value);
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var day = date.getDate();
+	
+	if (year < 10) {
+		year = "0" + year;	//1~9월은 앞에 0이 붙도록 함. 01, 02, .. 09월
+	}
+	if (month < 10) {					
+		month = "0" + month;
+	}
+	if (day < 10) {					//1~9일은 앞에 9이 붙도록 함. 01, 02, .. 09일
+		day = "0" + day;
+	}
+	
+	return year + ". " + month + ". " + day; 
+})
+
+Handlebars.registerHelper("tempweek", function(value){
+	//일: 0 ~ 토: 6
+	var sWeek = ["일", "월", "화", "수", "목", "금", "토"];
+	var date = new Date(value);
+	var week = date.getDay();
+	
+	return sWeek[week];
+})
+
+//시간
+Handlebars.registerHelper("temptime", function(value){
+	var date = new Date(value);
+	var hour = date.getHours();
+	var minutes = date.getMinutes();
+//	var second = date.getSeconds();
+
+	if (hour < 10) {
+		hour = "0" + hour;	
+	}
+	if (minutes < 10) {				
+		minutes = "0" + minutes;
+	}
+			       
+	return hour + ":" + minutes; 
+})
+
+//if
+Handlebars.registerHelper('ifCond', function(v1, options) {
+	if(v1 === "N") {
+		return options.fn(this);
+	}
+	return options.inverse(this);
+});
+</script>
+
+<script>
+	$(function(){
+		$("#selectYear").change(function(){
+			var year = $("#selectYear").val();
+//			console.log(year);
+
+			$.ajax({
+				
+				url: "${pageContext.request.contextPath}/member/search?year=" + year,
+				type: "GET",
+				dataType: "json",
+				success: function(json){					
+//					console.log(json);
+			
+					$("#my-book-list-wrapper").empty();
+				
+					//검색결과 있을 때
+					if(json.length > 0){
+						var source = $("#template2").html();
+						var f = Handlebars.compile(source);
+						var result = f(json);
+						$("#my-book-list-wrapper").append(result);
+					} else{
+						var source = $("#template1").html();
+						var f = Handlebars.compile(source);
+						var result = f(json);
+						$("#my-book-list-wrapper").append(result);
+					}
+					
+					
+				}
+			})	//ajax end
+		})
+	})
+</script>
 
 
 

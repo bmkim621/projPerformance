@@ -38,4 +38,7 @@ public interface MemberService {
 	public int getCountD(String memberCode);
 	public int getCountE(String memberCode);
 	
+	//연도별 검색
+	public List<BookVO> selectBookListByYear(String year, String memberCode);
+	
 }

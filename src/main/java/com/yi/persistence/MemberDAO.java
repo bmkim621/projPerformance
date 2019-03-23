@@ -34,5 +34,8 @@ public interface MemberDAO {
 	public int getCountC(String memberCode);
 	public int getCountD(String memberCode);
 	public int getCountE(String memberCode);  
+	
+	//연도별 검색 
+	public List<BookVO> selectBookListByYear(String year, String memberCode);
 		
 }

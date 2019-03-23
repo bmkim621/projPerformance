@@ -109,4 +109,14 @@ public class MemberDaoImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".getCountE", memberCode);
 	}
 
+	@Override
+	public List<BookVO> selectBookListByYear(String year, String memberCode) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("year", year);
+		map.put("memberCode", memberCode);
+		
+		return sqlSession.selectList(namespace + ".selectBookListByYear", map);
+	}
+
 }

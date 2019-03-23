@@ -90,5 +90,23 @@
 		where member_code = #{memberCode} and show_type='E'
 	</select>
 	
+	<!-- 연도별 검색 -->
+	<select id="selectBookListByYear" resultMap="resultBook">
+		select book_number, member_code, book.show_code, payment_code, discount_code, book_date, book_time, book_state, 
+		book_zone, book_num, seat_grade, book.seat_category, show_name, show_image_path, show_type            
+		from book join performance p on book.show_code = p.show_code
+		<include refid="searchSql"/>
+	</select>
+	
+	<sql id="searchSql">
+		<if test="year != null">
+			where member_code = #{memberCode} and year(book_date) = #{year}
+		</if>
+		<if test="year == ''">
+			where member_code = #{memberCode}
+		</if>
+	</sql>
+
+	
 
 </mapper>
