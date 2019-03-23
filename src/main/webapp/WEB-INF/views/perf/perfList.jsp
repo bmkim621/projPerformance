@@ -36,6 +36,21 @@
 	color: white!important;
 	font-weight: bold;  
 }
+
+/* 검색 결과 없음 */
+span.no-result{
+	font-size: 22px;
+	letter-spacing: -0.8px;       
+	text-align: center;
+	display: block;
+	font-weight: 300;
+	color: #686868;   
+}
+
+span.no-result i{
+	display: block;
+	padding: 20px 0 10px 0;
+}
 </style>
 
 <div class="container-fluid perfContainer">
@@ -162,6 +177,10 @@
 </div> 
 {{/each}} 
 </script>
+
+<script id="template1" type="text/x-handlebars-template">  
+<span class='no-result'><i class="fas fa-exclamation-circle fa-2x"></i>등록된 공연이 없습니다.</span>
+</script>
 		
 <script>
 //날짜
@@ -208,15 +227,22 @@ Handlebars.registerHelper('ifCond', function(v1, options) {
 			dataType: "json",
 			success: function(json){
 				
-				console.log(json);
+//				console.log(json);
 		
 				$(".resultSearchWrapper").empty();
 				
-				var source = $("#template2").html();
-				var f = Handlebars.compile(source);
-				var result = f(json);
-				$(".resultSearchWrapper").append(result);
-					
+				//검색결과 있을 때
+				if(json.length > 0){
+					var source = $("#template2").html();
+					var f = Handlebars.compile(source);
+					var result = f(json);
+					$(".resultSearchWrapper").append(result);
+				} else{
+					var source = $("#template1").html();
+					var f = Handlebars.compile(source);
+					var result = f(json);
+					$(".resultSearchWrapper").append(result);
+				}		
 			}
 		})
 	}
