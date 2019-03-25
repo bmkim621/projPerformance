@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
+import com.yi.domain.SearchCriteria;
 
 @Repository
 public class MemberDaoImpl implements MemberDAO {
@@ -117,6 +119,30 @@ public class MemberDaoImpl implements MemberDAO {
 		map.put("memberCode", memberCode);
 		
 		return sqlSession.selectList(namespace + ".selectBookListByYear", map);
+	}
+
+	@Override
+	public List<MemberVO> listCriteria(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".listCriteria", cri);
+	}
+
+	@Override
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".totalCount");
+	}
+
+	@Override
+	public List<MemberVO> listSearch(SearchCriteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".listSearch", cri);
+	}
+
+	@Override
+	public int searchTotalCount(SearchCriteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".searchTotalCount", cri);
 	}
 
 }

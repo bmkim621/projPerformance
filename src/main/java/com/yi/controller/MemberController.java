@@ -30,7 +30,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.yi.domain.BookVO;
 import com.yi.domain.LoginDTO;
 import com.yi.domain.MemberVO;
+import com.yi.domain.PageMaker;
 import com.yi.domain.PerformanceVO;
+import com.yi.domain.ReviewVO;
+import com.yi.domain.SearchCriteria;
 import com.yi.interceptor.LoginInterceptor;
 import com.yi.service.BookService;
 import com.yi.service.MemberService;
@@ -68,7 +71,6 @@ public class MemberController {
 			return;
 		}   
 
-		
 		//이름, 아이디, 회원구분
 		LoginDTO dto = new LoginDTO();
 		dto.setUserid(vo.getId());
@@ -90,8 +92,6 @@ public class MemberController {
 		//로그아웃 후 홈화면으로 이동하기
 		return "redirect:/";
 	}
-	
-	
 	
 	//회원가입 화면
 	@RequestMapping(value = "joinForm", method = RequestMethod.GET)
@@ -218,4 +218,25 @@ public class MemberController {
 		return entity;
 	}
 	
+	//회원 관리
+	@RequestMapping(value = "manage", method = RequestMethod.GET)
+	public void manage(Model model, SearchCriteria cri) {
+		logger.info("==========> manage GET ");
+		
+		//검색
+		List<MemberVO> list = service.listSearch(cri);
+
+		// 페이지 하단 부분
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.searchTotalCount(cri));
+
+		logger.info("list = " + list);
+		logger.info("page = " + pageMaker.getCri().getPage());
+		logger.info("cri = " + cri);
+
+		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("cri", cri);
+	}
 }

@@ -3,7 +3,10 @@ package com.yi.persistence;
 import java.util.List;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
+import com.yi.domain.NoticeVO;
+import com.yi.domain.SearchCriteria;
 
 public interface MemberDAO {
 	public String getTime();
@@ -37,5 +40,18 @@ public interface MemberDAO {
 	
 	//연도별 검색 
 	public List<BookVO> selectBookListByYear(String year, String memberCode);
+	
+	/* 페이지 관련 */
+	//페이지
+	public List<MemberVO> listCriteria(Criteria cri);
+
+	// 게시물 총 갯수
+	public int totalCount();
+
+	// 검색
+	public List<MemberVO> listSearch(SearchCriteria cri);
+
+	// 검색한 게시물의 총 갯수
+	public int searchTotalCount(SearchCriteria cri);
 		
 }

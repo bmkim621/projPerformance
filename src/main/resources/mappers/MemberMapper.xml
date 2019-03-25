@@ -18,6 +18,7 @@
 	
 	<select id="selectMemberAll" resultType="MemberVO">
 		select * from tbl_member
+		order by isMember desc;        
 	</select>
 	
 	<update id="updateMember">
@@ -107,6 +108,44 @@
 		</if>
 	</sql>
 
+	<!-- 페이지 -->
+	<!-- #{pageStart}는 Criteria에서 함수인 getPageStart가 호출돼야하는데 el처럼 get은 떼고 첫번째 대문자는 소문자로 바꾼다. -->
+	<select id="listCriteria" resultType="MemberVO">
+		select * from tbl_member
+		order by isMember desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	
+	<!-- 게시물 전체 갯수 -->
+	<select id="totalCount" resultType="int">
+		select count(member_code) from tbl_member
+	</select>
+	
+	
+	<!-- 검색기능 구현 -->
+	<sql id="search">
+		<if test="searchType == 'id'.toString()">
+			where id like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="searchType == 'name'.toString()">
+			where member_name like CONCAT('%', #{keyword}, '%')  
+		</if>
+	</sql>
+	    
+	<!-- 검색 -->
+	<select id="listSearch" resultType="MemberVO">
+		select * from tbl_member
+		<include refid="search"/>	 
+		order by isMember desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+		
+	<!-- 검색한 게시물의  전체 갯수 -->
+	<select id="searchTotalCount" resultType="int">
+		select count(member_code) from tbl_member
+		<include refid="search"></include>
+	</select> 
 	
 
 </mapper>

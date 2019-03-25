@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yi.domain.BookVO;
+import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
+import com.yi.domain.SearchCriteria;
 import com.yi.persistence.MemberDAO;
 
 @Service
@@ -104,6 +106,30 @@ public class MemberServiceImpl implements MemberService {
 	public List<BookVO> selectBookListByYear(String year, String memberCode) {
 		// TODO Auto-generated method stub
 		return memDao.selectBookListByYear(year, memberCode);
+	}
+
+	@Override
+	public List<MemberVO> listCriteria(Criteria cri) {
+		// TODO Auto-generated method stub
+		return memDao.listCriteria(cri);
+	}
+
+	@Override
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return memDao.totalCount();
+	}
+
+	@Override
+	public List<MemberVO> listSearch(SearchCriteria cri) {
+		// TODO Auto-generated method stub
+		return memDao.listSearch(cri);
+	}
+
+	@Override
+	public int searchTotalCount(SearchCriteria cri) {
+		// TODO Auto-generated method stub
+		return memDao.searchTotalCount(cri);
 	}
 
 }
