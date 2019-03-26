@@ -132,4 +132,10 @@ public class MemberServiceImpl implements MemberService {
 		return memDao.searchTotalCount(cri);
 	}
 
+	@Override
+	public void updateMemberGrade(MemberVO vo) {
+		// TODO Auto-generated method stub
+		memDao.updateMemberGrade(vo);
+	}
+
 }

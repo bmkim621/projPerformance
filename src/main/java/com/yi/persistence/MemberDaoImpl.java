@@ -145,4 +145,10 @@ public class MemberDaoImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace + ".searchTotalCount", cri);
 	}
 
+	@Override
+	public void updateMemberGrade(MemberVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + ".updateMemberGrade", vo);
+	}
+
 }

@@ -15,8 +15,8 @@ public class MemberVO {
 	private Date regdate;
 	private String address;
 	private int isMember;	//0: 회원, 1: 관리자
-	private GradeVO gCode;	//등급코드
-	
+	/*private GradeVO gCode;	//등급코드
+*/	
 	public String getMemberCode() {
 		return memberCode;
 	}
@@ -71,18 +71,18 @@ public class MemberVO {
 	public void setIsMember(int isMember) {
 		this.isMember = isMember;
 	}
-	public GradeVO getgCode() {
+	/*public GradeVO getgCode() {
 		return gCode;
 	}
 	public void setgCode(GradeVO gCode) {
 		this.gCode = gCode;
-	}
+	}*/
 	
 	@Override
 	public String toString() {
 		return String.format(
-				"MemberVO [memberCode=%s, memberName=%s, id=%s, password=%s, email=%s, phone=%s, regdate=%s, address=%s, isMember=%s, gCode=%s]",
-				memberCode, memberName, id, password, email, phone, regdate, address, isMember, gCode);
+				"MemberVO [memberCode=%s, memberName=%s, id=%s, password=%s, email=%s, phone=%s, regdate=%s, address=%s, isMember=%s]",
+				memberCode, memberName, id, password, email, phone, regdate, address, isMember);
 	}
 	
 

@@ -147,5 +147,10 @@
 		<include refid="search"></include>
 	</select> 
 	
-
+	<!-- 회원 등급 -->
+	<update id="updateMemberGrade" parameterType="MemberVO">
+		update tbl_member
+		set isMember = #{isMember}  
+		where member_code = #{memberCode}
+	</update>
 </mapper>

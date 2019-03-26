@@ -65,7 +65,7 @@ ALTER TABLE facilities
 			facilities_no -- 공연시설번호
 		);
 
--- 등급
+/*-- 등급
 CREATE TABLE grade (
 	grade_code VARCHAR(5)  NOT NULL COMMENT '등급코드', -- 등급코드
 	grade_name VARCHAR(20) NOT NULL COMMENT '등급이름' -- 등급이름
@@ -77,7 +77,7 @@ ALTER TABLE grade
 	ADD CONSTRAINT
 		PRIMARY KEY (
 			grade_code -- 등급코드
-		);
+		);*/
 
 -- 공지사항
 CREATE TABLE notice (
@@ -231,8 +231,8 @@ CREATE TABLE tbl_member (
 	phone       VARCHAR(30) NOT NULL COMMENT '연락처', -- 연락처
 	regdate     TIMESTAMP   NULL     DEFAULT now() COMMENT '가입일', -- 가입일
 	address     TEXT        NOT NULL COMMENT '주소', -- 주소
-	isMember    TINYINT(1)  NULL     DEFAULT 0 COMMENT '회원구분 0: 회원, 1: 관리자', -- 회원구분
-	grade_code  VARCHAR(5)  NULL     COMMENT '등급코드' -- 등급코드
+	isMember    TINYINT(1)  NULL     DEFAULT 0 COMMENT '회원구분 0: 회원, 1: 관리자' -- 회원구분
+/*	grade_code  VARCHAR(5)  NULL     COMMENT '등급코드' -- 등급코드*/
 )
 COMMENT '고객';
 
@@ -347,7 +347,7 @@ ALTER TABLE seat
 		facilities_no -- 공연시설번호
 	);
 
--- 회원
+/*-- 회원
 ALTER TABLE tbl_member
 	ADD CONSTRAINT FK_grade_TO_tbl_member -- FK_grade_TO_tbl_member
 		FOREIGN KEY (
@@ -358,7 +358,7 @@ ALTER TABLE tbl_member
 		),
 	ADD INDEX FK_grade_TO_tbl_member (
 		grade_code -- 등급코드
-	);
+	);*/
 
 -- 공연관람후기
 CREATE TABLE review (

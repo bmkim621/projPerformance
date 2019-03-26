@@ -107,22 +107,22 @@ insert into discount values
 insert into payment values
 ('PAY01', '신용카드'), ('PAY02', '무통장입금'), ('PAY03', '휴대폰결제');
 
--- 등급
-insert into grade values ('G01', '관리자'), ('G02', '사원');
+/*-- 등급
+insert into grade values ('G01', '관리자'), ('G02', '사원');*/
 
 -- 고객
-insert into tbl_member (member_code, member_name, id, password, email, phone, address, isMember, grade_code) values 
-('M19001', '김보민', 'bmkim621', password('qwerty1234'), 'test@gmail.com', '010-123-1234', '경상북도 경산시 대학로 280(대동)', 0, null),
-('M19002', '홍길동', 'gdhong', password('12341234'), 'hong@naver.com', '010-777-7777', '부산광역시 수영구 감포로8번길 69(민락동)', 1, 'G01'),
-('M19003', '김철수', 'test01', password('12341234'), 'kcs@hanmail.net', '010-123-4567', '	서울특별시 용산구 용산동6가 168-6 국립중앙박물관', 0, null),
-('M19004', '임꺽정', 'user01', password('12341234'), 'user01@naver.com', '010-111-1111', '대구광역시 수성구 동대구로80길 62(범어동)', 0, null),
-('M19005', '신짱구', 'user02', password('12341234'), 'user02@naver.com', '010-111-1111', '울산광역시 울주군 범서읍 입암길 14', 0, null),
-('M19006', '신짱아', 'user03', password('12341234'), 'user03@gmail.com', '010-111-1111', '경기도 수원시 장안구 화산로233번길 60(율전동)', 0, null),
-('M19007', '봉미선', 'user04', password('12341234'), 'user04@hanmail.net', '010-111-1111', '경기도 용인시 처인구 백암면 용천드라마길 25', 0, null),
-('M19008', '신영식', 'user05', password('12341234'), 'user05@naver.com', '010-111-1111', '강원도 강릉시 가작로 267(포남동)', 0, null),
-('M19009', '흰둥이', 'user06', password('12341234'), 'user06@gmail.com', '010-111-1111', '충청북도 청주시 흥덕구 2순환로 1322(가경동)', 0, null),
-('M19010', '나미리', 'user07', password('12341234'), 'user07@hanmail.net', '010-111-1111', '대구광역시 달서구 새방로 77(용산동)', 0, null),
-('M19011', '채성아', 'user08', password('12341234'), 'user08@gmail.com', '010-111-1111', '대구광역시 서구 달구벌대로371길 53-22(내당동)', 0, null);
+insert into tbl_member (member_code, member_name, id, password, email, phone, address, isMember) values 
+('M19001', '김보민', 'bmkim621', password('qwerty1234'), 'test@gmail.com', '010-123-1234', '경상북도 경산시 대학로 280(대동)', 0),
+('M19002', '홍길동', 'gdhong', password('12341234'), 'hong@naver.com', '010-777-7777', '부산광역시 수영구 감포로8번길 69(민락동)', 1),
+('M19003', '김철수', 'test01', password('12341234'), 'kcs@hanmail.net', '010-123-4567', '	서울특별시 용산구 용산동6가 168-6 국립중앙박물관', 0),
+('M19004', '임꺽정', 'user01', password('12341234'), 'user01@naver.com', '010-111-1111', '대구광역시 수성구 동대구로80길 62(범어동)', 0),
+('M19005', '신짱구', 'user02', password('12341234'), 'user02@naver.com', '010-111-1111', '울산광역시 울주군 범서읍 입암길 14', 0),
+('M19006', '신짱아', 'user03', password('12341234'), 'user03@gmail.com', '010-111-1111', '경기도 수원시 장안구 화산로233번길 60(율전동)', 0),
+('M19007', '봉미선', 'user04', password('12341234'), 'user04@hanmail.net', '010-111-1111', '경기도 용인시 처인구 백암면 용천드라마길 25', 0),
+('M19008', '신영식', 'user05', password('12341234'), 'user05@naver.com', '010-111-1111', '강원도 강릉시 가작로 267(포남동)', 0),
+('M19009', '흰둥이', 'user06', password('12341234'), 'user06@gmail.com', '010-111-1111', '충청북도 청주시 흥덕구 2순환로 1322(가경동)', 0),
+('M19010', '나미리', 'user07', password('12341234'), 'user07@hanmail.net', '010-111-1111', '대구광역시 달서구 새방로 77(용산동)', 0),
+('M19011', '채성아', 'user08', password('12341234'), 'user08@gmail.com', '010-111-1111', '대구광역시 서구 달구벌대로371길 53-22(내당동)', 0);
 
 -- 공지
 insert into notice(content, title, is_notice, member_code, writer) values

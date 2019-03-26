@@ -239,4 +239,29 @@ public class MemberController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("cri", cri);
 	}
+	
+	//회원 등급
+	@ResponseBody  
+	@RequestMapping(value = "updateMemberGrade", method = RequestMethod.GET)
+	public ResponseEntity<String> updateMemberGrade(int isMember, String mCode) {
+		ResponseEntity<String> entity = null;
+
+		logger.info("====== update Member Grade ===== ");
+		logger.info("isMember = " + isMember);
+		logger.info("memberCode = " + mCode);
+		
+		MemberVO mvo = new MemberVO();
+		mvo.setIsMember(isMember);
+		mvo.setMemberCode(mCode);
+
+		try {
+			service.updateMemberGrade(mvo);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 }

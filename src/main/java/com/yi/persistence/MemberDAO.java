@@ -53,5 +53,8 @@ public interface MemberDAO {
 
 	// 검색한 게시물의 총 갯수
 	public int searchTotalCount(SearchCriteria cri);
+	
+	//회원 등급 수정
+	public void updateMemberGrade(MemberVO vo);
 		
 }

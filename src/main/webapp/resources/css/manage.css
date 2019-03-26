@@ -351,3 +351,57 @@ table.table td i {
 	box-shadow: none;
 	background: #ddd;  
 }
+
+/* 등급 */
+div.grade-wrapper p{              
+	color: #6c6c7c!important;            
+}
+
+span#boldText{
+	font-weight: bold;
+	color: #535353;  
+}
+
+div.grade-wrapper select{
+	font-size: 14px;
+	letter-spacing: -0.5px;
+	color: #575e96;
+	font-weight: bold;
+	padding-left: 5px;
+	width: 86.2px;
+	height: 30px;
+	border-radius: 3px;
+	border-color: #ddd;
+	box-shadow: none;        
+	margin-left: 2px;   
+}
+
+div.grade-wrapper a{
+	text-decoration: none;
+	border: 1px solid #03A9F4;
+	color: #03A9F4;
+	letter-spacing: -0.5px;
+	border-radius: 3px;
+	padding: 2px 7px;
+	margin-left: 5px;
+}
+
+div.grade-wrapper a:hover{
+	background-color: rgba(0, 159, 227, 0.05);
+}
+
+div.grade-wrapper i{
+	color: #03A9F4;
+	margin-right: 5px;
+}
+
+/* alert 버튼 */
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  font-size: 12px;         
+}
+
+.swal-footer{
+	text-align: center;
+}

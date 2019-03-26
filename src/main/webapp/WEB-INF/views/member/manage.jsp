@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
-<link href="${pageContext.request.contextPath }/resources/css/manage.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/manage.css?aa" rel="stylesheet" type="text/css">
+<!-- alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>            
 
@@ -76,23 +78,34 @@
 			<h2 class='text-center'>회원 관리</h2><hr>
 		</div>
 	
-			<div class="col-sm-12 filter-Wrapper">       
-					<div class="filter-group">
-						<select name="searchType">
-							<option value="id" ${cri.searchType == 'id' ? 'selected' : '' }>아이디</option>
-							<option value="name" ${cri.searchType == 'name' ? 'selected' : '' }>이름</option>
-						</select>
+		<div class="col-sm-12 filter-Wrapper">       
+			<div class="filter-group">
+				<select name="searchType">
+					<option value="id" ${cri.searchType == 'id' ? 'selected' : '' }>아이디</option>
+					<option value="name" ${cri.searchType == 'name' ? 'selected' : '' }>이름</option>
+				</select>
 						
-						<input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword }">
-						<button type="button" class="btn btn-primary" id="btnSearch"><i class="fa fa-search"></i></button>
-					</div>	<!-- filter-group end -->
-				</div>
+				<input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword }">
+					<button type="button" class="btn btn-primary" id="btnSearch"><i class="fa fa-search"></i></button>
+			</div>	<!-- filter-group end -->
+		</div>
+		
+		<div class='col-sm-12 grade-wrapper'>
+			<!-- 회원 등급 셀렉트 박스-->
+			<p><span id='boldText'>선택한 회원</span>의 등급을
+				<select name='memberGrade'>
+					<option value='1'>관리자</option>
+					<option value='0'>회원</option>
+				</select>
+				(으)로 <a href='#' id='btnChangeGrade'><i class="fas fa-exchange-alt"></i>변경</a>
+			</p>  
+		</div>
 		           
 		<table class="table table-striped">
 		
 			<thead>
 				<tr>
-					<th><span class="custom-checkbox"><input type="checkbox" id="selectAll"><label for="selectAll"></label></span></th>
+					<th></th>
 					<th>회원번호</th>
 					<th>이름</th>
 					<th>아이디</th>
@@ -103,12 +116,12 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${list }" var="memberVO">
+			<c:forEach items="${list }" var="memberVO" varStatus="i" begin="0" end="${list.size() }" step="1">
 				<tr>
-					<td>
+					<td>   
 						<span class="custom-checkbox">
-							<input type="checkbox" id="checkbox1" name="options[]" value="1">
-							<label for="checkbox1"></label>
+							<input type="checkbox" id="checkbox${i.index }" value="${memberVO.memberCode }" name='myChkbox'>
+							<label for="checkbox${i.index }"></label>
 						</span>
 					</td>
 					<td>${memberVO.memberCode }</td>
@@ -133,13 +146,20 @@
 		
 		<div class="clearfix">	
 			<ul class="pagination justify-content-center">
-				<li class="page-item disabled"><a href="#">Previous</a></li>
-				<li class="page-item"><a href="#" class="page-link">1</a></li>
-				<li class="page-item"><a href="#" class="page-link">2</a></li>
-				<li class="page-item active"><a href="#" class="page-link">3</a></li>
-				<li class="page-item"><a href="#" class="page-link">4</a></li>
-				<li class="page-item"><a href="#" class="page-link">5</a></li>
-				<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				<!-- prev 버튼 달릴 지 판단 -->
+                <c:if test="${pageMaker.prev }">
+                	<li class="page-item"><a href="${pageContext.request.contextPath }/member/manage?page=${pageMaker.startPage - 1 }&searchType=${cri.searchType }&keyword=${cri.keyword }" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+                </c:if>
+                <!-- 현재 선택한 페이지 -->
+                <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+	                <li ${pageMaker.cri.page == idx ? 'class="page-item active"' : ''}>
+	                	<a href="${pageContext.request.contextPath }/member/manage?page=${idx }&searchType=${cri.searchType }&keyword=${cri.keyword }" class="page-link">${idx }</a>
+	                </li>
+                </c:forEach>
+                <!-- next 버튼 -->
+                <c:if test="${pageMaker.next }">
+                	<li class="page-item"><a href="${pageContext.request.contextPath }/member/manage?page=${pageMaker.endPage + 1 }&searchType=${cri.searchType }&keyword=${cri.keyword }" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
+                </c:if>
 			</ul>
 		</div>
 	</div>
@@ -256,6 +276,41 @@
 			var keyword = $("#keywordInput").val();
 			
 			location.href = "${pageContext.request.contextPath}/member/manage?searchType=" + searchType + "&keyword=" + keyword;
+		})
+	 
+		//등급 Alert
+		$("#btnChangeGrade").click(function(){
+			var isChk = $('input:checkbox[name="myChkbox"]').is(":checked");
+			//셀렉트 박스
+			var isMember = $("select[name='memberGrade']").val();
+
+			if(isChk){
+				$("input[name=myChkbox]:checked").each(function() { 
+					var mCode = $(this).val();
+//					console.log(mCode);
+//					console.log(isMember);
+					
+					$.ajax({
+						url: "${pageContext.request.contextPath}/member/updateMemberGrade",
+						type: "GET",
+						data : {isMember: isMember, mCode: mCode},
+						success: function(data){
+	//						console.log(data);  
+							if(data == "success"){	
+								swal("등급이 변경되었습니다.", {
+								      icon: "success",
+							    })
+								.then((value) => {
+									location.href = "${pageContext.request.contextPath}/member/manage";	//등급변경 후 새로고침
+								});
+							}
+						}	                   
+					})	//ajax end 	
+	
+				})
+			} else{
+				swal("회원을 선택해주세요.");
+			}
 		})
 	})
 </script>
