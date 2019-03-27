@@ -151,4 +151,19 @@ public class MemberDaoImpl implements MemberDAO {
 		sqlSession.update(namespace + ".updateMemberGrade", vo);
 	}
 
+	@Override
+	public boolean checkPassword(String id, String password) {
+		// TODO Auto-generated method stub
+		boolean res = false;
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("password", password);
+		
+		int cnt = sqlSession.selectOne(namespace + ".checkPassword", map);
+		if(cnt == 1) {
+			res = true;
+		}
+		return res;
+	}
+
 }

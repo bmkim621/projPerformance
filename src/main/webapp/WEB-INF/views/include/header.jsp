@@ -147,7 +147,7 @@
 							<a href="${pageContext.request.contextPath }/member/logout" class="rightMenu"><i class="fas fa-sign-out-alt"></i><span class="spanWrap">로그아웃</span></a>	
 						</li>
 						<li class='nav-item'>   
-							<a href="#" class="rightMenu"><i class="fas fa-user"></i><span class='spanWrap'>마이페이지</span></a>
+							<a href="${pageContext.request.contextPath }/member/confirmMember" class="rightMenu"><i class="fas fa-user"></i><span class='spanWrap'>마이페이지</span></a>
 						</li>
 					</c:if>
 					           

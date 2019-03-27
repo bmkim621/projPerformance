@@ -153,4 +153,9 @@
 		set isMember = #{isMember}  
 		where member_code = #{memberCode}
 	</update>
+	
+	<!-- 회원 정보 수정 ; 비밀번호 확인 -->
+	<select id="checkPassword" resultType="int">
+		select count(*) from tbl_member where id = #{id} and password = password(#{password})
+	</select>
 </mapper>

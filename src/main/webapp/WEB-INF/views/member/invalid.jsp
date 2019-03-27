@@ -15,13 +15,12 @@
 </head>
 <body>
 	<script>
-//		alert("정보가 정확하지 않습니다. 다시 입력해주세요.");
-//		location.href = "${pageContext.request.contextPath }/member/login";
-		swal("", "정보가 정확하지 않습니다. 다시 입력해주세요.", "error")  
+//		alert("비밀번호가 일치하지 않습니다.");
+//		location.href = "${pageContext.request.contextPath }/member/confirmMember";
+		swal("", "비밀번호가 일치하지 않습니다.", "warning")
 		.then((value) => {
-			location.href = "${pageContext.request.contextPath }/member/login";
+			location.href = "${pageContext.request.contextPath }/member/confirmMember";
 		});
-	</script>
-
+	</script> 
 </body>
 </html>

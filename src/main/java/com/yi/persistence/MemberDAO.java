@@ -56,5 +56,8 @@ public interface MemberDAO {
 	
 	//회원 등급 수정
 	public void updateMemberGrade(MemberVO vo);
+	
+	//회원 정보 수정 -> 비밀번호 확인
+	public boolean checkPassword(String id, String password);
 		
 }

@@ -138,4 +138,10 @@ public class MemberServiceImpl implements MemberService {
 		memDao.updateMemberGrade(vo);
 	}
 
+	@Override
+	public boolean checkPassword(String id, String password) {
+		// TODO Auto-generated method stub
+		return memDao.checkPassword(id, password);
+	}
+
 }

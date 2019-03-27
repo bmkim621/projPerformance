@@ -285,4 +285,41 @@ public class MemberController {
 		return entity;
 	}
 	
+	//내 정보 수정 비밀번호 확인
+	@RequestMapping(value = "confirmMember", method = RequestMethod.GET)
+	public void confirmMemberGET(HttpSession session, Model model) {
+		logger.info("==========> confirmMember GET ");
+		
+		//로그인 한 회원의 정보
+		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
+		logger.info("info = " + info);
+		model.addAttribute("info", info);
+	}
+	        
+	@RequestMapping(value = "confirmMember", method = RequestMethod.POST)
+	public String confirmMemberPOST(Model model, String inputMemberPw, String inputMemberId) {
+		logger.info("==========> confirmMember POST ");
+		logger.info("화면에서 입력한 비밀번호 = " + inputMemberPw);
+		logger.info("아이디 = " + inputMemberId);
+		
+		//비밀번호 체크
+		boolean res = service.checkPassword(inputMemberPw, inputMemberId);  
+		if(res) {	//일치하는 경우
+			return "redirect:/member/myPage";
+		} else {
+			return "redirect:/member/invalid";  
+		}
+	}
+	
+	//내 정보 수정
+	@RequestMapping(value = "myPage", method = RequestMethod.GET)
+	public void myPageGET() {
+		logger.info("==========> myPage GET ");
+	}
+	
+	//비밀번호 Alert
+	@RequestMapping(value = "invalid", method = RequestMethod.GET)
+	public void invalidGET() {
+		logger.info("==========> invalid GET ");
+	}
 }
