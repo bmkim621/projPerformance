@@ -54,9 +54,9 @@ public class MemberDaoImpl implements MemberDAO {
 	}
 
 	@Override
-	public void deleteMember(String userid) {
+	public void deleteMember(String memberCode) {
 		// TODO Auto-generated method stub
-		sqlSession.delete(namespace + ".deleteMember", userid);
+		sqlSession.delete(namespace + ".deleteMember", memberCode);
 	}
 
 	@Override

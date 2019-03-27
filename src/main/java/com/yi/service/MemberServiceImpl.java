@@ -49,9 +49,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void deleteMember(String userid) {
+	public void deleteMember(String memberCode) {
 		// TODO Auto-generated method stub
-		memDao.deleteMember(userid);
+		memDao.deleteMember(memberCode);
 	}
 
 	@Override

@@ -29,7 +29,7 @@
 	
 	<delete id="deleteMember">
 		delete from tbl_member
-		where id = #{id}
+		where member_code = #{memberCode}
 	</delete>
 	
 	<select id="read" resultType="MemberVO">

@@ -39,39 +39,34 @@
 
 		<div class="form-group row">
 
-			<label class="col-sm-2 col-form-label" for="id"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">아이디</label>
+			<label class="col-sm-2 col-form-label" for="id">
+			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">아이디</label>
 			<div class="col-sm-3">
-
 				<input type="text" class="form-control" name='id' id="id">
 			</div>
 			<div class='col-sm-6'>
 				<button type="button" id='btnIdCheck'>
-					<img
-						src="${pageContext.request.contextPath }/resources/images/btn_id_check.gif">
+					<img src="${pageContext.request.contextPath }/resources/images/btn_id_check.gif">
 				</button>
 				<span class='validationTitle'>4~10자리 이내의 영문/숫자만 사용하실 수 있습니다.</span>
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="name"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">이름</label>
+			<label class="col-sm-2 col-form-label" for="name">
+			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">이름</label>
 
 			<div class="col-sm-3">
-
 				<input type="text" class="form-control" name='memberName' id="name">
 			</div>  
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="password"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
-				비밀번호</label>
+			<label class="col-sm-2 col-form-label" for="password">
+			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">비밀번호</label>
 			<div class="col-sm-3">
 
-				<input type="password" class="form-control" name="password"
-					id='password'>
+				<input type="password" class="form-control" name="password" id='password'>
 			</div>
 			<div class='col-sm-6'>
 				<span class='validationTitle'>6~10자 이내의 소문자/숫자 조합만 가능합니다.</span>
@@ -79,13 +74,11 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="passwordConfirm"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
+			<label class="col-sm-2 col-form-label" for="passwordConfirm">
+			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
 				비밀번호 확인</label>
 			<div class="col-sm-3">
-
-				<input type="password" class="form-control" name="passwordConfirm"
-					id='passwordConfirm'>
+				<input type="password" class="form-control" name="passwordConfirm" id='passwordConfirm'>
 			</div>
 			<div class='col-sm-6'>
 				<span></span>
@@ -93,19 +86,14 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="email"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
-				이메일</label>
+			<label class="col-sm-2 col-form-label" for="email"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">이메일</label>
 			<div class="col-sm-5">
-
 				<input type="text" class="form-control" name='email' id="email">
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="phone"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
-				연락처</label>
+			<label class="col-sm-2 col-form-label" for="phone"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">연락처</label>
 			<div class="col-sm-5">
 
 				<select id="selectPhoneFirst">
@@ -115,16 +103,13 @@
 					<option value='017'>017</option>
 					<option value='018'>018</option>
 					<option value='019'>019</option>
-				</select> -<input type='text' class='form-control phoneNum'
-					style="width: 20%;" id="phoneMiddle" name='phoneMiddle'> -<input type='text'
-					class='form-control phoneNum' style="width: 20%;" id="phoneLast" name='phoneLast'>
+				</select> -<input type='text' class='form-control phoneNum' style="width: 20%;" id="phoneMiddle" name='phoneMiddle'> -<input type='text' class='form-control phoneNum' style="width: 20%;" id="phoneLast" name='phoneLast'>
 					<input type='hidden' id='phoneFirst' name='phoneFirst'>
 			</div>
 		</div>
 
 		<div class="form-group row" style="height: 190px;">
-			<label class="col-sm-2 col-form-label" for="address"><img
-				src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
+			<label class="col-sm-2 col-form-label" for="address"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
 				주소</label>
 
 			<div class="col-sm-6">

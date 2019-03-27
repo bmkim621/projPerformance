@@ -468,7 +468,7 @@
 		})
 		
 		
-		// ====== 댓글에 있는 수정버튼 : 동적으로 버튼 만들어지까 on 사용해야 함. ======
+		// ====== 댓글에 있는 수정버튼 : 동적으로 버튼 만들어지니까 on 사용해야 함. ======
 		$(document).on("click", ".btnModify", function(){
 			//rno 가져오기
 			var rno = $(this).attr("data-rno");

@@ -264,4 +264,25 @@ public class MemberController {
 		}
 		return entity;
 	}
+	
+	//회원 강제 탈퇴
+	@ResponseBody
+	@RequestMapping(value = "deleteMember", method = RequestMethod.GET)
+	public ResponseEntity<String> deleteMember(String mCode) {
+		ResponseEntity<String> entity = null;
+
+		logger.info("====== delete Member Grade ===== ");
+		logger.info("삭제하려는 memberCode = " + mCode);
+
+		try {
+			service.deleteMember(mCode);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 }

@@ -143,6 +143,7 @@ div.filter-group select{
 
 thead tr th{
 	text-align: center;
+	font-size: 15px;
 }
 
 .table-title .btn {
@@ -376,7 +377,7 @@ div.grade-wrapper select{
 	margin-left: 2px;   
 }
 
-div.grade-wrapper a{
+div.grade-wrapper a#btnChangeGrade{
 	text-decoration: none;
 	border: 1px solid #03A9F4;
 	color: #03A9F4;
@@ -386,12 +387,32 @@ div.grade-wrapper a{
 	margin-left: 5px;
 }
 
-div.grade-wrapper a:hover{
+div.grade-wrapper a#btnWithdraw{
+	color: #f04040;
+	text-decoration: none;
+	border: 1px solid #f04040;
+	letter-spacing: -0.5px;
+	border-radius: 3px;
+	padding: 2px 7px;
+	margin-left: 10px;
+}
+
+
+div.grade-wrapper a#btnChangeGrade:hover{
 	background-color: rgba(0, 159, 227, 0.05);
 }
 
-div.grade-wrapper i{
+div.grade-wrapper a#btnWithdraw:hover{
+	background-color: rgba(240, 65, 65, 0.05);
+}
+ 
+div.grade-wrapper a#btnChangeGrade i{
 	color: #03A9F4;
+	margin-right: 5px;
+}
+
+div.grade-wrapper a#btnWithdraw i{
+	color: #f04040;
 	margin-right: 5px;
 }
 
