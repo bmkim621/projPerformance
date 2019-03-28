@@ -30,9 +30,7 @@
 
 	<div class='joinNoticeWrapper'>
 		<h2>기본정보</h2>
-		<span id='joinNoticeSpan'><img
-			src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">표시는
-			필수입력 항목입니다.</span>
+		<span id='joinNoticeSpan'><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">표시는 필수입력 항목입니다.</span>
 	</div>
 
 	<form action="joinForm" method="post" class="form-horizontal" id='f1'>
@@ -374,15 +372,7 @@ function execPostCode() {
 	    	   $('#phoneFirst').val(phoneFirst);
 	    	   $("#f1").submit();
 //	    	   return true;
-	       }
-
-
-		
-		
-		
-		
-		
-		
+	       }	
 	}
 
 

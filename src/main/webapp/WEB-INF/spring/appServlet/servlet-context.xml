@@ -48,7 +48,8 @@
 			<mapping path="/review/remove"/>
 			<mapping path="/book/stepOne"/>
 			<mapping path="/member/bookInfo"/>
-			<mapping path="/member/confirmMember"/>                    
+			<mapping path="/member/confirmMember"/>
+			<mapping path="/member/myPage"/>                     
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 	</interceptors>

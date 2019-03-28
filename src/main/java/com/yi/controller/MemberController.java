@@ -105,7 +105,7 @@ public class MemberController {
 		logger.info("==========> join POST ");
 		
 		logger.info(vo.toString());
-		String address = "(" + addr1  + ") " + addr2 + " " + addr3;
+		String address = "(" + addr1  + ") " + addr2 + " / " + addr3;
 		vo.setAddress(address);
 		logger.info("phoneFirst = " + phoneFirst);
 		logger.info("phoneMiddle = " + phoneMiddle);
@@ -113,7 +113,7 @@ public class MemberController {
 		vo.setPhone(phone);
 		service.insertMember(vo);
 		
-		return "redirect:/";
+		return "redirect:/member/joinSuccess";
 	}
 	
 	//아이디 중복확인
@@ -313,13 +313,51 @@ public class MemberController {
 	
 	//내 정보 수정
 	@RequestMapping(value = "myPage", method = RequestMethod.GET)
-	public void myPageGET() {
+	public void myPageGET(HttpSession session, Model model) {
 		logger.info("==========> myPage GET ");
+		
+		//로그인 한 회원의 정보
+		LoginDTO info = (LoginDTO) session.getAttribute(LoginInterceptor.LOGIN);
+		logger.info("info = " + info);
+		
+		MemberVO mvo = service.readMember(info.getUserid());
+		model.addAttribute("mvo", mvo);
+	}
+	
+	//내 정보 수정
+	@RequestMapping(value = "modifyInfo", method = RequestMethod.POST)
+	public String myPagePOST(String emailAddr1, String emailAddr2, String addr1, String addr2, String addr3, String phoneMiddle, String phoneLast, String phoneFirst, MemberVO vo) {
+		logger.info("==========> myPage POST ");
+		
+		logger.info(vo.toString());
+		String address = "(" + addr1  + ") " + addr2 + " / " + addr3;
+		vo.setAddress(address);
+		logger.info("address = " + address);
+		
+		logger.info("phoneFirst = " + phoneFirst);
+		logger.info("phoneMiddle = " + phoneMiddle);
+		String phone = phoneFirst + "-" + phoneMiddle + "-" + phoneLast;
+		vo.setPhone(phone);
+		
+		logger.info("phone = " + phone);
+		
+		String email = emailAddr1 + "@" + emailAddr1;  
+		vo.setEmail(email);
+		
+		service.updateMember(vo);
+		
+		return "redirect:/member/myPage";
 	}
 	
 	//비밀번호 Alert
 	@RequestMapping(value = "invalid", method = RequestMethod.GET)
 	public void invalidGET() {
 		logger.info("==========> invalid GET ");
+	}
+	
+	//회원 가입 완료 화면
+	@RequestMapping(value = "joinSuccess", method = RequestMethod.GET)
+	public void joinSuccessGET() {
+		logger.info("==========> joinSuccess GET ");
 	}
 }

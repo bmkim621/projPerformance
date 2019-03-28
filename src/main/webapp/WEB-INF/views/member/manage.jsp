@@ -377,21 +377,6 @@ div.form-group .btn-default{
 			}
 		})
 		
-		/* //이메일 선택
-		$("#selectEmailAddr").change(function(){
-			$("#selectEmailAddr option:selected").each(function () { 
-				if($(this).val() == '0'){	//직접 입력 선택할 경우
-					$("#emailAddr").val(''); //값 초기화 
-					$("#emailAddr").attr("disabled", false); //input창 입력할 수 있도록 활성화
-				}else{ //직접입력이 아닐경우 
-					$("#emailAddr").val($(this).text()); 
-					//선택값 입력 
-					$("#emailAddr").attr("disabled", true); //이메일 주소 입력하지 못하게 한다.
-				} 
-			});
-		}) */
-		
-
 	})
 </script>
 
