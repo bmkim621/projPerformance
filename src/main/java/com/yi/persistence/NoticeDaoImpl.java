@@ -106,4 +106,10 @@ public class NoticeDaoImpl implements NoticeDAO {
 		return sqlSession.selectList(namespace + ".getAttachList", noticeNo);
 	}
 
+	@Override
+	public List<NoticeVO> recentNoticeList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".recentNoticeList");
+	}
+
 }

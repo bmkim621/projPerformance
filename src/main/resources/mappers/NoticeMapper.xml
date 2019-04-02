@@ -120,4 +120,9 @@
 		select * from notice_attach
 		where notice_no = #{noticeNo}
 	</select>
+	
+	<!-- 최근 공지사항 게시물-->
+	<select id="recentNoticeList" resultType="NoticeVO">
+		select * from notice order by notice_no desc limit 5;                                   
+	</select>
 </mapper>

@@ -162,14 +162,16 @@ div.container.myWrapper div.noticeInner div.noticeWrap div.noticeContents span.n
 	font-size: 26px;
 	letter-spacing: -1.0px;
 	font-weight: 900;
+	width: 340px;  
 }
 
 /* 공지사항 내용 들어갈 부분 */
 div.container.myWrapper div.noticeInner div.noticeWrap div.noticebody{
-	border: 1px solid #ccc;  
+	/* border: 1px solid #ccc;  */
 	width: 340px;
-	height: 120px;                        
+	height: 120px;                          
 	position: absolute;      
 	top: 90px;
-	left: 20px;         
+	left: 20px;
+	overflow: hidden;     
 }

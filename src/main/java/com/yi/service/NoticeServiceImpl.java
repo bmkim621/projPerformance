@@ -147,4 +147,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return attachDao.findByNoticeNo(noticeNo);
 	}
 
+	@Override
+	public List<NoticeVO> recentNoticeList() {
+		// TODO Auto-generated method stub
+		return noticeDao.recentNoticeList();
+	}
+
 }

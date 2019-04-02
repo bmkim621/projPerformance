@@ -1,6 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goMenu.css?abc">
-  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goMenu.css?adbc">
+
+<style>
+div.noticeContents a {
+	color: #f04040;
+	font-size: 11px;
+	font-weight: bold;
+	background: none;
+	border: 1px solid #f04040;
+	padding: 2px 10px;
+	margin-top: 15px;
+	float: right;
+	line-height: 16px;
+	border-radius: 20px;
+	letter-spacing: 0.1px;
+}
+
+div.noticeContents a.btn:hover {
+	color: #fff;
+	background: #f04040;
+	border: 1px solid #f04040;
+}
+
+div.noticebody table {
+	width: 100%; 
+	border-collapse: collapse;
+}
+
+table tr, table td {
+	border-collapse: collapse;
+	font-size: 14px;
+	letter-spacing: -0.5px;
+	color: #5c5c5c;
+	border-bottom: 1px solid #ddd;
+	padding: 2px;
+}
+
+table .noticeTitleTd {   
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 14px;
+	letter-spacing: -0.5px;
+}
+
+table .noticeTitleTd a{
+	color: #5c5c5c;
+}
+</style>
+
 <div class="container myWrapper col-md-12">
 	<div class="row">
 		<div class="bannerInner">
@@ -96,11 +146,21 @@
 			<div class="noticeWrap">
 				<div class="noticeContents">
 					<span class="noticeEngTitle">Notice</span>
-					<span class="noticeKorTitle">공지사항</span>
+					<span class="noticeKorTitle">공지사항
+					<!-- 버튼 -->
+					<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>  </span>	
 				</div>
 				
 				<div class="noticebody">
-					<p></p>
+					<table>
+						<c:forEach items="${noticeList }" var="notice">
+						<tr>
+							<td class='noticeTitleTd'><a href="${pageContext.request.contextPath }/notice/read?no=${notice.noticeNo }">${notice.title }</a></td>
+							<td><fmt:formatDate value="${notice.regdate }" pattern="yy.MM.dd"/></td>  
+						</tr>		
+						</c:forEach>
+						
+					</table>
 				</div>
 			</div>
 			

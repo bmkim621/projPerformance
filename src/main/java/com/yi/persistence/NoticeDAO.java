@@ -2,6 +2,8 @@ package com.yi.persistence;
 
 import java.util.List;
 
+import org.aspectj.weaver.ast.Not;
+
 import com.yi.domain.Criteria;
 import com.yi.domain.MemberVO;
 import com.yi.domain.NoticeAttachVO;
@@ -51,4 +53,7 @@ public interface NoticeDAO {
 		
 	//첨부파일 불러오기
 	public List<NoticeAttachVO> getAttachList(int noticeNo);
+	
+	//최근에 작성한 공지사항 5개(홈화면)
+	public List<NoticeVO> recentNoticeList();
 }

@@ -52,4 +52,7 @@ public interface NoticeService {
 	//첨부파일 불러오기
 	public List<NoticeAttachVO> getAttachList(int noticeNo);
 	
+	//최근에 작성한 공지사항 5개(홈화면)
+	public List<NoticeVO> recentNoticeList();
+	
 }

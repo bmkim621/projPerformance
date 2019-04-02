@@ -40,8 +40,7 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 		
-		<interceptor>
-			<mapping path="/notice/read"/>
+		<interceptor>          
 			<mapping path="/review/register"/>
 			<mapping path="/review/read"/>
 			<mapping path="/review/modify"/>
