@@ -87,8 +87,8 @@
 	<!-- 공지사항 작성 때 필요한 값들 가져오기 -->
 	<resultMap type="MemberVO" id="resultMem">
 		<!-- <id column="show_code" property="showCode"/> -->
-		<result column="grade_code" property="gCode.gradeCode"/>
-		<result column="grade_name" property="gCode.gradeName"/>
+		<!-- <result column="grade_code" property="gCode.gradeCode"/>
+		<result column="grade_name" property="gCode.gradeName"/> -->
 	</resultMap>       
 	
 	<select id="getWriter" resultMap="resultMem">                       

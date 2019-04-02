@@ -159,11 +159,11 @@ div.form-group .btn-default{
 							<input type="checkbox" id="checkbox${i.index }" value="${memberVO.memberCode }" name='myChkbox'>
 							<label for="checkbox${i.index }"></label>
 						</span>
-					</td>
+					</td>    
 					<td>${memberVO.memberCode }</td>
-					<td>${memberVO.memberName }</td>
-					<td>${memberVO.id }</td>
-					<td>${memberVO.phone }</td>
+					<td style="width: 10%;">${memberVO.memberName }</td>                  
+					<td>${memberVO.id }</td>   
+					<td style="width: 12%;">${memberVO.phone }</td>         
 					<td>${memberVO.address }</td>
 					<td>${memberVO.email }</td>
 					<c:if test="${memberVO.isMember == 0}"><td>회원</td></c:if>
@@ -235,7 +235,7 @@ div.form-group .btn-default{
 					</div>	
 					<div class="form-group">  
 						<label>연락처</label><br>
-						<input type='text' class='form-control phoneNum' style="width: 15%;"id='phoneFirst' name='phoneFirst'> 
+						<input type='text' class='form-control phoneNum' style="width: 15%;" id='phoneFirst' name='phoneFirst'> 
 						-<input type='text' class='form-control phoneNum' style="width: 15%;" id="phoneMiddle" name='phoneMiddle'>
 						-<input type='text' class='form-control phoneNum' style="width: 15%;" id="phoneLast" name='phoneLast'>
 						

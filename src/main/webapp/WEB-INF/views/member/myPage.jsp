@@ -320,6 +320,43 @@
 		$("#btnModifyInfo").click(function(){
 			validate();
 		})
+		
+		//탈퇴버튼
+		$("#btnWithdraw").click(function(){
+			swal({
+				  text: "탈퇴하시겠습니까?",
+				  icon: "warning",
+				  buttons: ["취소", "확인"],
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+					  
+					  var mCode = "${mvo.memberCode }";
+					  console.log(mCode);
+					  
+						$.ajax({
+							url: "${pageContext.request.contextPath}/member/deleteMember",
+							type: "GET",
+							data : {mCode: mCode},
+							success: function(data){
+		//						console.log(data);  
+								if(data == "success"){	
+									swal("탈퇴되었습니다.", {
+									      icon: "success",
+								    })
+									.then((value) => {
+										location.href = "${pageContext.request.contextPath}/member/logout";	//로그아웃 시키기
+									});
+								}
+							}	                   
+						})	//ajax end 	 */
+				  } else {
+					  swal("취소되었습니다.");
+				  }
+				});
+			
+		})
 	})
 </script>
 
