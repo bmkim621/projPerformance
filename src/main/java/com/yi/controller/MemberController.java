@@ -94,6 +94,11 @@ public class MemberController {
 	}
 	
 	//회원가입 화면
+	@RequestMapping(value = "joinTerms", method = RequestMethod.GET)
+	public void joinTermsGet() {
+		logger.info("==========> joinTerms GET ");
+	}
+	
 	@RequestMapping(value = "joinForm", method = RequestMethod.GET)
 	public void joinGet() {
 		logger.info("==========> join GET ");
