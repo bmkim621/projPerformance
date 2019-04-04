@@ -19,10 +19,7 @@
 <!-- 부트스트랩 그래픽 아이콘 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <!-- css -->
-<link href="${pageContext.request.contextPath }/resources/css/common.css?aa" rel="stylesheet" type="text/css">
-<!-- mobile -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hc-offcanvas-nav.css">
-<script src="${pageContext.request.contextPath }/resources/js/hc-offcanvas-nav.js"></script>
+<link href="${pageContext.request.contextPath }/resources/css/common.css?b" rel="stylesheet" type="text/css">
 <title>재단법인 대구오페라하우스</title>
 <script>
 	var contextPath = "${pageContext.request.contextPath}";          
@@ -37,6 +34,11 @@
 			<a class="navbar-brand" href="${pageContext.request.contextPath}">
 				<span><img src="${pageContext.request.contextPath }/resources/upload/logo_w.png"></span>
 			</a>
+			
+<%-- 			<!-- 모바일 화면일 때 나타나는 메뉴 이미지 -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+				<span><img src="${pageContext.request.contextPath }/resources/upload/ico_menu.png"></span>  
+			</button> --%>
 			
 			<!-- 메뉴 -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -155,77 +157,10 @@
 		</div>	<!-- container-fluid 끝 -->
 	</nav>
 	
-	
-	<!-- 모바일 메뉴 -->
-	<nav id='main-nav'>
-		<ul class='first-nav'>
-			<li class='performancieInfo'>
-				<a href="#">공연정보</a>
-				<ul>
-					<li><a href="#">공연안내</a></li>
-					<li><a href="#">예매안내</a></li>
-					<li><a href="#">예매확인</a></li>
-				</ul>
-			</li>
-		</ul>
-		
-		<ul class='second-nav'>
-			<li class='rentFacilities'>
-				<a href="#">시설대관</a>
-				<ul>
-					<li><a href="#">시설안내</a></li>
-					<li><a href="#">대관안내</a></li>
-				</ul>
-			</li>
-		</ul>
-		
-		<ul class='third-nav'>
-			<li class='community'>
-				<a href="#">커뮤니티</a>
-				<ul>
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">공연관람후기</a></li>
-					<li><a href="#">갤러리</a></li>
-				</ul>
-			</li>
-		</ul>
-		
-		<ul class='fourth-nav'>
-			<li class='dgoperahouse'>
-				<a href="#">(재)대구오페라하우스</a>
-				<ul>
-					<li><a href="#">사업소개</a></li>
-					<li><a href="#">홍보관</a></li>
-					<li><a href="#">오시는 길</a></li>
-				</ul>
-			</li>
-		</ul>
-		
-		<!-- 관리자메뉴 -->
-		<ul class='fifth-nav'>
-			<li class='managermenu'>
-				<a href="#">관리자메뉴</a>
-				<ul>
-					<li><a href="#">공지사항 작성</a></li>
-					<li><a href="#">공연추가</a></li>
-					<li><a href="#">회원관리</a></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-	
 		
 	<!-- 스크립트 부분 -->
 	<script>
-		
-
 		$(function(){
-			//모바일 메뉴
-			$('#main-nav').hcOffcanvasNav({
-				maxWidth: 1023
-			});
-			
-			//스크롤바 내렸을 때 보이는 메뉴
 			$(window).scroll(function() {    
 			    var scroll = $(window).scrollTop();
 
