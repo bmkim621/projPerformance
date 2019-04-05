@@ -4,13 +4,13 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 	<!-- 이미지 슬라이더 -->
-	<div class="intro carousel slide bg-overlay-light h-auto" data-ride="carousel" data-interval="4000" id="carouselExampleCaptions">
+	<div class="intro carousel slide bg-overlay-light h-auto" id='mainImgSlider' data-ride="carousel" data-interval="4000">
 		<div class="carousel-inner" role="listbox">
-			<div class="carousel-item active">
+			<div class="carousel-item">
 				<img class="d-block img-fluid" alt="마술피리" src="${pageContext.request.contextPath }/resources/upload/20190108161143.jpg">
 			</div>
 			
-			<div class="carousel-item">
+			<div class="carousel-item active">
 				<img class="d-block img-fluid" alt="사랑의묘약" src="${pageContext.request.contextPath }/resources/upload/20190108161235.jpg">
 			</div>
 			
@@ -28,12 +28,47 @@
 		</div>
 	
 		<!-- button -->
-		<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+		<a class="carousel-control-prev" href="#mainImgSlider" role="button" data-slide="prev">
 			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_l_big.png" width="50" height="96"></span>
 		</a>
 		
-		<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+		<a class="carousel-control-next" href="#mainImgSlider" role="button" data-slide="next">
 			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_r_big.png" width="50" height="96"></span>
+		</a>
+		
+	</div>	<!-- 슬라이더 끝 -->
+	
+	<!-- 모바일용 -->
+	<div class="intro carousel slide bg-overlay-light h-auto" id='mainImgSliderMobile' data-ride="carousel" data-interval="4000">
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel-item">
+				<img class="d-block img-fluid" alt="마술피리" src="${pageContext.request.contextPath }/resources/upload/20190108161143(0).jpg">
+			</div>
+			
+			<div class="carousel-item active">
+				<img class="d-block img-fluid" alt="사랑의묘약" src="${pageContext.request.contextPath }/resources/upload/20190108161235(0).jpg">
+			</div>
+			
+			<div class="carousel-item">
+				<img class="d-block img-fluid" alt="헨젤과그레텔" src="${pageContext.request.contextPath }/resources/upload/20190108161430(0).jpg">
+			</div>
+			
+			<div class="carousel-item">
+				<img class="d-block img-fluid" alt="팔리아치" src="${pageContext.request.contextPath }/resources/upload/20190108163201(0).jpg">
+			</div>
+			
+			<div class="carousel-item">
+				<img class="d-block img-fluid" alt="신데렐라" src="${pageContext.request.contextPath }/resources/upload/20190114104538(0).jpg">
+			</div>
+		</div>
+	
+		<!-- button -->
+		<a class="carousel-control-prev" id='mobile-img-prev' href="#mainImgSliderMobile" role="button" data-slide="prev">
+			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_l_small.png" width="50" height="96"></span>
+		</a>
+		
+		<a class="carousel-control-next" id='mobile-img-next' href="#mainImgSliderMobile" role="button" data-slide="next">
+			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_r_small.png" width="50" height="96"></span>
 		</a>
 		
 	</div>	<!-- 슬라이더 끝 -->

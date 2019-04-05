@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/perfList.css?bsa">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/perfList.css?ssa">
 
 <p style="color:white">.</p>	<!-- 텍스트 넣지 않으면 carousel 안에 item이 보이지 않음(아직 해결X) -->    
 
@@ -219,22 +219,23 @@
 		$(function(){
 			$('#myCarousel').owlCarousel({
 				loop: true,	//무한 반복 여부
-				items: 3,	//화면에 보여줄 항목 개수
-				margin: 10,	//항목의 오른쪽 마진
+				items: 3,	//화면에 보여줄 항목 개수    
+				margin: 10,	//항목의 오른쪽 마진 
 		    	nav:true,	//내비게이션에 prev, next와 같은 버튼 표시
 		  		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],	//내비게이션 버튼의 텍스트
-				responsive: {	//반응형(화면에서 따라 보여지는 항목 개수)
+		/* 		responsive: {	//반응형(화면에서 따라 보여지는 항목 개수)
 					0: {
-						items: 1
+						items: 1                
 					},
-					600: {
-						items: 2       
+					768: {
+						items: 2                   
 					},
-					1000: {
+					1024: {
 						items: 3
 					}
-				}
+				} */
 			});
+			
 			
 			$(".img-box").hover(function(){
 				$(this).find(".img-hover").fadeIn(300)

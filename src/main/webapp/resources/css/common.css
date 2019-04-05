@@ -1,30 +1,70 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500');
 
-/* 핸드폰 */
-@media all and (max-width: 767px) {
-	nav.navbar{   
+/* 모바일용 */
+nav.navbar{   
 		visibility: hidden;
 	}    
 	
 	/* 모바일 메뉴 */  
 	nav#main-nav{
 		display: none;
-	}  
-}
+	}
 
-/* 태블릿 */
-@media all (min-width: 768px) and (max-width: 1023px) {
+	body, html{
+		height: 100%;
+		width: 100%;
+	}
+	
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	} 
+	
 	nav.navbar{   
 		visibility: hidden;
 	}
 	
-	/* 모바일 메뉴 */
+	/* 모바일 메뉴 */  
 	nav#main-nav{
 		display: none;
 	}
-}
-
-
+	
+	/* PC용 이미지 슬라이더 없애기 */
+	div#mainImgSliderMobile{
+		display: block;
+	}
+	
+	div#mainImgSlider{
+		display: none;
+	}
+	
+	div.carousel-item img{
+		margin: 0;
+		width: 100%;
+	}
+	
+	/* 이미지 슬라이더 버튼 */
+	#mobile-img-prev, #mobile-img-next{
+		opacity: 1;
+	}
+	
+	#mobile-img-prev img{
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		left: 0;
+	}
+	
+	#mobile-img-next img{
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		right: 0;
+	}
+	
+	/* ---- */
+	
+     
+/* PC */
 @media all and (min-width:1024px) {
 	nav.navbar{
 		visibility: visible;
@@ -175,7 +215,17 @@
 		-webkit-transition: 0.5s ease-in;
 		-moz-transition: 0.5s ease-in;  
 	}
+	
 	/* ====== 헤더 이미지 슬라이더 ====== */
+	/* 모바일용 이미지 슬라이더 없애기 */
+	div#mainImgSliderMobile{
+		display: none;
+	}
+	
+	div#mainImgSlider{
+		display: block;
+	}
+	/* ---- */
 	.intro{
 		float: left;
 		width:100%;
