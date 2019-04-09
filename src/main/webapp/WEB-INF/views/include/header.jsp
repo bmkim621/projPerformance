@@ -19,7 +19,7 @@
 <!-- 부트스트랩 그래픽 아이콘 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <!-- css -->
-<link href="${pageContext.request.contextPath }/resources/css/common.css?b" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/common.css?aa" rel="stylesheet" type="text/css">
 <!-- mobile -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hc-offcanvas-nav.css">
 <script src="${pageContext.request.contextPath }/resources/js/hc-offcanvas-nav.js"></script>
@@ -132,7 +132,7 @@
 							<a href="${pageContext.request.contextPath }/member/login" class="rightMenu"><i class="fas fa-sign-in-alt"></i><span class="spanWrap">로그인</span></a>
 						</li>
 						<li class='nav-item'>
-							<a href="${pageContext.request.contextPath}/member/joinForm" class="rightMenu"><i class="fas fa-heart"></i><span class="spanWrap">회원가입</span></a>
+							<a href="${pageContext.request.contextPath}/member/joinTerms" class="rightMenu"><i class="fas fa-heart"></i><span class="spanWrap">회원가입</span></a>
 						</li>
 					</c:if>
 							         

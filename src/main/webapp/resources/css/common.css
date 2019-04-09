@@ -61,6 +61,112 @@ nav.navbar{
 		right: 0;
 	}
 	
+	/* ========== 푸터 ========== */
+	div.familySiteLinkWrap{
+		width: 100%;
+		height: 100px;
+		line-height:100px;
+		text-align: center;
+		border-top: 1px solid #ccc;  
+		position: relative;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+	
+	div.familySiteLinkWrap ul{
+		list-style: none;
+		padding: 0;
+		margin: 10px auto;         
+		width: 90%;
+		height: 80px;
+		line-height: 80px;      
+		overflow: hidden;
+	}
+	
+	div.familySiteLinkWrap ul li{
+		float: left;
+		width: 25%;      
+		display: inline;             
+		text-align: center;
+		overflow: hidden;
+	}
+	
+	div.familySiteLinkWrap ul li img{
+		width: 95%;
+	}
+	
+	footer{
+		clear: both;
+		background-color:#222222;
+		padding: 50px 0 30px 0;   
+	}
+	
+	footer ul.list-inline li{
+		float: left;
+	}
+	
+	footer .menu li{
+		float: left;	
+	}
+	
+	footer .menu li a{
+		color: #BDBDBD;
+		padding: 0 20px;
+		text-decoration: none;
+		font-size: 15px;
+		font-weight: 600;
+	}
+	
+	footer .menu li a:hover{
+		text-decoration: underline; 
+	}
+	
+	div.copyright{
+	    background-color: #f0f0f0;
+	    padding: 25px 0;
+	    font-size: 14px;
+	    width: 100%;
+	    color: #5D5D5D;
+	}
+	
+	div.copyright p.contentWrap{
+		margin: 6px 0;
+		letter-spacing: -0.4px;
+	}
+	
+	div.copyright p.contentWrap span#telSpan, div.copyright p.contentWrap span#faxSpan{
+		margin-left: 20px;
+	}
+	
+	div.copyright > div.container.copyright-menu{
+		width: 98%;
+	}
+	
+	div.row.text-center.copyright-info{
+		width: 98%;                  
+		margin: 0 auto;
+		display: inline-block;
+	}
+	
+	.fab.fa-facebook, .fab.fa-instagram, .fas.fa-play-circle, .fas.fa-video{
+		color: #BDBDBD;
+		padding: 0 15px;  
+	}
+	
+	.fab.fa-facebook:hover, .fab.fa-instagram:hover, .fas.fa-play-circle:hover, .fas.fa-video:hover{
+		color: #D5D5D5;
+	}
+	
+	div.row.text-center.footer-menu{
+		width: 481px;
+		margin: 0 auto;
+	}
+	
+	div.row.text-center.sns-menu{
+		width: 203px;
+		margin: 0 auto;
+	}
+	
 	/* ---- */
 	
 /* 태블릿 */
