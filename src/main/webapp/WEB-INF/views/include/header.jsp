@@ -50,7 +50,7 @@
 							<div id="triangleFirst"></div>
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/perf/perfList">공연안내</a></li>
-									<li><a href="#">예매안내</a></li>
+									<li><a href="${pageContext.request.contextPath}/doc/info">예매안내</a></li>
 									<li><a href="${pageContext.request.contextPath}/member/bookInfo">예매확인</a></li>
 								</ul>
 							</div>

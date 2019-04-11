@@ -138,6 +138,9 @@ table thead{
 
 .table td, .table th{
 	vertical-align: middle;
+	color: #686868;
+	font-weight: lighter;
+	letter-spacing: -0.5px;
 }                
 </style>
            
@@ -175,9 +178,9 @@ table thead{
 			<!-- 카테고리 선택 -->
 			<div class='docCategoryWrapper'>
 				<ul class='docCategory'>  
-					<li class='selectCategoryStyle'><a href="#">예매안내</a></li>
-					<li><a href="#">기본할인안내</a></li>
-					<li><a href="#">공연관람요령</a></li>
+					<li class='selectCategoryStyle'><a href="${pageContext.request.contextPath}/doc/info">예매안내</a></li>
+					<li><a href="${pageContext.request.contextPath}/doc/discount">기본할인안내</a></li>
+					<li><a href="${pageContext.request.contextPath}/doc/refund">환불/취소안내</a></li>
 				</ul>
 			</div>
 			
@@ -223,7 +226,7 @@ table thead{
 					<li>- 대관공연은 방문예매가 불가하오니, 공연 기획사 측에 문의바랍니다.</li>
 				</ul>
 				<h3 class='contentsHeadline'><img src="${pageContext.request.contextPath }/resources/images/squre_icon.png">입장권 수령 안내</h3>
-				<ul>
+				<ul style='margin-bottom: 80px'>             
 					<li>- 공연 당일 수령 - 공연시작 1시간 30분 전부터 1층 매표소에서 수령</li>
 					<li>- 공연일 이전 수령 - 대구오페라하우스 별관에서 수령 (단, 오페라하우스 기획공연으로 전화예매 티켓에 한함)</li>
 					<li>- 티켓 수령시 예매자명과 예매번호를 정확히 알고 오시면 티켓 수령이 좀 더 원활할 수 있습니다.</li>

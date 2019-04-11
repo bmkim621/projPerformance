@@ -90,15 +90,54 @@ li.selectCategoryStyle a{
 	color: #fff!important;         
 }
 
+/* 내용 */
+h3.contentsHeadline{
+	color: #353535;
+	letter-spacing: -0.5px;
+	font-weight: 300;
+	margin-top: 50px;                  
+}
+
+h3.contentsHeadline img{
+	margin-right: 15px;        
+}
+
+div.docContentsWrapper ul{
+	list-style: none;
+	text-align: left;
+	color: #686868;
+	font-weight: 300;
+	letter-spacing: -0.5px;         
+	margin-bottom: 2.0rem;                                   
+	margin-top: 0.8rem;        
+}
+
+ul.rules{
+	margin-top: 0.2rem!important;
+	margin-bottom: 15px!important;  
+}
+
+p.contentsBold{
+	color: #3d49a2;
+	letter-spacing: -0.5px; 
+	font-size: 18px;
+	padding-left: 40px;
+	margin-bottom: 0.5rem;
+}
+
 /* 테이블 */
 div.table-responsive{
 	margin-top: 25px;
 	text-align: center;  
-	margin-bottom: 50px;          
 }
 
-table tbody{
+table thead{
 	border-top: 2px solid #3d49a2;
+	background-color: #f2f2f2;       
+}
+
+.table th{
+	color: #000!important;
 }
 
 .table td, .table th{
@@ -108,7 +147,6 @@ table tbody{
 	letter-spacing: -0.5px;
 }                
 </style>
-
 
 <div class="container-fluid perfContainer">
 	<div class="row">
@@ -126,11 +164,13 @@ table tbody{
 </div>
 <!-- container end -->
 
+
+
 <div class='container docBookInfoWrapper'>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id='bookInfoContainer'>   
 			<div class='bInfoWrapper'>
-				<h2 class='text-center'>기본할인안내</h2>
+				<h2 class='text-center'>예매안내</h2>
 			</div>
 			
 			<div class='bContentsWrapper'>
@@ -143,55 +183,68 @@ table tbody{
 			
 			<!-- 카테고리 선택 -->
 			<div class='docCategoryWrapper'>
-				<ul class='docCategory'>    
+				<ul class='docCategory'>  
 					<li><a href="${pageContext.request.contextPath}/doc/info">예매안내</a></li>
-					<li class='selectCategoryStyle'><a href="${pageContext.request.contextPath}/doc/discount">기본할인안내</a></li>
-					<li><a href="${pageContext.request.contextPath}/doc/refund">환불/취소안내</a></li>
+					<li><a href="${pageContext.request.contextPath}/doc/discount">기본할인안내</a></li>
+					<li class='selectCategoryStyle'><a href="${pageContext.request.contextPath}/doc/refund">환불/취소안내</a></li>
 				</ul>
 			</div>
 			
 			<!-- 내용 -->
 			<div class='docContentsWrapper'>
+				<h3 class='contentsHeadline'><img src="${pageContext.request.contextPath }/resources/images/squre_icon.png">입장권 환불 안내</h3>
+				<p class='contentsBold'>입장권 취소 및 환불해당예매처 (www.daeguoperahouse.org 053-666-6170 / www.ticketpark.com 1544-1555)로 하시면 됩니다.</p>
+				<ul>
+					<li>- 인터파크 환불마감시간 : 평일/일요일/공휴일 오후5시, 토요일 오전11시</li>
+					<li>- 대구오페라하우스 전화예매 환불가능시간 : 평일 09:30~17:00, 공휴일인 경우 그 전일까지</li>
+					<li>- 관람일 전일 오후 5시 이후 (토요일은 오전 11시) 또는 관람일 당일 예매하신 건에 대해서는 예매 후 취소/변경/환불이 불가합니다.</li>
+					<li>- 토요일이 공휴일인 경우, 토요일 오전 11시 기준으로 적용됩니다.</li>
+				</ul>             
+				<h3 class='contentsHeadline'><img src="${pageContext.request.contextPath }/resources/images/squre_icon.png">취소 수수료 안내</h3>
 				<div class="table-responsive">
 					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th width='25%'>구분</th>
+								<th width='30%'>취소수수료</th>
+								<th width='45%'>비고</th>        
+							</tr> 
+						</thead>
 						<tbody>                
 							<tr>
-								<td rowspan="4" style='background-color: #f2f2f2; color: #000;'>기본할인</td>
-								<td>10%</td>
-								<td class='text-left'>10인 이상, 대구오페라하우스 홈페이지 회원, 코코아 회원</td>
+								<td>예매후 7일이내</td>
+								<td>수수료없음</td>
+								<td rowspan="5" class='text-left'>※ 예매당일에 취소하는 경우 이외에는 예매수수료가 환불되지 않음<br>※ 예매 후 7일 이내라도 취소시점이 공연일로부터 10일 이내라면 그에 해당하는 취소수수료 부과</td>
 							</tr>
 							<tr>
-								<td>20%</td>  
-								<td class='text-left'>30인 이상, 문화패스(청소년 및 대학생 8세~24세)</td>
+								<td>예매후 8일 ~ 관람일 10일전</td>
+								<td>뮤지컬, 콘서트, 클래식 등 공연권 : 4,000원<br>연극, 전시 등 입장권 : 2,000원<br>(단, 티켓 금액의 10% 이내)</td>  
 							</tr>
 							<tr>
-								<td>30%</td>  
-								<td class='text-left'>100인 이상</td>
+								<td>관람일 9일전 ~ 7일전</td>
+								<td>티켓금액의 10%</td>  
 							</tr>
 							<tr>
-								<td>50%</td>  
-								<td class='text-left'>65세 이상(본인), 장애인(동반 1인 포함), 국가유공자(본인)</td>
+								<td>관람일 6일전 ~ 3일전</td>
+								<td>티켓금액의 20%</td>  
 							</tr>
 							<tr>
-								<td rowspan="3" style='background-color: #f2f2f2; color: #000;'>특별할인</td>
-								<td rowspan="2">20%</td>  
-								<td class='text-left'>그린카드(현장 결제 시), 아이조아 카드 소지자, 산모수첩 소지자(동반 1인 포함)</td>
-							</tr>
-							<tr> 
-								<td class='text-left'>예술인패스(본인), DGtickets 방문 예매 시(053-422-1255)</td>
-							</tr>
-							<tr>
-								<td>50%</td>  
-								<td class='text-left'>대구오페라하우스 후원회</td>
+								<td>관람일 2일전 ~ 1일전</td>
+								<td>티켓금액의 30%</td>  
 							</tr>
 						</tbody>
 					</table>
-				</div>                    
+				</div>
+				<ul style='margin-bottom: 80px; padding-left: 0;'>             
+					<li>- 취소 시 예매수수료는 예매 당일 밤 12시 이전까지 환불되며, 그 이후 기간에는 환불되지 않습니다.</li>
+					<li>- 웹 취소 가능시간 이후에는 취소가 불가합니다.</li>
+					<li>- 단, 관람일 당일 취소가능한 상품의 경우 관람일 당일 취소 시에는 티켓금액의 90%가 과금됩니다.</li>
+					<li>- 상품의 특성에 따라서, 취소수수료 정책이 달라질 수 있습니다.(각 상품 예매 시 취소수수료 확인)</li>
+				</ul>                                  
 			</div>                         
 		</div>
 	</div>
 </div>
-
 
 
 <%@ include file="../include/footer.jsp"%>

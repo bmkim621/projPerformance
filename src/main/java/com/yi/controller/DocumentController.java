@@ -17,4 +17,16 @@ public class DocumentController {
 	public void docInfoGet() {
 		logger.info("==========> docInfo GET ");   
 	}
+	
+	//할인안내
+	@RequestMapping(value = "discount", method = RequestMethod.GET)
+	public void discountGet() {
+		logger.info("==========> discount GET ");   
+	}
+	
+	//할인안내
+	@RequestMapping(value = "refund", method = RequestMethod.GET)
+	public void refundGet() {
+		logger.info("==========> refund GET ");   
+	}
 }
