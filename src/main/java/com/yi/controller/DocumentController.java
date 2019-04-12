@@ -29,4 +29,22 @@ public class DocumentController {
 	public void refundGet() {
 		logger.info("==========> refund GET ");   
 	}
+	
+	//시설안내
+	@RequestMapping(value = "facilities", method = RequestMethod.GET)
+	public void facilitiesGet() {
+		logger.info("==========> facilities GET ");          
+	}
+	
+	//대관안내
+	@RequestMapping(value = "rent", method = RequestMethod.GET)
+	public void rentGet() {
+		logger.info("==========> rent GET ");          
+	}
+	
+	//갤러리
+	@RequestMapping(value = "gallery", method = RequestMethod.GET)
+	public void galleryGet() {
+		logger.info("==========> gallery GET ");                  
+	}
 }

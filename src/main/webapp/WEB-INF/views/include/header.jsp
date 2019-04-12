@@ -58,22 +58,22 @@
 					</li>
 					
 					<li class="drop">
-						<a class="nav-link" href="#">시설대관</a>
+						<a class="nav-link">시설대관</a>
 						
 						<!-- 서브메뉴 -->
 						<div id="dropdownContainSecond">
 							<div id="dropOutSecond">
 							<div id="triangleSecond"></div>
 								<ul>
-									<li><a href="#">시설안내</a></li>
-									<li><a href="#">대관안내</a></li>
+									<li><a href="${pageContext.request.contextPath}/doc/facilities">시설안내</a></li>
+									<li><a href="${pageContext.request.contextPath}/doc/rent">대관안내</a></li>
 								</ul>
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->
 					</li>
 					
 					<li class="drop">
-						<a class="nav-link" href="#">커뮤니티</a>
+						<a class="nav-link">커뮤니티</a>
 						
 						<!-- 서브메뉴 -->
 						<div id="dropdownContainThird">
@@ -82,22 +82,22 @@
 								<ul>
 									<li><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>  
 									<li><a href="${pageContext.request.contextPath}/review/list">공연관람후기</a></li>
-									<li><a href="#">갤러리</a></li>
+									<li><a href="${pageContext.request.contextPath}/doc/gallery">갤러리</a></li>
 								</ul>
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->
 					</li>
 					
 					<li class="drop">
-						<a href="#" class="nav-link">(재)대구오페라하우스</a>
+						<a class="nav-link">(재)대구오페라하우스</a>
 						
 						<!-- 서브메뉴 -->
 						<div class="dropdownContain">
 							<div class="dropOut">
 							<div class="triangle"></div>
 								<ul>
-									<li><a href="#">사업소개</a></li>
-									<li><a href="#">홍보관</a></li>
+<!-- 								<li><a href="#">사업소개</a></li>
+									<li><a href="#">홍보관</a></li> -->
 									<li><a href="#">오시는 길</a></li>
 								</ul>
 							</div>

@@ -193,7 +193,7 @@ table thead{
 			<!-- 내용 -->
 			<div class='docContentsWrapper'>
 				<h3 class='contentsHeadline'><img src="${pageContext.request.contextPath }/resources/images/squre_icon.png">입장권 환불 안내</h3>
-				<p class='contentsBold'>입장권 취소 및 환불해당예매처 (www.daeguoperahouse.org 053-666-6170 / www.ticketpark.com 1544-1555)로 하시면 됩니다.</p>
+				<p class='contentsBold'>입장권 취소 및 환불해당예매처로 하시면 됩니다.</p>
 				<ul>
 					<li>- 인터파크 환불마감시간 : 평일/일요일/공휴일 오후5시, 토요일 오전11시</li>
 					<li>- 대구오페라하우스 전화예매 환불가능시간 : 평일 09:30~17:00, 공휴일인 경우 그 전일까지</li>

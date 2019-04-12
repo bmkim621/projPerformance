@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500');
 
+/* 웹폰트 임베딩 ; lightGallery 플러그인 사용하기 위해서 필요 */
+@font-face {
+	font-family: 'lg'; /* 폰트 패밀리 이름 주기*/
+	src: url('../fonts/lg.woff'); /*폰트 파일 주소 (IE 8이하에서만 사용) */
+	src: local(※), url('../fonts/lg.woff') format('woff'); /* IE9이상, 다른 웹표준 브라우저에서 사용 */
+	src: url('../fonts/lg.ttf');
+	src: local(※), url('../fonts/lg.ttf') format('ttf');  
+}
+/* 폰트 끝 */
+
 /* 모바일용 */
 nav.navbar{   
 		visibility: hidden;
