@@ -16,7 +16,7 @@ div.container-fluid.facilitiesContainer div#bgWrapper {
 }
 
 div.container-fluid div#bgWrapper div.headline {
-	width: 200px;
+	width: 250px;  
 	overflow: hidden;
 	position: absolute;
 	top: 40%;
@@ -39,4 +39,21 @@ div.container-fluid div#bgWrapper p.engHeadline {
 	font-size: 22px;
 	font-style: italic;
 	color: rgba(255, 255, 255, 0.6);
+}
+
+/* 대구오페라하우스 */
+div.container-fluid.mapContainer {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+div.container-fluid.mapContainer div#bgWrapper {
+	background: url('../images/sub_visual_5.jpg') no-repeat;
+ 	height: 500px;        
+	background-position: center center;
 }

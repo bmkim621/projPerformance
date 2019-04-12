@@ -47,4 +47,10 @@ public class DocumentController {
 	public void galleryGet() {
 		logger.info("==========> gallery GET ");                  
 	}
+	
+	//오시는 길
+	@RequestMapping(value = "map", method = RequestMethod.GET)
+	public void mapGet() {
+		logger.info("==========> map GET ");                    
+	}
 }
