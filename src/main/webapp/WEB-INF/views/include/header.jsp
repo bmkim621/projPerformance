@@ -98,7 +98,7 @@
 								<ul>
 <!-- 								<li><a href="#">사업소개</a></li>
 									<li><a href="#">홍보관</a></li> -->
-									<li><a href="#">오시는 길</a></li>
+									<li><a href="${pageContext.request.contextPath}/doc/map">오시는 길</a></li>
 								</ul>
 							</div>
 						</div>	<!-- 서브메뉴 끝 -->
