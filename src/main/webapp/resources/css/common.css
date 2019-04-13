@@ -10,11 +10,12 @@
 }
 /* 폰트 끝 */
 
-/* 모바일용 */
-nav.navbar{   
+/* 모바일용 */         
+@media all and (max-width: 480px){
+	nav.navbar{   
 		visibility: hidden;
 	}    
-	
+	         
 	/* 모바일 메뉴 */  
 	nav#main-nav{
 		display: none;
@@ -22,7 +23,7 @@ nav.navbar{
 
 	body, html{
 		height: 100%;
-		width: 100%;
+		width: 100%;  
 	}
 	
 	body{
@@ -87,7 +88,7 @@ nav.navbar{
 		list-style: none;
 		padding: 0;
 		margin: 10px auto;         
-		width: 90%;
+		width: 96%;     
 		height: 80px;
 		line-height: 80px;      
 		overflow: hidden;
@@ -102,17 +103,39 @@ nav.navbar{
 	}
 	
 	div.familySiteLinkWrap ul li img{
-		width: 95%;
-	}
+		width: 96%;  
+	} 
 	
 	footer{
 		clear: both;
 		background-color:#222222;
-		padding: 50px 0 30px 0;   
+		padding: 50px 0 30px 0; 
+		overflow: hidden;  
 	}
 	
-	footer ul.list-inline li{
+	#snsUl{
+		width: 100%;  
+	}
+	
+	#snsUl li{
 		float: left;
+		width: 25%;
+		padding: 0;
+	}
+	
+	#subMenuUl{
+		width: 90%;   
+	}
+	
+	#subMenuUl li{
+		float: left;
+		width: 25%;
+		padding: 0;  
+	}
+	
+	#subMenuUl li a{
+		padding: 0;
+		font-size: 14px;  
 	}
 	
 	footer .menu li{
@@ -133,15 +156,20 @@ nav.navbar{
 	
 	div.copyright{
 	    background-color: #f0f0f0;
-	    padding: 25px 0;
-	    font-size: 14px;
-	    width: 100%;
-	    color: #5D5D5D;
+	    padding: 10px 0;   
+	    font-size: 13px;
+	    width: 100%;  
+	    color: #5D5D5D;   
+	}
+	
+	div.container.copyright-menu{
+		padding: 10px 0;
 	}
 	
 	div.copyright p.contentWrap{
 		margin: 6px 0;
 		letter-spacing: -0.4px;
+		width: 100%;
 	}
 	
 	div.copyright p.contentWrap span#telSpan, div.copyright p.contentWrap span#faxSpan{
@@ -178,13 +206,18 @@ nav.navbar{
 	}
 	
 	/* ---- */
-	
-/* 태블릿 */
-@media all and (min-width:768px) and (max-width: 1023px) {
-	nav.navbar{   
+}
+
+
+
+
+
+/* 모바일 태블릿 사이 너비 */
+@media (min-width: 481px) and (max-width: 767.5px) {           
+	nav.navbar{         
 		visibility: hidden;
 	}    
-	
+	         
 	/* 모바일 메뉴 */  
 	nav#main-nav{
 		display: none;
@@ -193,6 +226,7 @@ nav.navbar{
 	body, html{
 		height: 100%;
 		width: 100%;
+		background-color: red;
 	}
 	
 	body{
@@ -257,7 +291,7 @@ nav.navbar{
 		list-style: none;
 		padding: 0;
 		margin: 10px auto;         
-		width: 90%;
+		width: 96%;     
 		height: 80px;
 		line-height: 80px;      
 		overflow: hidden;
@@ -272,17 +306,39 @@ nav.navbar{
 	}
 	
 	div.familySiteLinkWrap ul li img{
-		width: 95%;
-	}
+		width: 96%;  
+	} 
 	
 	footer{
 		clear: both;
 		background-color:#222222;
-		padding: 50px 0 30px 0;   
+		padding: 50px 0 30px 0; 
+		overflow: hidden;  
 	}
 	
-	footer ul.list-inline li{
+	#snsUl{
+		width: 100%;  
+	}
+	
+	#snsUl li{
 		float: left;
+		width: 25%;
+		padding: 0;
+	}
+	
+	#subMenuUl{
+		width: 90%;   
+	}
+	
+	#subMenuUl li{
+		float: left;
+		width: 25%;
+		padding: 0;  
+	}
+	
+	#subMenuUl li a{
+		padding: 0;
+		font-size: 14px;  
 	}
 	
 	footer .menu li{
@@ -303,15 +359,20 @@ nav.navbar{
 	
 	div.copyright{
 	    background-color: #f0f0f0;
-	    padding: 25px 0;
-	    font-size: 14px;
-	    width: 100%;
-	    color: #5D5D5D;
+	    padding: 10px 0;   
+	    font-size: 13px;
+	    width: 100%;  
+	    color: #5D5D5D;   
+	}
+	
+	div.container.copyright-menu{
+		padding: 10px 0;
 	}
 	
 	div.copyright p.contentWrap{
 		margin: 6px 0;
 		letter-spacing: -0.4px;
+		width: 100%;
 	}
 	
 	div.copyright p.contentWrap span#telSpan, div.copyright p.contentWrap span#faxSpan{
@@ -349,10 +410,211 @@ nav.navbar{
 }
 
 
-     
-/* PC */
-@media all and (min-width:1024px) {
-	nav.navbar{
+
+
+/* 태블릿 */
+@media all and (min-width: 768px) {
+	nav.navbar{   
+		visibility: hidden;
+	}    
+	
+	/* 모바일 메뉴 */  
+	nav#main-nav{
+		display: none;
+	}
+
+	body, html{
+		height: 100%;
+		width: 100%;
+	}
+	
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	} 
+	
+	nav.navbar{   
+		visibility: hidden;
+	}
+	
+	/* 모바일 메뉴 */  
+	nav#main-nav{
+		display: none;
+	}
+	
+	/* PC용 이미지 슬라이더 없애기 */
+	div#mainImgSliderMobile{
+		display: block;
+	}
+	
+	div#mainImgSlider{
+		display: none;
+	}
+	
+	div.carousel-item img{
+		margin: 0;
+		width: 100%;
+	}
+	
+	/* 이미지 슬라이더 버튼 */
+	#mobile-img-prev, #mobile-img-next{
+		opacity: 1;
+	}
+	
+	#mobile-img-prev img{
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		left: 0;
+	}
+	
+	#mobile-img-next img{
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		right: 0;
+	}
+	
+	/* ========== 푸터 ========== */
+	div.familySiteLinkWrap{
+		width: 100%;
+		height: 100px;
+		line-height:100px;
+		text-align: center;
+		border-top: 1px solid #ccc;  
+		position: relative;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+	
+	div.familySiteLinkWrap ul{
+		list-style: none;
+		padding: 0;
+		margin: 10px auto;         
+		width: 96%;     
+		height: 80px;
+		line-height: 80px;      
+		overflow: hidden;
+	}
+	
+	div.familySiteLinkWrap ul li{
+		float: left;
+		width: 25%;      
+		display: inline;             
+		text-align: center;
+		overflow: hidden;
+	}
+	
+	div.familySiteLinkWrap ul li img{
+		width: 96%;  
+	} 
+	
+	footer{
+		clear: both;
+		background-color:#222222;
+		padding: 50px 0 30px 0; 
+		overflow: hidden;
+	}
+	     
+	#snsUl{
+		width: 100%;  
+	}
+	
+	#snsUl li{
+		float: left;
+		width: 25%;
+		padding: 0;
+	}
+	
+	#subMenuUl{
+		width: 100%;
+		margin-bottom: 10px;    
+	}          
+	
+	#subMenuUl li{
+		float: left;
+		width: 25%;
+		padding: 0;  
+	}
+	
+	#subMenuUl li a{
+		padding: 0;
+		font-size: 16px;     
+	}
+	
+	footer .menu li{
+		float: left;	
+	}
+	
+	footer .menu li a{
+		color: #BDBDBD;
+		padding: 0 20px;
+		text-decoration: none;
+		font-size: 16px;    
+		font-weight: 600;    
+	}
+	
+	footer .menu li a:hover{
+		text-decoration: underline; 
+	}
+	
+	div.copyright{
+	    background-color: #f0f0f0;
+	    padding: 10px 0;   
+	    font-size: 14px;      
+	    width: 100%;  
+	    color: #5D5D5D;   
+	}
+	
+	div.container.copyright-menu{
+		padding: 10px 0;
+	}
+	
+	div.copyright p.contentWrap{
+		margin: 6px 0;
+		letter-spacing: -0.4px;
+		width: 100%;
+	}
+	
+	div.copyright p.contentWrap span#telSpan, div.copyright p.contentWrap span#faxSpan{
+		margin-left: 20px;
+	}
+	
+	div.copyright > div.container.copyright-menu{
+		width: 98%;
+	}
+	
+	div.row.text-center.copyright-info{
+		width: 98%;                  
+		margin: 0 auto;
+		display: inline-block;
+	}
+	
+	.fab.fa-facebook, .fab.fa-instagram, .fas.fa-play-circle, .fas.fa-video{
+		color: #BDBDBD;
+		padding: 0 15px;  
+	}
+	
+	.fab.fa-facebook:hover, .fab.fa-instagram:hover, .fas.fa-play-circle:hover, .fas.fa-video:hover{
+		color: #D5D5D5;
+	}
+	
+	div.row.text-center.footer-menu{
+		width: 75%;         
+		margin: 0 auto;
+	}   
+	  
+	div.row.text-center.sns-menu{
+		width: 40%;        
+		margin: 0 auto;
+	}
+}
+
+/* 데스크탑 (가로 해상도가 992px보다 크고 1199px 보다 작은 화면에 적용) */
+@media (min-width: 992px) and (max-width: 1199px) { ... }
+
+/* 큰화면 데스크탑 (가로 해상도가 1200px 보다 큰 화면에 적용) */
+@media all and (min-width: 1200px) {
+nav.navbar{
 		visibility: visible;
 	} 
 	  
@@ -724,6 +986,4 @@ nav.navbar{
 		display: none;
 	}
 }
-
-
 

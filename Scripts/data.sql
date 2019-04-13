@@ -136,7 +136,8 @@ insert into notice(content, title, is_notice, member_code, writer) values
 (null, '2018 렉쳐오페라 공연작품 공모사업', 0, 'M19002', '관리자'),
 (null, '2018 상반기 정기대관 공고', 0, 'M19002', '관리자'),
 ('대구국제오페라축제 온라인 자원활동가 3기 오페라팬(Operafan) 합격자를 아래와 같이 발표합니다. 많은 지원과 관심 감사드립니다.', '온라인 자원활동가 오페라팬 3기 합격자 발표', 0, 'M19002', '관리자'),
-(null, '2019년 상반기 수시대관 신청 공고', 0, 'M19002', '관리자');
+(null, '2019년 상반기 수시대관 신청 공고', 0, 'M19002', '관리자'),
+('공지사항 알림 테스트 내용입니다.', '공지사항 알림 여부 테스트', 1, 'M19002', '관리자'),;
 
 -- 후기
 insert into review(review_title, review_writer, review_content, member_code) values

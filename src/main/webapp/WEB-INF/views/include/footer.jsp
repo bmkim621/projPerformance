@@ -3,22 +3,22 @@
 <div class="familySiteLinkWrap">
 	<ul>
 		<li>
-			<a href="#">
+			<a href="https://www.facebook.com/DaeguOpera">
 				<img src="${pageContext.request.contextPath }/resources/upload/link1.png">
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="https://www.instagram.com/daeguoperahouse">
 				<img src="${pageContext.request.contextPath }/resources/upload/link2.png">
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="https://tv.naver.com/doh2013">
 				<img src="${pageContext.request.contextPath }/resources/upload/link3.png">
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="http://www.ustream.tv/channel/daeguoperahouse">
 				<img src="${pageContext.request.contextPath }/resources/upload/link4.png">
 			</a>
 		</li>
@@ -29,7 +29,7 @@
 <footer>
 	<div class="container">
 		<div class="row text-center sns-menu">
-			<ul class="list-inline"> 
+			<ul class="list-inline" id='snsUl'> 
 				<li>
 					<a href="#"><i class="fab fa-facebook fa-lg"></i></a> 
 				</li>        
@@ -46,18 +46,18 @@
 		</div>
 	             
 	<div class="row text-center footer-menu">   
-		<ul class="menu list-inline">
+		<ul class="menu list-inline" id='subMenuUl'>
 			<li>
-				<a href="#">개인정보처리방침</a>
+				<a href="">개인정보처리방침</a>
 			</li>                       
 			<li>
-				<a href="#">이용약관</a>
+				<a href="">이용약관</a>
 			</li>                   
 			<li>
-				<a href="#">행정서비스현장</a>
+				<a href="">행정서비스현장</a>
 			</li>                  
 			<li>
-				<a href="#">오시는 길</a>
+				<a href="${pageContext.request.contextPath}/doc/map">오시는 길</a>
 			</li>
 		</ul>
 	</div>	<!-- 푸터 메뉴 끝 text-center end -->

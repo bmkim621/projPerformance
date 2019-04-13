@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goMenu.css?ab">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goMenu.css?axb">
 
-<style>
-
-</style>
-
-<div class="container myWrapper col-md-12">
+<div class="container myWrapper col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="row">
 		<div class="bannerInner">
 			<!-- 배너1 -->
@@ -19,7 +15,7 @@
 					<span class="engTitle">Daegu Opera House</span>
 					<span class="korTitle">대구오페라하우스</span>
 					<!-- 버튼 -->
-					<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>
+					<a href="${pageContext.request.contextPath}/doc/facilities" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>
 				</div>
 			</div>
 			
@@ -32,7 +28,7 @@
 					<span class="engTitle">Ticket Booking Information</span>
 					<span class="korTitle">티켓예매안내</span>
 					<!-- 버튼 -->
-					<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>         
+					<a href="${pageContext.request.contextPath}/doc/info" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>         
 				</div>
 			</div>
 			
@@ -45,7 +41,7 @@
 					<span class="engTitle">Space Rental</span>
 					<span class="korTitle">대관안내</span>
 					<!-- 버튼 -->
-					<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>         
+					<a href="${pageContext.request.contextPath}/doc/rent" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>         
 				</div>
 			</div>
 			
@@ -58,7 +54,7 @@
 					<span class="engTitle">Gallery</span>
 					<span class="korTitle">갤러리</span>
 					<!-- 버튼 -->
-					<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>         
+					<a href="${pageContext.request.contextPath}/doc/gallery" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>         
 				</div>
 			</div>
 			
@@ -104,7 +100,7 @@
 					<span class="noticeEngTitle">Notice</span>
 					<span class="noticeKorTitle">공지사항
 					<!-- 버튼 -->
-					<a href="#" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>  </span>	
+					<a href="${pageContext.request.contextPath}/notice/list" class="btn btn-primary"><i class="fas fa-arrow-right"></i>&nbsp;VIEW</a>  </span>	
 				</div>
 				
 				<div class="noticebody">

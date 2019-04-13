@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/perfList.css?ssa">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/perfList.css?dd">
 
-<p style="color:white">.</p>	<!-- 텍스트 넣지 않으면 carousel 안에 item이 보이지 않음(아직 해결X) -->    
+<p style="color:white" id='pWhite'>.</p>	<!-- 텍스트 넣지 않으면 carousel 안에 item이 보이지 않음(아직 해결X) -->    
 
 <!-- 공연 리스트 이미지 -->
 	<div class="carouselWrapper">
