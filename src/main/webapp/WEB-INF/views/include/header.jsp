@@ -19,7 +19,7 @@
 <!-- 부트스트랩 그래픽 아이콘 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <!-- css -->
-<link href="${pageContext.request.contextPath }/resources/css/common.css?b" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/common.css?bdd" rel="stylesheet" type="text/css">
 <!-- mobile -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hc-offcanvas-nav.css">
 <script src="${pageContext.request.contextPath }/resources/js/hc-offcanvas-nav.js"></script>
@@ -32,7 +32,7 @@
 
 	<!-- 네비게이션 -->
 	<nav class="navbar navbar-expand-md fixed-top top-nav">
-		<div class="container-fluid">
+		<div class="container-fluid" id='navWrapper'>
 			<!-- 로고 -->
 			<a class="navbar-brand" href="${pageContext.request.contextPath}">
 				<span><img src="${pageContext.request.contextPath }/resources/upload/logo_w.png"></span>
@@ -124,7 +124,10 @@
 					</c:if>
 				</ul>	
 				
-				<!-- 오른쪽 메뉴 -->               
+				
+							
+			</div>	<!-- navbarSupportedContent 끝 -->
+			<!-- 오른쪽 메뉴 -->               
 				<ul class="nav navbar-nav navbar-right">
 					<!-- 로그인 X -->
 					<c:if test="${login == null }">
@@ -138,20 +141,18 @@
 							         
 					<!-- 로그인 O -->
 					<c:if test="${login != null }">
-						<li class='nav-item memWelcome'>   
+						<%-- <li class='nav-item memWelcome'>   
 							<span class='welcomWrap'>${login.username }&#40;${login.userid }&#41;님, 환영합니다!</span>
-						</li>
+						</li> --%>  
 						<li class='nav-item'>
 							<a href="${pageContext.request.contextPath }/member/logout" class="rightMenu"><i class="fas fa-sign-out-alt"></i><span class="spanWrap">로그아웃</span></a>	
 						</li>
-						<li class='nav-item'>   
+						<li class='nav-item'>             
 							<a href="${pageContext.request.contextPath }/member/confirmMember" class="rightMenu"><i class="fas fa-user"></i><span class='spanWrap'>마이페이지</span></a>
 						</li>
 					</c:if>
 					           
 				</ul>
-							
-			</div>	<!-- navbarSupportedContent 끝 -->
 		</div>	<!-- container-fluid 끝 -->
 	</nav>
 	
@@ -160,28 +161,28 @@
 	<nav id='main-nav'>
 		<ul class='first-nav'>
 			<li class='performancieInfo'>
-				<a href="#">공연정보</a>
-				<ul>
-					<li><a href="#">공연안내</a></li>
-					<li><a href="#">예매안내</a></li>
-					<li><a href="#">예매확인</a></li>
+				<a href="#"><i class="fas fa-info-circle"></i>&nbsp;공연정보</a>
+				<ul>     
+					<li><a href="${pageContext.request.contextPath}/perf/perfList">공연안내</a></li>
+					<li><a href="${pageContext.request.contextPath}/doc/info">예매안내</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/bookInfo">예매확인</a></li>  
 				</ul>
 			</li>
 		</ul>
-		
+		  
 		<ul class='second-nav'>
 			<li class='rentFacilities'>
-				<a href="#">시설대관</a>
+				<a href="#"><i class="far fa-calendar-check"></i>&nbsp;시설대관</a>
 				<ul>
 					<li><a href="#">시설안내</a></li>
 					<li><a href="#">대관안내</a></li>
 				</ul>
-			</li>
+			</li> 
 		</ul>
 		
 		<ul class='third-nav'>
 			<li class='community'>
-				<a href="#">커뮤니티</a>
+				<a href="#"><i class="fas fa-bullhorn"></i>&nbsp;커뮤니티</a>
 				<ul>
 					<li><a href="#">공지사항</a></li>
 					<li><a href="#">공연관람후기</a></li>
@@ -192,7 +193,7 @@
 		
 		<ul class='fourth-nav'>
 			<li class='dgoperahouse'>
-				<a href="#">(재)대구오페라하우스</a>
+				<a href="#"><i class="far fa-heart"></i>&nbsp;(재)대구오페라하우스</a>
 				<ul>
 					<li><a href="#">사업소개</a></li>
 					<li><a href="#">홍보관</a></li>
@@ -202,42 +203,74 @@
 		</ul>
 		
 		<!-- 관리자메뉴 -->
-		<ul class='fifth-nav'>
-			<li class='managermenu'>
-				<a href="#">관리자메뉴</a>
-				<ul>
-					<li><a href="#">공지사항 작성</a></li>
-					<li><a href="#">공연추가</a></li>
-					<li><a href="#">회원관리</a></li>
-				</ul>
-			</li>
-		</ul>
+		<!-- 관리자로 로그인했을 경우 서브 메뉴 추가 -->
+		<c:if test="${login != null && login.isMember == 1 }">
+			<ul class='fifth-nav'>
+				<li class='managermenu'>
+					<a href="#"><i class="fas fa-cog"></i>&nbsp;관리자메뉴</a>
+					<ul>
+						<li><a href="#">공지사항 작성</a></li>
+						<li><a href="#">공연추가</a></li>
+						<li><a href="#">회원관리</a></li>
+					</ul>
+				</li>
+			</ul>          
+		</c:if>
+		       
+		<!-- 로그인 X -->
+		<c:if test="${login == null }">
+			<ul class='seventh-nav'>
+				<li class='loginmenu'>
+					<a href="${pageContext.request.contextPath }/member/login"><i class="fas fa-sign-in-alt"></i>&nbsp;로그인</a>
+					<a href="${pageContext.request.contextPath}/member/joinTerms"><i class="fas fa-heart"></i>&nbsp;회원가입</a>
+				</li>
+			</ul>    
+		</c:if>
+
+		<!-- 로그인 O -->
+		<c:if test="${login != null }">
+			<ul class='eighth-nav'>
+				<li class='logoutmenu'>
+					<a href="${pageContext.request.contextPath }/member/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;로그아웃</a>
+					<a href="${pageContext.request.contextPath }/member/confirmMember"><i class="fas fa-user"></i>&nbsp;마이페이지</a>
+				</li>
+			</ul>
+		</c:if>
 	</nav>
-	
+	  
 		
 	<!-- 스크립트 부분 -->
 	<script>
-		
-
-		$(function(){
+		$(function() {
 			//모바일 메뉴
-			$('#main-nav').hcOffcanvasNav({
-				maxWidth: 769  
-			});
-			
-			//스크롤바 내렸을 때 보이는 메뉴
-			$(window).scroll(function() {    
-			    var scroll = $(window).scrollTop();
+			$('#main-nav')
+					.hcOffcanvasNav(
+							{
+								maxWidth : 992.5,
+								labelClose : '메뉴 닫기',
+								levelOpen : 'expand', //메뉴 보여지는 형식                  
+								navTitle : '<img src="${pageContext.request.contextPath }/resources/upload/logo_w.png" style="width: 100%">' //타이틀
+							});
 
-			    if (scroll >= 100) {
-			        $(".top-nav").addClass("light-header");
-			        $(".navbar-brand").html("<span><img src='${pageContext.request.contextPath }/resources/upload/logo_b.png'></span>");
-			    } else {
-			        $(".top-nav").removeClass("light-header");
-			        $(".navbar-brand").html("<span><img src='${pageContext.request.contextPath }/resources/upload/logo_w.png'></span>");
-			    }
-			});	
-			
+			//스크롤바 내렸을 때 보이는 메뉴
+			$(window)
+					.scroll(
+							function() {
+								var scroll = $(window).scrollTop();
+
+								if (scroll >= 100) {
+									$(".top-nav").addClass("light-header");
+									$(".navbar-brand")
+											.html(
+													"<span><img src='${pageContext.request.contextPath }/resources/upload/logo_b.png'></span>");
+								} else {
+									$(".top-nav").removeClass("light-header");
+									$(".navbar-brand")
+											.html(
+													"<span><img src='${pageContext.request.contextPath }/resources/upload/logo_w.png'></span>");
+								}
+							});
+
 			//우클릭 못하게 막기
 			$("body").contextmenu(function() {
 				return false;

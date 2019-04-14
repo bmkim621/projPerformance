@@ -25,9 +25,8 @@
 			<div class="carousel-item">
 				<img class="d-block img-fluid" alt="신데렐라" src="${pageContext.request.contextPath }/resources/upload/20190114104538.jpg">
 			</div>
-		</div>
-	
-		<!-- button -->
+			
+			<!-- button -->
 		<a class="carousel-control-prev" href="#mainImgSlider" role="button" data-slide="prev">
 			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_l_big.png" width="50" height="96"></span>
 		</a>
@@ -35,6 +34,9 @@
 		<a class="carousel-control-next" href="#mainImgSlider" role="button" data-slide="next">
 			<span><img src="${pageContext.request.contextPath }/resources/upload/ico_r_big.png" width="50" height="96"></span>
 		</a>
+		</div>
+	
+		
 		
 	</div>	<!-- 슬라이더 끝 -->
 	

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/perfList.css?dd">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/perfList.css?dddaadd">
 
 <p style="color:white" id='pWhite'>.</p>	<!-- 텍스트 넣지 않으면 carousel 안에 item이 보이지 않음(아직 해결X) -->    
 
@@ -12,7 +12,7 @@
 						<!-- 공연 리스트1 -->
 						<div class="item">
 							<!-- tag_blue -->
-							<div class="tag-blue">
+							<div class="tag-blue">   
 								<img src="${pageContext.request.contextPath }/resources/upload/tag_blue.png">
 								<span class="category">기획<br>공연</span>   
 							</div>

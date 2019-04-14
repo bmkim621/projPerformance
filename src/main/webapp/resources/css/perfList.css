@@ -18,26 +18,26 @@ div.carouselWrapper{
 		display: none;
 	}
 }
-  
-/* 큰화면 데스크탑 (가로 해상도가 1200px 보다 큰 화면에 적용) */
-@media all and (min-width: 1200px) {
-	div.carouselWrapper{
+
+/* 데스크탑 (가로 해상도가 992px보다 크고 1199px 보다 작은 화면에 적용) */
+@media (min-width: 992px) and (max-width: 1245.9px) {
+div.carouselWrapper{
 		position: relative;
-		display: block;
-	}
+		display: block;        
+	}                    
 	
 	p#pWhite{
-		display: block;
+		display: block!important;         
 	}
 	
-	div.carouselWrapper > div.container{
-		width: 1000px;
+	div.carouselWrapper > div.container{     
+		width: 100%;
 		margin: 0 auto;
 		padding-left: 30px;   
 		padding-right: 10px;    
 		padding-top: 20px;
-		padding-bottom: 20px;
-	}
+		padding-bottom: 20px;   
+	}  
 	
 	div#myCarousel div.item{
 		text-align: center;
@@ -46,8 +46,10 @@ div.carouselWrapper{
 		height: 375px;
 		border: 1px solid #bfbfbf;
 		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;   
+		border-bottom-right-radius: 5px;
+		overflow: hidden; 
 	}
+	
 	
 	div#myCarousel div.item > div.tag-blue{
 		position: absolute;
@@ -73,13 +75,149 @@ div.carouselWrapper{
 	}
 	
 	div#myCarousel div.item div.img-box img{
+		width: 100%;
+		height: 283px;      
+	}
+/* 	
+	div#myCarousel div.item div.img-hover{
+		width: 100%;       
+		height: 285px;   
+		background-color: rgba(0, 0, 0, 0.7);                             
+		position: absolute;
+		top: 0px;
+		left: 5px;
+		display: none;
+	} */  
+	
+	div#myCarousel div.item div.img-hover p.showTitle{
+		color: white;
+		font-size: 18px;
+		letter-spacing: -1.0px;
+		padding-top: 100px;      
+	}
+	
+	.icon-background{
+		color: #ffc000;  
+	}
+	
+	a.fa-stack.fa-lg{
+		color: #353535; 
+	}
+	
+	div#myCarousel div.item-details p.day{
+		color: #000;
+		font-size: 56px;
+		float: left;
+		margin: 0;
+		letter-spacing: -1.8px;
+		padding-left: 15px;                      
+	}
+	
+	div#myCarousel div.item-details div.contents{
+		display: inline-block;
+		text-align: left;
+		text-overflow: ellipsis;
+		width: 180px;                            
+		height: 60px;                
+		overflow: hidden;
+		white-space: nowrap;
+		padding: 5px;
+		font-size: 16px;
+		color: #000;
+		letter-spacing: -1.0px;    
+		margin-top: 13px;           
+	}
+	
+	.owl-carousel .owl-next, .owl-carousel .owl-prev {
+	  position: absolute;
+	  top: 35%;
+	}
+	
+	.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next{ 
+		font-size: 50px;
+		color: #D8D8D8;
+		outline: none;	/* 버튼 클릭 시 파란 윤곽선 표시 안되게 함 */  
+	}
+	
+	/* 위치 */          
+	.owl-carousel .owl-prev {
+	  left: -90px;
+	}
+	.owl-carousel .owl-next {
+	  right: -90px;   
+	}
+	
+	div.owl-dots{
+		width: 0;
+		height: 0;
+	}
+	
+}            
+  
+/* 큰화면 데스크탑 (가로 해상도가 1246px 보다 큰 화면에 적용) */
+@media all and (min-width: 1246px) {
+	div.carouselWrapper{
+		position: relative;
+		display: block;
+	}
+	
+	p#pWhite{
+		display: block;
+	}
+	
+	div.carouselWrapper > div.container{
+		width: 1000px;
+		margin: 0 auto;
+		padding-left: 30px;   
+		padding-right: 10px;    
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	
+	div#myCarousel div.item{
+		text-align: center;
+		margin: 0 0 0 5px;
+		width: 285px;
+		height: 375px;
+		border: 1px solid #bfbfbf;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		overflow: hidden;
+		position: re
+	}
+	
+	div#myCarousel div.item > div.tag-blue{
+		position: absolute;
+		width: 80px;
+		height: 80px;
+		top: 0;  
+		left: 5px;    
+	}
+	
+	div#myCarousel div.item > div.tag-blue span.category{
+		color: white;
+		font-weight: 900;
+		font-size: 13px; 
+		position: fixed;
+		left: 17px;  
+		top: 10px;
+		line-height: 1.1em;   
+	}
+	
+	div#myCarousel div.item div.img-box{  
 		width: 283px;
+		height: 283px;
+		overflow: hidden;
+	}
+	
+	div#myCarousel div.item div.img-box img{
+		width: 100%;
 		height: 283px;      
 	}
 	
 	div#myCarousel div.item div.img-hover{
-		width: 285px;
-		height: 285px;
+		width: 91%;        
+		height: 283px;   
 		background-color: rgba(0, 0, 0, 0.7);                             
 		position: absolute;
 		top: 0px;
@@ -122,11 +260,9 @@ div.carouselWrapper{
 		padding: 5px;
 		font-size: 16px;
 		color: #000;
-		letter-spacing: -1.0px;
-		position: absolute;
-		bottom: 15px;           
-		right: 40px;            
-	}
+		letter-spacing: -1.0px;    
+		margin-top: 13px;                                               
+	}      
 	
 	.owl-carousel .owl-next, .owl-carousel .owl-prev {
 	  position: absolute;
