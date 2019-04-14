@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/notice.css?aa" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/notice.css?aab" rel="stylesheet" type="text/css">
 
 <!-- 첨부파일 스타일 -->
 <style>

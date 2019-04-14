@@ -1,80 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<link href="${pageContext.request.contextPath }/resources/css/doc.css?a" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/doc.css?abc" rel="stylesheet" type="text/css">
 
 <style>
 div.bInfoWrapper h2 {
-	margin-top: 60px;             
-	margin-bottom: 40px;  
-	letter-spacing: -0.8px;
-}
-
-div.docContentsWrapper{
-	overflow: hidden;
-	margin-bottom: 60px;
-}
-
-div#map{
-	widows: 100%;
-	height: 450px;  
-}
-
-/* 내용 */
-h3.contentsHeadline{
-	color: #353535;
-	letter-spacing: -0.5px;
-	font-weight: 300;
-	margin-top: 50px;                  
-}
-
-h3.contentsHeadline img{
-	margin-right: 15px;        
-}
-
-div.docContentsWrapper ul{
-	list-style: none;
-	text-align: left;
-	color: #686868;
-	font-weight: 300;
-	letter-spacing: -0.5px;         
-	margin-bottom: 2.0rem;                                   
-	margin-top: 0.8rem;        
-}
-
-ul.rules{
-	margin-top: 0.2rem!important;
-	margin-bottom: 15px!important;  
-} 
-
-p.contentsBold{
-	color: #3d49a2;
-	letter-spacing: -0.5px; 
-	font-size: 18px;
-	padding-left: 40px;
-	margin-bottom: 0.5rem;
-}
-
-/* 테이블 */
-div.table-responsive{
-	margin-top: 50px;  
-	text-align: center;  
-}
-
-table thead{
-	border-top: 2px solid #3d49a2;
-	background-color: #f2f2f2;
-}
-
-.table td, .table th{
-	vertical-align: middle;
-	color: #686868;
-	font-weight: lighter;
-	letter-spacing: -0.5px;
-}  
-
-.table th{
-	color: #000!important;
-}
+		margin-top: 60px;             
+		margin-bottom: 40px;  
+		letter-spacing: -0.8px;
+	}
+	
+	div.docContentsWrapper{
+		overflow: hidden;
+		margin-bottom: 60px;
+	}
+	  
+	div#map{
+		widows: 100%;
+		height: 450px;  
+	}
+	
+	/* 내용 */
+	h3.contentsHeadline{
+		color: #353535;
+		letter-spacing: -0.5px;
+		font-weight: 300;
+		margin-top: 50px;                  
+	}
+	
+	h3.contentsHeadline img{
+		margin-right: 15px;        
+	}
+	
+	div.docContentsWrapper ul{
+		list-style: none;
+		text-align: left;
+		color: #686868;
+		font-weight: 300;
+		letter-spacing: -0.5px;         
+		margin-bottom: 2.0rem;                                   
+		margin-top: 0.8rem;        
+	}
+	
+	ul.rules{
+		margin-top: 0.2rem!important;
+		margin-bottom: 15px!important;  
+	} 
+	
+	p.contentsBold{
+		color: #3d49a2;
+		letter-spacing: -0.5px; 
+		font-size: 18px;
+		padding-left: 40px;
+		margin-bottom: 0.5rem;
+	}
+	
+	/* 테이블 */
+	div.table-responsive{
+		margin-top: 50px;  
+		text-align: center;  
+	}
+	
+	table thead{
+		border-top: 2px solid #3d49a2;
+		background-color: #f2f2f2;
+	}
+	
+	.table td, .table th{
+		vertical-align: middle;
+		color: #686868;
+		font-weight: lighter;
+		letter-spacing: -0.5px;
+	}  
+	
+	.table th{
+		color: #000!important;
+	}
 </style>
 
 <div class="container-fluid mapContainer">
@@ -118,8 +118,8 @@ table thead{
 									<td>1호선 대구역 하차, 도보 15분, 택시 기본요금</td>
 								</tr>
 								<tr>
-									<td>홈플러스 방면</td>
-									<td>503, 653, 706, 급행2, 410-1(앞), 북구4(앞), 410(건너)</td>
+									<td id='2title'>홈플러스 방면</td>
+									<td id='2bus'>503, 653, 706, 급행2, 410-1(앞), 북구4(앞), 410(건너)</td>
 									<td rowspan="2">3호선 북구청역 하차, 도보 20분, 택시 기본요금</td>
 								</tr>
 								<tr>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/notice.css?aa" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/notice.css?ada" rel="stylesheet" type="text/css">
 <!-- 구글 아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -55,10 +55,10 @@
 		<thead>
 			<tr>       
 				<th class='firstWrapper'>번호</th>                        
-				<th class='text-center'>제목</th>        
-				<th class='text-center'>작성자</th>
-				<th class='text-center'>작성일</th>						
-				<th class='text-center'>조회</th>						
+				<th class='twoTh text-center'>제목</th>        
+				<th class='threeTh text-center'>작성자</th>
+				<th class='fourTh text-center'>작성일</th>						
+				<th class='fiveTh text-center'>조회</th>						
 			</tr>
 		</thead>
 		          
@@ -72,12 +72,12 @@
 						<td class='spanNotice'>알림</td>    
 					</c:if>
 					<c:if test="${noticeVO.isNotice == '0' }">
-						<td>${noticeVO.noticeNo }</td>
+						<td class='ondTd'>${noticeVO.noticeNo }</td>
 					</c:if>
-					<td><a href='${pageContext.request.contextPath}/notice/read?no=${noticeVO.noticeNo }&page=${pageMaker.cri.page }&searchType=${cri.searchType }&keyword=${cri.keyword }'>${noticeVO.title }</a></td>  
-					<td class='text-center'>${noticeVO.writer }</td>
-					<td class='text-center'><fmt:formatDate value="${noticeVO.regdate }" pattern="yyyy-MM-dd"/></td>  
-					<td class='text-center'>${noticeVO.viewCnt }</td>
+					<td class='twoTd'><a href='${pageContext.request.contextPath}/notice/read?no=${noticeVO.noticeNo }&page=${pageMaker.cri.page }&searchType=${cri.searchType }&keyword=${cri.keyword }'>${noticeVO.title }</a></td>  
+					<td class='threeTd text-center'>${noticeVO.writer }</td>
+					<td class='fourTd text-center'><fmt:formatDate value="${noticeVO.regdate }" pattern="yyyy-MM-dd"/></td>  
+					<td class='fiveTd text-center'>${noticeVO.viewCnt }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

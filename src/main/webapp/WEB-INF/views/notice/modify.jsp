@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/notice.css?cc" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/notice.css?cdcd" rel="stylesheet" type="text/css">
 <!-- 스마트에디터 경로 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
@@ -76,6 +76,23 @@
 	top: 3px;      
 	right: 5.5px;           
 }
+
+@media all and (max-width: 480px){
+	.tdContents{               
+		border: 2px solid blue;
+	}
+	
+	.ThTitle{         
+		background-color: #535353!important;
+		color: red!important;
+	}
+	
+	#content{
+		border: 4px solid gray;
+		width: 100%;
+		height: auto;
+	}
+}
 </style>
 
 
@@ -108,27 +125,27 @@
 		<table class="table">                 
 			<tbody>      
 				<tr>
-					<th style='width: 20%;'>작성자</th>
-					<td>
+					<th style='width: 20%;' class='thTitle'>작성자</th>
+					<td class='tdContents'>
 						<input type='text' name='writer' id='writer' value='${noticeVO.writer }' readonly="readonly">	      
 					</td>
 				</tr>
 				<tr>
-					<th>제목</th>
-					<td>
+					<th class='thTitle'>제목</th>
+					<td class='tdContents'>
 						<input type='text' name="title" id="title" placeholder="제목을 입력하세요." value="${noticeVO.title }">
 					</td>
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td>     
+					<th class='thTitle'>내용</th>
+					<td class='tdContents'>     
 						<!-- 네이버 스마트 에디터 -->                      
 						<textarea name="content" id="content" rows="10" cols="120">${noticeVO.content }</textarea>
 					</td>
 				</tr>
 				<tr>
-					<th>알림 여부</th>
-					<td>
+					<th class='thTitle'>알림 여부</th>
+					<td class='tdContents'>
 						<div class="checkbox">
 	            			<label>
 	            				<input type="checkbox" id="chkNotice" name="chkNotice"><span class="cr"><i class="cr-icon fa fa-check"></i></span>알림
@@ -139,8 +156,8 @@
         			</td>
 				</tr>
 				<tr>
-					<th>파일첨부</th>
-					<td>
+					<th class='thTitle'>파일첨부</th>
+					<td class='tdContents'>
 						<input type="file" name="uploadFile" multiple="multiple">
 					</td>
 				</tr>

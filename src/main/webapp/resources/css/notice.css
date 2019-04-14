@@ -1,3 +1,367 @@
+/* @media all and (max-width: 480px){      
+	커뮤니티 타이틀 부분
+	h2{
+		margin-bottom: 30px;
+		letter-spacing: -0.8px;
+	}
+	div.container-fluid.noticeContainer {
+		width: 100%;
+		height: auto;
+		margin: 0;
+	 	padding: 0;  
+		position: relative;
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	div.container-fluid div#bgWrapper {
+		background: url('../images/sub_visual_4.jpg') no-repeat;
+		height: 350px;
+		background-position: center center;
+	}
+	
+	div.container-fluid div#bgWrapper div.headline {
+		width: 200px;
+		overflow: hidden;
+		position: absolute;
+		top: 40%;
+		left: 23%;      
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		padding-top: 28px;
+	}
+	
+	div.container-fluid div#bgWrapper p.korHeadline {
+		color: white;
+		letter-spacing: -1.2px;
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 0.5em;
+	}
+	
+	div.container-fluid div#bgWrapper p.engHeadline {
+		letter-spacing: -0.8px;
+		font-size: 22px;
+		font-style: italic;
+		color: rgba(255, 255, 255, 0.6);
+	}
+	
+	========= 테이블 ============
+	div.container-fluid.tableContainer{
+		width: 100%;                                                                     
+		padding-top: 60px;   
+		overflow: hidden;
+		padding-left: 5px;
+		padding-right: 5px;       
+	}
+	
+	검색
+	.table-filter .filter-group {
+	float: right;
+	}
+	
+	.table-filter input, .table-filter select {
+		height: 34px;
+		border-radius: 3px;
+		border-color: #ddd;
+		box-shadow: none;
+	}
+	        
+	.table-filter {
+		padding: 5px 0 15px;
+		margin-bottom: 5px;
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	.table-filter div.row{
+		width: 100%;
+		margin: 0;
+	}
+	
+	.table-filter div.row div.col-sm-12{
+		padding: 0;
+	}
+	
+	.table-filter .btn {
+		height: 34px;
+	}
+	
+	.table-filter label {
+		font-weight: normal;
+		margin-left: 10px;
+	}
+	
+	.table-filter select{
+		margin-left: 0!important;
+	}
+	
+	.table-filter select, .table-filter input {
+		display: inline-block;
+		margin-left: 5px;
+	}
+	
+	.table-filter input {
+		width: 150px;  
+		display: inline-block;
+	}
+	
+	.filter-group select.form-control {
+		width: 100px;      
+	}
+	
+	.table-wrapper .btn {
+		float: right;
+		color: #333;
+		background-color: #fff;
+		border-radius: 3px;
+		border: none;
+		outline: none !important;
+		margin-left: 10px;
+	}
+	
+	.table-wrapper .btn.btn-primary {
+		color: #fff;
+		background: #2a2f70;
+	}
+	
+	.table{       
+		border-top: 2px solid #2a2f70!important;  
+	}
+	
+	.table th{  
+		padding: 8px 2px;
+		font-size: 15px;
+		text-align: center;
+	}
+	
+	.firstWrapper, .threeTh, .fiveTh, .ondTd, .threeTd, .fiveTd{
+		display: none;        
+	}
+	
+	.table th:nth-child(4) {  
+		width: 30%;         
+	}
+	 
+	.table th:nth-child(2) {  
+		width: 70%;           
+	}
+	
+	.table tbody{
+		color: #353535;
+	}
+	
+	.table tbody td{
+		font-size: 15px;  
+	}
+	
+	.table tbody td a{
+		color: #535353;
+	}
+	
+	.table tbody td a:hover {
+		text-decoration: none;
+	}
+	
+	페이지
+	.pagination {
+		margin: 40px 0 30px;                                      
+	}
+	
+	.pagination li a {
+		border: none;
+		min-width: 30px;
+		min-height: 30px;
+		color: #999;
+		margin: 0 2px;
+		line-height: 30px;
+		border-radius: 4px !important;
+		text-align: center;
+		padding: 0;
+		font-size: 13px;          
+	}
+	
+	.pagination li a:hover {
+		color: #666;
+	}
+	
+	.pagination li.active a, .pagination li.active a.page-link {
+		background: #2a2f70;      
+	}
+	
+	.pagination li.active a:hover {
+		background: #575e96;
+	}
+	
+	.pagination li:first-child a, .pagination li:last-child a {
+		padding: 0 10px;
+	}
+	
+	.pagination li.disabled a {
+		color: #ccc;
+	}
+	
+	.pagination li i {
+		font-size: 17px;
+		position: relative;
+		top: 1px;
+		margin: 1px 2px;
+	}
+	
+	============ 공지사항 읽기 ==============
+	td span.spanTitle{
+		color: #4c4c63;
+		font-weight: bold;
+		display: block;
+		font-size: 17px;
+	}
+	
+	span.spanDate{
+		color: #888891;
+	}
+	
+	span.spanWriter, span.spanFile{
+	color: #888891;
+}
+
+	div.btnWrapper{
+		margin: 30px auto;
+		margin-bottom: 80px!important;     
+		width: 100%;                
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	a.btnGoList{
+		padding: 8px 15px;              
+		background-color: #2a3072;
+		border: 1px solid #2a3072;
+		color: white;
+		display: inline-block;  
+	}
+	
+	a.btnPrint{
+		display: none;   
+	}  
+		
+	공지사항 글 읽을 때 삭제, 수정 버튼
+	a.btnModify{
+		padding: 8px 15px;  
+		border: 1px solid #e08e0b;  
+		background-color: #f39c12;
+		color: white;  
+		display: inline-block;
+		margin-left: 15px;
+	}
+	
+	a.btnDelete{
+		padding: 8px 15px;  
+		border: 1px solid #d73925;
+		background-color: #dd4b39;
+		color: white;  
+		display: inline-block;
+		margin-left: 15px;
+	}
+	
+	==== 공지사항 수정, 취소 버튼 ====
+	#btnModifyConfirm{
+		background-color: #2a3072;
+		border: 1px solid #2a3072;
+		color: white;
+		width: 88px;   
+		height: 44px;
+		line-height: 44px;
+		font-size: 15px;
+	}
+	
+	#btnModifyCancel{
+		background-color: #fff;
+		color: #2a3072;
+		border: 1px solid #2a3072;
+		width: 88px;   
+		height: 44px;
+		line-height: 44px;
+		font-size: 15px;
+		margin-left: 5px; 
+	}
+	
+	====== 공지사항 등록/수정하기 ========
+	div.noticeRegisterWrapper{                      
+		width: 100%;                                                                 
+		padding-top: 60px;
+		margin: 0 auto;
+		border: 2px solid salmon;
+		padding-left: 5px;
+		padding-right: 5px;                  
+	}
+	
+	div.noticeRegisterWrapper h2{
+		margin-bottom: 40px;
+		letter-spacing: -0.8px;
+	}
+	                   
+	.register-contents-wrapper{             
+		overflow: hidden;
+		border: 4px solid gray;      
+	}
+	            
+	공지사항 등록 체크박스
+	.checkbox label:after{
+	    content: '';
+	    display: table;
+	    clear: both;
+	}
+	
+	.checkbox .cr{
+	    position: relative;
+	    display: inline-block;
+	    border: 1px solid #a9a9a9;
+	    border-radius: .25em;
+	    width: 1.3em;
+	    height: 1.3em;
+	    float: left;
+	    margin-right: .5em;
+	    margin-top: 2px;        
+	}      
+	
+	.checkbox .cr .cr-icon{
+	    position: absolute;
+	    font-size: .8em;
+	    line-height: 0;
+	    top: 52%;              
+	    left: 20%;
+	    color: #f04040;  
+	}
+	
+	.checkbox label{
+		margin-bottom: 0;
+	}
+	
+	.checkbox label input[type="checkbox"]{
+	    display: none;
+	}
+	
+	.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+	    transform: scale(3) rotateZ(-20deg);
+	    opacity: 0;
+	    transition: all .3s ease-in;
+	}
+	
+	.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+	    transform: scale(1) rotateZ(0deg);
+	    opacity: 1;
+	}
+	
+	.checkbox label input[type="checkbox"]:disabled + .cr{
+	    opacity: .5;
+	} 
+} */
+
+
+
+
+
+ 
 /* 커뮤니티 타이틀 부분 */
 h2{
 	margin-bottom: 30px;

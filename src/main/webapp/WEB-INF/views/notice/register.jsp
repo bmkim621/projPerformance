@@ -107,7 +107,7 @@
 		<table class="table">                 
 			<tbody>      
 				<tr>
-					<th style='width: 20%;'>작성자</th>
+					<th style='width: 20%;' id='thWriter'>작성자</th>
 					<td>
 						<c:forEach	items="${list }" var="memberVO">
 							<input type='text' value="${memberVO.gCode.gradeName }" readonly="readonly" name="writer" id="writer">
