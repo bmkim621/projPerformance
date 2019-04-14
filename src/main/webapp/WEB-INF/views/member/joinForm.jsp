@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/join.css?bb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/join.css?dbb" rel="stylesheet" type="text/css">
 <!-- alert plugin -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -37,12 +37,12 @@
 
 		<div class="form-group row">
 
-			<label class="col-sm-2 col-form-label" for="id">
+			<label class="col-sm-4 col-form-label" for="id">
 			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">아이디</label>
-			<div class="col-sm-3">
+			<div class="col-sm-3" id='col3Id'>
 				<input type="text" class="form-control" name='id' id="id">
 			</div>
-			<div class='col-sm-6'>
+			<div class='col-sm-6' id='col6Id'>
 				<button type="button" id='btnIdCheck'>
 					<img src="${pageContext.request.contextPath }/resources/images/btn_id_check.gif">
 				</button>
@@ -51,48 +51,47 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="name">
+			<label class="col-sm-4 col-form-label" for="name">
 			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">이름</label>
 
-			<div class="col-sm-3">
+			<div class="col-sm-3" id='col3Name'> 
 				<input type="text" class="form-control" name='memberName' id="name">
 			</div>  
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="password">
+			<label class="col-sm-4 col-form-label" for="password">
 			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">비밀번호</label>
-			<div class="col-sm-3">
-
+			<div class="col-sm-3" id='col3Pwd'>
 				<input type="password" class="form-control" name="password" id='password'>
 			</div>
-			<div class='col-sm-6'>
+			<div class='col-sm-6' id='col6Pwd'>
 				<span class='validationTitle'>6~10자 이내의 소문자/숫자 조합만 가능합니다.</span>
 			</div>
 		</div>
 
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="passwordConfirm">
+		<div class="form-group row">  
+			<label class="col-sm-4 col-form-label" for="passwordConfirm">
 			<img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
 				비밀번호 확인</label>
-			<div class="col-sm-3">
+			<div class="col-sm-3" id='col3Pwdc'>      
 				<input type="password" class="form-control" name="passwordConfirm" id='passwordConfirm'>
 			</div>
-			<div class='col-sm-6'>
+			<div class='col-sm-6' id='col6Pwdc'>
 				<span></span>
-			</div>
+			</div>  
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="email"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">이메일</label>
-			<div class="col-sm-5">
+			<label class="col-sm-4 col-form-label" for="email"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">이메일</label>
+			<div class="col-sm-5" id='col5Email'>
 				<input type="text" class="form-control" name='email' id="email">
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label" for="phone"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">연락처</label>
-			<div class="col-sm-5">
+			<label class="col-sm-4 col-form-label" for="phone"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">연락처</label>
+			<div class="col-sm-5" id='col5Phone'>
 
 				<select id="selectPhoneFirst">
 					<option value='010'>010</option>
@@ -106,11 +105,11 @@
 			</div>
 		</div>
 
-		<div class="form-group row" style="height: 190px;">
-			<label class="col-sm-2 col-form-label" for="address"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
-				주소</label>
+		<div class="form-group row" style="height: 190px;" id='addresssWrapper'>
+			<label class="col-sm-4 col-form-label" for="address"><img src="${pageContext.request.contextPath }/resources/images/ico_ness.gif">
+				주소</label>  
 
-			<div class="col-sm-6">
+			<div class="col-sm-6" id='col6Address'>
 				<div class="form-group" style='padding: 0px;'>
 
 					<input class="form-control" style="width: 30%; display: inline;"

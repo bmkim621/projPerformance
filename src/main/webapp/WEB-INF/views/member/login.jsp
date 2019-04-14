@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <!-- 내가 만든 css 파일 -->
-<link href="${pageContext.request.contextPath }/resources/css/join.css?bccb" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/join.css?dbd" rel="stylesheet" type="text/css">
 
 <div class="container-fluid loginContainer">
 	<div class="row">
@@ -21,7 +21,7 @@
 
 
 <!-- 로그인화면-->
-<div class="container-fluid loginFormContainer">
+<div class="container loginFormContainer">
 
 	<div class="login-wrapper">
 	
@@ -41,7 +41,7 @@
 				<p class='pLost'><a href="#">아이디 · 비밀번호 찾기</a></p>
 			</form>
 			
-			<p class="text-center notMember">회원이 아니시라면?&nbsp;&nbsp;<a href="#" class='btnGoJoinForm'>회원가입</a></p>  
+			<p class="text-center notMember">회원이 아니시라면?&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/member/joinTerms" class='btnGoJoinForm'>회원가입</a></p>  
 		</div>
 	
 	</div>	<!-- login-wrapper end -->

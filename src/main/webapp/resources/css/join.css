@@ -1,177 +1,1537 @@
-/* ========== 로그인 화면 ========== */
-div.container-fluid.loginContainer {
-	width: 100%;
-	height: auto;
+/* 모바일용 */         
+@media all and (max-width: 480px){
+	/* ========== 로그인 화면 ========== */
+	div.container-fluid.loginContainer {
+		width: 100%;
+		height: auto;
+		margin: 0;
+	 	padding: 0;  
+		position: relative;
+		overflow: hidden;
+		text-align: center;       
+	}  
+	
+	div.container-fluid div#bgWrapper {
+		background: url('../images/sub_visual_6.jpg') no-repeat;
+		height: 350px;      
+		background-position: center center;
+	}
+	
+	div.container-fluid div#bgWrapper div.headline {
+		width: 200px;
+		overflow: hidden;
+		position: absolute;
+		top: 40%; 
+		left: 28%;                           
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		padding-top: 28px;  
+	}
+	
+	div.container-fluid div#bgWrapper p.korHeadline {
+		color: white;
+		letter-spacing: -1.2px;
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 0.5em;
+	}
+	
+	div.container-fluid div#bgWrapper p.engHeadline {
+		letter-spacing: -0.8px;
+		font-size: 22px;
+		font-style: italic;
+		color: rgba(255, 255, 255, 0.6);
+	}	
+	
+	/* ===== 로그인 화면 ===== */
+	div.container.loginFormContainer{
+		width: 100%;                                                                   
+		padding-top: 30px;
+		padding-bottom: 20px;             
+	}
+	
+	div.login-wrapper{
+		overflow: hidden;
+		width: 100%;           
+		margin: 30px auto;
+		background-color: #f0f0f0;                  
+	}
+	
+	.form-control {
+		min-height: 41px;
+	/* 	background: #f2f2f2; */
+		border: 1px solid #ccc;           
+	}
+	
+	
+	.form-control:focus {
+		/* background: #e2e2e2; */
+		border: 1px solid #2a3072;
+	}
+	
+	.form-control, .btn {
+		border-radius: 2px;
+	}
+	
+	.login-form {
+		width: 100%;                                       
+		margin: 30px auto;
+		text-align: center;                 
+	}
+	
+	.login-form form {
+		color: #7a7a7a;
+		border-radius: 3px;
+		padding: 10px;     
+		width: 100%;    
+	}
+	
+	.login-form .btn {
+		font-size: 16px;
+		font-weight: bold;
+		background: #2a3072;
+		border: none;
+		outline: none !important;
+	}
+	
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #383e7d;      
+	}
+	
+	.login-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	
+	.login-form a:hover {
+		text-decoration: none;
+	}
+	
+	.login-form form a {
+		color: #7a7a7a;
+		text-decoration: none;
+	}
+	
+	.login-form form a:hover {
+		text-decoration: underline;
+	}
+	
+	.login-form h3{
+		color: #2a3072;
+		letter-spacing: -0.7px;
+		font-weight: bold;         
+	}
+	
+	.login-form .spanWelcom{
+		color: #686868;
+		letter-spacing: -0.5px;
+		margin: 20px 0;
+		font-size: 13.5px;                   
+	}
+	
+	.myId, .myPw{
+		position: relative;
+		padding: 7px 0!important;      
+		border-bottom: none!important;
+	}
+	
+	.login-form i {
+		position: absolute;
+		left: 13px;
+		top: 32px;                                         
+		font-size: 18px;          
+	}
+	
+	.form-control{
+		padding-left: 40px;        
+	}
+	
+	.pLost{
+		color: #2a3072!important;
+		letter-spacing: -0.5px;
+		font-weight: bold;
+	}
+	
+	p.text-center.notMember{
+		color: #535353;
+		font-weight: bold;
+		letter-spacing: -0.5px;
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm{
+		text-decoration: none;
+		padding: 2px 5px;               
+		color: #2a3072;
+		background-color: #fff;
+		border: 1px solid #2a3072;
+		border-radius: 8px;             
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm:hover{
+		color: #656da8;
+		border: 1px solid #656da8;         
+	}
+	
+	/* 회원 약관 */
+	div.termsWrapper{
+	overflow: hidden;
+	padding: 0;
+	}
+	
+	div.titleWrapper {
+	    padding-top: 60px;
+	}
+	
+	div.titleWrapper h2 {
+	    margin-bottom: 40px;
+	    letter-spacing: -0.8px;
+	}
+	  
+	div.termsWrapper img{
+		display: inline-block;
+		padding-right: 10px;
+	}
+	
+	div.termsWrapper h3{
+		display: inline-block;
+		margin: 0;
+		padding-top: 10px;
+		letter-spacing: -0.5px;
+		color: #747474;      
+		font-weight: normal; 
+	}
+	
+	div.termsWrapper div.terms1{
+		border: 1px solid #ddd;
+		width: 100%;
+		height: 250px;
+		overflow: auto;
+		margin-top: 20px;
+		padding: 15px;                               
+	}
+	
+	div.termsWrapper div.terms2{
+		border: 1px solid #ddd;
+		width: 100%;
+		height: 200px;  
+		margin-top: 20px;
+		padding: 15px;
+		overflow: auto; 
+	}
+	
+	div.terms1 p, div.terms2 p{
+		color: #888891;
+		font-weight: lighter;
+		letter-spacing: -0.5px;
+		font-size: 15px;
+	}
+	
+	div.terms1 ul, div.terms2 ul{
+		list-style: none;
+		padding: 0;
+		margin-bottom: 1rem;
+	}
+	
+	div.terms1 ul li, div.terms2 ul li{   
+		color: #888891;
+		font-weight: lighter;
+		letter-spacing: -0.5px;
+		font-size: 15px;
+		text-align: left;
+	}
+	
+	div.allowWrapper{
+		text-align: right;
+		color: #666;
+		margin: 15px 0 30px 0;
+	}
+	
+	/* ========== 체크박스 =========== */
+	.checkbox label:after{
+	    content: '';
+	    display: table;
+	    clear: both;
+	}
+	
+	.checkbox .cr{
+	    position: relative;
+	    display: inline-block;
+	    border: 1px solid #a9a9a9;
+	    border-radius: .25em;
+	    width: 1.1em;
+	    height: 1.1em;     
+	    float: left;
+	    margin-right: .5em;
+	    margin-top: 3px;             
+	}      
+	
+	.checkbox .cr .cr-icon{
+	    position: absolute;
+	    font-size: .8em;
+	    line-height: 0;
+	    top: 52%;              
+	    left: 15%;      
+	    color: #f04040;  
+	}
+	
+	.checkbox label{
+		margin-bottom: 0;
+	}
+	
+	.checkbox label input[type="checkbox"]{
+	    display: none;
+	}
+	
+	.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+	    transform: scale(3) rotateZ(-20deg);
+	    opacity: 0;
+	    transition: all .3s ease-in;
+	}
+	
+	.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+	    transform: scale(1) rotateZ(0deg);
+	    opacity: 1;
+	}
+	
+	.checkbox label input[type="checkbox"]:disabled + .cr{
+	    opacity: .5;
+	}
+	
+	/* 버튼 */
+	div.termsBtnWrapper{
+		overflow: hidden;
+		text-align: center;
+		margin: 30px 0 50px 0;
+	}
+	
+	#btnSignNext{
+		width: 230px;
+		height: 50px;
+		color: white;
+		background-color: #2a3072;
+		letter-spacing: -0.8px;
+		font-size: 16px;
+		border: none;
+	}
+	
+	/* 회원가입 폼 */
+	div.titleWrapper{                                                                                     
+		padding-top: 60px;                
+	}
+	
+	div.titleWrapper h2{
+		margin-bottom: 40px;
+		letter-spacing: -0.8px;
+	}
+	
+	div.joinNoticeWrapper{
+		border-bottom: 1px solid #2a3072;
+		margin: 30px 0;
+		padding-bottom: 30px;  
+	}
+	
+	div.joinNoticeWrapper h2{  
+		letter-spacing: -0.8px;
+		color: #000;   
+		font-size: 26px;  
+	}
+	
+	div.joinNoticeWrapper span#joinNoticeSpan{
+		letter-spacing: -0.8px!important;
+		color: #686868!important;           
+	}
+	
+	div.joinNoticeWrapper img{
+		margin-right: 3px;   
+	}
+
+	#f1 label{
+		font-size: 16px;
+		letter-spacing: -0.8px;
+		color: #000;
+	}
+	
+	div.form-group{
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px 0;  
+		border-bottom: 1px solid #eaeaea; 
+		overflow: hidden;
+	}
+	
+	div.form-group label img{
+		margin-right: 5px;
+	}
+	
+	button#btnIdCheck{
+		border: none;
+		background-color: #fff;
+		overflow: hidden;
+		padding: 0;
+		display: block;
+		margin-top: 15px;
+	}
+	
+	button#btnIdCheck img{
+		width: 112px;
+		height: 38px;     
+	}
+		
+	span.validationTitle{
+		color: #ff6666;
+		letter-spacing: -0.8px;
+		display: block;
+		font-size: 14.5px;   
+		margin-top: 10px;   
+	}
+	
+	.form-control {
+		border-color: #ccc;
+		min-height: 41px;
+		box-shadow: none !important;
+		padding-left: 15px;  
+	}
+	
+	.form-control:focus {
+		border-color: #5cd3b4;
+	}
+	
+	.phoneNum{
+		display: inline-block;
+		padding: 5px 12px;   
+		margin: 0 5px;
+		width: 28%!important;    
+	}
+	
+	select{
+		min-height: 41px;
+		padding: 5px 6px; 
+		margin-right: 5px;
+		letter-spacing: -0.8px;
+		width: 28%!important;   
+	}
+	
+	div#addresssWrapper{
+		overflow: hidden;
+		height: auto!important;
+	}
+		
+	.btn-default{
+		border: 1px solid #ccc;
+		min-height: 41px;
+		margin-left: 10px;
+		letter-spacing: -0.8px;
+		color: #000;
+	}
+	
+	.btn-default i{
+		color: #000;
+	}
+	
+	#btnSignUp{
+		width: 230px;
+		height: 50px;
+		color: white;
+		background-color: #2a3072;
+		letter-spacing: -0.8px;
+		font-size: 16px;
+	}
+	
+	div.text-center{
+		margin-top: 30px;
+		margin-bottom: 60px;    
+	}  
+}
+
+/* 모바일 태블릿 사이 너비 */
+@media (min-width: 481px) and (max-width: 767.5px) { 
+	/* ========== 로그인 화면 ========== */
+	div.container-fluid.loginContainer {
+		width: 100%;
+		height: auto;
+		margin: 0;
+	 	padding: 0;  
+		position: relative;
+		overflow: hidden;
+		text-align: center;       
+	}  
+	
+	div.container-fluid div#bgWrapper {
+		background: url('../images/sub_visual_6.jpg') no-repeat;
+		height: 380px;       
+		background-position: center center;
+	}
+	
+	div.container-fluid div#bgWrapper div.headline {
+		width: 200px;
+		overflow: hidden;
+		position: absolute;
+		top: 40%;
+		left: 33%;                           
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		padding-top: 28px;  
+	}
+	
+	div.container-fluid div#bgWrapper p.korHeadline {
+		color: white;
+		letter-spacing: -1.2px;
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 0.5em;
+	}
+	
+	div.container-fluid div#bgWrapper p.engHeadline {
+		letter-spacing: -0.8px;
+		font-size: 22px;
+		font-style: italic;
+		color: rgba(255, 255, 255, 0.6);
+	}	
+	
+	/* ===== 로그인 화면 ===== */
+	div.container.loginFormContainer{
+		width: 100%;                                                                   
+		padding-top: 30px;
+		padding-bottom: 20px;            
+	}
+	
+	div.login-wrapper{
+		overflow: hidden;
+		width: 100%;           
+		margin: 30px auto;
+		background-color: #f0f0f0;                
+	}
+	
+	.form-control {
+		min-height: 41px;
+	/* 	background: #f2f2f2; */
+		border: 1px solid #ccc;           
+	}
+	
+	
+	.form-control:focus {
+		/* background: #e2e2e2; */
+		border: 1px solid #2a3072;
+	}
+	
+	.form-control, .btn {
+		border-radius: 2px;
+	}
+	
+	.login-form {
+		width: 90%;                                     
+		margin: 30px auto;
+		text-align: center;               
+	}
+	
+	.login-form form {
+		color: #7a7a7a;
+		border-radius: 3px;
+		padding: 30px;
+		width: 100%;    
+	}
+	
+	.login-form .btn {
+		font-size: 16px;
+		font-weight: bold;
+		background: #2a3072;
+		border: none;
+		outline: none !important;
+	}
+	
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #383e7d;      
+	}
+	
+	.login-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	
+	.login-form a:hover {
+		text-decoration: none;
+	}
+	
+	.login-form form a {
+		color: #7a7a7a;
+		text-decoration: none;
+	}
+	
+	.login-form form a:hover {
+		text-decoration: underline;
+	}
+	
+	.login-form h3{
+		color: #2a3072;
+		letter-spacing: -0.7px;
+		font-weight: bold;         
+	}
+	
+	.login-form .spanWelcom{
+		color: #686868;
+		letter-spacing: -0.5px;
+		margin: 20px 0;
+		font-size: 15px;      
+	}
+	
+	.myId, .myPw{
+		position: relative;
+		padding: 7px 0!important;      
+		border-bottom: none!important;
+	}
+	
+	.login-form i {
+		position: absolute;
+		left: 13px;
+		top: 32px;                                         
+		font-size: 18px;          
+	}
+	
+	.form-control{
+		padding-left: 40px;        
+	}
+	
+	.pLost{
+		color: #2a3072!important;
+		letter-spacing: -0.5px;
+		font-weight: bold;
+	}
+	
+	p.text-center.notMember{
+		color: #535353;
+		font-weight: bold;
+		letter-spacing: -0.5px;
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm{
+		text-decoration: none;
+		padding: 2px 5px;               
+		color: #2a3072;
+		background-color: #fff;
+		border: 1px solid #2a3072;
+		border-radius: 8px;             
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm:hover{
+		color: #656da8;
+		border: 1px solid #656da8;         
+	}
+	
+	/* 회원 약관 */
+	div.termsWrapper{
+		overflow: hidden;
+		padding: 0;
+	}
+	
+	div.titleWrapper {
+	    padding-top: 60px;
+	}
+	
+	div.titleWrapper h2 {
+	    margin-bottom: 40px;
+	    letter-spacing: -0.8px;
+	}
+	  
+	div.termsWrapper img{
+		display: inline-block;
+		padding-right: 10px;
+	}
+	
+	div.termsWrapper h3{
+		display: inline-block;
+		margin: 0;
+		padding-top: 10px;
+		letter-spacing: -0.5px;
+		color: #747474;      
+		font-weight: normal; 
+	}
+	
+	div.termsWrapper div.terms1{
+		border: 1px solid #ddd;
+		width: 100%;
+		height: 250px;
+		overflow: auto;
+		margin-top: 20px;
+		padding: 15px;                               
+	}
+	
+	div.termsWrapper div.terms2{
+		border: 1px solid #ddd;
+		width: 100%;
+		height: 200px;  
+		margin-top: 20px;
+		padding: 15px;
+		overflow: auto; 
+	}
+	
+	div.terms1 p, div.terms2 p{
+		color: #888891;
+		font-weight: lighter;
+		letter-spacing: -0.5px;
+		font-size: 15px;
+	}
+	
+	div.terms1 ul, div.terms2 ul{
+		list-style: none;
+		padding: 0;
+		margin-bottom: 1rem;
+	}
+	
+	div.terms1 ul li, div.terms2 ul li{   
+		color: #888891;
+		font-weight: lighter;
+		letter-spacing: -0.5px;
+		font-size: 15px;
+		text-align: left;
+	}
+	
+	div.allowWrapper{
+		text-align: right;
+		color: #666;
+		margin: 15px 0 30px 0;
+	}
+	
+	/* ========== 체크박스 =========== */
+	.checkbox label:after{
+	    content: '';
+	    display: table;
+	    clear: both;
+	}
+	
+	.checkbox .cr{
+	    position: relative;
+	    display: inline-block;
+	    border: 1px solid #a9a9a9;
+	    border-radius: .25em;
+	    width: 1.1em;
+	    height: 1.1em;     
+	    float: left;
+	    margin-right: .5em;
+	    margin-top: 3px;             
+	}      
+	
+	.checkbox .cr .cr-icon{
+	    position: absolute;
+	    font-size: .8em;
+	    line-height: 0;
+	    top: 52%;              
+	    left: 15%;      
+	    color: #f04040;  
+	}
+	
+	.checkbox label{
+		margin-bottom: 0;
+	}
+	
+	.checkbox label input[type="checkbox"]{
+	    display: none;
+	}
+	
+	.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+	    transform: scale(3) rotateZ(-20deg);
+	    opacity: 0;
+	    transition: all .3s ease-in;
+	}
+	
+	.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+	    transform: scale(1) rotateZ(0deg);
+	    opacity: 1;
+	}
+	
+	.checkbox label input[type="checkbox"]:disabled + .cr{
+	    opacity: .5;
+	}
+	
+	/* 버튼 */
+	div.termsBtnWrapper{
+		overflow: hidden;
+		text-align: center;
+		margin: 30px 0 50px 0;
+	}
+	
+	#btnSignNext{
+		width: 230px;
+		height: 50px;
+		color: white;
+		background-color: #2a3072;
+		letter-spacing: -0.8px;
+		font-size: 16px;
+		border: none;
+	}
+	
+	/* 회원가입 폼 */
+	div.titleWrapper{                                                                                     
+		padding-top: 60px;                
+	}
+	
+	div.titleWrapper h2{
+		margin-bottom: 40px;
+		letter-spacing: -0.8px;
+	}
+	
+	div.joinNoticeWrapper{
+		border-bottom: 1px solid #2a3072;
+		margin: 30px 0;
+		padding-bottom: 30px;
+	}
+	
+	div.joinNoticeWrapper h2{  
+		letter-spacing: -0.8px;
+		color: #000;   
+		font-size: 26px;  
+	}
+	
+	div.joinNoticeWrapper span#joinNoticeSpan{
+		letter-spacing: -0.8px!important;
+		color: #686868!important;           
+	}
+	
+	div.joinNoticeWrapper img{
+		margin-right: 3px;   
+	}
+	
+	#f1 label{
+		font-size: 16px;
+		letter-spacing: -0.8px;
+		color: #000;
+	}
+	
+	div.form-group{
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px 0;  
+		border-bottom: 1px solid #eaeaea; 
+		overflow: hidden;
+	}
+	  
+	div#col3Id, div#col3Name, div#col3Pwd, div#col3Pwdc, div#col5Email, div#col5Phone{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+	
+	div#col6Id, div#col6Pwd, div#col6Pwdc, div#col6Address{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}  
+	
+	div.form-group label img{
+		margin-right: 5px;
+	}
+	
+	button#btnIdCheck{
+		border: none;
+		background-color: #fff;
+		overflow: hidden;
+		padding: 0;
+		display: block;
+		margin-top: 15px;
+	}
+	
+	button#btnIdCheck img{
+		width: 112px;
+		height: 38px;     
+	}
+	
+	div.col-sm-6{
+		padding: 0 15px;
+		height: auto;
+		overflow: hidden;  
+	}
+	
+	span.validationTitle{
+		color: #ff6666;
+		letter-spacing: -0.8px;
+		display: block;
+		font-size: 14.5px;   
+		margin-top: 10px;   
+	}
+	
+	.form-control {
+		border-color: #ccc;
+		min-height: 41px;
+		box-shadow: none !important;
+		padding-left: 15px;  
+	}
+	
+	.form-control:focus {
+		border-color: #5cd3b4;
+	}
+	
+	.phoneNum{
+		display: inline-block;
+		padding: 5px 12px;   
+		margin: 0 5px;
+		width: 28%!important;    
+	}
+	
+	select{
+		min-height: 41px;
+		padding: 5px 6px; 
+		margin-right: 5px;
+		letter-spacing: -0.8px;
+		width: 28%!important;   
+	}
+	
+	div#addresssWrapper{
+		overflow: hidden;
+		height: auto!important;
+	}
+		
+	.btn-default{
+		border: 1px solid #ccc;
+		min-height: 41px;
+		margin-left: 10px;
+		letter-spacing: -0.8px;
+		color: #000;
+	}
+	
+	.btn-default i{
+		color: #000;
+	}
+	
+	#btnSignUp{
+		width: 230px;
+		height: 50px;
+		color: white;
+		background-color: #2a3072;
+		letter-spacing: -0.8px;
+		font-size: 16px;
+	}
+	
+	div.text-center{
+		margin-top: 30px;
+		margin-bottom: 60px;    
+	}
+}
+
+/* 태블릿 */
+@media all and (min-width: 768px) {
+	/* ========== 로그인 화면 ========== */
+	div.container-fluid.loginContainer {
+		width: 100%;
+		height: auto;
+		margin: 0;
+	 	padding: 0;  
+		position: relative;
+		overflow: hidden;
+		text-align: center;       
+	}  
+	
+	div.container-fluid div#bgWrapper {
+		background: url('../images/sub_visual_6.jpg') no-repeat;
+		height: 420px;  
+		background-position: center center;
+	}
+	
+	div.container-fluid div#bgWrapper div.headline {
+		width: 200px;
+		overflow: hidden;
+		position: absolute;
+		top: 40%;
+		left: 38%;               
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		padding-top: 28px;
+	}
+	
+	div.container-fluid div#bgWrapper p.korHeadline {
+		color: white;
+		letter-spacing: -1.2px;
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 0.5em;
+	}
+	
+	div.container-fluid div#bgWrapper p.engHeadline {
+		letter-spacing: -0.8px;
+		font-size: 22px;
+		font-style: italic;
+		color: rgba(255, 255, 255, 0.6);
+	}
+	
+	/* ===== 로그인 화면 ===== */
+	div.container.loginFormContainer{
+		width: 100%;                                                                   
+		padding-top: 30px;
+		padding-bottom: 20px;           
+	}
+	
+	div.login-wrapper{
+		overflow: hidden;
+		width: 100%;           
+		margin: 30px auto;
+		background-color: #f0f0f0;                
+	}
+	
+	.form-control {
+		min-height: 41px;
+	/* 	background: #f2f2f2; */
+		border: 1px solid #ccc;           
+	}
+	
+	
+	.form-control:focus {
+		/* background: #e2e2e2; */
+		border: 1px solid #2a3072;
+	}
+	
+	.form-control, .btn {
+		border-radius: 2px;
+	}
+	
+	.login-form {
+		width: 60%;                                 
+		margin: 30px auto;
+		text-align: center;                
+	}
+	
+	.login-form form {
+		color: #7a7a7a;
+		border-radius: 3px;
+		padding: 30px;
+		width: 100%;    
+	}
+	
+	.login-form .btn {
+		font-size: 16px;
+		font-weight: bold;
+		background: #2a3072;
+		border: none;
+		outline: none !important;
+	}
+	
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #383e7d;      
+	}
+	
+	.login-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	
+	.login-form a:hover {
+		text-decoration: none;
+	}
+	
+	.login-form form a {
+		color: #7a7a7a;
+		text-decoration: none;
+	}
+	
+	.login-form form a:hover {
+		text-decoration: underline;
+	}
+	
+	.login-form h3{
+		color: #2a3072;
+		letter-spacing: -0.7px;
+		font-weight: bold;         
+	}
+	
+	.login-form .spanWelcom{
+		color: #686868;
+		letter-spacing: -0.5px;
+		margin: 20px 0;
+		font-size: 15px;      
+	}
+	
+	.myId, .myPw{
+		position: relative;
+		padding: 7px 0!important;      
+		border-bottom: none!important;
+	}
+	
+	.login-form i {
+		position: absolute;
+		left: 13px;
+		top: 32px;                                         
+		font-size: 18px;          
+	}
+	
+	.form-control{
+		padding-left: 40px;        
+	}
+	
+	.pLost{
+		color: #2a3072!important;
+		letter-spacing: -0.5px;
+		font-weight: bold;
+	}
+	
+	p.text-center.notMember{
+		color: #535353;
+		font-weight: bold;
+		letter-spacing: -0.5px;
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm{
+		text-decoration: none;
+		padding: 2px 5px;               
+		color: #2a3072;
+		background-color: #fff;
+		border: 1px solid #2a3072;
+		border-radius: 8px;             
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm:hover{
+		color: #656da8;
+		border: 1px solid #656da8;         
+	}
+	
+	/* 회원 약관 */
+	div.termsWrapper{
+	overflow: hidden;
+}
+
+div.titleWrapper {
+    padding-top: 60px;
+}
+
+div.titleWrapper h2 {
+    margin-bottom: 40px;
+    letter-spacing: -0.8px;
+}
+  
+div.termsWrapper img{
+	display: inline-block;
+	padding-right: 10px;
+}
+
+div.termsWrapper h3{
+	display: inline-block;
 	margin: 0;
- 	padding: 0;  
-	position: relative;
+	padding-top: 10px;
+	letter-spacing: -0.5px;
+	color: #747474;      
+	font-weight: normal; 
+}
+
+div.termsWrapper div.terms1{
+	border: 1px solid #ddd;
+	width: 100%;
+	height: 250px;
+	overflow: auto;
+	margin-top: 20px;
+	padding: 15px;                               
+}
+
+div.termsWrapper div.terms2{
+	border: 1px solid #ddd;
+	width: 100%;
+	height: 200px;  
+	margin-top: 20px;
+	padding: 15px;  
+}
+
+div.terms1 p, div.terms2 p{
+	color: #888891;
+	font-weight: lighter;
+	letter-spacing: -0.5px;
+	font-size: 15px;
+}
+
+div.terms1 ul, div.terms2 ul{
+	list-style: none;
+	padding: 0;
+	margin-bottom: 1rem;
+}
+
+div.terms1 ul li, div.terms2 ul li{   
+	color: #888891;
+	font-weight: lighter;
+	letter-spacing: -0.5px;
+	font-size: 15px;
+	text-align: left;
+}
+
+div.allowWrapper{
+	text-align: right;
+	color: #666;
+	margin: 15px 0 30px 0;
+}
+
+/* ========== 체크박스 =========== */
+.checkbox label:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr{
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.1em;
+    height: 1.1em;     
+    float: left;
+    margin-right: .5em;
+    margin-top: 3px;             
+}      
+
+.checkbox .cr .cr-icon{
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 52%;              
+    left: 15%;      
+    color: #f04040;  
+}
+
+.checkbox label{
+	margin-bottom: 0;
+}
+
+.checkbox label input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr{
+    opacity: .5;
+}
+
+/* 버튼 */
+div.termsBtnWrapper{
 	overflow: hidden;
 	text-align: center;
+	margin: 30px 0 50px 0;
 }
 
-div.container-fluid div#bgWrapper {
-	background: url('../images/sub_visual_6.jpg') no-repeat;
-	height: 500px;
-	background-position: center center;
-}
-
-div.container-fluid div#bgWrapper div.headline {
-	width: 200px;
-	overflow: hidden;
-	position: absolute;
-	top: 40%;
-	left: 45%;
-	border-top: 1px solid white;
-	border-bottom: 1px solid white;
-	padding-top: 28px;
-}
-
-div.container-fluid div#bgWrapper p.korHeadline {
+#btnSignNext{
+	width: 230px;
+	height: 50px;
 	color: white;
-	letter-spacing: -1.2px;
-	font-size: 32px;
-	font-weight: bold;
-	line-height: 0.5em;
-}
-
-div.container-fluid div#bgWrapper p.engHeadline {
+	background-color: #2a3072;
 	letter-spacing: -0.8px;
-	font-size: 22px;
-	font-style: italic;
-	color: rgba(255, 255, 255, 0.6);
-}
-
-/* ===== 로그인 화면 ===== */
-div.container-fluid.loginFormContainer{
-	width: 75%;                                                                   
-	padding-top: 30px;
-	padding-bottom: 20px;              
-}
-
-div.login-wrapper{
-	overflow: hidden;
-	width: 80%;       
-	margin: 30px auto;
-	background-color: #f0f0f0;                    
-}
-
-.form-control {
-	min-height: 41px;
-/* 	background: #f2f2f2; */
-	border: 1px solid #ccc;           
-}
-
-
-.form-control:focus {
-	/* background: #e2e2e2; */
-	border: 1px solid #2a3072;
-}
-
-.form-control, .btn {
-	border-radius: 2px;
-}
-
-.login-form {
-	width: 50%;                          
-	margin: 30px auto;
-	text-align: center;                  
-}
-
-.login-form form {
-	color: #7a7a7a;
-	border-radius: 3px;
-	padding: 30px;
-	width: 100%;    
-}
-
-.login-form .btn {
 	font-size: 16px;
-	font-weight: bold;
-	background: #2a3072;
 	border: none;
-	outline: none !important;
 }
-
-.login-form .btn:hover, .login-form .btn:focus {
-	background: #383e7d;      
-}
-
-.login-form a {
-	color: #fff;
-	text-decoration: underline;
-}
-
-.login-form a:hover {
-	text-decoration: none;
-}
-
-.login-form form a {
-	color: #7a7a7a;
-	text-decoration: none;
-}
-
-.login-form form a:hover {
-	text-decoration: underline;
-}
-
-.login-form h3{
-	color: #2a3072;
-	letter-spacing: -0.7px;
-	font-weight: bold;         
-}
-
-.login-form .spanWelcom{
-	color: #686868;
-	letter-spacing: -0.5px;
-	margin: 20px 0;
-	font-size: 15px;      
-}
-
-.myId, .myPw{
-	position: relative;
-	padding: 7px 0!important;      
-	border-bottom: none!important;
-}
-
-.login-form i {
-	position: absolute;
-	left: 13px;
-	top: 32px;                                         
-	font-size: 18px;          
-}
-
-.form-control{
-	padding-left: 40px;        
-}
-
-.pLost{
-	color: #2a3072!important;
-	letter-spacing: -0.5px;
-	font-weight: bold;
-}
-
-p.text-center.notMember{
-	color: #535353;
-	font-weight: bold;
-	letter-spacing: -0.5px;
-}
-
-p.text-center.notMember a.btnGoJoinForm{
-	text-decoration: none;
-	padding: 2px 5px;               
-	color: #2a3072;
-	background-color: #fff;
-	border: 1px solid #2a3072;
-	border-radius: 8px;             
-}
-
-p.text-center.notMember a.btnGoJoinForm:hover{
-	color: #656da8;
-	border: 1px solid #656da8;         
-}
-
 
 /* 회원가입 폼 */
+	div.titleWrapper{                                                                                     
+		padding-top: 60px;                
+	}
+	
+	div.titleWrapper h2{
+		margin-bottom: 40px;
+		letter-spacing: -0.8px;
+	}
+	
+	div.joinNoticeWrapper{
+		border-bottom: 1px solid #2a3072;
+		margin: 30px 0;
+		padding-bottom: 30px;  
+	}
+	
+	div.joinNoticeWrapper h2{  
+		letter-spacing: -0.8px;
+		color: #000;   
+		font-size: 26px;  
+	}
+	
+	div.joinNoticeWrapper span#joinNoticeSpan{
+		letter-spacing: -0.8px!important;
+		color: #686868!important;           
+	}
+	
+	div.joinNoticeWrapper img{
+		margin-right: 3px;   
+	}
+
+	#f1 label{
+		font-size: 16px;
+		letter-spacing: -0.8px;
+		color: #000;
+	}
+	
+	div.form-group{
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px 0;  
+		border-bottom: 1px solid #eaeaea; 
+		overflow: hidden;
+	}
+	
+	div.form-group label img{
+		margin-right: 5px;
+	}
+	
+	button#btnIdCheck{
+		border: none;
+		background-color: #fff;
+		overflow: hidden;
+		padding: 0;
+		display: block;
+		margin-top: 15px;
+	}
+	
+	button#btnIdCheck img{
+		width: 112px;
+		height: 38px;     
+	}
+		
+	span.validationTitle{
+		color: #ff6666;
+		letter-spacing: -0.8px;
+		display: block;
+		font-size: 14.5px;   
+		margin-top: 10px;   
+	}
+	
+	.form-control {
+		border-color: #ccc;
+		min-height: 41px;
+		box-shadow: none !important;
+		padding-left: 15px;  
+	}
+	
+	.form-control:focus {
+		border-color: #5cd3b4;
+	}
+	
+	.phoneNum{
+		display: inline-block;
+		padding: 5px 12px;   
+		margin: 0 5px;
+		width: 28%!important;    
+	}
+	
+	select{
+		min-height: 41px;
+		padding: 5px 6px; 
+		margin-right: 5px;
+		letter-spacing: -0.8px;
+		width: 28%!important;   
+	}
+	
+	div#addresssWrapper{
+		overflow: hidden;
+		height: auto!important;
+	}
+		
+	.btn-default{
+		border: 1px solid #ccc;
+		min-height: 41px;
+		margin-left: 10px;
+		letter-spacing: -0.8px;
+		color: #000;
+	}
+	
+	.btn-default i{
+		color: #000;
+	}
+	
+	#btnSignUp{
+		width: 230px;
+		height: 50px;
+		color: white;
+		background-color: #2a3072;
+		letter-spacing: -0.8px;
+		font-size: 16px;
+	}
+	
+	div.text-center{
+		margin-top: 30px;
+		margin-bottom: 60px;    
+	}
+	
+	div#col3Id, div#col3Name, div#col3Pwd, div#col3Pwdc, div#col5Email, div#col5Phone{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+	
+	div#col6Id, div#col6Pwd, div#col6Pwdc, div#col6Address{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+}
+
+/* 데스크탑 (가로 해상도가 992px보다 크고 1199px 보다 작은 화면에 적용) */
+@media (min-width: 992px) and (max-width: 1245.9px) {
+	/* ========== 로그인 화면 ========== */
+	div.container-fluid.loginContainer {
+		width: 100%;
+		height: auto;
+		margin: 0;
+	 	padding: 0;  
+		position: relative;
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	div.container-fluid div#bgWrapper {
+		background: url('../images/sub_visual_6.jpg') no-repeat;
+		height: 500px;
+		background-position: center center;
+	}
+	
+	div.container-fluid div#bgWrapper div.headline {
+		width: 200px;
+		overflow: hidden;
+		position: absolute;
+		top: 40%;
+		left: 40%;            
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		padding-top: 28px;
+	}
+	
+	div.container-fluid div#bgWrapper p.korHeadline {
+		color: white;
+		letter-spacing: -1.2px;
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 0.5em;
+	}
+	
+	div.container-fluid div#bgWrapper p.engHeadline {
+		letter-spacing: -0.8px;
+		font-size: 22px;
+		font-style: italic;
+		color: rgba(255, 255, 255, 0.6);
+	}
+	
+	/* ===== 로그인 화면 ===== */
+	div.container.loginFormContainer{
+		width: 100%;                                                                   
+		padding-top: 30px;
+		padding-bottom: 20px;             
+	}
+	
+	div.login-wrapper{
+		overflow: hidden;
+		width: 80%;       
+		margin: 30px auto;
+		background-color: #f0f0f0;                  
+	}
+	
+	.form-control {
+		min-height: 41px;
+	/* 	background: #f2f2f2; */
+		border: 1px solid #ccc;           
+	}
+	
+	
+	.form-control:focus {
+		/* background: #e2e2e2; */
+		border: 1px solid #2a3072;
+	}
+	
+	.form-control, .btn {
+		border-radius: 2px;
+	}
+	
+	.login-form {
+		width: 60%;                            
+		margin: 30px auto;
+		text-align: center;              
+	}
+	
+	.login-form form {
+		color: #7a7a7a;
+		border-radius: 3px;
+		padding: 30px;
+		width: 100%;    
+	}
+	
+	.login-form .btn {
+		font-size: 16px;
+		font-weight: bold;
+		background: #2a3072;
+		border: none;
+		outline: none !important;
+	}
+	
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #383e7d;      
+	}
+	
+	.login-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	
+	.login-form a:hover {
+		text-decoration: none;
+	}
+	
+	.login-form form a {
+		color: #7a7a7a;
+		text-decoration: none;
+	}
+	
+	.login-form form a:hover {
+		text-decoration: underline;
+	}
+	
+	.login-form h3{
+		color: #2a3072;
+		letter-spacing: -0.7px;
+		font-weight: bold;         
+	}
+	
+	.login-form .spanWelcom{
+		color: #686868;
+		letter-spacing: -0.5px;
+		margin: 20px 0;
+		font-size: 15px;      
+	}
+	
+	.myId, .myPw{
+		position: relative;
+		padding: 7px 0!important;      
+		border-bottom: none!important;
+	}
+	
+	.login-form i {
+		position: absolute;
+		left: 13px;
+		top: 32px;                                         
+		font-size: 18px;          
+	}
+	
+	.form-control{
+		padding-left: 40px;        
+	}
+	
+	.pLost{
+		color: #2a3072!important;
+		letter-spacing: -0.5px;
+		font-weight: bold;
+	}
+	
+	p.text-center.notMember{
+		color: #535353;
+		font-weight: bold;
+		letter-spacing: -0.5px;
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm{
+		text-decoration: none;
+		padding: 2px 5px;               
+		color: #2a3072;
+		background-color: #fff;
+		border: 1px solid #2a3072;
+		border-radius: 8px;             
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm:hover{
+		color: #656da8;
+		border: 1px solid #656da8;         
+	}
+	
+	/* 회원가입 폼 */
 div.titleWrapper{                                                                                     
 	padding-top: 60px;
 	border: 1pxx solid red;                  
@@ -207,13 +1567,18 @@ div.joinNoticeWrapper img{
 	font-size: 16px;
 	letter-spacing: -0.8px;
 	color: #000;
+	max-width: 20%;
+	flex: 0 0 20%;
+	margin-right: 20px;
 }
 
 div.form-group{
 	width: 90%;
 	margin: 0 auto;
 	padding: 20px 0;
-	border-bottom: 1px solid #eaeaea;   
+	border-bottom: 1px solid #eaeaea;
+	overflow: hidden;
+	height: auto;  
 }
 
 div.form-group label img{
@@ -225,6 +1590,8 @@ button#btnIdCheck{
 	background-color: #fff;
 	overflow: hidden;
 	padding: 0;
+	display: inline-block;
+	margin-top: 0;
 }
 
 button#btnIdCheck img{
@@ -234,14 +1601,12 @@ button#btnIdCheck img{
 
 div.col-sm-6{
 	padding-left: 0;
-	height: 41px;
-	line-height: 41px;
+	height: auto;
 }
 
 span.validationTitle{
 	color: #ff6666;
 	letter-spacing: -0.8px;
-	margin-left: 10px;
 }
 
 .form-control {
@@ -294,6 +1659,489 @@ div.text-center{
 	margin-bottom: 60px;    
 }
 
+	div#col3Id, div#col3Name, div#col3Pwd, div#col3Pwdc {
+		max-width: 25%;
+		flex: 0 0 25%;
+	}
+	
+	div#col5Email, div#col5Phone{
+		max-width: 40%;
+		flex: 0 0 40%;
+	}
+	
+	div#col6Id{
+		max-width: 50%;
+		flex: 0 0 50%;  
+	}
+	
+	div#col6Pwd, div#col6Pwdc{
+		max-width: 40%;
+		flex: 0 0 40%;    
+	}  
+	div#col6Address{
+		max-width: 65%;
+		flex: 0 0 65%;       
+	}
+}
+
+/* 큰화면 데스크탑 (가로 해상도가 1200px 보다 큰 화면에 적용) */
+@media all and (min-width: 1246px) { 
+	/* ========== 로그인 화면 ========== */
+	div.container-fluid.loginContainer {
+		width: 100%;
+		height: auto;
+		margin: 0;
+	 	padding: 0;  
+		position: relative;
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	div.container-fluid div#bgWrapper {
+		background: url('../images/sub_visual_6.jpg') no-repeat;
+		height: 500px;
+		background-position: center center;
+	}
+	
+	div.container-fluid div#bgWrapper div.headline {
+		width: 200px;
+		overflow: hidden;
+		position: absolute;
+		top: 40%;
+		left: 45%;
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		padding-top: 28px;
+	}
+	
+	div.container-fluid div#bgWrapper p.korHeadline {
+		color: white;
+		letter-spacing: -1.2px;
+		font-size: 32px;
+		font-weight: bold;
+		line-height: 0.5em;
+	}
+	
+	div.container-fluid div#bgWrapper p.engHeadline {
+		letter-spacing: -0.8px;
+		font-size: 22px;
+		font-style: italic;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	/* ===== 로그인 화면 ===== */
+	div.container.loginFormContainer{
+		width: 100%;                                                                   
+		padding-top: 30px;
+		padding-bottom: 20px;            
+	}
+	
+	div.login-wrapper{
+		overflow: hidden;
+		width: 80%;       
+		margin: 30px auto;
+		background-color: #f0f0f0;                  
+	}
+	
+	.form-control {
+		min-height: 41px;
+	/* 	background: #f2f2f2; */
+		border: 1px solid #ccc;           
+	}
+	
+	
+	.form-control:focus {
+		/* background: #e2e2e2; */
+		border: 1px solid #2a3072;
+	}
+	
+	.form-control, .btn {
+		border-radius: 2px;
+	}
+	
+	.login-form {
+		width: 50%;                          
+		margin: 30px auto;
+		text-align: center;                  
+	}
+	
+	.login-form form {
+		color: #7a7a7a;
+		border-radius: 3px;
+		padding: 30px;
+		width: 100%;    
+	}
+	
+	.login-form .btn {
+		font-size: 16px;
+		font-weight: bold;
+		background: #2a3072;
+		border: none;
+		outline: none !important;
+	}
+	
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #383e7d;      
+	}
+	
+	.login-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	
+	.login-form a:hover {
+		text-decoration: none;
+	}
+	
+	.login-form form a {
+		color: #7a7a7a;
+		text-decoration: none;
+	}
+	
+	.login-form form a:hover {
+		text-decoration: underline;
+	}
+	
+	.login-form h3{
+		color: #2a3072;
+		letter-spacing: -0.7px;
+		font-weight: bold;         
+	}
+	
+	.login-form .spanWelcom{
+		color: #686868;
+		letter-spacing: -0.5px;
+		margin: 20px 0;
+		font-size: 15px;      
+	}
+	
+	.myId, .myPw{
+		position: relative;
+		padding: 7px 0!important;      
+		border-bottom: none!important;
+	}
+	
+	.login-form i {
+		position: absolute;
+		left: 13px;
+		top: 32px;                                         
+		font-size: 18px;          
+	}
+	
+	.form-control{
+		padding-left: 40px;        
+	}
+	
+	.pLost{
+		color: #2a3072!important;
+		letter-spacing: -0.5px;
+		font-weight: bold;
+	}
+	
+	p.text-center.notMember{
+		color: #535353;
+		font-weight: bold;
+		letter-spacing: -0.5px;
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm{
+		text-decoration: none;
+		padding: 2px 5px;               
+		color: #2a3072;
+		background-color: #fff;
+		border: 1px solid #2a3072;
+		border-radius: 8px;             
+	}
+	
+	p.text-center.notMember a.btnGoJoinForm:hover{
+		color: #656da8;
+		border: 1px solid #656da8;         
+	}
+	
+	/* 회원 약관 */
+	div.termsWrapper{
+	overflow: hidden;
+}
+
+div.termsWrapper img{
+	display: inline-block;
+	padding-right: 10px;
+}
+
+div.termsWrapper h3{
+	display: inline-block;
+	margin: 0;
+	padding-top: 10px;
+	letter-spacing: -0.5px;
+	color: #747474;      
+	font-weight: normal; 
+}
+
+div.termsWrapper div.terms1{
+	border: 1px solid #ddd;
+	width: 100%;
+	height: 250px;
+	overflow: auto;
+	margin-top: 20px;
+	padding: 15px;                               
+}
+
+div.termsWrapper div.terms2{
+	border: 1px solid #ddd;
+	width: 100%;
+	height: 200px;  
+	margin-top: 20px;
+	padding: 15px;  
+}
+
+div.terms1 p, div.terms2 p{
+	color: #888891;
+	font-weight: lighter;
+	letter-spacing: -0.5px;
+	font-size: 15px;
+}
+
+div.terms1 ul, div.terms2 ul{
+	list-style: none;
+	padding: 0;
+	margin-bottom: 1rem;
+}
+
+div.terms1 ul li, div.terms2 ul li{   
+	color: #888891;
+	font-weight: lighter;
+	letter-spacing: -0.5px;
+	font-size: 15px;
+	text-align: left;
+}
+
+div.allowWrapper{
+	text-align: right;
+	color: #666;
+	margin: 15px 0 30px 0;
+}
+
+/* ========== 체크박스 =========== */
+.checkbox label:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr{
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.1em;
+    height: 1.1em;     
+    float: left;
+    margin-right: .5em;
+    margin-top: 3px;             
+}      
+
+.checkbox .cr .cr-icon{
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 52%;              
+    left: 15%;      
+    color: #f04040;  
+}
+
+.checkbox label{
+	margin-bottom: 0;
+}
+
+.checkbox label input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr{
+    opacity: .5;
+}
+
+/* 버튼 */
+div.termsBtnWrapper{
+	overflow: hidden;
+	text-align: center;
+	margin: 30px 0 50px 0;
+}
+
+#btnSignNext{
+	width: 230px;
+	height: 50px;
+	color: white;
+	background-color: #2a3072;
+	letter-spacing: -0.8px;
+	font-size: 16px;
+	border: none;
+}
+
+  
+/* 회원가입 폼 */
+div.titleWrapper{                                                                                     
+	padding-top: 60px;
+	border: 1pxx solid red;                  
+}
+
+div.titleWrapper h2{
+	margin-bottom: 40px;
+	letter-spacing: -0.8px;
+}
+
+div.joinNoticeWrapper{
+	border-bottom: 1px solid #2a3072;
+	margin: 30px 0;
+	padding-bottom: 30px;
+}
+
+div.joinNoticeWrapper h2{  
+	letter-spacing: -0.8px;
+	color: #000;   
+	font-size: 30px;
+}
+
+div.joinNoticeWrapper span#joinNoticeSpan{
+	letter-spacing: -0.8px!important;
+	color: #686868!important;               
+}
+
+div.joinNoticeWrapper img{
+	margin-right: 3px;   
+}
+
+#f1 label{
+	font-size: 16px;
+	letter-spacing: -0.8px;
+	color: #000;
+	max-width: 20%;
+	flex: 0 0 20%;
+	margin-right: 20px;
+}
+
+div.form-group{
+	width: 90%;
+	margin: 0 auto;
+	padding: 20px 0;
+	border-bottom: 1px solid #eaeaea;
+	overflow: hidden;
+	height: auto;  
+}
+
+div.form-group label img{
+	margin-right: 5px;
+}
+
+button#btnIdCheck{
+	border: none;
+	background-color: #fff;
+	overflow: hidden;
+	padding: 0;
+	display: inline-block;
+	margin-top: 0;
+}
+
+button#btnIdCheck img{
+	width: 112px;
+	height: 38px;     
+}
+
+div.col-sm-6{
+	padding-left: 0;
+	height: auto;
+}
+
+span.validationTitle{
+	color: #ff6666;
+	letter-spacing: -0.8px;
+}
+
+.form-control {
+	border-color: #ccc;
+	min-height: 41px;
+	box-shadow: none !important;
+	padding-left: 15px;  
+}
+
+.form-control:focus {
+	border-color: #5cd3b4;
+}
+
+.phoneNum{
+	display: inline-block;
+	padding: 5px 12px;   
+	margin: 0 5px;
+}
+
+select{
+	min-height: 41px;
+	padding: 5px 6px; 
+	margin-right: 5px;
+	letter-spacing: -0.8px;
+}
+
+.btn-default{
+	border: 1px solid #ccc;
+	min-height: 41px;
+	margin-left: 10px;
+	letter-spacing: -0.8px;
+	color: #000;
+}
+
+.btn-default i{
+	color: #000;
+}
+
+#btnSignUp{
+	width: 230px;
+	height: 50px;
+	color: white;
+	background-color: #2a3072;
+	letter-spacing: -0.8px;
+	font-size: 16px;
+}
+
+div.text-center{
+	margin-top: 30px;
+	margin-bottom: 60px;    
+}
+
+	div#col3Id, div#col3Name, div#col3Pwd, div#col3Pwdc {
+		max-width: 25%;
+		flex: 0 0 25%;
+	}
+	
+	div#col5Email, div#col5Phone{
+		max-width: 40%;
+		flex: 0 0 40%;
+	}
+	
+	div#col6Id{
+		max-width: 50%;
+		flex: 0 0 50%;  
+	}
+	
+	div#col6Pwd, div#col6Pwdc{
+		max-width: 40%;
+		flex: 0 0 40%;    
+	}  
+	div#col6Address{
+		max-width: 65%;
+		flex: 0 0 65%;       
+	}
+
 /* 정보 수정; 비밀번호 확인 */
 .login-form label{
 	width: 20%;
@@ -325,3 +2173,5 @@ div.text-center{
 	letter-spacing: -0.8px;
 	font-size: 16px;
 }
+}
+

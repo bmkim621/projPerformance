@@ -3,22 +3,22 @@
 <div class="familySiteLinkWrap">
 	<ul>
 		<li>
-			<a href="https://www.facebook.com/DaeguOpera">
+			<a href="http://www.daegu.go.kr/">
 				<img src="${pageContext.request.contextPath }/resources/upload/link1.png">
 			</a>
 		</li>
 		<li>
-			<a href="https://www.instagram.com/daeguoperahouse">
+			<a href="https://www.mcst.go.kr/kor/main.jsp">
 				<img src="${pageContext.request.contextPath }/resources/upload/link2.png">
 			</a>
 		</li>
 		<li>
-			<a href="https://tv.naver.com/doh2013">
+			<a href="https://www.arko.or.kr">
 				<img src="${pageContext.request.contextPath }/resources/upload/link3.png">
 			</a>
 		</li>
 		<li>
-			<a href="http://www.ustream.tv/channel/daeguoperahouse">
+			<a href="http://www.daeguartfactory.kr/kor.action">
 				<img src="${pageContext.request.contextPath }/resources/upload/link4.png">
 			</a>
 		</li>
@@ -31,16 +31,16 @@
 		<div class="row text-center sns-menu">
 			<ul class="list-inline" id='snsUl'> 
 				<li>
-					<a href="#"><i class="fab fa-facebook fa-lg"></i></a> 
+					<a href="https://www.facebook.com/DaeguOpera"><i class="fab fa-facebook fa-lg"></i></a> 
 				</li>        
 				<li>
-					<a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+					<a href="https://www.instagram.com/daeguoperahouse"><i class="fab fa-instagram fa-lg"></i></a>
 				</li>         
 				<li>
-					<a href="#"><i class="fas fa-play-circle fa-lg"></i></a> 
+					<a href="https://tv.naver.com/doh2013"><i class="fas fa-play-circle fa-lg"></i></a> 
 				</li>             
 				<li>
-					<a href="#"><i class="fas fa-video fa-lg"></i></a>
+					<a href="http://www.ustream.tv/channel/daeguoperahouse"><i class="fas fa-video fa-lg"></i></a>
 				</li>      
 			</ul>
 		</div>
@@ -62,7 +62,7 @@
 		</ul>
 	</div>	<!-- 푸터 메뉴 끝 text-center end -->
 	</div> <!-- container end -->
-</footer>
+</footer>  
 
 <div class="copyright">
 	<div class="container copyright-menu">

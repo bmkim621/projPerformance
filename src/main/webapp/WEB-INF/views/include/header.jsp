@@ -19,7 +19,7 @@
 <!-- 부트스트랩 그래픽 아이콘 -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <!-- css -->
-<link href="${pageContext.request.contextPath }/resources/css/common.css?bdd" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/resources/css/common.css?bdsd" rel="stylesheet" type="text/css">
 <!-- mobile -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hc-offcanvas-nav.css">
 <script src="${pageContext.request.contextPath }/resources/js/hc-offcanvas-nav.js"></script>

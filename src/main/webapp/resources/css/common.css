@@ -902,16 +902,21 @@ nav.navbar{
 		list-style: none;
 		padding: 0;
 		margin: 0 auto;
-		width: 862px;	/* 각 li 전체의 너비 */
+		width: 70%;	/* 각 li 전체의 너비 */        
 		height: 80px;
 		line-height: 80px;
-	}
+		overflow: hidden;     
+	}       
 	
 	div.familySiteLinkWrap ul li{
-		float: left;
-		display: inline;
-		margin: 0 20px;
-		text-align: center;
+		float: left; 
+		overflow: hidden;
+		width: 25%;
+		padding: 0 5px;                    
+	}  
+	
+	div.familySiteLinkWrap ul li img{
+		width: 90%;                 
 	}
 	
 	footer{
@@ -1283,16 +1288,21 @@ nav.navbar{
 		list-style: none;
 		padding: 0;
 		margin: 0 auto;
-		width: 862px;	/* 각 li 전체의 너비 */
+		width: 70%;	/* 각 li 전체의 너비 */        
 		height: 80px;
 		line-height: 80px;
-	}
+		overflow: hidden;     
+	}       
 	
 	div.familySiteLinkWrap ul li{
-		float: left;
-		display: inline;
-		margin: 0 20px;
-		text-align: center;
+		float: left; 
+		overflow: hidden;
+		width: 25%;
+		padding: 0 5px;                    
+	}  
+	
+	div.familySiteLinkWrap ul li img{
+		width: 90%;                 
 	}
 	
 	footer{
